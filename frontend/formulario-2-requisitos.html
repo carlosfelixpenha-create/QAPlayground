@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Formulário 2</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Formulário 2 - Campos Diversos'</h1>
+    <div class="doc-container">
+      <h2>Campos</h2>
+
+      <h3>Sexo (Radio)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Usuário deve selecionar uma opção (Masculino ou Feminino).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório, não pode ficar sem seleção.</li>
+          <li>As opções devem aparecer alinhadas ao lado do seletor (input + label juntos).</li>
+          <li><em>Mensagem exibida:</em> “Selecione uma opção no campo Sexo, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Interesses (Checkbox)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Usuário pode marcar múltiplos interesses (Frontend, Backend, QA).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo opcional, pode estar vazio.</li>
+          <li>Se marcado, deve exibir corretamente os valores escolhidos.</li>
+          <li>As opções devem aparecer alinhadas ao lado do seletor (input + label juntos).</li>
+        </ul>
+      </ul>
+
+      <h3>Data de Nascimento</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir selecionar uma data válida.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório.</li>
+          <li>Não deve aceitar datas futuras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Data de Nascimento, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Telefone</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar telefone com máscara (formato (99) 99999-9999).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório.</li>
+          <li>Deve conter apenas números válidos no padrão brasileiro.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Telefone, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>CPF</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar CPF com máscara (formato 999.999.999-99).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório.</li>
+          <li>Deve conter exatamente 11 dígitos numéricos.</li>
+          <li>Não deve aceitar letras ou caracteres especiais fora da máscara.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo CPF, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h2>Botões</h2>
+      <h3>Enviar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa a validação dos campos e simula envio do formulário.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Se todos os campos obrigatórios estiverem corretos, exibir mensagem de sucesso.</li>
+          <li><em>Mensagem exibida:</em> “Formulário enviado com sucesso!”.</li>
+          <li>Não deve permitir envio com campos obrigatórios vazios.</li>
+        </ul>
+      </ul>
+
+      <h3>Voltar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
+      </ul>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>formulario-2-requisitos.html</code>.</li>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='formulario-2.html'">Voltar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

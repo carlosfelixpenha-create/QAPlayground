@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Cadastro</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Tela de Cadastro'</h1>
+    <div class="doc-container">
+      <h2>Campos</h2>
+
+      <h3>Nome</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar nome completo (mínimo 3 caracteres).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Deve conter pelo menos nome e sobrenome.</li>
+          <li>Não deve aceitar números ou caracteres especiais.</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Nome, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>E-mail</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar um e-mail válido.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Deve conter “@” e domínio válido.</li>
+          <li>Não deve permitir espaços em branco.</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo E-mail, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Senha</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar senha (mínimo 6 caracteres).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>A senha precisa ter no mínimo um número.</li>
+          <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
+          <li>A senha precisa ter no mínimo um caractere especial.</li>
+          <li>Deve ocultar os caracteres digitados (tipo password).</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Senha, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Confirmar Senha</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve validar se a senha digitada é igual ao campo Senha.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Deve ser idêntico ao campo Senha.</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “As senhas não conferem, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h2>Botões</h2>
+      <h3>Cadastrar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa a validação dos campos e simula cadastro.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Se todos os campos estiverem corretos, exibir mensagem de sucesso.</li>
+          <li><em>Mensagem exibida:</em> “Cadastro realizado com sucesso!”.</li>
+          <li>Não deve permitir cadastro com campos vazios.</li>
+          <li>Se inválidos, exibir mensagem de erro clara, por campo.</li>
+        </ul>
+      </ul>
+
+      <h3>Voltar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
+      </ul>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>cadastro-requisitos.html</code>.</li>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='cadastro.html'">Voltar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

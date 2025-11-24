@@ -1,6 +1,6 @@
 function executarLogin(event) {
   event.preventDefault(); // evita recarregar a página
-  const usuario = document.getElementById('nome').value;
+  const usuario = document.getElementById('usuario').value;
   const senha = document.getElementById('senha').value;
 
   if (usuario && senha) {

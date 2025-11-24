@@ -28,32 +28,13 @@
 }
 
 .form-container {
-  max-width: 600px;
+  max-width: 400px;
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: left;
-}
-
-/* Ajuste: grupos de opções (radio/checkbox) ficam em coluna */
-.option-group {
-  display: block;          /* força cada opção em linha separada */
-  margin-bottom: 10px;
-}
-
-.form-container label {
-  display: block;          /* cada label ocupa a linha inteira */
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.form-container input {
-  display: block;          /* cada input ocupa a linha inteira */
-  width: 100%;             /* ocupa toda a largura disponível */
-  margin-bottom: 15px;
-  padding: 8px;
 }
 
 .button-group {
@@ -65,7 +46,7 @@
 
 .button-group button {
   flex: 0;
-  width: auto;
+  width: auto;                /* todos os botões ocupam o mesmo espaço */
   padding: 10px 20px;
   border: none;
   border-radius: 6px;
@@ -100,7 +81,7 @@
   line-height: 1.6; /* melhora a leitura */
 }
 
-.doc-container h2,
+.doc-container h2, 
 .doc-container h3 {
   margin-top: 20px;
   color: #007acc;
@@ -109,29 +90,4 @@
 .doc-container ul {
   margin-left: 20px;
   list-style-type: disc;
-}
-
-.field-container {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;   /* opcional: separa visualmente */
-  border-radius: 8px;
-  background-color: #f9f9f9; /* leve destaque */
-}
-
-.option-inline {
-  display: flex;
-  align-items: center;   /* alinha input e texto */
-  gap: 8px;              /* espaço entre bolinha e texto */
-  margin-bottom: 8px;
-}
-
-.option-inline input {
-  width: auto;           /* não ocupar largura total */
-  margin: 0;
-}
-
-.option-inline label {
-  font-weight: normal;
-  margin: 0;
 }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Formulário 1</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Formulário 1 - Cadastro de Endereço'</h1>
+    <div class="doc-container">
+      <h2>Campos</h2>
+
+      <h3>Logradouro</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar texto (rua, avenida, etc.).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Não deve conter apenas números.</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Logradouro, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Número</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir apenas números.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Não deve aceitar letras ou caracteres especiais.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Número, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Complemento</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Campo opcional para informações adicionais.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Pode estar vazio.</li>
+          <li>Deve aceitar texto livre.</li>
+        </ul>
+      </ul>
+
+      <h3>Bairro</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir texto (mínimo 3 caracteres).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Não deve aceitar números isolados.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Bairro, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Cidade</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir texto (mínimo 3 caracteres).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Não deve aceitar números isolados.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Cidade, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Estado</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir apenas 2 letras (UF).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Deve aceitar apenas letras maiúsculas.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Estado, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>CEP</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir apenas números (8 dígitos).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Não deve aceitar letras ou caracteres especiais.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo CEP, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h2>Botões</h2>
+      <h3>Salvar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa a validação dos campos e simula cadastro de endereço.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Se todos os campos obrigatórios estiverem corretos, exibir mensagem de sucesso.</li>
+          <li><em>Mensagem exibida:</em> “Endereço cadastrado com sucesso!”.</li>
+          <li>Não deve permitir salvar com campos obrigatórios vazios.</li>
+        </ul>
+      </ul>
+
+      <h3>Voltar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
+      </ul>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>formulari-1-requisitos.html</code>.</li>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='formulario-1.html'">Voltar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
