@@ -1,0 +1,173 @@
+/* === Reset e base === */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+  height: 100vh;
+}
+
+/* === Layout principal === */
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* === Menu lateral === */
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+  flex-shrink: 0; /* impede de encolher */
+  background-color: #1e2a38;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar button:hover {
+  background-color: #e60000;
+}
+
+/* === Área de conteúdo === */
+.content {
+  position: relative;
+  flex: 1;
+  padding: 50px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 45%;
+  width: 60%;
+  height: 110%;
+  transform: translate(-50%, -50%);
+  background-image: url("https://copilot.microsoft.com/th/id/BCO.7a05a6b9-e434-4902-b730-ecebf1b1e239.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.70; /* controle fino da transparência */
+  pointer-events: none;
+  z-index: -1;
+}
+
+.content h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.content p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* === Estilos antigos mantidos === */
+.form-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  margin: auto;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Botões padrão para formulários */
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #005fa3;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex: 1;
+}
+
+
+/* Instruções */
+.instrucoes {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.instrucoes h2 {
+  color: #007acc;
+  margin-bottom: 10px;
+}
+
+.instrucoes ul {
+  padding-left: 20px;
+}
+
+.instrucoes li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}

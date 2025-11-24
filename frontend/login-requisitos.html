@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Login</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Tela de Login'</h1>
+    <div class="doc-container">
+      <h2>Campos</h2>
+      <h3>Usuário</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar somente texto (mínimo 3 caracteres). Deve conter nome e sobrenome.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>Campo não permite dois espaços seguidos.</li>
+          <li>Deve aceitar apenas letras (sem números ou caracteres especiais).</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Usuário, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h3>Senha</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Deve permitir digitar senha (mínimo 6 caracteres).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo não pode estar vazio.</li>
+          <li>A senha precisa ter no mínimo um número.</li>
+          <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
+          <li>A senha precisa ter no mínimo um caractere especial.</li>
+          <li>Deve ocultar os caracteres digitados (tipo password), quando fechado.</li>
+          <li>Deve mostrar os caracteres digitados (tipo password), quando aberto.</li>
+          <li>Exibir mensagem de erro se não atender às regras.</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Senha, dúvida entrar em requisitos!”</li>
+        </ul>
+      </ul>
+
+      <h2>Botões</h2>
+      <h3>Entrar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa a validação dos campos e simula login.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Se usuário e senha estiverem corretos (ex: admin / 1234), exibir mensagem de sucesso.</li>
+          <li><em>Mensagem exibida:</em> “Login realizado com sucesso!”.</li>
+          <li>Não deve permitir login com campos vazios.</li>
+          <li>Se inválidos, exibir mensagem de erro clara, por campo.</li>
+        </ul>
+      </ul>
+
+      <h3>Voltar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
+      </ul>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>login-requisitos.html</code>.</li>
+      </ul>
+      <div class="button-group">
+        <button type="button" onclick="location.href='login.html'">Voltar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

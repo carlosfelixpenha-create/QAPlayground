@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Login</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Tela de Login</h1>
+    <form onsubmit="executarLogin(event)" class="form-container">
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" placeholder="Digite seu usuário" required />
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" placeholder="Digite sua senha" required />
+
+      <div class="button-group">
+        <button type="button" class="requisitos" onclick="location.href='login-requisitos.html'">Requisitos</button>
+        <button type="button" onclick="location.href='home.html'">Voltar</button>
+        <button type="submit">Entrar</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
