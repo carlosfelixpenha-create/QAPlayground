@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Formulário 3</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Formulário 3 - Novos Campos'</h1>
+    <div class="doc-container">
+      <h2>Campos</h2>
+
+      <h3>Upload de Arquivo (PDF)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Usuário deve selecionar um arquivo em formato PDF.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório.</li>
+          <li>Somente arquivos com extensão <code>.pdf</code> são aceitos.</li>
+          <li><em>Mensagem exibida:</em> “Somente arquivos PDF são permitidos.”</li>
+        </ul>
+      </ul>
+
+      <h3>Upload de Arquivo (DOCX)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Usuário deve selecionar um arquivo em formato DOCX.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório.</li>
+          <li>Somente arquivos com extensão <code>.docx</code> são aceitos.</li>
+          <li><em>Mensagem exibida:</em> “Somente arquivos DOCX são permitidos.”</li>
+        </ul>
+      </ul>
+
+      <h3>Upload de Arquivo (JPG)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Usuário deve selecionar uma imagem em formato JPG.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo obrigatório.</li>
+          <li>Somente arquivos com extensão <code>.jpg</code> são aceitos.</li>
+          <li><em>Mensagem exibida:</em> “Somente arquivos JPG são permitidos.”</li>
+        </ul>
+      </ul>
+
+      <h3>Seleção de País, Estado e Cidade</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Usuário deve selecionar um país, um estado e uma cidade.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Todos os três campos são obrigatórios.</li>
+          <li>Não deve permitir envio se algum campo estiver vazio.</li>
+          <li>As opções devem aparecer organizadas em hierarquia (País → Estado → Cidade).</li>
+          <li><em>Mensagem exibida:</em> “Preencha corretamente os campos de País, Estado e Cidade.”</li>
+        </ul>
+      </ul>
+
+      <h2>Botões</h2>
+      <h3>Enviar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa a validação dos campos e simula envio do formulário.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Se todos os campos obrigatórios estiverem corretos, exibir mensagem de sucesso.</li>
+          <li><em>Mensagem exibida:</em> “Formulário enviado com sucesso!”.</li>
+          <li>Não deve permitir envio com campos obrigatórios vazios ou arquivos inválidos.</li>
+        </ul>
+      </ul>
+
+      <h3>Voltar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
+      </ul>
+
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>formulario-3-requisitos.html</code>.</li>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='formulario-3.html'">Voltar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -171,3 +171,41 @@ input {
   margin-bottom: 8px;
   font-size: 15px;
 }
+
+/* Estilo para os slots do jogo */
+.item-slot {
+  border: 2px dashed #3B82F6;
+  border-radius: 8px;
+  width: 160px;   /* menor para caber mais imagens */
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  margin-bottom: 12px;
+  transition: border-color 0.3s;
+}
+
+/* Estilo para as palavras arrastáveis */
+.tag-palavra {
+  background: #e5e7eb;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: grab;
+  font-weight: bold;
+  color: #1E3A8A;
+  margin-bottom: 8px;
+}
+
+/* Estilo para as imagens dentro dos slots */
+.item-slot img {
+  width: 80px;   /* reduzido para caber mais */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Feedback visual */
+.item-slot.correto { border-color: green !important; }
+.item-slot.errado { border-color: red !important; }

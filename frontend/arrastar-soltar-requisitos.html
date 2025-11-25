@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Drag & Drop</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+  <style>
+    .requisitos-container {
+      background: #f9fafb;
+      border: 2px solid #3B82F6;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .requisitos-container h2 {
+      color: #1E3A8A;
+      margin-bottom: 16px;
+    }
+    .requisitos-container ul {
+      list-style: none;
+      padding: 0;
+    }
+    .requisitos-container ul li {
+      background: #e5e7eb;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      color: #111827;
+    }
+    .button-group {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos do Jogo Drag & Drop</h1>
+
+    <div class="form-container">
+      <div class="requisitos-container">
+        <h2>Objetivo</h2>
+        <p>Arraste as palavras até a imagem correspondente. O jogo dará feedback visual de acerto ou erro.</p>
+
+        <h2>Regras</h2>
+        <ul>
+          <li>✔ Cada palavra deve ser arrastada para a imagem correta.</li>
+          <li>✔ Ao acertar, o slot ficará verde e mostrará a palavra com um check.</li>
+          <li>✔ Ao errar, o slot ficará vermelho.</li>
+          <li>✔ O botão <strong>Reiniciar</strong> limpa os slots e restaura as imagens.</li>
+          <li>✔ É possível adicionar novas imagens e palavras ao jogo (ex.: carro, barco).</li>
+        </ul>
+
+        <h2>Dicas</h2>
+        <ul>
+          <li>👉 Use nomes curtos para evitar que o texto ultrapasse o campo.</li>
+          <li>👉 As imagens devem estar na pasta <code>img/</code> com nomes iguais ao <code>data-tipo</code>.</li>
+          <li>👉 O jogo é responsivo e funciona em qualquer navegador moderno.</li>
+        </ul>
+      </div>
+
+      <!-- Botões -->
+      <div class="button-group">
+        <button type="button" onclick="location.href='arrastar-soltar.html'">Voltar ao Jogo</button>
+        <button type="button" onclick="location.href='home.html'">Home</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
