@@ -50,10 +50,81 @@
 }
 
 .form-container input {
-  display: block;          /* cada input ocupa a linha inteira */
+  display: block;
   width: 100%;             /* ocupa toda a largura disponível */
   margin-bottom: 15px;
   padding: 8px;
+}
+
+/* Campo de senha com botão de visibilidade */
+.password-container {
+  position: relative;      /* cria contexto para posicionar o botão */
+}
+
+.password-container input {
+  width: 100%;             /* campo ocupa toda a largura */
+  padding-right: 40px;     /* espaço para o botão dentro do campo */
+  margin-bottom: 15px;     /* mantém espaçamento igual aos outros inputs */
+}
+
+.password-container .toggle-btn {
+  position: absolute;
+  right: 10px;             /* encosta no lado direito do input */
+  top: 50%;
+  transform: translateY(-50%); /* centraliza verticalmente */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Captcha integrado */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  justify-content: flex-start;   /* captcha alinhado à esquerda */
+}
+
+.captcha-row {
+  display: flex;
+  align-items: center;     /* checkbox e texto na mesma linha */
+  gap: 6px;
+  padding: 4px 6px;        /* campo menor */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  width: fit-content;      /* ocupa só o espaço necessário */
+}
+
+.captcha-logo {
+  height: 30px;       /* tamanho pequeno */
+  margin-left: 4px;   /* espaço entre texto e logo */
+  opacity: 1;
+}
+
+.captcha-row input[type="checkbox"] {
+  display: inline-block;   /* impede que herde display:block */
+  width: auto;             /* não ocupa largura total */
+  margin: 0;
+  accent-color: #3b82f6;
+  cursor: pointer;
+  transform: scale(1);
+  transform-origin: left center;
+}
+
+.captcha-row label {
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.captcha-row .captcha-hint {
+  margin-left: auto;
+  font-size: 12px;
+  color: #6b7280;
 }
 
 .button-group {

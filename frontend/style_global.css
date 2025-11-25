@@ -225,6 +225,38 @@ input {
   gap: 12px;                /* espaçamento entre as palavras */
 }
 
+/* quando passa o cursor */
+.tag-palavra:hover {
+  background-color: #c6d7f8; /* cinza clarinho */
+}
+
+/* quando clica/segura para arrastar */
+.tag-palavra:active {
+  background-color: #8aaffa; /* cinza um pouco mais forte */
+  cursor: grabbing;
+}
+
+.marca-dagua {
+  position: fixed;
+  bottom: 20px;
+  width: 150px;
+  height: 100px;
+  background-image: url("https://copilot.microsoft.com/th/id/BCO.7a05a6b9-e434-4902-b730-ecebf1b1e239.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 1;        /* deixa discreto */
+  pointer-events: none; /* não atrapalha cliques */
+  z-index: 99;
+}
+
+.marca-dagua.esquerda {
+  left: 16px;
+}
+
+.marca-dagua.direita {
+  right: 10px;
+}
+
 /* Feedback visual */
 .item-slot.correto { border-color: green !important; }
 .item-slot.errado { border-color: red !important; }

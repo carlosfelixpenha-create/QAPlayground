@@ -15,7 +15,17 @@
       <input type="text" id="usuario" placeholder="Digite seu usuário" required />
 
       <label for="senha">Senha:</label>
-      <input type="password" id="senha" placeholder="Digite sua senha" required />
+      <div class="password-container">
+        <input type="password" id="senha" placeholder="Digite sua senha" required />
+        <button type="button" id="toggleSenha" class="toggle-btn" aria-label="Mostrar/ocultar senha">👁️</button>
+      </div>
+
+      <!-- Captcha integrado -->
+      <div class="form-row captcha-row">
+        <input type="checkbox" id="captcha" />
+        <label for="captcha">Sou humano</label>
+        <img src="img/captcha.png" alt="Logo Captcha" class="captcha-logo" />
+      </div>
 
       <div class="button-group">
         <button type="button" class="requisitos" onclick="location.href='login-requisitos.html'">Requisitos</button>
@@ -26,5 +36,22 @@
   </div>
 
   <script src="js/login.js"></script>
+
+  <!-- Toggle de visibilidade da senha -->
+  <script>
+    (function () {
+      const btn = document.getElementById('toggleSenha');
+      const input = document.getElementById('senha');
+
+      if (btn && input) {
+        btn.addEventListener('click', () => {
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+          btn.textContent = isPassword ? '🙈' : '👁️';
+          btn.setAttribute('aria-label', isPassword ? 'Ocultar senha' : 'Mostrar senha');
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
