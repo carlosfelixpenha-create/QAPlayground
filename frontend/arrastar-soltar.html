@@ -3,41 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Jogo Drag & Drop</title>
+  <title>QAPlayground - Arrastar e Soltar</title>
   <link rel="stylesheet" href="style_global.css" />
   <link rel="stylesheet" href="login.css" />
-  <style>
-    .item-slot {
-      border: 2px dashed #3B82F6;
-      border-radius: 8px;
-      width: 100px;   /* reduzido para caber mais imagens */
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f9fafb;
-      margin-bottom: 12px;
-      transition: border-color 0.3s;
-    }
-    .tag-palavra {
-      background: #e5e7eb;
-      padding: 8px;
-      border-radius: 8px;
-      text-align: center;
-      cursor: grab;
-      font-weight: bold;
-      color: #1E3A8A;
-      margin-bottom: 8px;
-    }
-    .item-slot img {
-      width: 80px;   /* imagens menores */
-      height: 80px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-    .correto { border-color: green !important; }
-    .errado { border-color: red !important; }
-  </style>
 </head>
 <body>
   <div class="login-content">
@@ -50,7 +18,7 @@
         
                 <!-- Coluna das palavras -->
         <div id="coluna-palavras" class="field-container">
-          <label>Arrastar</label>
+          <label>Arrastar</label><br>
           <div class="tag-palavra" draggable="true" data-tipo="ponte">Ponte</div>
           <div class="tag-palavra" draggable="true" data-tipo="morro">Morro</div>
           <div class="tag-palavra" draggable="true" data-tipo="barco">Barco</div>
@@ -71,13 +39,11 @@
           <div class="item-slot" data-tipo="carro"><img src="img/carro.jpg" alt="Carro"></div>
           <div class="item-slot" data-tipo="barco"><img src="img/barco.jpg" alt="Barco"></div>
         </div>
-
-
       </div>
 
       <!-- Botões dentro do container -->
       <div class="button-group" style="margin-top: 20px;">
-        <button type="button" class="requisitos" onclick="location.href='dragdrop-requisitos.html'">Requisitos</button>
+        <button type="button" class="requisitos" onclick="location.href='arrastar-soltar-requisitos.html'">Requisitos</button>
         <button type="button" onclick="location.href='home.html'">Voltar</button>
         <button type="button" id="reiniciar">Reiniciar</button>
       </div>
