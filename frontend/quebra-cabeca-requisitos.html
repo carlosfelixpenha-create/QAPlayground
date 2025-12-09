@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Quebra-Cabeça</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Tela de Quebra-Cabeça'</h1>
+    <div class="doc-container">
+      <h2>Campos</h2>
+      <h3>Seleção de Nível</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Permitir escolher entre 4 níveis (2, 4, 8 e 16 peças).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Ao clicar em um nível, deve carregar o tabuleiro correspondente.</li>
+          <li>Os botões de seleção devem desaparecer e mostrar apenas o tabuleiro e o botão de voltar.</li>
+          <li>As peças devem ser embaralhadas automaticamente.</li>
+        </ul>
+      </ul>
+
+      <h3>Tabuleiro</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Exibir as peças do quebra-cabeça embaralhadas.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>As peças devem ser arrastáveis (drag & drop).</li>
+          <li>O jogador deve conseguir trocar posições entre peças.</li>
+          <li>Ao montar corretamente, deve exibir mensagem de vitória.</li>
+          <li><em>Mensagem exibida:</em> “🎉 Parabéns, você montou o quebra-cabeça!”.</li>
+        </ul>
+      </ul>
+
+      <h2>Botões</h2>
+      <h3>Requisitos</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos do quebra-cabeça.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>quebra-cabeca-requisitos.html</code>.</li>
+      </ul>
+
+      <h3>Voltar</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
+      </ul>
+
+      <h3>Voltar ao menu de níveis</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Disponível apenas durante o jogo.</li>
+        <li><strong>Critério de aceite:</strong> Ao clicar, deve limpar o tabuleiro e reexibir os botões de níveis.</li>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='quebra-cabeca.html'">Voltar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
