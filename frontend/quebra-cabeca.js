@@ -1,15 +1,9 @@
 let pecas = [];
-let qtdAtual = 0;
 let dragged = null;
 
 function iniciarJogo(qtd) {
-  // Por enquanto só o nível 2 está ajustado
-  if (qtd !== 2) {
-    alert("Ainda estamos ajustando os outros níveis. Teste apenas o nível de 2 peças.");
-    return;
-  }
-
   const tabuleiro = document.getElementById('tabuleiro');
+  const referencia = document.getElementById('referencia');
   const mensagem = document.getElementById('mensagem');
   const botoes = document.getElementById('botoes-niveis');
   const textoNivel = document.getElementById('texto-nivel');
@@ -17,9 +11,10 @@ function iniciarJogo(qtd) {
   const navBtns = document.getElementById('botoes-navegacao');
 
   tabuleiro.innerHTML = "";
+  referencia.innerHTML = "";
   mensagem.textContent = "";
+  mensagem.style.display = "none";
   pecas = [];
-  qtdAtual = qtd;
 
   // Esconde botões de níveis e navegação, mostra botão voltar
   botoes.style.display = "none";
@@ -27,33 +22,30 @@ function iniciarJogo(qtd) {
   navBtns.style.display = "none";
   voltarBtn.style.display = "inline-block";
 
-  const cols = 1;
-  const rows = 2;
+  // Define grid automaticamente
+  let cols, rows;
+  if (qtd === 2) { cols = 1; rows = 2; }
+  else if (qtd === 4) { cols = 2; rows = 2; }
+  else if (qtd === 8) { cols = 2; rows = 4; }
+  else if (qtd === 16) { cols = 4; rows = 4; }
+
   tabuleiro.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
-  const imgSrc = "img/quebra-cabeca/robo2pcs.png";
+  // Caminho da pasta correspondente
+  const pasta = `img/quebra-cabeca/nivel${qtd}`;
 
+  // adiciona imagem de referência
+  referencia.innerHTML = `<img src="${pasta}/robo${qtd}pcs.png" alt="Imagem completa nível ${qtd}">`;
+
+  // cria peças
   for (let i = 0; i < qtd; i++) {
     const peca = document.createElement('div');
     peca.className = "peca";
     peca.id = `peca-${qtd}-${i}`;
-    peca.style.backgroundImage = `url('${imgSrc}')`;
-
-    const row = i; // 0 ou 1
-    const posY = -(100 / rows) * row; // 0% ou -50%
-
-    peca.style.backgroundSize = `100% ${rows * 100}%`;
-    peca.style.backgroundPosition = `0% ${posY}%`;
+    peca.style.backgroundImage = `url('${pasta}/robo${qtd}pcs_${i}.png')`;
 
     peca.dataset.index = i;
-
-    // drag & drop
-    peca.draggable = true;
-    peca.addEventListener("dragstart", dragStart);
-    peca.addEventListener("dragend", dragEnd);
-    peca.addEventListener("dragover", dragOver);
-    peca.addEventListener("drop", drop);
-
+    aplicarEventos(peca);
     pecas.push(peca);
   }
 
@@ -64,6 +56,14 @@ function iniciarJogo(qtd) {
     p.dataset.current = idx;
     tabuleiro.appendChild(p);
   });
+}
+
+function aplicarEventos(peca) {
+  peca.draggable = true;
+  peca.addEventListener("dragstart", dragStart);
+  peca.addEventListener("dragend", dragEnd);
+  peca.addEventListener("dragover", dragOver);
+  peca.addEventListener("drop", drop);
 }
 
 function dragStart(e) {
@@ -81,16 +81,19 @@ function dragOver(e) {
 }
 
 function drop(e) {
+  e.preventDefault();
+
   if (dragged !== this) {
     const tabuleiro = document.getElementById('tabuleiro');
-    const draggedIndex = Array.from(tabuleiro.children).indexOf(dragged);
-    const targetIndex = Array.from(tabuleiro.children).indexOf(this);
 
-    if (draggedIndex > targetIndex) {
-      tabuleiro.insertBefore(dragged, this);
-    } else {
-      tabuleiro.insertBefore(dragged, this.nextSibling);
-    }
+    const draggedClone = dragged.cloneNode(true);
+    const targetClone = this.cloneNode(true);
+
+    tabuleiro.replaceChild(draggedClone, this);
+    tabuleiro.replaceChild(targetClone, dragged);
+
+    aplicarEventos(draggedClone);
+    aplicarEventos(targetClone);
   }
 }
 
@@ -102,12 +105,14 @@ function verificarVitoria() {
   const correto = filhos.every((p, idx) => parseInt(p.dataset.index) === idx);
 
   if (correto) {
-    mensagem.textContent = "🎉 Parabéns, você montou o quebra-cabeça de 2 peças!";
+    mensagem.textContent = "🎉 Parabéns, você montou o quebra-cabeça!";
+    mensagem.style.display = "block";
   }
 }
 
 function voltarMenu() {
   const tabuleiro = document.getElementById('tabuleiro');
+  const referencia = document.getElementById('referencia');
   const botoes = document.getElementById('botoes-niveis');
   const textoNivel = document.getElementById('texto-nivel');
   const voltarBtn = document.getElementById('voltar');
@@ -115,9 +120,12 @@ function voltarMenu() {
   const mensagem = document.getElementById('mensagem');
 
   tabuleiro.innerHTML = "";
+  referencia.innerHTML = "";
   mensagem.textContent = "";
+  mensagem.style.display = "none";
   botoes.style.display = "block";
   textoNivel.style.display = "block";
-  navBtns.style.display = "block";
+  navBtns.style.display = "flex";
+  navBtns.style.justifyContent = "center";
   voltarBtn.style.display = "none";
 }

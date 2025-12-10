@@ -151,7 +151,6 @@ input {
   flex: 1;
 }
 
-
 /* Instruções */
 .instrucoes {
   margin-top: 30px;
@@ -260,3 +259,71 @@ input {
 /* Feedback visual */
 .item-slot.correto { border-color: green !important; }
 .item-slot.errado { border-color: red !important; }
+
+#tabuleiro {
+  width: 400px;      /* largura fixa */
+  height: 600px;     /* altura fixa */
+  margin: 20px auto; /* centraliza */
+  display: grid;
+  gap: 4px;
+  border: 2px solid #007acc;
+  border-radius: 6px;
+}
+
+.peca {
+  width: 100%;
+  height: 100%;
+  background-size: contain;    /* mantém proporção original */
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #007acc;
+  border-radius: 6px;
+  cursor: grab;
+}
+
+.peca.dragging {
+  opacity: 0.5;
+}
+
+/* Wrapper que agrupa tabuleiro e referência lado a lado */
+.jogo-wrapper {
+  display: flex;
+  justify-content: center;   /* centraliza horizontalmente */
+  align-items: flex-start;   /* alinha pelo topo */
+  gap: 50px;                 /* espaço entre tabuleiro e imagem */
+  margin-top: 20px;
+}
+
+/* Container do tabuleiro */
+.tabuleiro-container {
+  flex-shrink: 0;            /* mantém tamanho fixo */
+}
+
+/* Container da referência */
+.referencia-container {
+  flex-shrink: 0;
+  margin-top: 20px;
+}
+
+/* Imagem de referência */
+.referencia-container img {
+  max-width: 200px;
+  border: 2px solid #007acc;
+  border-radius: 6px;
+}
+
+#voltar {
+  display: block;
+  margin: 20px auto;       /* centraliza abaixo do tabuleiro */
+  padding: 10px 20px;
+  background-color: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#voltar:hover {
+  background-color: #005f99; /* cor mais escura no hover */
+}
