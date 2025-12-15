@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QAPlayground - Quebra-Cabeça</title>
-  <!-- CSS global e de login -->
+
   <link rel="stylesheet" href="style_global.css" />
   <link rel="stylesheet" href="login.css" />
 </head>
@@ -12,35 +12,41 @@
   <div class="login-content">
     <h1>Quebra-Cabeça</h1>
 
-    <!-- Wrapper que agrupa tabuleiro e referência -->
-    <div class="jogo-wrapper">
+    <!-- CARD COM IDENTIDADE VISUAL -->
+    <div class="quebra-card">
 
-      <!-- Container do tabuleiro -->
-      <div class="tabuleiro-container">
-        <p id="texto-nivel">Escolha o nível do quebra-cabeça:</p>
-        <div class="button-group" id="botoes-niveis">
-          <button type="button" onclick="iniciarJogo(2)">2 peças</button>
-          <button type="button" onclick="iniciarJogo(4)">4 peças</button>
-          <button type="button" onclick="iniciarJogo(8)">8 peças</button>
-          <button type="button" onclick="iniciarJogo(16)">16 peças</button>
+      <div class="jogo-wrapper">
+
+        <!-- Container do tabuleiro -->
+        <div class="tabuleiro-container">
+
+          <p id="texto-nivel">Escolha o nível do quebra-cabeça:</p>
+
+          <div class="button-group" id="botoes-niveis">
+            <button type="button" onclick="iniciarJogo(2)">2 peças</button>
+            <button type="button" onclick="iniciarJogo(4)">4 peças</button>
+            <button type="button" onclick="iniciarJogo(8)">8 peças</button>
+            <button type="button" onclick="iniciarJogo(16)">16 peças</button>
+          </div>
+
+          <div class="button-group" id="botoes-navegacao">
+            <button type="button" class="requisitos" onclick="location.href='quebra-cabeca-requisitos.html'">Requisitos</button>
+            <button type="button" onclick="location.href='home.html'">Voltar</button>
+          </div>
+
+          <div id="tabuleiro"></div>
+          <div id="mensagem"></div>
+
+          <!-- Botão que só aparece dentro do jogo -->
+          <button id="voltar" onclick="voltarMenu()" style="display:none;">Voltar ao Menu</button>
+
         </div>
 
-        <!-- Botões padrões de navegação -->
-        <div class="button-group" id="botoes-navegacao">
-          <button type="button" class="requisitos" onclick="location.href='quebra-cabeca-requisitos.html'">Requisitos</button>
-          <button type="button" onclick="location.href='home.html'">Voltar</button>
+        <!-- Container da imagem de referência -->
+        <div class="referencia-container">
+          <div id="referencia"></div>
         </div>
 
-        <!-- Tabuleiro fixo -->
-        <div id="tabuleiro"></div>
-
-        <div id="mensagem"></div>
-        <button id="voltar" onclick="voltarMenu()">Voltar ao Menu</button>
-      </div>
-
-      <!-- Container da imagem de referência -->
-      <div class="referencia-container">
-        <div id="referencia"></div>
       </div>
 
     </div>

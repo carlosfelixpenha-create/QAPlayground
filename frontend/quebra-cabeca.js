@@ -9,25 +9,34 @@ function iniciarJogo(qtd) {
   const textoNivel = document.getElementById('texto-nivel');
   const voltarBtn = document.getElementById('voltar');
   const navBtns = document.getElementById('botoes-navegacao');
+  const wrapper = document.querySelector(".jogo-wrapper");
 
+  // Mostrar tabuleiro e referência
+  tabuleiro.style.display = "grid";
+  document.querySelector(".referencia-container").style.display = "block";
+  wrapper.style.gap = "0px";
+
+  // Esconder elementos iniciais
+  botoes.style.display = "none";
+  textoNivel.style.display = "none";
+  navBtns.style.display = "none";
+
+  // Mostrar botão voltar ao menu
+  voltarBtn.style.display = "inline-block";
+
+  // Reset
   tabuleiro.innerHTML = "";
   referencia.innerHTML = "";
   mensagem.textContent = "";
   mensagem.style.display = "none";
   pecas = [];
 
-  // Esconde botões de níveis e navegação, mostra botão voltar
-  botoes.style.display = "none";
-  textoNivel.style.display = "none";
-  navBtns.style.display = "none";
-  voltarBtn.style.display = "inline-block";
-
   // Define grid automaticamente
-  let cols, rows;
-  if (qtd === 2) { cols = 1; rows = 2; }
-  else if (qtd === 4) { cols = 2; rows = 2; }
-  else if (qtd === 8) { cols = 2; rows = 4; }
-  else if (qtd === 16) { cols = 4; rows = 4; }
+  let cols;
+  if (qtd === 2) cols = 1;
+  else if (qtd === 4) cols = 2;
+  else if (qtd === 8) cols = 2;
+  else if (qtd === 16) cols = 4;
 
   tabuleiro.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
@@ -35,15 +44,13 @@ function iniciarJogo(qtd) {
   const pasta = `img/quebra-cabeca/nivel${qtd}`;
 
   // adiciona imagem de referência
-  referencia.innerHTML = `<img src="${pasta}/robo${qtd}pcs.png" alt="Imagem completa nível ${qtd}">`;
+  referencia.innerHTML = `<img src="${pasta}/robo${qtd}pcs.png">`;
 
   // cria peças
   for (let i = 0; i < qtd; i++) {
     const peca = document.createElement('div');
     peca.className = "peca";
-    peca.id = `peca-${qtd}-${i}`;
     peca.style.backgroundImage = `url('${pasta}/robo${qtd}pcs_${i}.png')`;
-
     peca.dataset.index = i;
     aplicarEventos(peca);
     pecas.push(peca);
@@ -66,12 +73,12 @@ function aplicarEventos(peca) {
   peca.addEventListener("drop", drop);
 }
 
-function dragStart(e) {
+function dragStart() {
   dragged = this;
   this.classList.add("dragging");
 }
 
-function dragEnd(e) {
+function dragEnd() {
   this.classList.remove("dragging");
   verificarVitoria();
 }
@@ -118,14 +125,24 @@ function voltarMenu() {
   const voltarBtn = document.getElementById('voltar');
   const navBtns = document.getElementById('botoes-navegacao');
   const mensagem = document.getElementById('mensagem');
+  const wrapper = document.querySelector(".jogo-wrapper");
 
+  // Limpar conteúdos
   tabuleiro.innerHTML = "";
   referencia.innerHTML = "";
   mensagem.textContent = "";
   mensagem.style.display = "none";
-  botoes.style.display = "block";
+
+  // Esconder tabuleiro e referência
+  tabuleiro.style.display = "none";
+  document.querySelector(".referencia-container").style.display = "none";
+  wrapper.style.gap = "0px";
+
+  // Mostrar elementos iniciais
+  botoes.style.display = "flex";
   textoNivel.style.display = "block";
   navBtns.style.display = "flex";
-  navBtns.style.justifyContent = "center";
+
+  // Esconder botão voltar ao menu
   voltarBtn.style.display = "none";
 }

@@ -148,7 +148,9 @@ input {
 }
 
 .button-group button {
-  flex: 1;
+  white-space: nowrap;   /* impede quebrar linha */
+  width: auto;           /* deixa o botão ajustar ao conteúdo */
+  flex: 0;               /* impede esticar e quebrar texto */
 }
 
 /* Instruções */
@@ -264,7 +266,7 @@ input {
   width: 400px;      /* largura fixa */
   height: 600px;     /* altura fixa */
   margin: 20px auto; /* centraliza */
-  display: grid;
+  display: none;
   gap: 4px;
   border: 2px solid #007acc;
   border-radius: 6px;
@@ -311,13 +313,15 @@ input {
   display: flex;
   justify-content: center;   /* centraliza horizontalmente */
   align-items: flex-start;   /* alinha pelo topo */
-  gap: 50px;                 /* espaço entre tabuleiro e imagem */
+  gap: 0px;                 /* espaço entre tabuleiro e imagem */
   margin-top: 20px;
 }
 
 /* Container do tabuleiro */
 .tabuleiro-container {
-  flex-shrink: 0;            /* mantém tamanho fixo */
+  flex-shrink: 0;     /* mantém tamanho fixo */
+  text-align: center;
+  width: 100%;
 }
 
 /* Container da referência */
@@ -347,4 +351,14 @@ input {
 
 #voltar:hover {
   background-color: #005f99; /* cor mais escura no hover */
+}
+
+.quebra-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 20px;
 }
