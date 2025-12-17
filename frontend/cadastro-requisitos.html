@@ -15,14 +15,19 @@
 
       <h3>Nome</h3>
       <ul>
-        <li><strong>Requisito:</strong> Deve permitir digitar nome completo (mínimo 3 caracteres).</li>
+        <li><strong>Requisito:</strong> Deve permitir digitar nome completo (mínimo 3 caracteres, nome e sobre nome).</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
           <li>Campo não pode estar vazio.</li>
           <li>Deve conter pelo menos nome e sobrenome.</li>
           <li>Não deve aceitar números ou caracteres especiais.</li>
+          <li>Campo não permite dois espaços seguidos.</li>
+          <li>Minimo 3 caracteres para nome.</li>
+          <li>Minimo 3 caracteres para sobrenome.</li>
+          <li>Minimo 7 caracteres para o campo nome.</li>
+          <li>Maximo 64 caracteres para o campo nome.</li>
           <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Nome, dúvida entrar em requisitos!”</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Nome, dúvida entrar em Requisitos!”</li>
         </ul>
       </ul>
 
@@ -34,8 +39,9 @@
           <li>Campo não pode estar vazio.</li>
           <li>Deve conter “@” e domínio válido.</li>
           <li>Não deve permitir espaços em branco.</li>
+          <li>Maximo 64 caracteres para o campo e-mail.</li>
           <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo E-mail, dúvida entrar em requisitos!”</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo E-mail, dúvida entrar em Requisitos!”</li>
         </ul>
       </ul>
 
@@ -48,9 +54,12 @@
           <li>A senha precisa ter no mínimo um número.</li>
           <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
           <li>A senha precisa ter no mínimo um caractere especial.</li>
+          <li>A senha precisa ter no mínimo 6 caracteres.</li>
+          <li>A senha precisa ter no maxímo 12 caracteres.</li>
           <li>Deve ocultar os caracteres digitados (tipo password).</li>
+          <li>Deve mostrar os caracteres digitados ao clicar no icone mostrar senha.</li>
           <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Senha, dúvida entrar em requisitos!”</li>
+          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Senha, dúvida entrar em Requisitos!”</li>
         </ul>
       </ul>
 
@@ -60,9 +69,9 @@
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
           <li>Campo não pode estar vazio.</li>
-          <li>Deve ser idêntico ao campo Senha.</li>
+          <li>Os caracteres do campo Confirmar Senha devem ser idênticos aos do campo Senha.</li>
           <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “As senhas não conferem, dúvida entrar em requisitos!”</li>
+          <li><em>Mensagem exibida:</em> “As senhas não conferem, dúvida entrar em Requisitos!”</li>
         </ul>
       </ul>
 

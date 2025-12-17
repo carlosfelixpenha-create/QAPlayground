@@ -16,8 +16,7 @@ function iniciarJogo104() {
     peca.classList.add("peca");
 
     // imagem da peça
-    peca.style.backgroundImage =
-      `url('img/quebra-cabeca/nivel128/robo104pcs_${i}.png')`;
+    peca.style.backgroundImage = `url('img/quebra-cabeca/nivel128/robo104pcs_${i}.png')`;
 
     // salva o índice correto da peça
     peca.dataset.index = i;
@@ -34,8 +33,9 @@ function iniciarJogo104() {
   });
 
   // mostra a referência
-  document.getElementById("referencia").innerHTML =
-    `<img src="img/quebra-cabeca/nivel128/robo104pcs.png" alt="Imagem de referência">`;
+  document.getElementById(
+    "referencia"
+  ).innerHTML = `<img src="img/quebra-cabeca/nivel128/robo104pcs.png" alt="Imagem de referência">`;
 }
 
 // peça sendo arrastada

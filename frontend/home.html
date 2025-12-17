@@ -5,7 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QAPlayground</title>
   <link rel="stylesheet" href="style_global.css" />
+
+  <style>
+    /* Contêiner fixo do contador */
+    #contador-container {
+      position: fixed;
+      bottom: 20px;
+      right: 50px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffae82;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      z-index: 9999;
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
     <aside class="sidebar">
@@ -33,5 +51,25 @@
       <p><h4>5. Em desenvolvimento.</h4></p>
     </main>
   </div>
+
+  <!-- Contêiner fixo do contador -->
+  <div id="contador-container">Visitantes: carregando...</div>
+
+  <script>
+    // Domínio oficial do GitHub Pages
+    const dominioOficial = "carlosfelixpenha-create.github.io";
+
+    if (window.location.hostname === dominioOficial) {
+      fetch('https://api.countapi.xyz/hit/qaplayground/visitas')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('contador-container').innerText = `Visitantes: ${data.value}`;
+        });
+    } else {
+      // Durante desenvolvimento local, não conta
+      document.getElementById('contador-container').innerText = "Visitantes: 0";
+    }
+  </script>
+
 </body>
 </html>

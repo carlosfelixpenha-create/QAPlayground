@@ -3,16 +3,16 @@ const dadosLocalizacao = {
   brasil: {
     pr: { label: "Paraná", cidades: ["Curitiba", "Matinhos"] },
     sp: { label: "São Paulo", cidades: ["São Paulo", "Campinas", "Santos"] },
-    rj: { label: "Rio de Janeiro", cidades: ["Rio de Janeiro", "Niterói"] }
+    rj: { label: "Rio de Janeiro", cidades: ["Rio de Janeiro", "Niterói"] },
   },
   portugal: {
     lisboa: { label: "Lisboa", cidades: ["Lisboa", "Sintra"] },
-    porto: { label: "Porto", cidades: ["Porto", "Gaia"] }
+    porto: { label: "Porto", cidades: ["Porto", "Gaia"] },
   },
   eua: {
     ny: { label: "Nova Iorque", cidades: ["Nova Iorque", "Buffalo"] },
-    ca: { label: "Califórnia", cidades: ["Los Angeles", "San Francisco"] }
-  }
+    ca: { label: "Califórnia", cidades: ["Los Angeles", "San Francisco"] },
+  },
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,12 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
     cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
 
     if (pais && dadosLocalizacao[pais]) {
-      Object.entries(dadosLocalizacao[pais]).forEach(([estadoKey, estadoObj]) => {
-        const opt = document.createElement("option");
-        opt.value = estadoKey;
-        opt.textContent = estadoObj.label;
-        estadoSelect.appendChild(opt);
-      });
+      Object.entries(dadosLocalizacao[pais]).forEach(
+        ([estadoKey, estadoObj]) => {
+          const opt = document.createElement("option");
+          opt.value = estadoKey;
+          opt.textContent = estadoObj.label;
+          estadoSelect.appendChild(opt);
+        }
+      );
     }
   });
 
@@ -57,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function executarFormulario3(event) {
   event.preventDefault();
 
-  const arquivoPdf = document.getElementById('arquivoPdf').files[0];
-  const arquivoDocx = document.getElementById('arquivoDocx').files[0];
-  const arquivoJpg = document.getElementById('arquivoJpg').files[0];
+  const arquivoPdf = document.getElementById("arquivoPdf").files[0];
+  const arquivoDocx = document.getElementById("arquivoDocx").files[0];
+  const arquivoJpg = document.getElementById("arquivoJpg").files[0];
 
   if (!arquivoPdf || !arquivoDocx || !arquivoJpg) {
     alert("Todos os arquivos (PDF, DOCX e JPG) devem ser selecionados.");
@@ -70,7 +72,10 @@ function executarFormulario3(event) {
     alert("Somente arquivos PDF são permitidos.");
     return;
   }
-  if (arquivoDocx.type !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+  if (
+    arquivoDocx.type !==
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  ) {
     alert("Somente arquivos DOCX são permitidos.");
     return;
   }
@@ -79,9 +84,9 @@ function executarFormulario3(event) {
     return;
   }
 
-  const paisSelect = document.getElementById('pais');
-  const estadoSelect = document.getElementById('estado');
-  const cidadeSelect = document.getElementById('cidade');
+  const paisSelect = document.getElementById("pais");
+  const estadoSelect = document.getElementById("estado");
+  const cidadeSelect = document.getElementById("cidade");
 
   if (!paisSelect.value || !estadoSelect.value || !cidadeSelect.value) {
     alert("Preencha corretamente os campos de País, Estado e Cidade.");
@@ -95,11 +100,11 @@ function executarFormulario3(event) {
 
   alert(
     `Formulário enviado com sucesso!\n\n` +
-    `PDF: ${arquivoPdf.name}\n` +
-    `DOCX: ${arquivoDocx.name}\n` +
-    `JPG: ${arquivoJpg.name}\n` +
-    `País: ${pais}\n` +
-    `Estado: ${estado}\n` +
-    `Cidade: ${cidade}`
+      `PDF: ${arquivoPdf.name}\n` +
+      `DOCX: ${arquivoDocx.name}\n` +
+      `JPG: ${arquivoJpg.name}\n` +
+      `País: ${pais}\n` +
+      `Estado: ${estado}\n` +
+      `Cidade: ${cidade}`
   );
 }

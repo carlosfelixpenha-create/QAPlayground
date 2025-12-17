@@ -20,13 +20,15 @@
         <!-- Container do tabuleiro -->
         <div class="tabuleiro-container">
 
-          <p id="texto-nivel">Escolha o nível do quebra-cabeça:</p>
+          <p id="texto-nivel"><h3>Escolha o nível do quebra-cabeça:</h3></p>
 
           <div class="button-group" id="botoes-niveis">
-            <button type="button" onclick="iniciarJogo(2)">2 peças</button>
+            <!-- REMOVIDO: nível 2 peças -->
             <button type="button" onclick="iniciarJogo(4)">4 peças</button>
             <button type="button" onclick="iniciarJogo(8)">8 peças</button>
             <button type="button" onclick="iniciarJogo(16)">16 peças</button>
+            <!-- ADICIONADO: novo nível 32 peças -->
+            <button type="button" onclick="iniciarJogo(32)">32 peças</button>
           </div>
 
           <div class="button-group" id="botoes-navegacao">
@@ -38,7 +40,7 @@
           <div id="mensagem"></div>
 
           <!-- Botão que só aparece dentro do jogo -->
-          <button id="voltar" onclick="voltarMenu()" style="display:none;">Voltar ao Menu</button>
+          <button id="voltar" onclick="voltarMenu()" style="display:none;">Voltar nível</button>
 
         </div>
 

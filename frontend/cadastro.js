@@ -1,9 +1,9 @@
 function executarCadastro(event) {
   event.preventDefault(); // evita recarregar a página
-  const nome = document.getElementById('nome').value;
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
-  const confirmarSenha = document.getElementById('confirmarSenha').value;
+  const nome = document.getElementById("nome").value;
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+  const confirmarSenha = document.getElementById("confirmarSenha").value;
 
   if (nome && email && senha && confirmarSenha) {
     if (senha === confirmarSenha) {

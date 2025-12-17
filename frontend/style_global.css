@@ -6,7 +6,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
   background-color: #f0f2f5;
   height: 100vh;
 }
@@ -22,7 +22,7 @@ body {
 .sidebar {
   width: 250px;
   min-width: 250px;
-  flex-shrink: 0; /* impede de encolher */
+  flex-shrink: 0;
   background-color: #1e2a38;
   color: white;
   padding: 20px;
@@ -81,7 +81,7 @@ body {
   background-image: url("https://copilot.microsoft.com/th/id/BCO.7a05a6b9-e434-4902-b730-ecebf1b1e239.png");
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.70; /* controle fino da transparência */
+  opacity: 0.7;
   pointer-events: none;
   z-index: -1;
 }
@@ -125,7 +125,6 @@ input {
   border-radius: 6px;
 }
 
-/* Botões padrão para formulários */
 .form-container button {
   width: 100%;
   padding: 12px;
@@ -148,9 +147,9 @@ input {
 }
 
 .button-group button {
-  white-space: nowrap;   /* impede quebrar linha */
-  width: auto;           /* deixa o botão ajustar ao conteúdo */
-  flex: 0;               /* impede esticar e quebrar texto */
+  white-space: nowrap;
+  width: auto;
+  flex: 0;
 }
 
 /* Instruções */
@@ -173,11 +172,11 @@ input {
   font-size: 15px;
 }
 
-/* Estilo para os slots do jogo */
+/* Slots */
 .item-slot {
-  border: 2px dashed #3B82F6;
+  border: 2px dashed #3b82f6;
   border-radius: 8px;
-  width: 170px;   /* menor para caber mais imagens */
+  width: 170px;
   height: 100px;
   display: flex;
   align-items: center;
@@ -187,54 +186,43 @@ input {
   transition: border-color 0.3s;
 }
 
-/* Estilo para as palavras arrastáveis */
 .tag-palavra {
-  border: 2px solid #3B82F6;
+  border: 2px solid #3b82f6;
   border-radius: 8px;
-  width: 170px;        /* largura fixa */
-  height: 40px;        /* altura padronizada */
+  width: 170px;
+  height: 40px;
   display: flex;
-  align-items: center; /* centraliza verticalmente o texto */
-  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;
+  justify-content: center;
   background: #f9fafb;
   margin-bottom: 64px;
-  cursor: grab;        /* indica que pode arrastar */
+  cursor: grab;
   transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* Estilo para as imagens dentro dos slots */
+.tag-palavra:hover {
+  background-color: #c6d7f8;
+}
+
+.tag-palavra:active {
+  background-color: #8aaffa;
+  cursor: grabbing;
+}
+
 .item-slot img {
-  width: 80px;   /* reduzido para caber mais */
+  width: 80px;
   height: 80px;
   object-fit: cover;
   border-radius: 6px;
 }
 
-#coluna-imagens {
-  display: flex;
-  flex-direction: column;   /* organiza em coluna */
-  align-items: center;      /* centraliza horizontalmente */
-  justify-content: center;  /* centraliza verticalmente se tiver altura definida */
-  gap: 12px;                /* espaçamento entre os slots */
-}
-
+#coluna-imagens,
 #coluna-palavras {
   display: flex;
-  flex-direction: column;   /* organiza em coluna */
-  align-items: center;      /* centraliza horizontalmente */
-  justify-content: center;  /* centraliza verticalmente se tiver altura definida */
-  gap: 12px;                /* espaçamento entre as palavras */
-}
-
-/* quando passa o cursor */
-.tag-palavra:hover {
-  background-color: #c6d7f8; /* cinza clarinho */
-}
-
-/* quando clica/segura para arrastar */
-.tag-palavra:active {
-  background-color: #8aaffa; /* cinza um pouco mais forte */
-  cursor: grabbing;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .marca-dagua {
@@ -245,58 +233,87 @@ input {
   background-image: url("https://copilot.microsoft.com/th/id/BCO.7a05a6b9-e434-4902-b730-ecebf1b1e239.png");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 1;        /* deixa discreto */
-  pointer-events: none; /* não atrapalha cliques */
+  opacity: 1;
+  pointer-events: none;
   z-index: 99;
 }
 
 .marca-dagua.esquerda {
   left: 16px;
 }
-
 .marca-dagua.direita {
   right: 10px;
 }
 
-/* Feedback visual */
-.item-slot.correto { border-color: green !important; }
-.item-slot.errado { border-color: red !important; }
-
-#tabuleiro {
-  width: 400px;      /* largura fixa */
-  height: 600px;     /* altura fixa */
-  margin: 20px auto; /* centraliza */
-  display: none;
-  gap: 4px;
-  border: 2px solid #007acc;
-  border-radius: 6px;
+.item-slot.correto {
+  border-color: green !important;
+}
+.item-slot.errado {
+  border-color: red !important;
 }
 
+/* ============================
+   ÁREA DO QUEBRA‑CABEÇA
+   ============================ */
+
+/* Tabuleiro padrão */
+#tabuleiro {
+  width: 400px;
+  height: 600px;
+  margin: 20px auto;
+  display: none;
+  gap: 1px;
+  border: 2px solid #007acc;
+  border-radius: 2px;
+}
+
+/* Tabuleiro 104 peças */
 #tabuleiro104pcs {
-  width: 1000px;      /* largura fixa */
-  height: 400px;     /* altura fixa */
-  margin: 20px auto; /* centraliza */
+  width: 1000px;
+  height: 400px;
+  margin: 20px auto;
   display: grid;
-  gap: 0,2px;
-  border: 0,2px solid #007acc;
+  gap: 0.2px;
+  border: 0.2px solid #007acc;
   border-radius: 4px;
 
-  /* grid ideal para 104 peças */
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(13, 1fr);
 }
 
-/* Imagem de referência exclusiva do tabuleiro 104 peças */
-.referencia-container.referencia104pcs img{
-  max-width: 400px;   /* ajuste como quiser */
+/* Referência do tabuleiro 104 peças */
+.referencia-container.referencia104pcs img {
+  max-width: 400px;
   border: 2px solid #007acc;
   border-radius: 6px;
 }
 
+/* Tabuleiro 32 peças */
+#tabuleiro.tabuleiro-32pcs {
+  width: 400px;
+  height: 700px;
+  margin: 20px auto;
+  display: grid;
+  gap: 1px;
+  border: 2px solid #007acc;
+  border-radius: 2px;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+/* Referência do nível 32 */
+.referencia-container.referencia32pcs img {
+  max-width: 150px;
+  border: 2px solid #007acc;
+  border-radius: 6px;
+}
+
+/* Peças */
 .peca {
   width: 100%;
   height: 100%;
-  background-size: contain;    /* mantém proporção original */
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid #007acc;
@@ -308,38 +325,42 @@ input {
   opacity: 0.5;
 }
 
-/* Wrapper que agrupa tabuleiro e referência lado a lado */
+/* Wrapper que agrupa tabuleiro e referência */
 .jogo-wrapper {
   display: flex;
-  justify-content: center;   /* centraliza horizontalmente */
-  align-items: flex-start;   /* alinha pelo topo */
-  gap: 0px;                 /* espaço entre tabuleiro e imagem */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px; /* ✅ espaço real entre tabuleiro e referência */
   margin-top: 20px;
+  flex-wrap: wrap; /* ✅ evita sobreposição em telas menores */
 }
 
 /* Container do tabuleiro */
 .tabuleiro-container {
-  flex-shrink: 0;     /* mantém tamanho fixo */
+  flex-shrink: 0;
   text-align: center;
-  width: 100%;
+  width: auto; /* ✅ não ocupa 100% da largura */
 }
 
 /* Container da referência */
 .referencia-container {
   flex-shrink: 0;
   margin-top: 20px;
+  display: flex; /* ✅ garante alinhamento correto */
+  justify-content: center;
 }
 
-/* Imagem de referência */
+/* Imagem de referência padrão */
 .referencia-container img {
   max-width: 200px;
   border: 2px solid #007acc;
   border-radius: 6px;
 }
 
+/* Botão voltar */
 #voltar {
   display: block;
-  margin: 20px auto;       /* centraliza abaixo do tabuleiro */
+  margin: 20px auto;
   padding: 10px 20px;
   background-color: #007acc;
   color: #fff;
@@ -350,14 +371,15 @@ input {
 }
 
 #voltar:hover {
-  background-color: #005f99; /* cor mais escura no hover */
+  background-color: #005f99;
 }
 
+/* Card geral */
 .quebra-card {
   background: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 1100px;
   margin: 0 auto;
   margin-top: 20px;
