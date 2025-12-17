@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Catálogo de Botões</title>
+
+    <!-- Estilos do projeto -->
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+
+    <script defer src="botoes.js"></script>
+  </head>
+
+  <body>
+    <div class="login-content">
+      <h1>Catálogo de Botões</h1>
+      <p>Visualização e testes dos botões utilizados no projeto.</p>
+
+      <div class="form-container">
+
+        <!-- ============================
+             BOTÃO PRIMÁRIO
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão Primário</h2>
+            <p>Representa a ação principal da tela.</p>
+          </div>
+
+          <div class="demo-actions">
+            <button id="btn-primario" class="btn-primary" onclick="acaoPrimaria()">Salvar</button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-primario"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÃO SECUNDÁRIO
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão Secundário</h2>
+            <p>Usado para ações auxiliares, como voltar ou cancelar.</p>
+          </div>
+
+          <div class="demo-actions">
+            <button id="btn-secundario" class="btn-secondary" onclick="acaoSecundaria()">Voltar</button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-secundario"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÃO DE PERIGO
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão de Perigo</h2>
+            <p>Usado para ações destrutivas, como exclusões.</p>
+          </div>
+
+          <div class="demo-actions">
+            <button id="btn-danger" class="btn-danger" onclick="abrirModal()">Excluir</button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-danger"></span>
+          </div>
+
+          <!-- Modal -->
+          <div id="modal-confirmacao" class="modal" style="display:none;">
+            <div class="modal-content">
+              <p>Tem certeza que deseja excluir?</p>
+              <button class="btn-danger" onclick="confirmarExclusao()">Sim, excluir</button>
+              <button onclick="fecharModal()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÃO COM LOADING
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão com Loading</h2>
+            <p>Indica que uma ação está sendo processada.</p>
+          </div>
+
+          <div class="demo-actions">
+            <button id="btn-loading" class="btn-primary" onclick="carregar()">Enviar</button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-loading"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÃO TOGGLE
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão Toggle</h2>
+            <p>Alterna entre os estados ON e OFF.</p>
+          </div>
+
+          <div class="demo-actions">
+            <button id="btn-toggle" class="btn-toggle" onclick="alternar()">OFF</button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-toggle"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÃO DE ÍCONE
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão de Ícone</h2>
+            <p>Utilizado para ações rápidas representadas por um ícone.</p>
+          </div>
+
+          <div class="demo-actions">
+            <button id="btn-icone" class="btn-icon" onclick="acaoIcone()" title="Editar">✏️</button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-icone"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÕES DE PAGINAÇÃO
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botões de Paginação</h2>
+            <p>Permitem navegar entre diferentes páginas de conteúdo.</p>
+          </div>
+
+          <div class="demo-actions">
+            <div id="conteudo-paginado">
+              <p>Página 1: Conteúdo inicial.</p>
+            </div>
+
+            <div class="paginacao">
+              <button onclick="paginaAnterior()">Anterior</button>
+              <span id="pagina-atual">1</span>
+              <button onclick="proximaPagina()">Próximo</button>
+            </div>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-paginacao"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             NAVEGAÇÃO + RESET
+        ============================= -->
+        <div class="button-group">
+
+          <button type="button" class="resetar" onclick="resetarPagina()">
+            Resetar
+          </button>
+
+          <button type="button" class="requisitos" onclick="location.href='botoes-requisitos.html'">
+            Requisitos
+          </button>
+
+          <button type="button" onclick="location.href='home.html'">
+            Voltar
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

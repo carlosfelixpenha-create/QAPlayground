@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Botões</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Tela de Botões'</h1>
+
+    <div class="doc-container">
+
+      <h2>Botões</h2>
+
+      <!-- BOTÃO PRIMÁRIO -->
+      <h3>Botão Primário</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa a ação principal da tela.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Deve existir apenas um botão primário por tela.</li>
+          <li>Deve ter destaque visual em relação aos demais botões.</li>
+          <li>Ao clicar, deve exibir a mensagem: <em>“Ação principal executada!”</em></li>
+          <li>Deve ser acessível via teclado (TAB + ENTER).</li>
+        </ul>
+      </ul>
+
+      <!-- BOTÃO SECUNDÁRIO -->
+      <h3>Botão Secundário</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa ações auxiliares ou de navegação.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Não deve competir visualmente com o botão primário.</li>
+          <li>Ao clicar, deve exibir a mensagem: <em>“Ação secundária realizada!”</em></li>
+          <li>Deve ter foco visível ao navegar com TAB.</li>
+        </ul>
+      </ul>
+
+      <!-- BOTÃO DE PERIGO -->
+      <h3>Botão de Perigo</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa ações destrutivas ou irreversíveis.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Deve ser exibido em cor de alerta (vermelho).</li>
+          <li>Ao clicar, deve abrir um modal de confirmação.</li>
+          <li>Somente após confirmação deve exibir: <em>“Item excluído com sucesso!”</em></li>
+          <li>Não pode permitir exclusão acidental.</li>
+        </ul>
+      </ul>
+
+      <!-- BOTÃO LOADING -->
+      <h3>Botão com Loading</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Indica processamento de uma ação.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Ao clicar, deve exibir estado de carregamento por 2 segundos.</li>
+          <li>Deve bloquear múltiplos cliques durante o carregamento.</li>
+          <li>Após finalizar, deve exibir: <em>“Envio concluído!”</em></li>
+        </ul>
+      </ul>
+
+      <!-- BOTÃO TOGGLE -->
+      <h3>Botão Toggle</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Alterna entre dois estados (ON/OFF).</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Deve alternar visualmente entre ON e OFF.</li>
+          <li>Deve alterar a cor conforme o estado.</li>
+          <li>Deve exibir mensagens: <em>“Toggle ativado”</em> ou <em>“Toggle desativado”</em>.</li>
+        </ul>
+      </ul>
+
+      <!-- BOTÃO DE ÍCONE -->
+      <h3>Botão de Ícone</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Executa ações rápidas representadas por um ícone.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Deve possuir tooltip (atributo <code>title</code>).</li>
+          <li>Ícone deve ser compreensível e universal.</li>
+          <li>Ao clicar, deve exibir: <em>“Ação do botão de ícone executada!”</em></li>
+        </ul>
+      </ul>
+
+      <!-- PAGINAÇÃO -->
+      <h3>Botões de Paginação</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Permitem navegar entre páginas de conteúdo.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Devem atualizar o conteúdo exibido conforme a página atual.</li>
+          <li>Devem indicar visualmente a página atual.</li>
+          <li>Ao avançar, exibir: <em>“Página avançada com sucesso”</em>.</li>
+          <li>Ao retornar, exibir: <em>“Página retornada com sucesso”</em>.</li>
+        </ul>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='botoes.html'">Voltar</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
