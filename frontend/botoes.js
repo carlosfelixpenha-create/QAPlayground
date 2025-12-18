@@ -107,7 +107,7 @@ function atualizarConteudo() {
   } else if (paginaAtual === 2) {
     conteudo.innerHTML = "<p>Página 2: Informações adicionais.</p>";
   } else if (paginaAtual === 3) {
-    conteudo.innerHTML = "<p>Página 3: Última página do exemplo.</p>";
+    conteudo.innerHTML = "<p>Página 3: Nova página.</p>";
   } else if (paginaAtual === 4) {
     conteudo.innerHTML = "<p>Página 4: Conteúdo extra avançado.</p>";
   } else if (paginaAtual === 5) {

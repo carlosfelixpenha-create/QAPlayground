@@ -418,6 +418,18 @@ input {
   margin-right: 10px;
 }
 
+/* Botões de abertura de modais (metade da largura) */
+.demo-actions .btn-open-modal {
+  width: 50%;
+  padding: 8px 12px;
+  font-size: 1.0rem;
+  margin: 5px auto;
+  display: block;
+}
+
+/* Se existir alguma regra impondo 100% nos botões da demo-actions, mantenha-a,
+   mas deixe esta variação após ela para sobrescrever sem !important. */
+
 /* ================================
    RETORNO NA MESMA LINHA
 ================================ */
@@ -762,4 +774,53 @@ table tbody tr:hover {
 
 .btn-recarregar:hover {
   background: #357ab8;
+}
+
+/* ===============================
+   ESTILOS DE MODAIS
+   =============================== */
+
+.modal {
+  display: none; /* escondido por padrão */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #666;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.modal-content button {
+  margin: 10px;
 }

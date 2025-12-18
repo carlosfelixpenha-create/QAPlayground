@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Catálogo de Modais</title>
+
+  <!-- Estilos globais -->
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+
+  <script defer src="modais.js"></script>
+</head>
+<body>
+  <div class="login-content catalogo-modais">
+    <h1>Catálogo de Modais</h1>
+    <p>Visualização e testes dos modais utilizados no projeto.</p>
+
+    <div class="form-container">
+
+      <!-- =============================== -->
+      <!-- MODAL DE ALERTA -->
+      <!-- =============================== -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h2>Modal de Alerta</h2>
+          <p>Utilizado para avisos simples ao usuário.</p>
+        </div>
+
+        <div class="demo-actions">
+          <button class="btn-primary btn-open-modal" onclick="abrirModal('alerta')">Abrir Modal de Alerta</button>
+        </div>
+
+        <div id="modal-alerta" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="fecharModal('alerta')">&times;</span>
+            <h3>Alerta</h3>
+            <p>Este é um aviso importante para o usuário.</p>
+            <button class="btn-primary" onclick="retornoAlerta()">OK</button>
+          </div>
+        </div>
+
+        <div class="demo-retorno">
+          <strong>Retorno:</strong>
+          <span class="retorno" id="retorno-alerta"></span>
+        </div>
+      </div>
+
+      <!-- =============================== -->
+      <!-- MODAL DE CONFIRMAÇÃO -->
+      <!-- =============================== -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h2>Modal de Confirmação</h2>
+          <p>Usado para confirmar ações críticas.</p>
+        </div>
+
+        <div class="demo-actions">
+          <button class="btn-primary btn-open-modal" onclick="abrirModal('confirmacao')">Abrir Modal de Confirmação</button>
+        </div>
+
+        <div id="modal-confirmacao" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="fecharModal('confirmacao')">&times;</span>
+            <h3>Confirmação</h3>
+            <p>Tem certeza que deseja excluir este registro?</p>
+            <button class="btn-danger" onclick="confirmarAcao()">Confirmar</button>
+            <button class="btn-secondary" onclick="cancelarAcao()">Cancelar</button>
+          </div>
+        </div>
+
+        <div class="demo-retorno">
+          <strong>Retorno:</strong>
+          <span class="retorno" id="retorno-confirmacao"></span>
+        </div>
+      </div>
+
+      <!-- =============================== -->
+      <!-- MODAL DE SUCESSO -->
+      <!-- =============================== -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h2>Modal de Sucesso</h2>
+          <p>Feedback positivo para o usuário.</p>
+        </div>
+
+        <div class="demo-actions">
+          <button class="btn-primary btn-open-modal" onclick="abrirModal('sucesso')">Abrir Modal de Sucesso</button>
+        </div>
+
+        <div id="modal-sucesso" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="fecharModal('sucesso')">&times;</span>
+            <h3>Sucesso</h3>
+            <p>Operação realizada com sucesso!</p>
+            <button class="btn-primary" onclick="retornoSucesso()">Fechar</button>
+          </div>
+        </div>
+
+        <div class="demo-retorno">
+          <strong>Retorno:</strong>
+          <span class="retorno" id="retorno-sucesso"></span>
+        </div>
+      </div>
+
+      <!-- =============================== -->
+      <!-- MODAL DE ERRO -->
+      <!-- =============================== -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <h2>Modal de Erro</h2>
+          <p>Exibe mensagens de falha ou erro.</p>
+        </div>
+
+        <div class="demo-actions">
+          <button class="btn-danger btn-open-modal" onclick="abrirModal('erro')">Abrir Modal de Erro</button>
+        </div>
+
+        <div id="modal-erro" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="fecharModal('erro')">&times;</span>
+            <h3>Erro</h3>
+            <p>Não foi possível concluir a operação.</p>
+            <button class="btn-danger" onclick="retornoErro()">Fechar</button>
+          </div>
+        </div>
+
+        <div class="demo-retorno">
+          <strong>Retorno:</strong>
+          <span class="retorno" id="retorno-erro"></span>
+        </div>
+      </div>
+
+      <!-- ============================ -->
+      <!-- NAVEGAÇÃO + RESET -->
+      <!-- ============================ -->
+      <div class="button-group">
+        <button type="button" class="resetar" onclick="resetarPagina()">Resetar</button>
+        <button type="button" class="requisitos" onclick="location.href='modais-requisitos.html'">Requisitos</button>
+        <button type="button" onclick="location.href='home.html'">Voltar</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
