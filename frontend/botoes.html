@@ -29,7 +29,8 @@
           </div>
 
           <div class="demo-actions">
-            <button id="btn-primario" class="btn-primary" onclick="acaoPrimaria()">Salvar</button>
+            <button id="btn-primario-salvar" class="btn-primary" onclick="acaoPrimaria('Salvar')">Salvar</button>
+            <button id="btn-primario-concluir" class="btn-primary" onclick="acaoPrimaria('Concluir')">Concluir</button>
           </div>
 
           <div class="demo-retorno">
@@ -48,7 +49,8 @@
           </div>
 
           <div class="demo-actions">
-            <button id="btn-secundario" class="btn-secondary" onclick="acaoSecundaria()">Voltar</button>
+            <button id="btn-secundario-voltar" class="btn-secondary" onclick="acaoSecundaria('Voltar')">Voltar</button>
+            <button id="btn-secundario-cancelar" class="btn-secondary" onclick="acaoSecundaria('Cancelar')">Cancelar</button>
           </div>
 
           <div class="demo-retorno">
@@ -67,7 +69,8 @@
           </div>
 
           <div class="demo-actions">
-            <button id="btn-danger" class="btn-danger" onclick="abrirModal()">Excluir</button>
+            <button id="btn-danger-excluir" class="btn-danger" onclick="abrirModal('Excluir')">Excluir</button>
+            <button id="btn-danger-remover" class="btn-danger" onclick="abrirModal('Remover')">Remover</button>
           </div>
 
           <div class="demo-retorno">
@@ -78,8 +81,8 @@
           <!-- Modal -->
           <div id="modal-confirmacao" class="modal" style="display:none;">
             <div class="modal-content">
-              <p>Tem certeza que deseja excluir?</p>
-              <button class="btn-danger" onclick="confirmarExclusao()">Sim, excluir</button>
+              <p id="texto-modal">Tem certeza?</p>
+              <button class="btn-danger" onclick="confirmarExclusao()">Sim, confirmar</button>
               <button onclick="fecharModal()">Cancelar</button>
             </div>
           </div>
@@ -95,31 +98,13 @@
           </div>
 
           <div class="demo-actions">
-            <button id="btn-loading" class="btn-primary" onclick="carregar()">Enviar</button>
+            <button id="btn-loading-enviar" class="btn-primary" onclick="carregar('Enviar')">Enviar</button>
+            <button id="btn-loading-processar" class="btn-primary" onclick="carregar('Processar')">Processar</button>
           </div>
 
           <div class="demo-retorno">
             <strong>Retorno:</strong>
             <span class="retorno" id="retorno-loading"></span>
-          </div>
-        </div>
-
-        <!-- ============================
-             BOTÃO TOGGLE
-        ============================= -->
-        <div class="demo-card">
-          <div class="demo-header">
-            <h2>Botão Toggle</h2>
-            <p>Alterna entre os estados ON e OFF.</p>
-          </div>
-
-          <div class="demo-actions">
-            <button id="btn-toggle" class="btn-toggle" onclick="alternar()">OFF</button>
-          </div>
-
-          <div class="demo-retorno">
-            <strong>Retorno:</strong>
-            <span class="retorno" id="retorno-toggle"></span>
           </div>
         </div>
 
@@ -133,7 +118,8 @@
           </div>
 
           <div class="demo-actions">
-            <button id="btn-icone" class="btn-icon" onclick="acaoIcone()" title="Editar">✏️</button>
+            <button id="btn-icone-editar" class="btn-icon" onclick="acaoIcone('Editar')" title="Editar">✏️</button>
+            <button id="btn-icone-visualizar" class="btn-icon" onclick="acaoIcone('Visualizar')" title="Visualizar">👁️</button>
           </div>
 
           <div class="demo-retorno">

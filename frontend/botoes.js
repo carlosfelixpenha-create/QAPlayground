@@ -1,31 +1,39 @@
 // ===============================
-// BOTÃO PRIMÁRIO
+// BOTÃO PRIMÁRIO (2 BOTÕES)
 // ===============================
-function acaoPrimaria() {
+function acaoPrimaria(acao) {
   document.getElementById("retorno-primario").innerText =
-    "Ação principal executada!";
+    `Ação ${acao} executada!`;
 
-  document.getElementById("btn-primario").disabled = true;
+  document.getElementById("btn-primario-salvar").disabled = true;
+  document.getElementById("btn-primario-concluir").disabled = true;
 }
 
 
 
 // ===============================
-// BOTÃO SECUNDÁRIO
+// BOTÃO SECUNDÁRIO (2 BOTÕES)
 // ===============================
-function acaoSecundaria() {
+function acaoSecundaria(acao) {
   document.getElementById("retorno-secundario").innerText =
-    "Ação secundária realizada!";
+    `Ação ${acao} realizada!`;
 
-  document.getElementById("btn-secundario").disabled = true;
+  document.getElementById("btn-secundario-voltar").disabled = true;
+  document.getElementById("btn-secundario-cancelar").disabled = true;
 }
 
 
 
 // ===============================
-// BOTÃO DE PERIGO (MODAL)
+// BOTÃO DE PERIGO (2 BOTÕES + MODAL)
 // ===============================
-function abrirModal() {
+let acaoDangerSelecionada = "";
+
+function abrirModal(acao) {
+  acaoDangerSelecionada = acao;
+  document.getElementById("texto-modal").innerText =
+    `Tem certeza que deseja ${acao}?`;
+
   document.getElementById("modal-confirmacao").style.display = "flex";
 }
 
@@ -37,62 +45,54 @@ function confirmarExclusao() {
   fecharModal();
 
   document.getElementById("retorno-danger").innerText =
-    "Item excluído com sucesso!";
+    `${acaoDangerSelecionada} concluído com sucesso!`;
 
-  document.getElementById("btn-danger").disabled = true;
+  document.getElementById("btn-danger-excluir").disabled = true;
+  document.getElementById("btn-danger-remover").disabled = true;
 }
 
 
 
 // ===============================
-// BOTÃO COM LOADING
+// BOTÃO COM LOADING (2 BOTÕES)
 // ===============================
-function carregar() {
-  const btn = document.getElementById("btn-loading");
-  btn.disabled = true;
-  btn.innerHTML = "Carregando... ⏳";
+function carregar(acao) {
+  const btn1 = document.getElementById("btn-loading-enviar");
+  const btn2 = document.getElementById("btn-loading-processar");
+
+  // Desabilita ambos
+  btn1.disabled = true;
+  btn2.disabled = true;
+
+  // Define qual botão foi clicado
+  const btnClicado = acao === "Enviar" ? btn1 : btn2;
+
+  btnClicado.innerHTML = `${acao}... ⏳`;
 
   setTimeout(() => {
-    btn.innerHTML = "Enviado ✅";
+    btnClicado.innerHTML = `${acao} ✅`;
     document.getElementById("retorno-loading").innerText =
-      "Envio concluído!";
+      `${acao} concluído!`;
   }, 2000);
 }
 
 
 
 // ===============================
-// BOTÃO TOGGLE (NÃO DESABILITA)
+// BOTÃO DE ÍCONE (2 BOTÕES)
 // ===============================
-let toggleAtivo = false;
-
-function alternar() {
-  toggleAtivo = !toggleAtivo;
-
-  const btn = document.getElementById("btn-toggle");
-  btn.innerText = toggleAtivo ? "ON" : "OFF";
-  btn.style.backgroundColor = toggleAtivo ? "#4caf50" : "#ccc";
-
-  document.getElementById("retorno-toggle").innerText =
-    toggleAtivo ? "Toggle ativado" : "Toggle desativado";
-}
-
-
-
-// ===============================
-// BOTÃO DE ÍCONE
-// ===============================
-function acaoIcone() {
+function acaoIcone(acao) {
   document.getElementById("retorno-icone").innerText =
-    "Ação do botão de ícone executada!";
+    `Ação ${acao} executada!`;
 
-  document.getElementById("btn-icone").disabled = true;
+  document.getElementById("btn-icone-editar").disabled = true;
+  document.getElementById("btn-icone-visualizar").disabled = true;
 }
 
 
 
 // ===============================
-// PAGINAÇÃO (AGORA COM 5 PÁGINAS)
+// PAGINAÇÃO (5 PÁGINAS)
 // ===============================
 let paginaAtual = 1;
 
@@ -107,7 +107,7 @@ function atualizarConteudo() {
   } else if (paginaAtual === 2) {
     conteudo.innerHTML = "<p>Página 2: Informações adicionais.</p>";
   } else if (paginaAtual === 3) {
-    conteudo.innerHTML = "<p>Página 3: Página de exemplo.</p>";
+    conteudo.innerHTML = "<p>Página 3: Última página do exemplo.</p>";
   } else if (paginaAtual === 4) {
     conteudo.innerHTML = "<p>Página 4: Conteúdo extra avançado.</p>";
   } else if (paginaAtual === 5) {
@@ -136,7 +136,7 @@ function paginaAnterior() {
 
 
 // ===============================
-// RESETAR PÁGINA (NOVO BOTÃO)
+// RESETAR PÁGINA COMPLETA
 // ===============================
 function resetarPagina() {
   // Limpa todos os retornos
@@ -145,18 +145,25 @@ function resetarPagina() {
   // Reativa todos os botões desabilitados
   document.querySelectorAll("button:disabled").forEach(btn => btn.disabled = false);
 
-  // Reset textos dos botões principais
-  document.getElementById("btn-primario").innerText = "Salvar";
-  document.getElementById("btn-secundario").innerText = "Voltar";
-  document.getElementById("btn-danger").innerText = "Excluir";
-  document.getElementById("btn-loading").innerHTML = "Enviar";
-  document.getElementById("btn-icone").innerHTML = "✏️";
+  // Reset textos dos botões primários
+  document.getElementById("btn-primario-salvar").innerText = "Salvar";
+  document.getElementById("btn-primario-concluir").innerText = "Concluir";
 
-  // Reset toggle (volta para o azul inicial do CSS)
-  const toggle = document.getElementById("btn-toggle");
-  toggle.innerText = "OFF";
-  toggle.style.backgroundColor = "";
-  toggleAtivo = false;
+  // Reset textos dos botões secundários
+  document.getElementById("btn-secundario-voltar").innerText = "Voltar";
+  document.getElementById("btn-secundario-cancelar").innerText = "Cancelar";
+
+  // Reset botões danger
+  document.getElementById("btn-danger-excluir").innerText = "Excluir";
+  document.getElementById("btn-danger-remover").innerText = "Remover";
+
+  // Reset botões loading
+  document.getElementById("btn-loading-enviar").innerHTML = "Enviar";
+  document.getElementById("btn-loading-processar").innerHTML = "Processar";
+
+  // Reset botões de ícone
+  document.getElementById("btn-icone-editar").innerHTML = "✏️";
+  document.getElementById("btn-icone-visualizar").innerHTML = "👁️";
 
   // Reset paginação
   paginaAtual = 1;

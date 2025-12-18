@@ -18,13 +18,20 @@
       <!-- BOTÃO PRIMÁRIO -->
       <h3>Botão Primário</h3>
       <ul>
-        <li><strong>Requisito:</strong> Executa a ação principal da tela.</li>
+        <li><strong>Requisito:</strong> Executa ações principais da tela.</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
-          <li>Deve existir apenas um botão primário por tela.</li>
-          <li>Deve ter destaque visual em relação aos demais botões.</li>
-          <li>Ao clicar, deve exibir a mensagem: <em>“Ação principal executada!”</em></li>
-          <li>Deve ser acessível via teclado (TAB + ENTER).</li>
+          <li>Devem existir dois botões primários: <em>Salvar</em> e <em>Concluir</em>.</li>
+          <li>Ambos devem ter destaque visual em relação aos demais botões.</li>
+          <li>Ao clicar em qualquer um deles, deve exibir a mensagem correspondente:
+            <ul>
+              <li><em>“Ação Salvar executada!”</em></li>
+              <li><em>“Ação Concluir executada!”</em></li>
+            </ul>
+          </li>
+          <li>Ao clicar em um dos botões, ambos devem ser desabilitados.</li>
+          <li>Devem ser reativados somente ao clicar no botão <strong>Resetar</strong>.</li>
+          <li>Devem ser acessíveis via teclado (TAB + ENTER).</li>
         </ul>
       </ul>
 
@@ -34,9 +41,17 @@
         <li><strong>Requisito:</strong> Executa ações auxiliares ou de navegação.</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
-          <li>Não deve competir visualmente com o botão primário.</li>
-          <li>Ao clicar, deve exibir a mensagem: <em>“Ação secundária realizada!”</em></li>
-          <li>Deve ter foco visível ao navegar com TAB.</li>
+          <li>Devem existir dois botões secundários: <em>Voltar</em> e <em>Cancelar</em>.</li>
+          <li>Não devem competir visualmente com o botão primário.</li>
+          <li>Ao clicar, devem exibir:
+            <ul>
+              <li><em>“Ação Voltar realizada!”</em></li>
+              <li><em>“Ação Cancelar realizada!”</em></li>
+            </ul>
+          </li>
+          <li>Ao clicar em um deles, ambos devem ser desabilitados.</li>
+          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
+          <li>Devem ter foco visível ao navegar com TAB.</li>
         </ul>
       </ul>
 
@@ -46,9 +61,17 @@
         <li><strong>Requisito:</strong> Executa ações destrutivas ou irreversíveis.</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
-          <li>Deve ser exibido em cor de alerta (vermelho).</li>
-          <li>Ao clicar, deve abrir um modal de confirmação.</li>
-          <li>Somente após confirmação deve exibir: <em>“Item excluído com sucesso!”</em></li>
+          <li>Devem existir dois botões de perigo: <em>Excluir</em> e <em>Remover</em>.</li>
+          <li>Devem ser exibidos em cor de alerta (vermelho).</li>
+          <li>Ao clicar, deve abrir um modal de confirmação exibindo a ação selecionada.</li>
+          <li>Somente após confirmar no modal deve exibir:
+            <ul>
+              <li><em>“Excluir concluído com sucesso!”</em></li>
+              <li><em>“Remover concluído com sucesso!”</em></li>
+            </ul>
+          </li>
+          <li>Após a confirmação, ambos os botões devem ser desabilitados.</li>
+          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
           <li>Não pode permitir exclusão acidental.</li>
         </ul>
       </ul>
@@ -59,21 +82,17 @@
         <li><strong>Requisito:</strong> Indica processamento de uma ação.</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
-          <li>Ao clicar, deve exibir estado de carregamento por 2 segundos.</li>
-          <li>Deve bloquear múltiplos cliques durante o carregamento.</li>
-          <li>Após finalizar, deve exibir: <em>“Envio concluído!”</em></li>
-        </ul>
-      </ul>
-
-      <!-- BOTÃO TOGGLE -->
-      <h3>Botão Toggle</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Alterna entre dois estados (ON/OFF).</li>
-        <li><strong>Critérios de aceite:</strong></li>
-        <ul>
-          <li>Deve alternar visualmente entre ON e OFF.</li>
-          <li>Deve alterar a cor conforme o estado.</li>
-          <li>Deve exibir mensagens: <em>“Toggle ativado”</em> ou <em>“Toggle desativado”</em>.</li>
+          <li>Devem existir dois botões: <em>Enviar</em> e <em>Processar</em>.</li>
+          <li>Ao clicar em qualquer um deles:
+            <ul>
+              <li>Ambos devem ser desabilitados.</li>
+              <li>O botão clicado deve exibir loading por 2 segundos.</li>
+              <li>Após finalizar, deve exibir:
+                <em>“Enviar concluído!”</em> ou <em>“Processar concluído!”</em>.
+              </li>
+            </ul>
+          </li>
+          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
         </ul>
       </ul>
 
@@ -83,9 +102,17 @@
         <li><strong>Requisito:</strong> Executa ações rápidas representadas por um ícone.</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
-          <li>Deve possuir tooltip (atributo <code>title</code>).</li>
-          <li>Ícone deve ser compreensível e universal.</li>
-          <li>Ao clicar, deve exibir: <em>“Ação do botão de ícone executada!”</em></li>
+          <li>Devem existir dois botões de ícone: <em>Editar</em> e <em>Visualizar</em>.</li>
+          <li>Devem possuir tooltip (atributo <code>title</code>).</li>
+          <li>Ícones devem ser compreensíveis e universais.</li>
+          <li>Ao clicar, devem exibir:
+            <ul>
+              <li><em>“Ação Editar executada!”</em></li>
+              <li><em>“Ação Visualizar executada!”</em></li>
+            </ul>
+          </li>
+          <li>Após clicar em um deles, ambos devem ser desabilitados.</li>
+          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
         </ul>
       </ul>
 
@@ -95,10 +122,12 @@
         <li><strong>Requisito:</strong> Permitem navegar entre páginas de conteúdo.</li>
         <li><strong>Critérios de aceite:</strong></li>
         <ul>
+          <li>Devem permitir navegação entre 5 páginas.</li>
           <li>Devem atualizar o conteúdo exibido conforme a página atual.</li>
           <li>Devem indicar visualmente a página atual.</li>
           <li>Ao avançar, exibir: <em>“Página avançada com sucesso”</em>.</li>
           <li>Ao retornar, exibir: <em>“Página retornada com sucesso”</em>.</li>
+          <li>O número da página deve estar centralizado entre os botões.</li>
         </ul>
       </ul>
 
