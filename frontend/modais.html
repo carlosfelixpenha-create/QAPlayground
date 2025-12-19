@@ -36,7 +36,13 @@
             <span class="close" onclick="fecharModal('alerta')">&times;</span>
             <h3>Alerta</h3>
             <p>Este é um aviso importante para o usuário.</p>
-            <button class="btn-primary" onclick="retornoAlerta()">OK</button>
+
+            <!-- Checkbox obrigatório -->
+            <input type="checkbox" id="checkbox-alerta" />
+            <label for="checkbox-alerta">Eu li a mensagem</label>
+
+            <!-- Botão só habilita se checkbox estiver marcado -->
+            <button class="btn-primary" onclick="retornoAlerta()" id="btn-alerta-ok" disabled>OK</button>
           </div>
         </div>
 
@@ -64,7 +70,12 @@
             <span class="close" onclick="fecharModal('confirmacao')">&times;</span>
             <h3>Confirmação</h3>
             <p>Tem certeza que deseja excluir este registro?</p>
-            <button class="btn-danger" onclick="confirmarAcao()">Confirmar</button>
+
+            <!-- Campo de senha -->
+            <input type="password" id="senha-confirmacao" placeholder="Digite sua senha" />
+            <small id="senha-msg" style="color:red; display:block; margin-top:5px;"></small>
+
+            <button class="btn-danger" onclick="confirmarAcao()" id="btn-confirmar" disabled>Confirmar</button>
             <button class="btn-secondary" onclick="cancelarAcao()">Cancelar</button>
           </div>
         </div>
@@ -93,6 +104,10 @@
             <span class="close" onclick="fecharModal('sucesso')">&times;</span>
             <h3>Sucesso</h3>
             <p>Operação realizada com sucesso!</p>
+
+            <!-- Campo de feedback opcional -->
+            <textarea id="feedback-sucesso" placeholder="Deixe seu comentário (opcional)" rows="3"></textarea>
+
             <button class="btn-primary" onclick="retornoSucesso()">Fechar</button>
           </div>
         </div>
@@ -121,7 +136,13 @@
             <span class="close" onclick="fecharModal('erro')">&times;</span>
             <h3>Erro</h3>
             <p>Não foi possível concluir a operação.</p>
-            <button class="btn-danger" onclick="retornoErro()">Fechar</button>
+
+            <!-- Campo de justificativa -->
+            <textarea id="justificativa-erro" placeholder="Descreva o que estava fazendo..." rows="3"></textarea>
+            <small id="erro-msg" style="color:red; display:block; margin-top:5px;"></small>
+
+            <!-- Botão sempre habilitado para permitir erro e aplicar shake -->
+            <button class="btn-danger" onclick="retornoErro()" id="btn-erro-ok">Fechar</button>
           </div>
         </div>
 

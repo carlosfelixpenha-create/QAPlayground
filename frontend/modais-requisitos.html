@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Modais</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Tela de Modais'</h1>
+
+    <div class="doc-container">
+
+      <h2>Modais</h2>
+
+      <!-- MODAL ALERTA -->
+      <h3>Modal de Alerta</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Exibe mensagens importantes que precisam ser confirmadas.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Deve conter um checkbox obrigatório para habilitar o botão <em>OK</em>.</li>
+          <li>Ao confirmar, exibir: <em>“Usuário confirmou que leu o alerta.”</em>.</li>
+          <li>Ao fechar pelo 'X' ou fora da modal, o checkbox deve ser resetado.</li>
+          <li>Botão <em>OK</em> deve iniciar desabilitado e só habilitar com checkbox marcado.</li>
+        </ul>
+      </ul>
+
+      <!-- MODAL CONFIRMAÇÃO -->
+      <h3>Modal de Confirmação</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Solicita senha para confirmar uma ação.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo de senha deve validar regras: 6-8 caracteres, incluir maiúscula, minúscula e especial.</li>
+          <li>Botão <em>Confirmar</em> só habilita com senha válida.</li>
+          <li>Ao confirmar, exibir: <em>“Usuário confirmou a ação com senha válida!”</em>.</li>
+          <li>Ao cancelar, exibir: <em>“Usuário cancelou a ação.”</em>.</li>
+          <li>Ao fechar pelo 'X' ou fora da modal, campo de senha deve ser resetado.</li>
+        </ul>
+      </ul>
+
+      <!-- MODAL SUCESSO -->
+      <h3>Modal de Sucesso</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Exibe mensagem de sucesso e permite comentário opcional.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Deve conter campo de feedback opcional.</li>
+          <li>Ao fechar, exibir mensagem com ou sem comentário.</li>
+          <li>Ao fechar pelo 'X' ou fora da modal, campo de feedback deve ser resetado.</li>
+        </ul>
+      </ul>
+
+      <!-- MODAL ERRO -->
+      <h3>Modal de Erro</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Solicita justificativa ao usuário em caso de erro.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Campo de justificativa é obrigatório.</li>
+          <li>Se vazio, exibir mensagem de erro e aplicar efeito <em>shake</em>.</li>
+          <li>Ao preencher e confirmar, exibir: <em>“Usuário relatou: ...”</em>.</li>
+          <li>Ao fechar pelo 'X' ou fora da modal, campo de justificativa deve ser resetado.</li>
+        </ul>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='modais.html'">Voltar</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

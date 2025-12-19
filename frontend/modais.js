@@ -14,6 +14,7 @@ function fecharModal(tipo) {
   const modal = document.getElementById("modal-" + tipo);
   if (modal) {
     modal.style.display = "none";
+    resetarCamposModal(modal); // <<< limpa os campos ao fechar
   }
 }
 
@@ -23,6 +24,7 @@ window.onclick = function(event) {
   for (let i = 0; i < modais.length; i++) {
     if (event.target == modais[i]) {
       modais[i].style.display = "none";
+      resetarCamposModal(modais[i]); // <<< limpa também ao clicar fora
     }
   }
 };
@@ -34,14 +36,14 @@ window.onclick = function(event) {
 // Alerta
 function retornoAlerta() {
   fecharModal("alerta");
-  document.getElementById("retorno-alerta").innerText = "Usuário visualizou o alerta.";
+  document.getElementById("retorno-alerta").innerText = "Usuário confirmou que leu o alerta.";
   desabilitarBotao("alerta");
 }
 
 // Confirmação
 function confirmarAcao() {
   fecharModal("confirmacao");
-  document.getElementById("retorno-confirmacao").innerText = "Usuário confirmou a ação!";
+  document.getElementById("retorno-confirmacao").innerText = "Usuário confirmou a ação com senha válida!";
   desabilitarBotao("confirmacao");
 }
 
@@ -54,14 +56,30 @@ function cancelarAcao() {
 // Sucesso
 function retornoSucesso() {
   fecharModal("sucesso");
-  document.getElementById("retorno-sucesso").innerText = "Usuário fechou o modal de sucesso.";
+  const feedback = document.getElementById("feedback-sucesso").value;
+  const retorno = feedback ? `Usuário fechou o modal de sucesso e comentou: "${feedback}"`
+                           : "Usuário fechou o modal de sucesso sem comentário.";
+  document.getElementById("retorno-sucesso").innerText = retorno;
   desabilitarBotao("sucesso");
 }
 
-// Erro
+// Erro (com shake contextual)
 function retornoErro() {
+  const justificativa = document.getElementById("justificativa-erro").value.trim();
+  const modalContent = document.querySelector("#modal-erro .modal-content");
+
+  if (!justificativa) {
+    document.getElementById("erro-msg").innerText = "Por favor, descreva o que estava fazendo.";
+    // Aplica shake
+    modalContent.classList.add("shake-effect");
+    setTimeout(() => {
+      modalContent.classList.remove("shake-effect");
+    }, 400);
+    return;
+  }
+
   fecharModal("erro");
-  document.getElementById("retorno-erro").innerText = "Usuário fechou o modal de erro.";
+  document.getElementById("retorno-erro").innerText = `Usuário relatou: "${justificativa}"`;
   desabilitarBotao("erro");
 }
 
@@ -69,12 +87,34 @@ function retornoErro() {
 // Funções auxiliares
 // ===============================
 function desabilitarBotao(tipo) {
-  // pega o botão que abre o modal
   const btn = document.querySelector(`button[onclick="abrirModal('${tipo}')"]`);
   if (btn) {
     btn.disabled = true;
     btn.classList.add("btn-disabled");
   }
+}
+
+// Resetar campos de uma modal específica
+function resetarCamposModal(modal) {
+  // Zera inputs e textareas
+  const inputs = modal.querySelectorAll("input, textarea");
+  inputs.forEach(el => {
+    if (el.type === "checkbox" || el.type === "radio") {
+      el.checked = false;
+    } else {
+      el.value = "";
+    }
+  });
+
+  // Desabilita botões dependentes
+  const btnAlertaOk = modal.querySelector("#btn-alerta-ok");
+  if (btnAlertaOk) btnAlertaOk.disabled = true;
+  const btnConfirmar = modal.querySelector("#btn-confirmar");
+  if (btnConfirmar) btnConfirmar.disabled = true;
+
+  // Limpa mensagens auxiliares
+  const msgs = modal.querySelectorAll("small, span.retorno");
+  msgs.forEach(msg => msg.textContent = "");
 }
 
 function resetarPagina() {
@@ -88,6 +128,7 @@ function resetarPagina() {
   const modais = document.getElementsByClassName("modal");
   for (let i = 0; i < modais.length; i++) {
     modais[i].style.display = "none";
+    resetarCamposModal(modais[i]); // <<< limpa cada modal
   }
 
   // Reabilita todos os botões
@@ -103,8 +144,37 @@ function resetarPagina() {
   resetInfo.innerText = "Página de modais resetada!";
   document.querySelector(".form-container").appendChild(resetInfo);
 
-  // Remove mensagem após alguns segundos
-  setTimeout(() => {
-    resetInfo.remove();
-  }, 3000);
+  setTimeout(() => resetInfo.remove(), 3000);
 }
+
+// ===============================
+// Lógicas específicas de validação
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  // Checkbox do alerta
+  const checkboxAlerta = document.getElementById("checkbox-alerta");
+  const btnAlertaOk = document.getElementById("btn-alerta-ok");
+  if (checkboxAlerta && btnAlertaOk) {
+    checkboxAlerta.addEventListener("change", () => {
+      btnAlertaOk.disabled = !checkboxAlerta.checked;
+    });
+  }
+
+  // Validação da senha no modal de confirmação
+  const senhaInput = document.getElementById("senha-confirmacao");
+  const btnConfirmar = document.getElementById("btn-confirmar");
+  const msg = document.getElementById("senha-msg");
+  if (senhaInput && btnConfirmar) {
+    senhaInput.addEventListener("input", () => {
+      const senha = senhaInput.value;
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{6,8}$/;
+      if (regex.test(senha)) {
+        btnConfirmar.disabled = false;
+        msg.innerText = "";
+      } else {
+        btnConfirmar.disabled = true;
+        msg.innerText = "Senha inválida! Deve ter 6-8 caracteres, incluir maiúscula, minúscula e especial.";
+      }
+    });
+  }
+});
