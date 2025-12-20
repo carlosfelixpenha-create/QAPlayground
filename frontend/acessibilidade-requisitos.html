@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAPlayground - Requisitos Acessibilidade</title>
+  <link rel="stylesheet" href="style_global.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-content">
+    <h1>Requisitos 'Tela de Acessibilidade'</h1>
+
+    <div class="doc-container">
+
+      <h2>Acessibilidade</h2>
+
+      <!-- NAVEGAÇÃO POR TECLADO -->
+      <h3>Navegação por Teclado</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Permitir que todos os elementos sejam acessados via teclado.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Todos os campos e botões devem ser acessíveis com <em>TAB</em>.</li>
+          <li>Botões e links devem ser acionáveis com <em>ENTER</em> ou <em>ESPAÇO</em>.</li>
+          <li>O foco deve ser visível ao navegar.</li>
+        </ul>
+      </ul>
+
+      <!-- CONTRASTE DE CORES -->
+      <h3>Contraste de Cores</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Garantir legibilidade para diferentes condições visuais.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Textos devem ter contraste mínimo de 4.5:1 em relação ao fundo.</li>
+          <li>Exemplos de contraste bom e ruim devem ser exibidos.</li>
+          <li>Feedback visual não pode depender apenas da cor.</li>
+        </ul>
+      </ul>
+
+      <!-- LABELS E ARIA -->
+      <h3>Labels e ARIA</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Inputs devem ser corretamente identificados.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Todos os campos devem ter <code>&lt;label&gt;</code> associado.</li>
+          <li>Campos sem label devem usar <code>aria-label</code> ou <code>aria-labelledby</code>.</li>
+          <li>Leitores de tela devem anunciar corretamente cada campo.</li>
+        </ul>
+      </ul>
+
+      <!-- FEEDBACK VISUAL E TEXTUAL -->
+      <h3>Feedback Visual e Textual</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Informar o usuário de forma clara sobre erros e sucessos.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Mensagens de erro devem ser exibidas em texto, não apenas em cor.</li>
+          <li>Mensagens de sucesso devem ser claras e objetivas.</li>
+          <li>Feedback deve ser anunciado por leitores de tela.</li>
+        </ul>
+      </ul>
+
+      <!-- TAMANHO E ESPAÇAMENTO -->
+      <h3>Tamanho e Espaçamento</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Garantir área de clique confortável.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Botões e links devem ter área mínima de 44x44px.</li>
+          <li>Elementos devem ter espaçamento suficiente para evitar cliques acidentais.</li>
+        </ul>
+      </ul>
+
+      <!-- ESTRUTURA SEMÂNTICA -->
+      <h3>Estrutura Semântica</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Organizar conteúdo com hierarquia lógica.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Usar títulos <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> em ordem correta.</li>
+          <li>Leitores de tela devem conseguir navegar pela hierarquia.</li>
+          <li>Conteúdo deve ser compreensível sem estilos visuais.</li>
+        </ul>
+      </ul>
+
+      <!-- TESTE PARA CEGOS -->
+      <h3>Teste para Cegos (Descrição em Áudio)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Permitir que elementos sejam descritos em áudio.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Ao passar o cursor sobre imagens ou linhas, deve ser reproduzida uma descrição em áudio.</li>
+          <li>As descrições devem ser claras e objetivas.</li>
+          <li>O áudio deve iniciar imediatamente ao foco ou interação.</li>
+        </ul>
+      </ul>
+
+      <!-- TESTE PARA BAIXA VISÃO -->
+      <h3>Teste para Baixa Visão (Zoom ao Foco)</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Facilitar leitura e visualização para usuários com baixa visão.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>Ao passar o cursor sobre palavras ou imagens, o elemento deve aumentar em pelo menos 20%.</li>
+          <li>O aumento deve ser perceptível e retornar ao tamanho normal ao sair do foco.</li>
+          <li>O zoom não deve distorcer ou quebrar o layout da página.</li>
+        </ul>
+      </ul>
+
+      <!-- AVATAR EM LIBRAS -->
+      <h3>Avatar em Libras</h3>
+      <ul>
+        <li><strong>Requisito:</strong> Integrar um avatar que traduza textos para Libras.</li>
+        <li><strong>Critérios de aceite:</strong></li>
+        <ul>
+          <li>A integração deve ser realizada via plugin frontend (ex.: VLibras ou Hand Talk), sem necessidade de servidor.</li>  
+          <li>Ao passar o cursor sobre palavras, linhas ou blocos de texto, o avatar deve traduzir para Libras.</li>
+          <li>O avatar deve aparecer em uma área fixa da tela.</li>
+          <li>O recurso deve poder ser ativado ou desativado pelo usuário.</li>
+          <li>A tradução deve ser clara e imediata.</li>
+          <li>O recurso deve funcionar em desktop e mobile.</li>
+        </ul>
+      </ul>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='acessibilidade.html'">Voltar</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
