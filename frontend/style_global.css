@@ -31,7 +31,14 @@ body {
 .sidebar h2 {
   font-size: 18px;
   margin-bottom: 20px;
+  text-align: center;
 }
+
+/* Texto final em azul */
+.texto-destaque {
+  color: rgb(0, 0, 175);
+}
+
 
 .sidebar ul {
   list-style: none;
@@ -396,6 +403,33 @@ input {
   padding: 20px;
   margin-bottom: 25px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;   /* efeito suave */
+}
+
+.demo-card [vw] {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  display: block;
+}
+
+.demo-card [vw-plugin-wrapper] {
+  background: #f9f9f9;
+  min-height: 200px;
+  border-radius: 6px;
+  overflow: hidden;    /* impede que o avatar vaze */
+  position: relative;
+}
+
+.demo-card .vw-plugin-top-wrapper {
+  position: relative !important;
+  transform: scale(1);  /* reduz o tamanho do avatar */
+  transform-origin: top left;
+  max-height: 200px;       /* limita a altura */
+}
+
+.demo-card:hover {
+  transform: translateY(-3px);       /* destaque ao passar o mouse */
 }
 
 .demo-header h2 {
@@ -412,10 +446,22 @@ input {
 
 .demo-actions {
   margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;                         /* espaçamento entre elementos */
+  align-items: center;
 }
 
-.demo-actions button {
+.demo-actions button,
+.demo-actions a {
   margin-right: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.demo-actions button:hover,
+.demo-actions a:hover {
+  transform: scale(1.05);            /* leve zoom ao foco/hover */
 }
 
 /* Botões de abertura de modais (metade da largura) */
@@ -455,6 +501,7 @@ input {
   padding: 0;
   margin: 0;
   color: #333;
+  font-weight: bold;                 /* destaque no retorno */
 }
 
 /* ================================
@@ -898,3 +945,4 @@ table tbody tr:hover {
 #modal-sucesso .modal-content {
   animation: pulse 0.6s ease;
 }
+

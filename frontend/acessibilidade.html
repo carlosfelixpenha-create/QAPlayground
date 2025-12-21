@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Página de Acessibilidade</title>
+
+    <!-- Estilos do projeto -->
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="bloco.css" />
+
+    <script defer src="acessibilidade.js"></script>
+  </head>
+
+  <body>
+    <div class="login-content catalogo-botoes">
+      <h1>Página de Acessibilidade</h1>
+      <p>Visualização e testes de boas práticas de acessibilidade.</p>
+
+      <div class="form-container">
+
+        <!-- ============================
+             NAVEGAÇÃO POR TECLADO
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Navegação por Teclado</h2>
+            <p>Todos os elementos devem ser acessíveis via TAB e ENTER.</p>
+          </div>
+          <div class="demo-actions">
+            <button class="btn-primary">Botão Acessível</button>
+            <button class="btn-secondary">Outro Botão</button>
+            <a href="#">Link Acessível</a>
+          </div>
+        </div>
+
+        <!-- ============================
+             CONTRASTE DE CORES
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Contraste de Cores</h2>
+            <p>Exemplo de bom e mau contraste.</p>
+          </div>
+          <div class="demo-actions">
+            <div style="background:#000; color:#fff; padding:10px;">Bom contraste</div>
+            <div style="background:#555; color:#666; padding:10px;">Contraste ruim</div>
+          </div>
+        </div>
+
+        <!-- ============================
+             LABELS E ARIA
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Labels e ARIA</h2>
+            <p>Formulário com labels e atributos ARIA.</p>
+          </div>
+          <div class="demo-actions">
+            <form>
+              <label for="nome">Nome:</label>
+              <input id="nome" type="text" aria-label="Campo de nome" />
+              <label for="email">Email:</label>
+              <input id="email" type="email" aria-label="Campo de email" />
+            </form>
+          </div>
+        </div>
+
+        <!-- ============================
+             FEEDBACK VISUAL E TEXTUAL
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Feedback Visual e Textual</h2>
+            <p>Mensagens claras de erro e sucesso.</p>
+          </div>
+          <div class="demo-actions">
+            <input id="senha" type="password" placeholder="Digite a senha" />
+            <button onclick="validarSenha()">Validar</button>
+          </div>
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-senha"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             ZOOM AO FOCO (BAIXA VISÃO)
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Zoom ao Foco</h2>
+            <p>Elementos aumentam 20% ao passar o cursor.</p>
+          </div>
+          <div class="demo-actions">
+            <p onmouseover="this.style.fontSize='120%'" onmouseout="this.style.fontSize='100%'">
+              Texto acessível para baixa visão
+            </p>
+            <img src="logo.png" alt="Logo QAPlayground"
+                 onmouseover="this.style.transform='scale(1.2)'"
+                 onmouseout="this.style.transform='scale(1)'">
+          </div>
+        </div>
+
+        <!-- ============================
+             DESCRIÇÃO EM ÁUDIO (CEGOS)
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Descrição em Áudio</h2>
+            <p>Texto falado ao passar o cursor.</p>
+          </div>
+          <div class="demo-actions">
+            <p onmouseover="falar('Este é um texto de exemplo')">Passe o mouse aqui</p>
+          </div>
+        </div>
+
+        <!-- ============================
+             AVATAR EM LIBRAS
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Avatar em Libras</h2>
+            <p>Integração com VLibras para tradução em Libras.</p>
+          </div>
+          <div class="demo-actions">
+            <p>Veja abaixo o avatar em Libras:</p>
+            <!-- Plugin VLibras dentro do card -->
+            <div vw class="enabled">
+              <div vw-access-button class="active"></div>
+              <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================
+             NAVEGAÇÃO + RESET
+        ============================= -->
+        <div class="button-group">
+          <button type="button" class="resetar" onclick="resetarPagina()">Resetar</button>
+          <button type="button" class="requisitos" onclick="location.href='acessibilidade-requisitos.html'">Requisitos</button>
+          <button type="button" onclick="location.href='home.html'">Voltar</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Script de áudio -->
+    <script>
+      function falar(texto) {
+        const utterance = new SpeechSynthesisUtterance(texto);
+        speechSynthesis.speak(utterance);
+      }
+      function validarSenha() {
+        const senha = document.getElementById('senha').value;
+        const retorno = document.getElementById('retorno-senha');
+        if(senha === "1234") {
+          retorno.textContent = "Senha válida!";
+          retorno.style.color = "green";
+        } else {
+          retorno.textContent = "Senha inválida!";
+          retorno.style.color = "red";
+        }
+      }
+      function resetarPagina() {
+        location.reload();
+      }
+    </script>
+
+    <!-- Script do VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+  </body>
+</html>
