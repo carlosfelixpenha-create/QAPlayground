@@ -69,6 +69,17 @@ body {
   text-align: center;
 }
 
+.logo-home {
+  margin-top: 30px;
+  text-align: center;
+  opacity: 0.5; /* valor entre 0 e 1 */
+}
+
+.logo-home img {
+  max-width: 200px;
+  height: auto;
+}
+
 /* Texto final em azul */
 .texto-destaque {
   color: rgb(0, 0, 175);
