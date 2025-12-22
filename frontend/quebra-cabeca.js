@@ -5,24 +5,11 @@ function iniciarJogo(qtd) {
   const tabuleiro = document.getElementById("tabuleiro");
   const referencia = document.getElementById("referencia");
   const mensagem = document.getElementById("mensagem");
-  const botoes = document.getElementById("botoes-niveis");
-  const textoNivel = document.getElementById("texto-nivel");
-  const voltarBtn = document.getElementById("voltar");
-  const navBtns = document.getElementById("botoes-navegacao");
-  const wrapper = document.querySelector(".jogo-wrapper");
   const refContainer = document.querySelector(".referencia-container");
 
   // Mostrar tabuleiro e referência
   tabuleiro.style.display = "grid";
   refContainer.style.display = "block";
-
-  // Esconder elementos iniciais
-  botoes.style.display = "none";
-  textoNivel.style.display = "none";
-  navBtns.style.display = "none";
-
-  // Mostrar botão voltar ao menu
-  voltarBtn.style.display = "inline-block";
 
   // Reset
   tabuleiro.innerHTML = "";
@@ -31,19 +18,19 @@ function iniciarJogo(qtd) {
   mensagem.style.display = "none";
   pecas = [];
 
-  // ✅ Remove apenas classes específicas, sem apagar tudo
+  // Remove classes específicas
   tabuleiro.classList.remove("tabuleiro-32pcs");
   refContainer.classList.remove("referencia32pcs");
 
-  // ✅ Define grid automaticamente
+  // Define grid automaticamente
   let cols;
   if (qtd === 4) cols = 2;
   else if (qtd === 8) cols = 2;
   else if (qtd === 16) cols = 4;
   else if (qtd === 32) {
     cols = 4; // 4 colunas × 8 linhas
-    tabuleiro.classList.add("tabuleiro-32pcs"); // ✅ classe exclusiva do tabuleiro
-    refContainer.classList.add("referencia32pcs"); // ✅ classe exclusiva da referência
+    tabuleiro.classList.add("tabuleiro-32pcs");
+    refContainer.classList.add("referencia32pcs");
   }
 
   tabuleiro.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
@@ -71,6 +58,12 @@ function iniciarJogo(qtd) {
     p.dataset.current = idx;
     tabuleiro.appendChild(p);
   });
+
+  // Atualiza botão ativo
+  const botoesNivel = document.querySelectorAll("#botoes-niveis button");
+  botoesNivel.forEach(btn => btn.classList.remove("active"));
+  const botaoAtual = Array.from(botoesNivel).find(btn => btn.textContent.includes(qtd));
+  if (botaoAtual) botaoAtual.classList.add("active");
 }
 
 function aplicarEventos(peca) {
@@ -125,32 +118,7 @@ function verificarVitoria() {
   }
 }
 
-function voltarMenu() {
-  const tabuleiro = document.getElementById("tabuleiro");
-  const referencia = document.getElementById("referencia");
-  const botoes = document.getElementById("botoes-niveis");
-  const textoNivel = document.getElementById("texto-nivel");
-  const voltarBtn = document.getElementById("voltar");
-  const navBtns = document.getElementById("botoes-navegacao");
-  const mensagem = document.getElementById("mensagem");
-  const wrapper = document.querySelector(".jogo-wrapper");
-  const refContainer = document.querySelector(".referencia-container");
-
-  // Limpar conteúdos
-  tabuleiro.innerHTML = "";
-  referencia.innerHTML = "";
-  mensagem.textContent = "";
-  mensagem.style.display = "none";
-
-  // Esconder tabuleiro e referência
-  tabuleiro.style.display = "none";
-  refContainer.style.display = "none";
-
-  // Mostrar elementos iniciais
-  botoes.style.display = "flex";
-  textoNivel.style.display = "block";
-  navBtns.style.display = "flex";
-
-  // Esconder botão voltar ao menu
-  voltarBtn.style.display = "none";
-}
+// ✅ Inicia automaticamente com 4 peças
+window.onload = function() {
+  iniciarJogo(4);
+};

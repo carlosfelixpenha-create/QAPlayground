@@ -17,36 +17,37 @@
 
       <div class="jogo-wrapper">
 
-        <!-- Container do tabuleiro -->
-        <div class="tabuleiro-container">
-
+        <!-- Bloco da esquerda -->
+        <div class="lado-esquerdo">
           <p id="texto-nivel"><h3>Escolha o nível do quebra-cabeça:</h3></p>
 
+          <!-- Botões de níveis -->
           <div class="button-group" id="botoes-niveis">
-            <!-- REMOVIDO: nível 2 peças -->
             <button type="button" onclick="iniciarJogo(4)">4 peças</button>
             <button type="button" onclick="iniciarJogo(8)">8 peças</button>
             <button type="button" onclick="iniciarJogo(16)">16 peças</button>
-            <!-- ADICIONADO: novo nível 32 peças -->
             <button type="button" onclick="iniciarJogo(32)">32 peças</button>
           </div>
 
+          <!-- Sub-wrapper: tabuleiro + referência -->
+          <div class="tabuleiro-referencia">
+            <!-- Tabuleiro -->
+            <div id="tabuleiro" class="tabuleiro-container"></div>
+
+            <!-- Referência -->
+            <div class="referencia-container">
+              <div id="referencia"></div>
+            </div>
+          </div>
+
+          <!-- Mensagem de vitória -->
+          <div id="mensagem"></div>
+
+          <!-- Botões de navegação abaixo do tabuleiro -->
           <div class="button-group" id="botoes-navegacao">
             <button type="button" class="requisitos" onclick="location.href='quebra-cabeca-requisitos.html'">Requisitos</button>
             <button type="button" onclick="location.href='home.html'">Voltar</button>
           </div>
-
-          <div id="tabuleiro"></div>
-          <div id="mensagem"></div>
-
-          <!-- Botão que só aparece dentro do jogo -->
-          <button id="voltar" onclick="voltarMenu()" style="display:none;">Voltar nível</button>
-
-        </div>
-
-        <!-- Container da imagem de referência -->
-        <div class="referencia-container">
-          <div id="referencia"></div>
         </div>
 
       </div>

@@ -18,6 +18,41 @@ body {
   height: 100vh;
 }
 
+/* Wrapper que agrupa tabuleiro e referência */
+.jogo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px; /* ✅ espaço real entre tabuleiro e referência */
+  margin-top: 40px;
+  flex-wrap: wrap; /* ✅ evita sobreposição em telas menores */
+}
+
+/* Container do tabuleiro */
+.tabuleiro-container {
+  flex-shrink: 0;
+  text-align: center;
+  width: auto; /* ✅ não ocupa 100% da largura */
+}
+
+/* Container da referência */
+.referencia-container {
+  flex-shrink: 0;
+  margin-top: 20px;
+  display: flex; /* ✅ garante alinhamento correto */
+  justify-content: center;
+}
+
+/* Sub-wrapper que agrupa tabuleiro e referência */
+.tabuleiro-referencia {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* garante que a referência alinhe pelo topo do tabuleiro */
+  gap: 30px;               /* espaço entre tabuleiro e referência */
+  margin-top: 20px;        /* espaço entre botões de nível e o tabuleiro */
+  flex-wrap: wrap;         /* em telas menores, referência desce abaixo do tabuleiro */
+}
+
 /* === Menu lateral === */
 .sidebar {
   width: 250px;
@@ -352,9 +387,9 @@ input {
 /* Container da referência */
 .referencia-container {
   flex-shrink: 0;
-  margin-top: 20px;
   display: flex; /* ✅ garante alinhamento correto */
   justify-content: center;
+  min-width: 200px; /* largura mínima para não ficar espremida */
 }
 
 /* Imagem de referência padrão */
@@ -362,6 +397,15 @@ input {
   max-width: 200px;
   border: 2px solid #007acc;
   border-radius: 6px;
+}
+
+.tabuleiro-referencia {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* referência alinhada pelo topo do tabuleiro */
+  gap: 40px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* em telas menores a referência desce abaixo */
 }
 
 /* Botão voltar */
@@ -618,6 +662,13 @@ button:disabled:hover {
   margin: 0 auto;
   padding: 20px 30px;
   box-sizing: border-box;
+}
+
+.doc-container.instrucoes {
+  max-width: 1200px;   /* ou 1100px, conforme preferir */
+  margin: 0 auto;      /* centraliza horizontalmente */
+  padding: 30px;       /* opcional: dá respiro interno */
+  box-sizing: border-box; /* garante que padding não estoure a largura */
 }
 
 /* Faz todas as tabelas ocuparem toda a largura disponível */
