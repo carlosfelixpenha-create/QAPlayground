@@ -14,8 +14,24 @@ body {
 /* === Layout principal === */
 .container {
   display: flex;
+  flex-direction: row; /* garante layout lado a lado */
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* mais seguro para responsividade */
+}
+
+/* Contador responsivo */
+#contador-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffae82;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
 }
 
 /* Wrapper que agrupa tabuleiro e referência */
@@ -48,15 +64,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start; /* garante que a referência alinhe pelo topo do tabuleiro */
-  gap: 30px;               /* espaço entre tabuleiro e referência */
-  margin-top: 20px;        /* espaço entre botões de nível e o tabuleiro */
-  flex-wrap: wrap;         /* em telas menores, referência desce abaixo do tabuleiro */
+  gap: 30px; /* espaço entre tabuleiro e referência */
+  margin-top: 20px; /* espaço entre botões de nível e o tabuleiro */
+  flex-wrap: wrap; /* em telas menores, referência desce abaixo do tabuleiro */
 }
 
 /* === Menu lateral === */
 .sidebar {
   width: 250px;
-  min-width: 250px;
+  max-width: 250px; /* permite reduzir em telas menores */
   flex-shrink: 0;
   background-color: #1e2a38;
   color: white;
@@ -76,15 +92,23 @@ body {
 }
 
 .logo-home img {
-  max-width: 200px;
+  max-width: 200%; /* ocupa até o limite do container */
   height: auto;
+  display: block;
+  margin: 0 auto; /* centraliza a logo */
+}
+
+/* Ajuste para desktops grandes */
+@media (min-width: 1024px) {
+  .logo-home img {
+    max-width: 200px; /* aumenta a logo em telas maiores */
+  }
 }
 
 /* Texto final em azul */
 .texto-destaque {
   color: rgb(0, 0, 175);
 }
-
 
 .sidebar ul {
   list-style: none;
@@ -121,6 +145,47 @@ body {
   background-color: #ffffff;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
   z-index: 1;
+}
+
+/* Ajustes para tablets */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  #contador-container {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* Ajustes para celulares */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    order: 1;
+  }
+
+  .content {
+    width: 100%;
+    order: 2;
+    padding: 15px;
+  }
+
+  .logo-home img {
+    max-width: 160px; /* reduz um pouco para caber melhor */
+  }
+
+  #contador-container {
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
 
 .content::before {
@@ -457,8 +522,8 @@ input {
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 25px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;   /* efeito suave */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease; /* efeito suave */
 }
 
 .demo-card [vw] {
@@ -472,19 +537,19 @@ input {
   background: #f9f9f9;
   min-height: 200px;
   border-radius: 6px;
-  overflow: hidden;    /* impede que o avatar vaze */
+  overflow: hidden; /* impede que o avatar vaze */
   position: relative;
 }
 
 .demo-card .vw-plugin-top-wrapper {
   position: relative !important;
-  transform: scale(1);  /* reduz o tamanho do avatar */
+  transform: scale(1); /* reduz o tamanho do avatar */
   transform-origin: top left;
-  max-height: 200px;       /* limita a altura */
+  max-height: 200px; /* limita a altura */
 }
 
 .demo-card:hover {
-  transform: translateY(-3px);       /* destaque ao passar o mouse */
+  transform: translateY(-3px); /* destaque ao passar o mouse */
 }
 
 .demo-header h2 {
@@ -503,7 +568,7 @@ input {
   margin-bottom: 15px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;                         /* espaçamento entre elementos */
+  gap: 10px; /* espaçamento entre elementos */
   align-items: center;
 }
 
@@ -516,14 +581,14 @@ input {
 
 .demo-actions button:hover,
 .demo-actions a:hover {
-  transform: scale(1.05);            /* leve zoom ao foco/hover */
+  transform: scale(1.05); /* leve zoom ao foco/hover */
 }
 
 /* Botões de abertura de modais (metade da largura) */
 .demo-actions .btn-open-modal {
   width: 50%;
   padding: 8px 12px;
-  font-size: 1.0rem;
+  font-size: 1rem;
   margin: 5px auto;
   display: block;
 }
@@ -556,7 +621,7 @@ input {
   padding: 0;
   margin: 0;
   color: #333;
-  font-weight: bold;                 /* destaque no retorno */
+  font-weight: bold; /* destaque no retorno */
 }
 
 /* ================================
@@ -585,7 +650,7 @@ input {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -597,19 +662,19 @@ input {
   border-radius: 8px;
   width: 300px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Botões dentro das modais - versão compacta */
 .modal-content button {
   margin: 8px 6px 0 6px;
-  padding: 6px 10px;        /* altura e largura menores */
+  padding: 6px 10px; /* altura e largura menores */
   font-size: 0.85rem;
   border-radius: 5px;
   transition: transform 0.2s ease;
-  width: 120px;              /* ajusta ao texto */
-  min-width: unset;         /* remove largura mínima herdada */
-  max-width: 120px;         /* limite lateral opcional */
+  width: 120px; /* ajusta ao texto */
+  min-width: unset; /* remove largura mínima herdada */
+  max-width: 120px; /* limite lateral opcional */
 }
 
 .modal-content button:hover {
@@ -676,9 +741,9 @@ button:disabled:hover {
 }
 
 .doc-container.instrucoes {
-  max-width: 1200px;   /* ou 1100px, conforme preferir */
-  margin: 0 auto;      /* centraliza horizontalmente */
-  padding: 30px;       /* opcional: dá respiro interno */
+  max-width: 1200px; /* ou 1100px, conforme preferir */
+  margin: 0 auto; /* centraliza horizontalmente */
+  padding: 30px; /* opcional: dá respiro interno */
   box-sizing: border-box; /* garante que padding não estoure a largura */
 }
 
@@ -814,8 +879,6 @@ table tbody tr:hover {
   color: #444;
 }
 
-
-
 /* =============================== */
 /* CHECKBOXES (SELEÇÃO DE LINHAS) */
 /* =============================== */
@@ -909,7 +972,7 @@ table tbody tr:hover {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.6); /* overlay mais escuro */
+  background-color: rgba(0, 0, 0, 0.6); /* overlay mais escuro */
   animation: fadeIn 0.3s ease;
 }
 
@@ -921,7 +984,7 @@ table tbody tr:hover {
   width: 80%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   animation: slideDown 0.3s ease;
 }
 
@@ -933,10 +996,18 @@ table tbody tr:hover {
 }
 
 /* Cores por tipo de modal */
-#modal-alerta .modal-content h3 { color: #f9c700; }   /* amarelo alerta */
-#modal-sucesso .modal-content h3 { color: #00a226; }  /* verde sucesso */
-#modal-erro .modal-content h3 { color: #ff0019; }     /* vermelho erro */
-#modal-confirmacao .modal-content h3 { color: #007bff; } /* azul confirmação */
+#modal-alerta .modal-content h3 {
+  color: #f9c700;
+} /* amarelo alerta */
+#modal-sucesso .modal-content h3 {
+  color: #00a226;
+} /* verde sucesso */
+#modal-erro .modal-content h3 {
+  color: #ff0019;
+} /* vermelho erro */
+#modal-confirmacao .modal-content h3 {
+  color: #007bff;
+} /* azul confirmação */
 
 /* Botão de fechar */
 .close {
@@ -954,9 +1025,9 @@ table tbody tr:hover {
 /* Checkbox dentro do modal de alerta */
 #modal-alerta .modal-content input[type="checkbox"],
 #modal-alerta .modal-content label[for="checkbox-alerta"] {
-  display: inline-block;     /* mantém lado a lado */
-  vertical-align: center;    /* alinha verticalmente */
-  margin-right: 6px;         /* espaço entre checkbox e texto */
+  display: inline-block; /* mantém lado a lado */
+  vertical-align: center; /* alinha verticalmente */
+  margin-right: 6px; /* espaço entre checkbox e texto */
   font-size: 0.95rem;
   color: #444;
   cursor: pointer;
@@ -964,18 +1035,28 @@ table tbody tr:hover {
 
 #modal-alerta .modal-content input[type="checkbox"] {
   margin: 0 !important;
-  display: inline-block !important;  /* garante que não vire bloco */
+  display: inline-block !important; /* garante que não vire bloco */
 }
 
 /* Animações */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-25px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ===============================
@@ -984,12 +1065,24 @@ table tbody tr:hover {
 
 /* Shake contextual para modal de erro */
 @keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-5px); }
-  40% { transform: translateX(5px); }
-  60% { transform: translateX(-5px); }
-  80% { transform: translateX(5px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 /* Classe aplicada dinamicamente via JS */
@@ -999,12 +1092,17 @@ table tbody tr:hover {
 
 /* Pulse para modal de sucesso */
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 #modal-sucesso .modal-content {
   animation: pulse 0.6s ease;
 }
-
