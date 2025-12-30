@@ -10,12 +10,13 @@
   <body>
     <div class="login-content">
       <h1>Tela de Login</h1>
-      <form onsubmit="executarLogin(event)" class="form-container">
+      <!-- novalidate desativa a validação automática do navegador -->
+      <form onsubmit="executarLogin(event)" class="form-container" novalidate>
         <label for="usuario">Usuário:</label>
         <input
           type="text"
           id="usuario"
-          placeholder="Digite seu usuário"
+          placeholder="Digite seu e-mail"
           required
         />
 
@@ -60,26 +61,17 @@
       </form>
     </div>
 
-    <script src="js/login.js"></script>
+    <!-- Modal de mensagens -->
+    <div id="modalMensagem" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="modalFechar" class="close">&times;</span>
+        <p id="modalTexto"></p>
+        <div class="modal-actions">
+          <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
 
-    <!-- Toggle de visibilidade da senha -->
-    <script>
-      (function () {
-        const btn = document.getElementById("toggleSenha");
-        const input = document.getElementById("senha");
-
-        if (btn && input) {
-          btn.addEventListener("click", () => {
-            const isPassword = input.type === "password";
-            input.type = isPassword ? "text" : "password";
-            btn.textContent = isPassword ? "🙈" : "👁️";
-            btn.setAttribute(
-              "aria-label",
-              isPassword ? "Ocultar senha" : "Mostrar senha"
-            );
-          });
-        }
-      })();
-    </script>
+    <script src="login.js"></script>
   </body>
 </html>

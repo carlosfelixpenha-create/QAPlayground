@@ -10,7 +10,12 @@
   <body>
     <div class="login-content">
       <h1>Tela de Cadastro</h1>
-      <form onsubmit="executarCadastro(event)" class="form-container">
+      <!-- novalidate desativa a validação automática do navegador -->
+      <form
+        onsubmit="executarCadastro(event)"
+        class="form-container"
+        novalidate
+      >
         <label for="nome">Nome:</label>
         <input type="text" id="nome" placeholder="Digite seu nome" required />
 
@@ -38,6 +43,7 @@
           required
         />
 
+        <!-- Botões principais -->
         <div class="button-group">
           <button
             type="button"
@@ -49,11 +55,43 @@
           <button type="button" onclick="location.href='home.html'">
             Voltar
           </button>
-          <button type="submit">Cadastrar</button>
+          <!-- adicionamos id="btnCadastrar" -->
+          <button type="submit" id="btnCadastrar">Cadastrar</button>
+        </div>
+
+        <!-- Botões de QA em outra linha -->
+        <div class="button-group qa-buttons">
+          <button
+            type="button"
+            id="btnVerUsuario"
+            style="display: none"
+            onclick="verUsuarioSalvo()"
+          >
+            Ver Usuário Salvo
+          </button>
+          <button
+            type="button"
+            id="btnLimparCadastro"
+            style="display: none"
+            onclick="limparCadastro()"
+          >
+            Limpar Cadastro
+          </button>
         </div>
       </form>
     </div>
 
-    <script src="js/cadastro.js"></script>
+    <!-- Modal genérica -->
+    <div id="modalMensagem" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="modalFechar" class="close">&times;</span>
+        <p id="modalTexto"></p>
+        <div class="modal-actions">
+          <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="cadastro.js"></script>
   </body>
 </html>

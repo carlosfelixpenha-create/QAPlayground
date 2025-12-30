@@ -12,24 +12,33 @@
       <h1>Requisitos 'Tela de Login'</h1>
       <div class="doc-container">
         <h2>Campos</h2>
+
         <h3>Usuário</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Deve permitir digitar um e-mail
-            (caracteristicas do cadastro).
+            (características do cadastro).
           </li>
-          <li><strong>Critérios de aceite:</strong></li>
-          <ul>
-            <li>Campo não pode estar vazio.</li>
-            <li>Deve conter “@” e domínio válido.</li>
-            <li>Não deve permitir espaços em branco.</li>
-            <li>Maximo 64 caracteres para o campo usuário.</li>
-            <li>Exibir mensagem de erro se não atender às regras.</li>
-            <li>
-              <em>Mensagem exibida:</em> “Preencher corretamente o campo
-              Usuário, dúvida entrar em Requisitos!”
-            </li>
-          </ul>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>Campo não pode estar vazio.</li>
+              <li>Deve conter “@” e domínio válido.</li>
+              <li>Não deve permitir espaços em branco.</li>
+              <li>Máximo 64 caracteres para o campo usuário.</li>
+              <li>
+                O campo Usuário deve validar exatamente como o campo E-mail da
+                tela de Cadastro.
+              </li>
+              <li>
+                Exibir mensagem de erro em modal se não atender às regras.
+              </li>
+              <li>
+                <em>Mensagem exibida:</em> “Preencher corretamente o campo
+                Usuário, dúvida entrar em Requisitos!”
+              </li>
+            </ul>
+          </li>
         </ul>
 
         <h3>Senha</h3>
@@ -38,44 +47,68 @@
             <strong>Requisito:</strong> Deve permitir digitar senha (mínimo 6
             caracteres).
           </li>
-          <li><strong>Critérios de aceite:</strong></li>
-          <ul>
-            <li>Campo não pode estar vazio.</li>
-            <li>A senha precisa ter no mínimo um número.</li>
-            <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
-            <li>A senha precisa ter no mínimo um caractere especial.</li>
-            <li>A senha precisa ter no mínimo 6 caracteres.</li>
-            <li>A senha precisa ter no maxímo 12 caracteres.</li>
-            <li>Deve ocultar os caracteres digitados (tipo password).</li>
-            <li>
-              Deve mostrar os caracteres digitados ao clicar no icone mostrar
-              senha.
-            </li>
-            <li>Exibir mensagem de erro se não atender às regras.</li>
-            <li>
-              <em>Mensagem exibida:</em> “Preencher corretamente o campo Senha,
-              dúvida entrar em Requisitos!”
-            </li>
-          </ul>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>Campo não pode estar vazio.</li>
+              <li>A senha precisa ter no mínimo um número.</li>
+              <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
+              <li>A senha precisa ter no mínimo um caractere especial.</li>
+              <li>A senha precisa ter no mínimo 6 caracteres.</li>
+              <li>A senha precisa ter no máximo 12 caracteres.</li>
+              <li>Deve ocultar os caracteres digitados (tipo password).</li>
+              <li>
+                Deve mostrar os caracteres digitados ao clicar no ícone mostrar
+                senha.
+              </li>
+              <li>
+                O ícone de mostrar senha deve estar centralizado verticalmente
+                dentro do campo.
+              </li>
+              <li>
+                Exibir mensagem de erro em modal se não atender às regras.
+              </li>
+              <li>
+                <em>Mensagem exibida:</em> “Preencher corretamente o campo
+                Senha, dúvida entrar em Requisitos!”
+              </li>
+            </ul>
+          </li>
         </ul>
 
         <h2>Botões</h2>
+
         <h3>Entrar</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Executa a validação dos campos e simula
             login.
           </li>
-          <li><strong>Critérios de aceite:</strong></li>
-          <ul>
-            <li>
-              Se usuário e senha estiverem corretos (ex: admin / 1234), exibir
-              mensagem de sucesso.
-            </li>
-            <li><em>Mensagem exibida:</em> “Login realizado com sucesso!”.</li>
-            <li>Não deve permitir login com campos vazios.</li>
-            <li>Se inválidos, exibir mensagem de erro clara, por campo.</li>
-          </ul>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>
+                Se usuário e senha estiverem corretos conforme cadastro salvo no
+                <code>localStorage</code>, exibir mensagem de sucesso em modal
+                com botão OK.
+              </li>
+              <li>
+                <em>Mensagem exibida:</em> “Login realizado com sucesso!”.
+              </li>
+              <li>Não deve permitir login com campos vazios.</li>
+              <li>
+                Se inválidos, exibir mensagem de erro clara em modal, por campo.
+              </li>
+              <li>
+                Se usuário e senha não coincidirem com o cadastro salvo, exibir
+                mensagem: “Usuário ou senha inválidos. Tente novamente.”
+              </li>
+              <li>
+                Se não houver cadastro salvo, exibir mensagem em modal
+                informando que não existe usuário cadastrado.
+              </li>
+            </ul>
+          </li>
         </ul>
 
         <h3>Voltar</h3>
@@ -97,6 +130,7 @@
             <code>login-requisitos.html</code>.
           </li>
         </ul>
+
         <div class="button-group">
           <button type="button" onclick="location.href='login.html'">
             Voltar

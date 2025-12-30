@@ -59,24 +59,32 @@
 /* Campo de senha com botão de visibilidade */
 .password-container {
   position: relative; /* cria contexto para posicionar o botão */
+  display: flex;
+  align-items: center;
 }
 
-.password-container input {
+.password-container input#senha {
   width: 100%; /* campo ocupa toda a largura */
-  padding-right: 40px; /* espaço para o botão dentro do campo */
-  margin-bottom: 15px; /* mantém espaçamento igual aos outros inputs */
+  padding-right: 44px; /* reserva espaço pro botão */
+  box-sizing: border-box;
+  margin-bottom: 15px;
 }
 
 .password-container .toggle-btn {
   position: absolute;
   right: 10px; /* encosta no lado direito do input */
-  top: 50%;
+  top: 35%;
   transform: translateY(-50%); /* centraliza verticalmente */
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1;
+  padding: 0;
+  width: auto; /* impede ocupar 100% */
+  height: auto; /* impede ocupar 100% */
+  flex: 0 0 auto; /* não cresce no flex */
+  z-index: 1; /* acima visualmente, sem cobrir área útil */
 }
 
 /* Captcha integrado */
@@ -90,35 +98,39 @@
 
 .captcha-row {
   display: flex;
-  align-items: center; /* checkbox e texto na mesma linha */
-  gap: 6px;
-  padding: 4px 6px; /* campo menor */
+  align-items: center; /* centraliza todos os itens verticalmente */
+  gap: 8px; /* um pouco mais de respiro */
+  padding: 6px 8px; /* altura mais confortável */
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   background: #f9fafb;
-  width: fit-content; /* ocupa só o espaço necessário */
+  width: fit-content;
 }
 
+/* Se o ícone também estiver um pouco acima, garanta centralização */
 .captcha-logo {
-  height: 30px; /* tamanho pequeno */
-  margin-left: 4px; /* espaço entre texto e logo */
+  height: 30px;
+  margin-left: 4px;
   opacity: 1;
+  align-self: center; /* força alinhamento vertical no centro */
 }
 
 .captcha-row input[type="checkbox"] {
-  display: inline-block; /* impede que herde display:block */
-  width: auto; /* não ocupa largura total */
+  display: inline-block;
+  width: auto;
   margin: 0;
   accent-color: #3b82f6;
   cursor: pointer;
-  transform: scale(1);
-  transform-origin: left center;
+  /* remover scale evita deslocamento visual para cima */
+  transform: none;
+  align-self: center; /* garante centralização individual */
 }
 
 .captcha-row label {
   font-size: 14px;
   color: #374151;
   cursor: pointer;
+  line-height: 1; /* texto fica proporcional e alinhado no centro */
 }
 
 .captcha-row .captcha-hint {

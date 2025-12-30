@@ -1,109 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Requisitos Cadastro</title>
-  <link rel="stylesheet" href="style_global.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <div class="login-content">
-    <h1>Requisitos 'Tela de Cadastro'</h1>
-    <div class="doc-container">
-      <h2>Campos</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Requisitos Cadastro</title>
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-content">
+      <h1>Requisitos 'Tela de Cadastro'</h1>
+      <div class="doc-container">
+        <h2>Campos</h2>
 
-      <h3>Nome</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Deve permitir digitar nome completo (mínimo 3 caracteres, nome e sobre nome).</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <h3>Nome</h3>
         <ul>
-          <li>Campo não pode estar vazio.</li>
-          <li>Deve conter pelo menos nome e sobrenome.</li>
-          <li>Não deve aceitar números ou caracteres especiais.</li>
-          <li>Campo não permite dois espaços seguidos.</li>
-          <li>Minimo 3 caracteres para nome.</li>
-          <li>Minimo 3 caracteres para sobrenome.</li>
-          <li>Minimo 7 caracteres para o campo nome.</li>
-          <li>Maximo 64 caracteres para o campo nome.</li>
-          <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Nome, dúvida entrar em Requisitos!”</li>
+          <li>
+            <strong>Requisito:</strong> Deve permitir digitar nome completo
+            (mínimo 3 caracteres, nome e sobrenome).
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Campo não pode estar vazio.</li>
+            <li>Deve conter pelo menos nome e sobrenome.</li>
+            <li>Não deve aceitar números ou caracteres especiais.</li>
+            <li>Campo não permite dois espaços seguidos.</li>
+            <li>Mínimo 3 caracteres para nome.</li>
+            <li>Mínimo 3 caracteres para sobrenome.</li>
+            <li>Mínimo 7 caracteres para o campo nome.</li>
+            <li>Máximo 64 caracteres para o campo nome.</li>
+            <li>Exibir mensagem de erro em modal se não atender às regras.</li>
+            <li>
+              <em>Mensagem exibida:</em> “Preencher corretamente o campo Nome,
+              dúvida entrar em Requisitos!”
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>E-mail</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Deve permitir digitar um e-mail válido.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <h3>E-mail</h3>
         <ul>
-          <li>Campo não pode estar vazio.</li>
-          <li>Deve conter “@” e domínio válido.</li>
-          <li>Não deve permitir espaços em branco.</li>
-          <li>Maximo 64 caracteres para o campo e-mail.</li>
-          <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo E-mail, dúvida entrar em Requisitos!”</li>
+          <li>
+            <strong>Requisito:</strong> Deve permitir digitar um e-mail válido.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Campo não pode estar vazio.</li>
+            <li>Deve conter “@” e domínio válido.</li>
+            <li>Não deve permitir espaços em branco.</li>
+            <li>Máximo 64 caracteres para o campo e-mail.</li>
+            <li>Exibir mensagem de erro em modal se não atender às regras.</li>
+            <li>
+              <em>Mensagem exibida:</em> “Preencher corretamente o campo E-mail,
+              dúvida entrar em Requisitos!”
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Senha</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Deve permitir digitar senha (mínimo 6 caracteres).</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <h3>Senha</h3>
         <ul>
-          <li>Campo não pode estar vazio.</li>
-          <li>A senha precisa ter no mínimo um número.</li>
-          <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
-          <li>A senha precisa ter no mínimo um caractere especial.</li>
-          <li>A senha precisa ter no mínimo 6 caracteres.</li>
-          <li>A senha precisa ter no maxímo 12 caracteres.</li>
-          <li>Deve ocultar os caracteres digitados (tipo password).</li>
-          <li>Deve mostrar os caracteres digitados ao clicar no icone mostrar senha.</li>
-          <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “Preencher corretamente o campo Senha, dúvida entrar em Requisitos!”</li>
+          <li>
+            <strong>Requisito:</strong> Deve permitir digitar senha (mínimo 6
+            caracteres).
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Campo não pode estar vazio.</li>
+            <li>A senha precisa ter no mínimo um número.</li>
+            <li>A senha precisa ter no mínimo uma letra maiúscula.</li>
+            <li>A senha precisa ter no mínimo um caractere especial.</li>
+            <li>A senha precisa ter no mínimo 6 caracteres.</li>
+            <li>A senha precisa ter no máximo 12 caracteres.</li>
+            <li>Deve ocultar os caracteres digitados (tipo password).</li>
+            <li>
+              Deve mostrar os caracteres digitados ao clicar no ícone mostrar
+              senha.
+            </li>
+            <li>Exibir mensagem de erro em modal se não atender às regras.</li>
+            <li>
+              <em>Mensagem exibida:</em> “Preencher corretamente o campo Senha,
+              dúvida entrar em Requisitos!”
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Confirmar Senha</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Deve validar se a senha digitada é igual ao campo Senha.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <h3>Confirmar Senha</h3>
         <ul>
-          <li>Campo não pode estar vazio.</li>
-          <li>Os caracteres do campo Confirmar Senha devem ser idênticos aos do campo Senha.</li>
-          <li>Exibir mensagem de erro se não atender às regras.</li>
-          <li><em>Mensagem exibida:</em> “As senhas não conferem, dúvida entrar em Requisitos!”</li>
+          <li>
+            <strong>Requisito:</strong> Deve validar se a senha digitada é igual
+            ao campo Senha.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Campo não pode estar vazio.</li>
+            <li>
+              Os caracteres do campo Confirmar Senha devem ser idênticos aos do
+              campo Senha.
+            </li>
+            <li>Exibir mensagem de erro em modal se não atender às regras.</li>
+            <li>
+              <em>Mensagem exibida:</em> “As senhas não conferem, dúvida entrar
+              em Requisitos!”
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <h2>Botões</h2>
-      <h3>Cadastrar</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Executa a validação dos campos e simula cadastro.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <h2>Botões</h2>
+
+        <h3>Cadastrar</h3>
         <ul>
-          <li>Se todos os campos estiverem corretos, exibir mensagem de sucesso.</li>
-          <li><em>Mensagem exibida:</em> “Cadastro realizado com sucesso!”.</li>
-          <li>Não deve permitir cadastro com campos vazios.</li>
-          <li>Se inválidos, exibir mensagem de erro clara, por campo.</li>
+          <li>
+            <strong>Requisito:</strong> Executa a validação dos campos e simula
+            cadastro.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Se todos os campos estiverem corretos, exibir mensagem de sucesso
+              em modal com botão OK.
+            </li>
+            <li>
+              <em>Mensagem exibida:</em> “Cadastro realizado com sucesso!”.
+            </li>
+            <li>Não deve permitir cadastro com campos vazios.</li>
+            <li>
+              Se inválidos, exibir mensagem de erro clara em modal, por campo.
+            </li>
+            <li>
+              Após sucesso, exibir botões de QA e limpar os campos do
+              formulário.
+            </li>
+            <li>
+              Após sucesso, os campos de cadastro e o botão “Cadastrar” devem
+              ser desabilitados até que o usuário clique em “Limpar Cadastro”.
+            </li>
+            <li>
+              O cadastro realizado deve ser armazenado no
+              <code>localStorage</code> e utilizado como pré-cadastro para a
+              tela de Login.
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <h3>Voltar</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
-        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>home.html</code>.</li>
-      </ul>
+        <h3>Voltar</h3>
+        <ul>
+          <li><strong>Requisito:</strong> Redireciona para a tela Home.</li>
+          <li>
+            <strong>Critério de aceite:</strong> Ao clicar, deve carregar
+            <code>home.html</code>.
+          </li>
+        </ul>
 
-      <h3>Requisitos</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Redireciona para a tela de requisitos.</li>
-        <li><strong>Critério de aceite:</strong> Ao clicar, deve carregar <code>cadastro-requisitos.html</code>.</li>
-      </ul>
+        <h3>Requisitos</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Redireciona para a tela de requisitos.
+          </li>
+          <li>
+            <strong>Critério de aceite:</strong> Ao clicar, deve carregar
+            <code>cadastro-requisitos.html</code>.
+          </li>
+        </ul>
 
-      <div class="button-group">
-        <button type="button" onclick="location.href='cadastro.html'">Voltar</button>
+        <h3>QA - Ver Usuário Salvo</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Exibe os dados do usuário armazenados no
+            localStorage.
+          </li>
+          <li>
+            <strong>Critério de aceite:</strong> Ao clicar, deve mostrar em
+            modal os dados salvos (Nome e Email) ou mensagem de ausência. A
+            modal deve conter botão OK para fechar.
+          </li>
+        </ul>
+
+        <h3>QA - Limpar Cadastro</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Remove o usuário armazenado no
+            localStorage.
+          </li>
+          <li><strong>Critério de aceite:</strong></li>
+          <ul>
+            <li>
+              Ao clicar, deve apagar os dados, limpar os campos do formulário e
+              ocultar novamente os botões de QA.
+            </li>
+            <li>
+              Após limpar, os campos e o botão “Cadastrar” devem ser
+              reabilitados para permitir novo cadastro.
+            </li>
+            <li>A modal deve conter botão OK para fechar.</li>
+          </ul>
+        </ul>
+
+        <div class="button-group">
+          <button type="button" onclick="location.href='cadastro.html'">
+            Voltar
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
