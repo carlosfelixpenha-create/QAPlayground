@@ -13,7 +13,12 @@
       <div class="doc-container">
         <h2>Campos</h2>
 
-        <h3>Logradouro</h3>
+        <p>
+          <em>Observação:</em> Todos os campos obrigatórios devem ser
+          identificados com asterisco (*) no label.
+        </p>
+
+        <h3>Logradouro*</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Deve permitir digitar texto (rua,
@@ -23,7 +28,7 @@
           <ul>
             <li>Campo não pode estar vazio.</li>
             <li>Não deve conter apenas números.</li>
-            <li>Exibir mensagem de erro se não atender às regras.</li>
+            <li>Exibir mensagem de erro em modal se não atender às regras.</li>
             <li>
               <em>Mensagem exibida:</em> “Preencher corretamente o campo
               Logradouro, dúvida entrar em requisitos!”
@@ -31,7 +36,7 @@
           </ul>
         </ul>
 
-        <h3>Número</h3>
+        <h3>Número*</h3>
         <ul>
           <li><strong>Requisito:</strong> Deve permitir apenas números.</li>
           <li><strong>Critérios de aceite:</strong></li>
@@ -58,7 +63,7 @@
           </ul>
         </ul>
 
-        <h3>Bairro</h3>
+        <h3>Bairro*</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Deve permitir texto (mínimo 3
@@ -75,7 +80,7 @@
           </ul>
         </ul>
 
-        <h3>Cidade</h3>
+        <h3>Cidade*</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Deve permitir texto (mínimo 3
@@ -92,23 +97,33 @@
           </ul>
         </ul>
 
-        <h3>Estado</h3>
+        <h3>Estado*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Deve permitir apenas 2 letras (UF).
+            <strong>Requisito:</strong> Deve permitir apenas 2 letras
+            correspondentes a uma UF válida.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
             <li>Campo não pode estar vazio.</li>
-            <li>Deve aceitar apenas letras maiúsculas.</li>
             <li>
-              <em>Mensagem exibida:</em> “Preencher corretamente o campo Estado,
-              dúvida entrar em requisitos!”
+              Deve aceitar letras maiúsculas ou minúsculas, convertendo
+              automaticamente para maiúsculas.
+            </li>
+            <li>
+              Deve validar se a UF existe na lista oficial de estados
+              brasileiros.
+            </li>
+            <li>
+              <em>Mensagens exibidas:</em>
+              - “Preencher corretamente o campo Estado, dúvida entrar em
+              requisitos!” - “UF inválida! Preencher corretamente o campo
+              Estado, dúvida entrar em requisitos!”
             </li>
           </ul>
         </ul>
 
-        <h3>CEP</h3>
+        <h3>CEP*</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Deve permitir apenas números (8
@@ -118,6 +133,7 @@
           <ul>
             <li>Campo não pode estar vazio.</li>
             <li>Não deve aceitar letras ou caracteres especiais.</li>
+            <li>Campo aplica máscara automática no formato 00000-000.</li>
             <li>
               <em>Mensagem exibida:</em> “Preencher corretamente o campo CEP,
               dúvida entrar em requisitos!”
@@ -136,12 +152,20 @@
           <ul>
             <li>
               Se todos os campos obrigatórios estiverem corretos, exibir
-              mensagem de sucesso.
+              mensagem de sucesso em modal.
             </li>
             <li>
               <em>Mensagem exibida:</em> “Endereço cadastrado com sucesso!”.
             </li>
             <li>Não deve permitir salvar com campos obrigatórios vazios.</li>
+            <li>
+              Após sucesso, desabilitar e limpar os campos, além de desativar o
+              botão “Salvar”, até que o usuário clique em “Limpar Endereço”.
+            </li>
+            <li>
+              Cadastro deve ser armazenado no <code>localStorage</code> e
+              exibido pelo botão QA.
+            </li>
           </ul>
         </ul>
 
@@ -161,8 +185,39 @@
           </li>
           <li>
             <strong>Critério de aceite:</strong> Ao clicar, deve carregar
-            <code>formulari-1-requisitos.html</code>.
+            <code>formulario-1-requisitos.html</code>.
           </li>
+        </ul>
+
+        <h3>QA - Ver Endereço Salvo</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Exibe os dados do endereço armazenados
+            no localStorage.
+          </li>
+          <li>
+            <strong>Critério de aceite:</strong> Ao clicar, deve mostrar em
+            modal os dados salvos ou mensagem de ausência.
+          </li>
+        </ul>
+
+        <h3>QA - Limpar Endereço</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Remove o endereço armazenado no
+            localStorage.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Ao clicar, deve apagar os dados, limpar os campos e ocultar
+              novamente os botões de QA.
+            </li>
+            <li>
+              Após limpar, os campos e o botão “Salvar” devem ser reabilitados.
+            </li>
+            <li>A modal deve conter botão OK para fechar.</li>
+          </ul>
         </ul>
 
         <div class="button-group">

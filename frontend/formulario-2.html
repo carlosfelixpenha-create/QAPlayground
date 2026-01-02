@@ -10,10 +10,14 @@
   <body>
     <div class="login-content">
       <h1>Formulário 2 - Campos Diversos</h1>
-      <form onsubmit="executarFormulario2(event)" class="form-container">
+      <form
+        onsubmit="executarFormulario2(event)"
+        class="form-container"
+        novalidate
+      >
         <!-- Container para Radio -->
         <div class="field-container">
-          <label>Sexo:</label>
+          <label>Sexo*:</label>
           <div class="option-inline">
             <input
               type="radio"
@@ -32,7 +36,7 @@
 
         <!-- Container para Checkbox -->
         <div class="field-container">
-          <label>Interesses:</label>
+          <label>Interesses*:</label>
           <div class="option-inline">
             <input type="checkbox" id="frontend" value="Frontend" />
             <label for="frontend">Frontend</label>
@@ -49,10 +53,10 @@
 
         <!-- Container para campos de texto -->
         <div class="field-container">
-          <label for="dataNascimento">Data de Nascimento:</label>
+          <label for="dataNascimento">Data de Nascimento*:</label>
           <input type="date" id="dataNascimento" required />
 
-          <label for="telefone">Telefone:</label>
+          <label for="telefone">Telefone*:</label>
           <input
             type="text"
             id="telefone"
@@ -60,7 +64,7 @@
             required
           />
 
-          <label for="cpf">CPF:</label>
+          <label for="cpf">CPF*:</label>
           <input type="text" id="cpf" placeholder="999.999.999-99" required />
         </div>
 
@@ -80,6 +84,17 @@
       </form>
     </div>
 
-    <script src="js/formulario-2.js"></script>
+    <!-- Modal genérica -->
+    <div id="modalMensagem" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="modalFechar" class="close">&times;</span>
+        <p id="modalTexto"></p>
+        <div class="modal-actions">
+          <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="formulario-2.js"></script>
   </body>
 </html>

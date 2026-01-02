@@ -67,6 +67,42 @@
           </ul>
         </ul>
 
+        <h3>Upload de Arquivo (XLSX)</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Usuário deve selecionar uma planilha em
+            formato XLSX.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Campo obrigatório.</li>
+            <li>
+              Somente arquivos com extensão <code>.xlsx</code> são aceitos.
+            </li>
+            <li>
+              <em>Mensagem exibida:</em> “Somente arquivos XLSX são permitidos.”
+            </li>
+          </ul>
+        </ul>
+
+        <h3>Upload de Arquivo (TXT)</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Usuário deve selecionar um arquivo de
+            texto simples em formato TXT.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Campo obrigatório.</li>
+            <li>
+              Somente arquivos com extensão <code>.txt</code> são aceitos.
+            </li>
+            <li>
+              <em>Mensagem exibida:</em> “Somente arquivos TXT são permitidos.”
+            </li>
+          </ul>
+        </ul>
+
         <h3>Seleção de País, Estado e Cidade</h3>
         <ul>
           <li>
@@ -86,6 +122,25 @@
               País, Estado e Cidade.”
             </li>
           </ul>
+        </ul>
+
+        <h2>Validações e Feedback</h2>
+        <ul>
+          <li>
+            Validação imediata ao selecionar arquivos: se o tipo for incorreto,
+            abrir modal e marcar campo em vermelho.
+          </li>
+          <li>
+            Validação no envio: se houver campos inválidos, abrir modal genérica
+            “Existem campos inválidos. Revalide os campos destacados em
+            vermelho.”
+          </li>
+          <li>
+            Campos inválidos permanecem destacados em vermelho até correção.
+          </li>
+          <li>
+            Após envio bem-sucedido, todos os campos são limpos e resetados.
+          </li>
         </ul>
 
         <h2>Botões</h2>

@@ -13,44 +13,46 @@
       <div class="doc-container">
         <h2>Campos</h2>
 
-        <h3>Sexo (Radio)</h3>
+        <p>
+          <em>Observação:</em> Todos os campos obrigatórios devem ser
+          identificados com asterisco (*) no label.
+        </p>
+
+        <h3>Sexo*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Usuário deve selecionar uma opção
-            (Masculino ou Feminino).
+            <strong>Requisito:</strong> Deve permitir selecionar apenas uma
+            opção (Masculino ou Feminino).
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>Campo obrigatório, não pode ficar sem seleção.</li>
+            <li>Campo não pode estar vazio.</li>
+            <li>Deve aceitar apenas uma opção marcada.</li>
             <li>
-              As opções devem aparecer alinhadas ao lado do seletor (input +
-              label juntos).
-            </li>
-            <li>
-              <em>Mensagem exibida:</em> “Selecione uma opção no campo Sexo,
+              <em>Mensagem exibida:</em> “Preencher corretamente o campo Sexo,
               dúvida entrar em requisitos!”
             </li>
           </ul>
         </ul>
 
-        <h3>Interesses (Checkbox)</h3>
+        <h3>Interesses*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Usuário pode marcar múltiplos interesses
-            (Frontend, Backend, QA).
+            <strong>Requisito:</strong> Deve permitir selecionar uma ou mais
+            opções (Frontend, Backend, QA).
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>Campo opcional, pode estar vazio.</li>
-            <li>Se marcado, deve exibir corretamente os valores escolhidos.</li>
+            <li>Campo não pode estar vazio.</li>
+            <li>Deve ter pelo menos uma opção marcada.</li>
             <li>
-              As opções devem aparecer alinhadas ao lado do seletor (input +
-              label juntos).
+              <em>Mensagem exibida:</em> “Selecione ao menos uma opção em
+              Interesses, dúvida entrar em requisitos!”
             </li>
           </ul>
         </ul>
 
-        <h3>Data de Nascimento</h3>
+        <h3>Data de Nascimento*</h3>
         <ul>
           <li>
             <strong>Requisito:</strong> Deve permitir selecionar uma data
@@ -58,53 +60,58 @@
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>Campo obrigatório.</li>
+            <li>Campo não pode estar vazio.</li>
             <li>Não deve aceitar datas futuras.</li>
+            <li>Usuário deve ter idade mínima de 16 anos.</li>
             <li>
-              <em>Mensagem exibida:</em> “Preencher corretamente o campo Data de
-              Nascimento, dúvida entrar em requisitos!”
+              <em>Mensagens exibidas:</em>
+              - “Preencher corretamente o campo Data de Nascimento, dúvida
+              entrar em requisitos!” - “Data de Nascimento não pode ser futura!”
+              - “Idade mínima permitida é de 16 anos!”
             </li>
           </ul>
         </ul>
 
-        <h3>Telefone</h3>
+        <h3>Telefone*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Deve permitir digitar telefone com
-            máscara (formato (99) 99999-9999).
+            <strong>Requisito:</strong> Deve permitir digitar telefone no
+            formato (99) 99999-9999.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>Campo obrigatório.</li>
-            <li>Deve conter apenas números válidos no padrão brasileiro.</li>
+            <li>Campo não pode estar vazio.</li>
+            <li>Não deve aceitar letras ou caracteres fora do padrão.</li>
+            <li>Deve validar o formato correto.</li>
             <li>
-              <em>Mensagem exibida:</em> “Preencher corretamente o campo
-              Telefone, dúvida entrar em requisitos!”
+              <em>Mensagens exibidas:</em>
+              - “Preencher corretamente o campo Telefone, dúvida entrar em
+              requisitos!” - “Telefone inválido! Use o formato (99) 99999-9999.”
             </li>
           </ul>
         </ul>
 
-        <h3>CPF</h3>
+        <h3>CPF*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Deve permitir digitar CPF com máscara
-            (formato 999.999.999-99).
+            <strong>Requisito:</strong> Deve permitir digitar CPF no formato
+            999.999.999-99.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>Campo obrigatório.</li>
-            <li>Deve conter exatamente 11 dígitos numéricos.</li>
+            <li>Campo não pode estar vazio.</li>
+            <li>Deve conter 11 dígitos válidos.</li>
+            <li>Deve validar o formato correto.</li>
             <li>
-              Não deve aceitar letras ou caracteres especiais fora da máscara.
-            </li>
-            <li>
-              <em>Mensagem exibida:</em> “Preencher corretamente o campo CPF,
-              dúvida entrar em requisitos!”
+              <em>Mensagens exibidas:</em>
+              - “Preencher corretamente o campo CPF, dúvida entrar em
+              requisitos!” - “CPF inválido! Use o formato 999.999.999-99.”
             </li>
           </ul>
         </ul>
 
         <h2>Botões</h2>
+
         <h3>Enviar</h3>
         <ul>
           <li>
@@ -115,12 +122,19 @@
           <ul>
             <li>
               Se todos os campos obrigatórios estiverem corretos, exibir
-              mensagem de sucesso.
+              mensagem de sucesso em modal com botão OK.
             </li>
             <li>
               <em>Mensagem exibida:</em> “Formulário enviado com sucesso!”.
             </li>
             <li>Não deve permitir envio com campos obrigatórios vazios.</li>
+            <li>
+              Se inválidos, exibir mensagem de erro clara em modal, por campo.
+            </li>
+            <li>
+              Após sucesso, os campos devem ser limpos automaticamente para
+              permitir novo preenchimento.
+            </li>
           </ul>
         </ul>
 

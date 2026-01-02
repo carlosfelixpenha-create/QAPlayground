@@ -15,6 +15,39 @@ const dadosLocalizacao = {
   },
 };
 
+// Função genérica para mostrar modal
+function mostrarModal(mensagem) {
+  const modal = document.getElementById("modalMensagem");
+  const modalTexto = document.getElementById("modalTexto");
+  modalTexto.textContent = mensagem;
+  modal.style.display = "block";
+
+  document.getElementById("modalOk").onclick = () => {
+    modal.style.display = "none";
+  };
+  document.getElementById("modalFechar").onclick = () => {
+    modal.style.display = "none";
+  };
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+
+// Validação imediata ao selecionar arquivo
+function validarArquivo(input, tipoEsperado, mensagemErro) {
+  input.addEventListener("change", () => {
+    const arquivo = input.files[0];
+    if (arquivo && arquivo.type !== tipoEsperado) {
+      mostrarModal(mensagemErro);
+      input.classList.add("erro"); // marca campo com erro
+    } else {
+      input.classList.remove("erro"); // remove erro se corrigido
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const paisSelect = document.getElementById("pais");
   const estadoSelect = document.getElementById("estado");
@@ -53,58 +86,89 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  // Configura validação imediata para cada campo
+  validarArquivo(
+    document.getElementById("arquivoPdf"),
+    "application/pdf",
+    "Campo para arquivo PDF, dúvidas entrar em requisitos!"
+  );
+  validarArquivo(
+    document.getElementById("arquivoDocx"),
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "Campo para arquivo DOCX, dúvidas entrar em requisitos!"
+  );
+  validarArquivo(
+    document.getElementById("arquivoJpg"),
+    "image/jpeg",
+    "Campo para arquivo JPG, dúvidas entrar em requisitos!"
+  );
+  validarArquivo(
+    document.getElementById("arquivoXlsx"),
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "Campo para arquivo XLSX, dúvidas entrar em requisitos!"
+  );
+  validarArquivo(
+    document.getElementById("arquivoTxt"),
+    "text/plain",
+    "Campo para arquivo TXT, dúvidas entrar em requisitos!"
+  );
 });
 
 // Validação e envio
 function executarFormulario3(event) {
   event.preventDefault();
 
-  const arquivoPdf = document.getElementById("arquivoPdf").files[0];
-  const arquivoDocx = document.getElementById("arquivoDocx").files[0];
-  const arquivoJpg = document.getElementById("arquivoJpg").files[0];
+  const campos = [
+    { id: "arquivoPdf", tipo: "application/pdf" },
+    {
+      id: "arquivoDocx",
+      tipo: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    },
+    { id: "arquivoJpg", tipo: "image/jpeg" },
+    {
+      id: "arquivoXlsx",
+      tipo: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    },
+    { id: "arquivoTxt", tipo: "text/plain" },
+  ];
 
-  if (!arquivoPdf || !arquivoDocx || !arquivoJpg) {
-    alert("Todos os arquivos (PDF, DOCX e JPG) devem ser selecionados.");
-    return;
-  }
+  let erros = [];
 
-  if (arquivoPdf.type !== "application/pdf") {
-    alert("Somente arquivos PDF são permitidos.");
-    return;
-  }
-  if (
-    arquivoDocx.type !==
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-  ) {
-    alert("Somente arquivos DOCX são permitidos.");
-    return;
-  }
-  if (arquivoJpg.type !== "image/jpeg") {
-    alert("Somente arquivos JPG são permitidos.");
-    return;
-  }
+  campos.forEach(({ id, tipo }) => {
+    const input = document.getElementById(id);
+    const arquivo = input.files[0];
+    if (!arquivo || arquivo.type !== tipo) {
+      input.classList.add("erro");
+      erros.push(id);
+    } else {
+      input.classList.remove("erro");
+    }
+  });
 
   const paisSelect = document.getElementById("pais");
   const estadoSelect = document.getElementById("estado");
   const cidadeSelect = document.getElementById("cidade");
 
   if (!paisSelect.value || !estadoSelect.value || !cidadeSelect.value) {
-    alert("Preencha corretamente os campos de País, Estado e Cidade.");
-    return;
+    erros.push("localizacao");
   }
 
-  // Aqui usamos o texto visível, não o value
-  const pais = paisSelect.options[paisSelect.selectedIndex].text;
-  const estado = estadoSelect.options[estadoSelect.selectedIndex].text;
-  const cidade = cidadeSelect.options[cidadeSelect.selectedIndex].text;
+  if (erros.length > 0) {
+    return mostrarModal(
+      "Existem campos inválidos. Revalide os campos destacados em vermelho."
+    );
+  }
 
-  alert(
-    `Formulário enviado com sucesso!\n\n` +
-      `PDF: ${arquivoPdf.name}\n` +
-      `DOCX: ${arquivoDocx.name}\n` +
-      `JPG: ${arquivoJpg.name}\n` +
-      `País: ${pais}\n` +
-      `Estado: ${estado}\n` +
-      `Cidade: ${cidade}`
-  );
+  // Se passou em todas as verificações → sucesso
+  mostrarModal("Formulário enviado com sucesso!");
+
+  // Limpar os campos após sucesso
+  document.querySelectorAll("input[type='file']").forEach((input) => {
+    input.value = "";
+    input.classList.remove("erro");
+  });
+  paisSelect.value = "";
+  estadoSelect.innerHTML = '<option value="">Selecione...</option>';
+  cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
 }

@@ -10,8 +10,13 @@
   <body>
     <div class="login-content">
       <h1>Cadastro de Endereço</h1>
-      <form onsubmit="executarEndereco(event)" class="form-container">
-        <label for="logradouro">Logradouro:</label>
+      <!-- novalidate desativa a validação automática do navegador -->
+      <form
+        onsubmit="executarEndereco(event)"
+        class="form-container"
+        novalidate
+      >
+        <label for="logradouro">Logradouro*:</label>
         <input
           type="text"
           id="logradouro"
@@ -19,7 +24,7 @@
           required
         />
 
-        <label for="numero">Número:</label>
+        <label for="numero">Número*:</label>
         <input
           type="text"
           id="numero"
@@ -34,24 +39,32 @@
           placeholder="Apartamento, bloco, etc."
         />
 
-        <label for="bairro">Bairro:</label>
+        <label for="bairro">Bairro*:</label>
         <input type="text" id="bairro" placeholder="Digite o bairro" required />
 
-        <label for="cidade">Cidade:</label>
+        <label for="cidade">Cidade*:</label>
         <input type="text" id="cidade" placeholder="Digite a cidade" required />
 
-        <label for="estado">Estado:</label>
+        <label for="estado">Estado*:</label>
         <input
           type="text"
           id="estado"
-          placeholder="Digite o estado"
+          placeholder="UF"
           maxlength="2"
           required
         />
 
-        <label for="cep">CEP:</label>
-        <input type="text" id="cep" placeholder="Digite o CEP" required />
+        <label for="cep">CEP*:</label>
+        <input
+          type="text"
+          id="cep"
+          placeholder="Digite o CEP"
+          maxlength="9"
+          required
+          oninput="mascaraCep(this)"
+        />
 
+        <!-- Botões principais -->
         <div class="button-group">
           <button
             type="button"
@@ -63,11 +76,53 @@
           <button type="button" onclick="location.href='home.html'">
             Voltar
           </button>
-          <button type="submit">Salvar</button>
+          <button type="submit" id="btnSalvar">Salvar</button>
+        </div>
+
+        <!-- Botões de QA -->
+        <div class="button-group qa-buttons">
+          <button
+            type="button"
+            id="btnVerEndereco"
+            style="display: none"
+            onclick="verEnderecoSalvo()"
+          >
+            Ver Endereço Salvo
+          </button>
+          <button
+            type="button"
+            id="btnLimparEndereco"
+            style="display: none"
+            onclick="limparEndereco()"
+          >
+            Limpar Endereço
+          </button>
         </div>
       </form>
     </div>
 
-    <script src="js/formulario-1.js"></script>
+    <!-- Modal genérica -->
+    <div id="modalMensagem" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="modalFechar" class="close">&times;</span>
+        <p id="modalTexto"></p>
+        <div class="modal-actions">
+          <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="formulario-1.js"></script>
+    <script>
+      // Função de máscara para CEP
+      function mascaraCep(input) {
+        let valor = input.value.replace(/\D/g, ""); // só números
+        if (valor.length > 5) {
+          input.value = valor.substring(0, 5) + "-" + valor.substring(5, 8);
+        } else {
+          input.value = valor;
+        }
+      }
+    </script>
   </body>
 </html>
