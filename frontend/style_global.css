@@ -105,6 +105,34 @@ body {
   }
 }
 
+.contador-linhas {
+  font-size: 0.9rem; /* deixa o número maior */
+  font-weight: bold; /* em negrito */
+  color: #2563eb; /* azul destaque */
+  background: #f0f9ff; /* leve fundo azul claro */
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  padding: 8px 16px;
+  display: inline-block;
+  margin-top: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  animation: destaque 1s ease-in-out;
+}
+
+@keyframes destaque {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* Texto final em azul */
 .texto-destaque {
   color: rgb(0, 0, 175);
