@@ -1,141 +1,257 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Requisitos Botões</title>
-  <link rel="stylesheet" href="style_global.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <div class="login-content">
-    <h1>Requisitos 'Tela de Botões'</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Requisitos Botões</title>
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-content">
+      <h1>Requisitos 'Tela de Botões'</h1>
 
-    <div class="doc-container">
+      <div class="doc-container">
+        <h2>Botões</h2>
 
-      <h2>Botões</h2>
-
-      <!-- BOTÃO PRIMÁRIO -->
-      <h3>Botão Primário</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Executa ações principais da tela.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <!-- BOTÃO PRIMÁRIO -->
+        <h3>Botão Primário</h3>
         <ul>
-          <li>Devem existir dois botões primários: <em>Salvar</em> e <em>Concluir</em>.</li>
-          <li>Ambos devem ter destaque visual em relação aos demais botões.</li>
-          <li>Ao clicar em qualquer um deles, deve exibir a mensagem correspondente:
-            <ul>
-              <li><em>“Ação Salvar executada!”</em></li>
-              <li><em>“Ação Concluir executada!”</em></li>
-            </ul>
+          <li><strong>Requisito:</strong> Executa ações principais da tela.</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Devem existir 5 botões primários, sendo o correto
+              <em>Confirmar</em>.
+            </li>
+            <li>
+              Ao clicar em <em>Confirmar</em>, exibir mensagem de sucesso e
+              modal com título
+              <span style="color: green; font-weight: bold">Sucesso</span>.
+            </li>
+            <li>
+              Ao clicar em qualquer outro botão, exibir mensagem de erro e modal
+              com título
+              <span style="color: red; font-weight: bold">Erro</span>,
+              informando que o correto é Confirmar.
+            </li>
+            <li>
+              Após a ação, todos os botões da seção devem ser desabilitados.
+            </li>
+            <li>
+              Devem ser reativados somente ao clicar no botão
+              <strong>Limpar</strong>.
+            </li>
+          </ul>
+        </ul>
+
+        <!-- BOTÃO SECUNDÁRIO -->
+        <h3>Botão Secundário</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Executa ações auxiliares ou de
+            navegação.
           </li>
-          <li>Ao clicar em um dos botões, ambos devem ser desabilitados.</li>
-          <li>Devem ser reativados somente ao clicar no botão <strong>Resetar</strong>.</li>
-          <li>Devem ser acessíveis via teclado (TAB + ENTER).</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Devem existir 5 botões secundários, sendo o correto
+              <em>Cancelar</em>.
+            </li>
+            <li>
+              Ao clicar em <em>Cancelar</em>, exibir mensagem de sucesso e modal
+              com título
+              <span style="color: green; font-weight: bold">Sucesso</span>.
+            </li>
+            <li>
+              Ao clicar em qualquer outro botão, exibir mensagem de erro e modal
+              com título
+              <span style="color: red; font-weight: bold">Erro</span>,
+              informando que o correto é Cancelar.
+            </li>
+            <li>
+              Após a ação, todos os botões da seção devem ser desabilitados.
+            </li>
+            <li>
+              Devem ser reativados apenas ao clicar em <strong>Limpar</strong>.
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <!-- BOTÃO SECUNDÁRIO -->
-      <h3>Botão Secundário</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Executa ações auxiliares ou de navegação.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <!-- BOTÃO TERCIÁRIO -->
+        <h3>Botão Terciário</h3>
         <ul>
-          <li>Devem existir dois botões secundários: <em>Voltar</em> e <em>Cancelar</em>.</li>
-          <li>Não devem competir visualmente com o botão primário.</li>
-          <li>Ao clicar, devem exibir:
-            <ul>
-              <li><em>“Ação Voltar realizada!”</em></li>
-              <li><em>“Ação Cancelar realizada!”</em></li>
-            </ul>
+          <li><strong>Requisito:</strong> Executa ações complementares.</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Devem existir 5 botões terciários, sendo o correto
+              <em>Exportar</em>.
+            </li>
+            <li>
+              Ao clicar em <em>Exportar</em>, exibir mensagem de sucesso e modal
+              com título
+              <span style="color: green; font-weight: bold">Sucesso</span>.
+            </li>
+            <li>
+              Ao clicar em qualquer outro botão, exibir mensagem de erro e modal
+              com título
+              <span style="color: red; font-weight: bold">Erro</span>,
+              informando que o correto é Exportar.
+            </li>
+            <li>
+              Após a ação, todos os botões da seção devem ser desabilitados.
+            </li>
+            <li>
+              Devem ser reativados apenas ao clicar em <strong>Limpar</strong>.
+            </li>
+          </ul>
+        </ul>
+
+        <!-- BOTÃO DE PERIGO -->
+        <h3>Botão de Perigo</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Executa ações destrutivas ou
+            irreversíveis.
           </li>
-          <li>Ao clicar em um deles, ambos devem ser desabilitados.</li>
-          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
-          <li>Devem ter foco visível ao navegar com TAB.</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Devem existir 5 botões de perigo, sendo o correto
+              <em>Excluir</em>.
+            </li>
+            <li>
+              Ao clicar em <em>Excluir</em>, exibir mensagem de sucesso e modal
+              com título
+              <span style="color: green; font-weight: bold">Sucesso</span>.
+            </li>
+            <li>
+              Ao clicar em qualquer outro botão, exibir mensagem de erro e modal
+              com título
+              <span style="color: red; font-weight: bold">Erro</span>,
+              informando que o correto é Excluir.
+            </li>
+            <li>
+              Após a ação, todos os botões da seção devem ser desabilitados.
+            </li>
+            <li>
+              Devem ser reativados apenas ao clicar em <strong>Limpar</strong>.
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <!-- BOTÃO DE PERIGO -->
-      <h3>Botão de Perigo</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Executa ações destrutivas ou irreversíveis.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <!-- BOTÃO LOADING -->
+        <h3>Botão com Loading</h3>
         <ul>
-          <li>Devem existir dois botões de perigo: <em>Excluir</em> e <em>Remover</em>.</li>
-          <li>Devem ser exibidos em cor de alerta (vermelho).</li>
-          <li>Ao clicar, deve abrir um modal de confirmação exibindo a ação selecionada.</li>
-          <li>Somente após confirmar no modal deve exibir:
-            <ul>
-              <li><em>“Excluir concluído com sucesso!”</em></li>
-              <li><em>“Remover concluído com sucesso!”</em></li>
-            </ul>
+          <li><strong>Requisito:</strong> Indica processamento de uma ação.</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Devem existir 5 botões com loading, sendo o correto
+              <em>Processar</em>.
+            </li>
+            <li>
+              Ao clicar em qualquer botão da seção:
+              <ul>
+                <li>Todos os botões devem ser desabilitados.</li>
+                <li>
+                  O botão clicado deve alterar seu texto para indicar ação em
+                  andamento:
+                  <ul>
+                    <li><em>Enviar → Enviando</em></li>
+                    <li><em>Processar → Processando</em></li>
+                    <li><em>Progresso → Em Progresso</em></li>
+                    <li><em>Baixar → Baixando</em></li>
+                    <li><em>Salvar → Salvando</em></li>
+                  </ul>
+                </li>
+                <li>
+                  Durante o carregamento, deve exibir animação de ampulheta por
+                  3 segundos.
+                </li>
+                <li>
+                  Após finalizar:
+                  <ul>
+                    <li>
+                      Se o botão correto for clicado (<em>Processar</em>),
+                      exibir mensagem de sucesso e modal com título
+                      <span style="color: green; font-weight: bold"
+                        >Sucesso</span
+                      >.
+                    </li>
+                    <li>
+                      Se outro botão for clicado, exibir mensagem de erro e
+                      modal com título
+                      <span style="color: red; font-weight: bold">Erro</span>,
+                      informando que o correto é Processar.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Devem ser reativados apenas ao clicar em <strong>Limpar</strong>.
+            </li>
+          </ul>
+        </ul>
+
+        <!-- BOTÃO DE ÍCONE -->
+        <h3>Botão de Ícone</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Executa ações rápidas representadas por
+            ícones.
           </li>
-          <li>Após a confirmação, ambos os botões devem ser desabilitados.</li>
-          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
-          <li>Não pode permitir exclusão acidental.</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Devem existir 5 botões de ícone, sendo o correto <em>Lápis</em>.
+            </li>
+            <li>
+              Ao clicar em <em>Lápis</em>, exibir mensagem de sucesso e modal
+              com título
+              <span style="color: green; font-weight: bold">Sucesso</span>.
+            </li>
+            <li>
+              Ao clicar em qualquer outro ícone, exibir mensagem de erro e modal
+              com título
+              <span style="color: red; font-weight: bold">Erro</span>,
+              informando que o correto é Lápis.
+            </li>
+            <li>
+              Após a ação, todos os botões da seção devem ser desabilitados.
+            </li>
+            <li>
+              Devem ser reativados apenas ao clicar em <strong>Limpar</strong>.
+            </li>
+          </ul>
         </ul>
-      </ul>
 
-      <!-- BOTÃO LOADING -->
-      <h3>Botão com Loading</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Indica processamento de uma ação.</li>
-        <li><strong>Critérios de aceite:</strong></li>
+        <!-- LIMPAR -->
+        <h3>Limpar Página</h3>
         <ul>
-          <li>Devem existir dois botões: <em>Enviar</em> e <em>Processar</em>.</li>
-          <li>Ao clicar em qualquer um deles:
-            <ul>
-              <li>Ambos devem ser desabilitados.</li>
-              <li>O botão clicado deve exibir loading por 2 segundos.</li>
-              <li>Após finalizar, deve exibir:
-                <em>“Enviar concluído!”</em> ou <em>“Processar concluído!”</em>.
-              </li>
-            </ul>
+          <li>
+            <strong>Requisito:</strong> Restaura todos os botões e mensagens ao
+            estado inicial.
           </li>
-          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>
+              Ao clicar em <strong>Limpar</strong>, todos os botões voltam ao
+              texto original e ficam habilitados.
+            </li>
+            <li>Todas as mensagens de retorno são limpas.</li>
+            <li>A página volta ao estado inicial.</li>
+          </ul>
         </ul>
-      </ul>
 
-      <!-- BOTÃO DE ÍCONE -->
-      <h3>Botão de Ícone</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Executa ações rápidas representadas por um ícone.</li>
-        <li><strong>Critérios de aceite:</strong></li>
-        <ul>
-          <li>Devem existir dois botões de ícone: <em>Editar</em> e <em>Visualizar</em>.</li>
-          <li>Devem possuir tooltip (atributo <code>title</code>).</li>
-          <li>Ícones devem ser compreensíveis e universais.</li>
-          <li>Ao clicar, devem exibir:
-            <ul>
-              <li><em>“Ação Editar executada!”</em></li>
-              <li><em>“Ação Visualizar executada!”</em></li>
-            </ul>
-          </li>
-          <li>Após clicar em um deles, ambos devem ser desabilitados.</li>
-          <li>Devem ser reativados apenas ao clicar em <strong>Resetar</strong>.</li>
-        </ul>
-      </ul>
-
-      <!-- PAGINAÇÃO -->
-      <h3>Botões de Paginação</h3>
-      <ul>
-        <li><strong>Requisito:</strong> Permitem navegar entre páginas de conteúdo.</li>
-        <li><strong>Critérios de aceite:</strong></li>
-        <ul>
-          <li>Devem permitir navegação entre 5 páginas.</li>
-          <li>Devem atualizar o conteúdo exibido conforme a página atual.</li>
-          <li>Devem indicar visualmente a página atual.</li>
-          <li>Ao avançar, exibir: <em>“Página avançada com sucesso”</em>.</li>
-          <li>Ao retornar, exibir: <em>“Página retornada com sucesso”</em>.</li>
-          <li>O número da página deve estar centralizado entre os botões.</li>
-        </ul>
-      </ul>
-
-      <div class="button-group">
-        <button type="button" onclick="location.href='botoes.html'">Voltar</button>
+        <div class="button-group">
+          <button type="button" onclick="location.href='botoes.html'">
+            Voltar
+          </button>
+        </div>
       </div>
-
     </div>
-  </div>
-</body>
+  </body>
 </html>

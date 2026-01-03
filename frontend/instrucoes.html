@@ -1,76 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Instruções de Testes</title>
-  <link rel="stylesheet" href="style_global.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <div class="login-content">
-    <h1>📋 Instruções de Testes Possíveis</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Instruções de Testes</title>
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-content">
+      <h1>📋 Instruções de Testes Possíveis</h1>
 
-    <div class="doc-container instrucoes">
+      <div class="doc-container instrucoes">
+        <!-- Funcionais -->
+        <h2>🐞 Testes Funcionais (Manuais)</h2>
+        <ul>
+          <li>
+            <strong>Cadastro / Login:</strong> validar fluxo de autenticação,
+            mensagens de erro, campos obrigatórios.
+          </li>
+          <li>
+            <strong>Formulário 1 (endereços):</strong> checar preenchimento
+            correto, validação de CEP, obrigatoriedade de campos.
+          </li>
+          <li>
+            <strong>Formulário 2 (campos diversos):</strong> testar diferentes
+            tipos de input (texto, número, datas).
+          </li>
+          <li>
+            <strong>Formulário 3 (upload e select):</strong> validar upload de
+            arquivos, seleção em dropdown, mensagens de sucesso/erro.
+          </li>
+          <li>
+            <strong>Botões:</strong> estados visuais, acessibilidade via
+            teclado, mensagens de ação.
+          </li>
+          <li>
+            <strong>Modais:</strong> abertura/fechamento, foco no conteúdo,
+            confirmação de ações.
+          </li>
+          <li>
+            <strong>Tabelas:</strong> ordenação, paginação, filtros, feedback
+            visual.
+          </li>
+          <li>
+            <strong>Arrastar imagens:</strong> funcionalidade de drag & drop,
+            posicionamento correto.
+          </li>
+          <li>
+            <strong>Quebra-cabeças:</strong> montagem correta, feedback de
+            acerto/erro.
+          </li>
+          <li>
+            <strong>Acessibilidades:</strong> navegação via teclado, contraste
+            de cores, uso de atributos ARIA, utilização do avatar em Libras.
+          </li>
+        </ul>
 
-      <!-- Funcionais -->
-      <h2>🐞 Testes Funcionais (Manuais)</h2>
-      <ul>
-        <li><strong>Cadastro / Login:</strong> validar fluxo de autenticação, mensagens de erro, campos obrigatórios.</li>
-        <li><strong>Formulário 1 (endereços):</strong> checar preenchimento correto, validação de CEP, obrigatoriedade de campos.</li>
-        <li><strong>Formulário 2 (campos diversos):</strong> testar diferentes tipos de input (texto, número, datas).</li>
-        <li><strong>Formulário 3 (upload e select):</strong> validar upload de arquivos, seleção em dropdown, mensagens de sucesso/erro.</li>
-        <li><strong>Botões:</strong> estados visuais, acessibilidade via teclado, mensagens de ação.</li>
-        <li><strong>Modais:</strong> abertura/fechamento, foco no conteúdo, confirmação de ações.</li>
-        <li><strong>Tabelas:</strong> ordenação, paginação, filtros, feedback visual.</li>
-        <li><strong>Arrastar imagens:</strong> funcionalidade de drag & drop, posicionamento correto.</li>
-        <li><strong>Quebra-cabeças:</strong> montagem correta, feedback de acerto/erro.</li>
-        <li><strong>Acessibilidades:</strong> navegação via teclado, contraste de cores, uso de atributos ARIA, utilização do avatar em Libras.</li>
-      </ul>
+        <!-- Automatizados -->
+        <h2>🤖 Testes Automatizados</h2>
+        <ul>
+          <li>Scripts para validar login, cadastro e formulários.</li>
+          <li>
+            Automação de botões e modais com Selenium, Cypress ou Playwright.
+          </li>
+          <li>Testes de regressão em tabelas e componentes interativos.</li>
+          <li>Automação de drag & drop e quebra-cabeças.</li>
+        </ul>
 
-      <!-- Automatizados -->
-      <h2>🤖 Testes Automatizados</h2>
-      <ul>
-        <li>Scripts para validar login, cadastro e formulários.</li>
-        <li>Automação de botões e modais com Selenium, Cypress ou Playwright.</li>
-        <li>Testes de regressão em tabelas e componentes interativos.</li>
-        <li>Automação de drag & drop e quebra-cabeças.</li>
-      </ul>
+        <!-- Não Funcionais -->
+        <h2>⚡ Testes Não Funcionais</h2>
 
-      <!-- Não Funcionais -->
-      <h2>⚡ Testes Não Funcionais</h2>
+        <h3>Performance e Carga</h3>
+        <ul>
+          <li>Medir tempo de resposta das páginas de cadastro e login.</li>
+          <li>Simular múltiplos usuários acessando formulários e tabelas.</li>
+          <li>
+            Avaliar estabilidade dos modais e componentes interativos sob carga.
+          </li>
+          <li>Ferramentas sugeridas: JMeter, Locust, Gatling, k6.</li>
+        </ul>
 
-      <h3>Performance e Carga</h3>
-      <ul>
-        <li>Medir tempo de resposta das páginas de cadastro e login.</li>
-        <li>Simular múltiplos usuários acessando formulários e tabelas.</li>
-        <li>Avaliar estabilidade dos modais e componentes interativos sob carga.</li>
-        <li>Ferramentas sugeridas: JMeter, Locust, Gatling, k6.</li>
-      </ul>
+        <h3>Responsividade</h3>
+        <ul>
+          <li>
+            Verificar adaptação em diferentes resoluções (desktop, tablet,
+            celular).
+          </li>
+          <li>
+            Checar se menus, botões e formulários permanecem acessíveis em telas
+            menores.
+          </li>
+          <li>
+            Validar que imagens e tabelas se ajustam sem quebrar o layout.
+          </li>
+          <li>Testar rotação de dispositivos móveis (portrait/landscape).</li>
+          <li>
+            Garantir que não haja barras de rolagem horizontais indesejadas.
+          </li>
+        </ul>
 
-      <h3>Responsividade</h3>
-      <ul>
-        <li>Verificar adaptação em diferentes resoluções (desktop, tablet, celular).</li>
-        <li>Checar se menus, botões e formulários permanecem acessíveis em telas menores.</li>
-        <li>Validar que imagens e tabelas se ajustam sem quebrar o layout.</li>
-        <li>Testar rotação de dispositivos móveis (portrait/landscape).</li>
-        <li>Garantir que não haja barras de rolagem horizontais indesejadas.</li>
-      </ul>
+        <!-- Frameworks -->
+        <h2>🛠️ Frameworks Sugeridos</h2>
+        <ul>
+          <li>
+            <strong>Funcionais/Automatizados:</strong> Selenium WebDriver, Robot
+            Framework, Cypress, Playwright.
+          </li>
+          <li><strong>Unitários:</strong> JUnit, NUnit, PyTest.</li>
+          <li>
+            <strong>APIs:</strong> Postman (Swagger pode complementar
+            documentação).
+          </li>
+          <li><strong>Performance:</strong> JMeter, Locust, Gatling, k6.</li>
+        </ul>
 
-      <!-- Frameworks -->
-      <h2>🛠️ Frameworks Sugeridos</h2>
-      <ul>
-        <li><strong>Funcionais/Automatizados:</strong> Selenium WebDriver, Robot Framework, Cypress, Playwright.</li>
-        <li><strong>Unitários:</strong> JUnit, NUnit, PyTest.</li>
-        <li><strong>APIs:</strong> Postman (Swagger pode complementar documentação).</li>
-        <li><strong>Performance:</strong> JMeter, Locust, Gatling, k6.</li>
-      </ul>
-
-      <div class="button-group">
-        <button type="button" onclick="location.href='home.html'">Voltar</button>
+        <div class="button-group">
+          <button type="button" onclick="location.href='home.html'">
+            Voltar
+          </button>
+        </div>
       </div>
-
     </div>
-  </div>
-</body>
+  </body>
 </html>

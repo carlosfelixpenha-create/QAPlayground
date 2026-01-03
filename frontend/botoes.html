@@ -18,19 +18,54 @@
       <p>Visualização e testes dos botões utilizados no projeto.</p>
 
       <div class="form-container">
-
         <!-- ============================
-             BOTÃO PRIMÁRIO
+             BOTÃO PRIMÁRIO (5 BOTÕES)
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
             <h2>Botão Primário</h2>
-            <p>Representa a ação principal da tela.</p>
+            <p>
+              Representa a ação principal da tela. Favor clicar no botão
+              <b>"Confirmar"</b>.
+            </p>
           </div>
 
           <div class="demo-actions">
-            <button id="btn-primario-salvar" class="btn-primary" onclick="acaoPrimaria('Salvar')">Salvar</button>
-            <button id="btn-primario-concluir" class="btn-primary" onclick="acaoPrimaria('Concluir')">Concluir</button>
+            <button
+              id="btn-primario-salvar"
+              class="btn-primary"
+              onclick="acaoPrimaria('Salvar')"
+            >
+              Salvar
+            </button>
+            <button
+              id="btn-primario-concluir"
+              class="btn-primary"
+              onclick="acaoPrimaria('Concluir')"
+            >
+              Concluir
+            </button>
+            <button
+              id="btn-primario-confirmar"
+              class="btn-primary"
+              onclick="acaoPrimaria('Confirmar')"
+            >
+              Confirmar
+            </button>
+            <button
+              id="btn-primario-login"
+              class="btn-primary"
+              onclick="acaoPrimaria('Login')"
+            >
+              Login
+            </button>
+            <button
+              id="btn-primario-criar"
+              class="btn-primary"
+              onclick="acaoPrimaria('Criar')"
+            >
+              Criar
+            </button>
           </div>
 
           <div class="demo-retorno">
@@ -40,17 +75,53 @@
         </div>
 
         <!-- ============================
-             BOTÃO SECUNDÁRIO
+             BOTÃO SECUNDÁRIO (5 BOTÕES)
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
             <h2>Botão Secundário</h2>
-            <p>Usado para ações auxiliares, como voltar ou cancelar.</p>
+            <p>
+              Usado para ações auxiliares. Favor clicar no botão
+              <b>"Cancelar"</b>.
+            </p>
           </div>
 
           <div class="demo-actions">
-            <button id="btn-secundario-voltar" class="btn-secondary" onclick="acaoSecundaria('Voltar')">Voltar</button>
-            <button id="btn-secundario-cancelar" class="btn-secondary" onclick="acaoSecundaria('Cancelar')">Cancelar</button>
+            <button
+              id="btn-secundario-voltar"
+              class="btn-secondary"
+              onclick="acaoSecundaria('Voltar')"
+            >
+              Voltar
+            </button>
+            <button
+              id="btn-secundario-cancelar"
+              class="btn-secondary"
+              onclick="acaoSecundaria('Cancelar')"
+            >
+              Cancelar
+            </button>
+            <button
+              id="btn-secundario-limpar"
+              class="btn-secondary"
+              onclick="acaoSecundaria('Limpar')"
+            >
+              Limpar
+            </button>
+            <button
+              id="btn-secundario-seguir"
+              class="btn-secondary"
+              onclick="acaoSecundaria('Seguir')"
+            >
+              Seguir
+            </button>
+            <button
+              id="btn-secundario-excluir"
+              class="btn-secondary"
+              onclick="acaoSecundaria('Excluir')"
+            >
+              Excluir
+            </button>
           </div>
 
           <div class="demo-retorno">
@@ -60,46 +131,165 @@
         </div>
 
         <!-- ============================
-             BOTÃO DE PERIGO
+             BOTÃO TERCIÁRIO (5 BOTÕES)
+        ============================= -->
+        <div class="demo-card">
+          <div class="demo-header">
+            <h2>Botão Terciário</h2>
+            <p>
+              Usado para ações complementares. Favor clicar no botão
+              <b>"Exportar"</b>.
+            </p>
+          </div>
+
+          <div class="demo-actions">
+            <button
+              id="btn-terciario-imprimir"
+              class="btn-tertiary"
+              onclick="acaoTerciaria('Imprimir')"
+            >
+              Imprimir
+            </button>
+            <button
+              id="btn-terciario-ver"
+              class="btn-tertiary"
+              onclick="acaoTerciaria('Ver')"
+            >
+              Ver
+            </button>
+            <button
+              id="btn-terciario-filtros"
+              class="btn-tertiary"
+              onclick="acaoTerciaria('Filtros')"
+            >
+              Filtros
+            </button>
+            <button
+              id="btn-terciario-sair"
+              class="btn-tertiary"
+              onclick="acaoTerciaria('Sair')"
+            >
+              Sair
+            </button>
+            <button
+              id="btn-terciario-exportar"
+              class="btn-tertiary"
+              onclick="acaoTerciaria('Exportar')"
+            >
+              Exportar
+            </button>
+          </div>
+
+          <div class="demo-retorno">
+            <strong>Retorno:</strong>
+            <span class="retorno" id="retorno-terciario"></span>
+          </div>
+        </div>
+
+        <!-- ============================
+             BOTÃO DE PERIGO (5 BOTÕES)
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
             <h2>Botão de Perigo</h2>
-            <p>Usado para ações destrutivas, como exclusões.</p>
+            <p>
+              Usado para ações destrutivas. Favor clicar no botão
+              <b>"Excluir"</b>.
+            </p>
           </div>
 
           <div class="demo-actions">
-            <button id="btn-danger-excluir" class="btn-danger" onclick="abrirModal('Excluir')">Excluir</button>
-            <button id="btn-danger-remover" class="btn-danger" onclick="abrirModal('Remover')">Remover</button>
+            <button
+              id="btn-danger-excluir"
+              class="btn-danger"
+              onclick="abrirModal('Excluir')"
+            >
+              Excluir
+            </button>
+            <button
+              id="btn-danger-remover"
+              class="btn-danger"
+              onclick="abrirModal('Remover')"
+            >
+              Remover
+            </button>
+            <button
+              id="btn-danger-apagar"
+              class="btn-danger"
+              onclick="abrirModal('Apagar')"
+            >
+              Apagar
+            </button>
+            <button
+              id="btn-danger-desativar"
+              class="btn-danger"
+              onclick="abrirModal('Desativar')"
+            >
+              Desativar
+            </button>
+            <button
+              id="btn-danger-formatar"
+              class="btn-danger"
+              onclick="abrirModal('Formatar')"
+            >
+              Formatar
+            </button>
           </div>
 
           <div class="demo-retorno">
             <strong>Retorno:</strong>
             <span class="retorno" id="retorno-danger"></span>
           </div>
-
-          <!-- Modal -->
-          <div id="modal-confirmacao" class="modal" style="display:none;">
-            <div class="modal-content">
-              <p id="texto-modal">Tem certeza?</p>
-              <button class="btn-danger" onclick="confirmarExclusao()">Sim, confirmar</button>
-              <button onclick="fecharModal()">Cancelar</button>
-            </div>
-          </div>
         </div>
 
         <!-- ============================
-             BOTÃO COM LOADING
+             BOTÃO COM LOADING (5 BOTÕES)
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
             <h2>Botão com Loading</h2>
-            <p>Indica que uma ação está sendo processada.</p>
+            <p>
+              Indica que uma ação está sendo processada. Favor clicar no botão
+              <b>"Processar"</b>.
+            </p>
           </div>
 
           <div class="demo-actions">
-            <button id="btn-loading-enviar" class="btn-primary" onclick="carregar('Enviar')">Enviar</button>
-            <button id="btn-loading-processar" class="btn-primary" onclick="carregar('Processar')">Processar</button>
+            <button
+              id="btn-loading-enviar"
+              class="btn-primary"
+              onclick="carregar('Enviar')"
+            >
+              Enviar
+            </button>
+            <button
+              id="btn-loading-baixar"
+              class="btn-primary"
+              onclick="carregar('Baixar')"
+            >
+              Baixar
+            </button>
+            <button
+              id="btn-loading-progresso"
+              class="btn-primary"
+              onclick="carregar('Progresso')"
+            >
+              Progresso
+            </button>
+            <button
+              id="btn-loading-processar"
+              class="btn-primary"
+              onclick="carregar('Processar')"
+            >
+              Processar
+            </button>
+            <button
+              id="btn-loading-salvar"
+              class="btn-primary"
+              onclick="carregar('Salvar')"
+            >
+              Salvar
+            </button>
           </div>
 
           <div class="demo-retorno">
@@ -109,17 +299,58 @@
         </div>
 
         <!-- ============================
-             BOTÃO DE ÍCONE
+             BOTÃO DE ÍCONE (5 BOTÕES)
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
             <h2>Botão de Ícone</h2>
-            <p>Utilizado para ações rápidas representadas por um ícone.</p>
+            <p>
+              Utilizado para ações rápidas. Favor clicar no botão
+              <b>"Lápis"</b>.
+            </p>
           </div>
 
           <div class="demo-actions">
-            <button id="btn-icone-editar" class="btn-icon" onclick="acaoIcone('Editar')" title="Editar">✏️</button>
-            <button id="btn-icone-visualizar" class="btn-icon" onclick="acaoIcone('Visualizar')" title="Visualizar">👁️</button>
+            <button
+              id="btn-icone-olho-aberto"
+              class="btn-icon"
+              onclick="acaoIcone('Olho Aberto')"
+              title="Visualizar"
+            >
+              👁️
+            </button>
+            <button
+              id="btn-icone-olho-fechado"
+              class="btn-icon"
+              onclick="acaoIcone('Olho Fechado')"
+              title="Ocultar"
+            >
+              🙈
+            </button>
+            <button
+              id="btn-icone-lapis"
+              class="btn-icon"
+              onclick="acaoIcone('Lápis')"
+              title="Editar"
+            >
+              ✏️
+            </button>
+            <button
+              id="btn-icone-raio"
+              class="btn-icon"
+              onclick="acaoIcone('Raio')"
+              title="Ação rápida"
+            >
+              ⚡
+            </button>
+            <button
+              id="btn-icone-maozinha"
+              class="btn-icon"
+              onclick="acaoIcone('Mãozinha')"
+              title="Interagir"
+            >
+              🤚
+            </button>
           </div>
 
           <div class="demo-retorno">
@@ -129,52 +360,42 @@
         </div>
 
         <!-- ============================
-             BOTÕES DE PAGINAÇÃO
-        ============================= -->
-        <div class="demo-card">
-          <div class="demo-header">
-            <h2>Botões de Paginação</h2>
-            <p>Permitem navegar entre diferentes páginas de conteúdo.</p>
-          </div>
-
-          <div class="demo-actions">
-            <div id="conteudo-paginado">
-              <p>Página 1: Conteúdo inicial.</p>
-            </div>
-
-            <div class="paginacao">
-              <button onclick="paginaAnterior()">Anterior</button>
-              <span id="pagina-atual">1</span>
-              <button onclick="proximaPagina()">Próximo</button>
-            </div>
-          </div>
-
-          <div class="demo-retorno">
-            <strong>Retorno:</strong>
-            <span class="retorno" id="retorno-paginacao"></span>
-          </div>
-        </div>
-
-        <!-- ============================
-             NAVEGAÇÃO + RESET
+             NAVEGAÇÃO + LIMPAR
         ============================= -->
         <div class="button-group">
-
           <button type="button" class="resetar" onclick="resetarPagina()">
-            Resetar
+            Limpar
           </button>
-
-          <button type="button" class="requisitos" onclick="location.href='botoes-requisitos.html'">
+          <button
+            type="button"
+            class="requisitos"
+            onclick="location.href='botoes-requisitos.html'"
+          >
             Requisitos
           </button>
-
           <button type="button" onclick="location.href='home.html'">
             Voltar
           </button>
-
         </div>
-
       </div>
     </div>
+
+    <!-- Modal genérica de mensagens (sucesso/erro) -->
+    <div id="modalMensagem" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="modalFechar" class="close">&times;</span>
+        <p id="modalTitulo"></p>
+        <!-- título colorido -->
+        <p id="modalTexto"></p>
+        <!-- corpo da mensagem -->
+        <div class="modal-actions">
+          <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marca d'água -->
+    <div class="marca-dagua esquerda"></div>
+    <div class="marca-dagua direita"></div>
   </body>
 </html>

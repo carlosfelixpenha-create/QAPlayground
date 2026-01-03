@@ -723,6 +723,31 @@ button:disabled:hover {
   display: inline-block;
 }
 
+/* Ajuste visual específico para a página de botões */
+.catalogo-botoes .form-container {
+  max-width: 680px; /* aumenta a largura do container só nesta página */
+}
+
+.catalogo-botoes .demo-card {
+  width: 100%; /* ocupa toda a largura disponível */
+}
+
+.catalogo-botoes .demo-actions {
+  display: flex;
+  flex-wrap: nowrap; /* mantém os botões na mesma linha */
+  gap: 10px;
+}
+
+.retorno.sucesso {
+  color: green;
+  font-weight: bold;
+}
+
+.retorno.erro {
+  color: red;
+  font-weight: bold;
+}
+
 /* =============================== */
 /* ESTILOS GERAIS PARA TABELAS */
 /* =============================== */
