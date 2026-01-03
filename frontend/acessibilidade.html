@@ -18,7 +18,6 @@
       <p>Visualização e testes de boas práticas de acessibilidade.</p>
 
       <div class="form-container">
-
         <!-- ============================
              NAVEGAÇÃO POR TECLADO
         ============================= -->
@@ -43,8 +42,12 @@
             <p>Exemplo de bom e mau contraste.</p>
           </div>
           <div class="demo-actions">
-            <div style="background:#000; color:#fff; padding:10px;">Bom contraste</div>
-            <div style="background:#555; color:#666; padding:10px;">Contraste ruim</div>
+            <div style="background: #000; color: #fff; padding: 10px">
+              Bom contraste
+            </div>
+            <div style="background: #555; color: #666; padding: 10px">
+              Contraste ruim
+            </div>
           </div>
         </div>
 
@@ -93,12 +96,18 @@
             <p>Elementos aumentam 20% ao passar o cursor.</p>
           </div>
           <div class="demo-actions">
-            <p onmouseover="this.style.fontSize='120%'" onmouseout="this.style.fontSize='100%'">
+            <p
+              onmouseover="this.style.fontSize='120%'"
+              onmouseout="this.style.fontSize='100%'"
+            >
               Texto acessível para baixa visão
             </p>
-            <img src="logo.png" alt="Logo QAPlayground"
-                 onmouseover="this.style.transform='scale(1.2)'"
-                 onmouseout="this.style.transform='scale(1)'">
+            <img
+              src="logo.png"
+              alt="Logo QAPlayground"
+              onmouseover="this.style.transform='scale(1.2)'"
+              onmouseout="this.style.transform='scale(1)'"
+            />
           </div>
         </div>
 
@@ -111,7 +120,9 @@
             <p>Texto falado ao passar o cursor.</p>
           </div>
           <div class="demo-actions">
-            <p onmouseover="falar('Este é um texto de exemplo')">Passe o mouse aqui</p>
+            <p onmouseover="falar('Este é um texto de exemplo')">
+              Passe o mouse aqui
+            </p>
           </div>
         </div>
 
@@ -139,11 +150,20 @@
              NAVEGAÇÃO + RESET
         ============================= -->
         <div class="button-group">
-          <button type="button" class="resetar" onclick="resetarPagina()">Resetar</button>
-          <button type="button" class="requisitos" onclick="location.href='acessibilidade-requisitos.html'">Requisitos</button>
-          <button type="button" onclick="location.href='home.html'">Voltar</button>
+          <button
+            type="button"
+            class="requisitos"
+            onclick="location.href='acessibilidade-requisitos.html'"
+          >
+            Requisitos
+          </button>
+          <button type="button" onclick="location.href='home.html'">
+            Voltar
+          </button>
+          <button type="button" class="resetar" onclick="resetarPagina()">
+            Limpar
+          </button>
         </div>
-
       </div>
     </div>
 
@@ -154,9 +174,9 @@
         speechSynthesis.speak(utterance);
       }
       function validarSenha() {
-        const senha = document.getElementById('senha').value;
-        const retorno = document.getElementById('retorno-senha');
-        if(senha === "1234") {
+        const senha = document.getElementById("senha").value;
+        const retorno = document.getElementById("retorno-senha");
+        if (senha === "1234") {
           retorno.textContent = "Senha válida!";
           retorno.style.color = "green";
         } else {
@@ -172,8 +192,7 @@
     <!-- Script do VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
-
   </body>
 </html>

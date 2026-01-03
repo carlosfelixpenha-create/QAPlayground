@@ -19,7 +19,7 @@ function fecharModal(tipo) {
 }
 
 // Fecha modal ao clicar fora
-window.onclick = function(event) {
+window.onclick = function (event) {
   const modais = document.getElementsByClassName("modal");
   for (let i = 0; i < modais.length; i++) {
     if (event.target == modais[i]) {
@@ -36,20 +36,23 @@ window.onclick = function(event) {
 // Alerta
 function retornoAlerta() {
   fecharModal("alerta");
-  document.getElementById("retorno-alerta").innerText = "Usuário confirmou que leu o alerta.";
+  document.getElementById("retorno-alerta").innerText =
+    "Usuário confirmou que leu o alerta.";
   desabilitarBotao("alerta");
 }
 
 // Confirmação
 function confirmarAcao() {
   fecharModal("confirmacao");
-  document.getElementById("retorno-confirmacao").innerText = "Usuário confirmou a ação com senha válida!";
+  document.getElementById("retorno-confirmacao").innerText =
+    "Usuário confirmou a ação com senha válida!";
   desabilitarBotao("confirmacao");
 }
 
 function cancelarAcao() {
   fecharModal("confirmacao");
-  document.getElementById("retorno-confirmacao").innerText = "Usuário cancelou a ação.";
+  document.getElementById("retorno-confirmacao").innerText =
+    "Usuário cancelou a ação.";
   desabilitarBotao("confirmacao");
 }
 
@@ -57,19 +60,23 @@ function cancelarAcao() {
 function retornoSucesso() {
   fecharModal("sucesso");
   const feedback = document.getElementById("feedback-sucesso").value;
-  const retorno = feedback ? `Usuário fechou o modal de sucesso e comentou: "${feedback}"`
-                           : "Usuário fechou o modal de sucesso sem comentário.";
+  const retorno = feedback
+    ? `Usuário fechou o modal de sucesso e comentou: "${feedback}"`
+    : "Usuário fechou o modal de sucesso sem comentário.";
   document.getElementById("retorno-sucesso").innerText = retorno;
   desabilitarBotao("sucesso");
 }
 
 // Erro (com shake contextual)
 function retornoErro() {
-  const justificativa = document.getElementById("justificativa-erro").value.trim();
+  const justificativa = document
+    .getElementById("justificativa-erro")
+    .value.trim();
   const modalContent = document.querySelector("#modal-erro .modal-content");
 
   if (!justificativa) {
-    document.getElementById("erro-msg").innerText = "Por favor, descreva o que estava fazendo.";
+    document.getElementById("erro-msg").innerText =
+      "Por favor, descreva o que estava fazendo.";
     // Aplica shake
     modalContent.classList.add("shake-effect");
     setTimeout(() => {
@@ -79,7 +86,9 @@ function retornoErro() {
   }
 
   fecharModal("erro");
-  document.getElementById("retorno-erro").innerText = `Usuário relatou: "${justificativa}"`;
+  document.getElementById(
+    "retorno-erro"
+  ).innerText = `Usuário relatou: "${justificativa}"`;
   desabilitarBotao("erro");
 }
 
@@ -98,7 +107,7 @@ function desabilitarBotao(tipo) {
 function resetarCamposModal(modal) {
   // Zera inputs e textareas
   const inputs = modal.querySelectorAll("input, textarea");
-  inputs.forEach(el => {
+  inputs.forEach((el) => {
     if (el.type === "checkbox" || el.type === "radio") {
       el.checked = false;
     } else {
@@ -114,7 +123,7 @@ function resetarCamposModal(modal) {
 
   // Limpa mensagens auxiliares
   const msgs = modal.querySelectorAll("small, span.retorno");
-  msgs.forEach(msg => msg.textContent = "");
+  msgs.forEach((msg) => (msg.textContent = ""));
 }
 
 function resetarPagina() {
@@ -133,7 +142,7 @@ function resetarPagina() {
 
   // Reabilita todos os botões
   const botoes = document.querySelectorAll(".demo-actions button");
-  botoes.forEach(btn => {
+  botoes.forEach((btn) => {
     btn.disabled = false;
     btn.classList.remove("btn-disabled");
   });
@@ -141,7 +150,7 @@ function resetarPagina() {
   // Feedback visual na página
   const resetInfo = document.createElement("p");
   resetInfo.className = "retorno";
-  resetInfo.innerText = "Página de modais resetada!";
+  resetInfo.innerText = "Página de modais limpa!";
   document.querySelector(".form-container").appendChild(resetInfo);
 
   setTimeout(() => resetInfo.remove(), 3000);
@@ -173,7 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
         msg.innerText = "";
       } else {
         btnConfirmar.disabled = true;
-        msg.innerText = "Senha inválida! Deve ter 6-8 caracteres, incluir maiúscula, minúscula e especial.";
+        msg.innerText =
+          "Senha inválida! Deve ter 6-8 caracteres, incluir maiúscula, minúscula e especial.";
       }
     });
   }

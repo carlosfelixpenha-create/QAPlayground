@@ -1,413 +1,574 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Tabelas</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Tabelas</title>
 
-  <!-- Estilos globais -->
-  <link rel="stylesheet" href="style_global.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
+    <!-- Estilos globais -->
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
 
-<body>
-  <div class="login-content">
-    <h1>Catálogo de Tabelas</h1>
+  <body>
+    <div class="login-content">
+      <h1>Catálogo de Tabelas</h1>
 
-    <div class="doc-container">
+      <div class="doc-container">
+        <!-- =============================== -->
+        <!-- TABELA SIMPLES -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Tabela Simples</h2>
 
-      <!-- =============================== -->
-      <!-- TABELA SIMPLES -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Tabela Simples</h2>
+          <div id="tabela-simples-container">
+            <table class="tabela-simples">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
 
-        <div id="tabela-simples-container">
-          <table class="tabela-simples">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Cargo</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ana Souza</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                </tr>
 
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Ana Souza</td>
-                <td>Analista</td>
-                <td>Ativo</td>
-              </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Bruno Lima</td>
+                  <td>Desenvolvedor</td>
+                  <td>Ativo</td>
+                </tr>
 
-              <tr>
-                <td>2</td>
-                <td>Bruno Lima</td>
-                <td>Desenvolvedor</td>
-                <td>Ativo</td>
-              </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Carla Mendes</td>
+                  <td>Designer</td>
+                  <td>Inativo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-              <tr>
-                <td>3</td>
-                <td>Carla Mendes</td>
-                <td>Designer</td>
-                <td>Inativo</td>
-              </tr>
-            </tbody>
-          </table>
+          <p class="retorno" id="retorno-simples"></p>
         </div>
 
-        <p class="retorno" id="retorno-simples"></p>
+        <!-- =============================== -->
+        <!-- TABELA COM ORDENAÇÃO -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Tabela com Ordenação</h2>
+
+          <div id="tabela-ordenacao-container">
+            <table class="tabela-ordenacao">
+              <thead>
+                <tr>
+                  <th
+                    data-col="id"
+                    class="ordenavel"
+                    onclick="ordenarTabela('id')"
+                  >
+                    ID ▲▼
+                  </th>
+                  <th
+                    data-col="nome"
+                    class="ordenavel"
+                    onclick="ordenarTabela('nome')"
+                  >
+                    Nome ▲▼
+                  </th>
+                  <th
+                    data-col="cargo"
+                    class="ordenavel"
+                    onclick="ordenarTabela('cargo')"
+                  >
+                    Cargo ▲▼
+                  </th>
+                  <th
+                    data-col="status"
+                    class="ordenavel"
+                    onclick="ordenarTabela('status')"
+                  >
+                    Status ▲▼
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>3</td>
+                  <td>Carla Mendes</td>
+                  <td>Designer</td>
+                  <td>Inativo</td>
+                </tr>
+
+                <tr>
+                  <td>1</td>
+                  <td>Ana Souza</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>Bruno Lima</td>
+                  <td>Desenvolvedor</td>
+                  <td>Ativo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="retorno" id="retorno-ordenacao"></p>
+        </div>
+
+        <!-- =============================== -->
+        <!-- TABELA COM BUSCA -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Tabela com Busca</h2>
+
+          <input
+            type="text"
+            id="input-busca"
+            placeholder="Digite para filtrar..."
+            class="input-busca"
+            onkeyup="filtrarTabela()"
+          />
+
+          <div id="tabela-busca-container">
+            <table class="tabela-busca">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ana Souza</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>Bruno Lima</td>
+                  <td>Desenvolvedor</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td>Carla Mendes</td>
+                  <td>Designer</td>
+                  <td>Inativo</td>
+                </tr>
+
+                <tr>
+                  <td>4</td>
+                  <td>Daniel Rocha</td>
+                  <td>Gerente</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>5</td>
+                  <td>Eduarda Silva</td>
+                  <td>Estagiária</td>
+                  <td>Inativo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="retorno" id="retorno-busca"></p>
+        </div>
+
+        <!-- =============================== -->
+        <!-- TABELA COM PAGINAÇÃO -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Tabela com Paginação</h2>
+
+          <div id="tabela-paginada-container">
+            <table class="tabela-paginada">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ana Souza</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Bruno Lima</td>
+                  <td>Desenvolvedor</td>
+                  <td>Ativo</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Carla Mendes</td>
+                  <td>Designer</td>
+                  <td>Inativo</td>
+                </tr>
+
+                <tr>
+                  <td>4</td>
+                  <td>Daniel Rocha</td>
+                  <td>Gerente</td>
+                  <td>Ativo</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Eduarda Silva</td>
+                  <td>Estagiária</td>
+                  <td>Inativo</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Felipe Torres</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>7</td>
+                  <td>Gabriela Nunes</td>
+                  <td>UX Designer</td>
+                  <td>Ativo</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Henrique Dias</td>
+                  <td>QA</td>
+                  <td>Ativo</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Isabela Costa</td>
+                  <td>PO</td>
+                  <td>Inativo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="paginacao-tabelas">
+            <button onclick="paginaAnterior()">Anterior</button>
+            <span id="pagina-atual">1</span>
+            <button onclick="proximaPagina()">Próxima</button>
+          </div>
+
+          <p class="retorno" id="retorno-paginacao"></p>
+        </div>
+
+        <!-- =============================== -->
+        <!-- TABELA COM SELEÇÃO DE LINHAS -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Tabela com Seleção de Linhas</h2>
+
+          <div id="tabela-selecao-container">
+            <table class="tabela-selecao">
+              <thead>
+                <tr>
+                  <th>Selecionar</th>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>
+                    <input
+                      type="checkbox"
+                      class="linha-selecao"
+                      onclick="atualizarSelecao()"
+                    />
+                  </td>
+                  <td>1</td>
+                  <td>Ana Souza</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input
+                      type="checkbox"
+                      class="linha-selecao"
+                      onclick="atualizarSelecao()"
+                    />
+                  </td>
+                  <td>2</td>
+                  <td>Bruno Lima</td>
+                  <td>Desenvolvedor</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input
+                      type="checkbox"
+                      class="linha-selecao"
+                      onclick="atualizarSelecao()"
+                    />
+                  </td>
+                  <td>3</td>
+                  <td>Carla Mendes</td>
+                  <td>Designer</td>
+                  <td>Inativo</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input
+                      type="checkbox"
+                      class="linha-selecao"
+                      onclick="atualizarSelecao()"
+                    />
+                  </td>
+                  <td>4</td>
+                  <td>Daniel Rocha</td>
+                  <td>Gerente</td>
+                  <td>Ativo</td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <input
+                      type="checkbox"
+                      class="linha-selecao"
+                      onclick="atualizarSelecao()"
+                    />
+                  </td>
+                  <td>5</td>
+                  <td>Eduarda Silva</td>
+                  <td>Estagiária</td>
+                  <td>Inativo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="retorno" id="retorno-selecao"></p>
+        </div>
+
+        <!-- =============================== -->
+        <!-- TABELA COM AÇÕES -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Tabela com Ações</h2>
+
+          <div id="tabela-acoes-container">
+            <table class="tabela-acoes">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Status</th>
+                  <th style="text-align: center">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Ana Souza</td>
+                  <td>Analista</td>
+                  <td>Ativo</td>
+                  <td style="text-align: right">
+                    <button
+                      class="btn-acao btn-ver"
+                      onclick="acaoVer('Ana Souza')"
+                    >
+                      Ver
+                    </button>
+                    <button
+                      class="btn-acao btn-editar"
+                      onclick="acaoEditar('Ana Souza')"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      class="btn-acao btn-excluir"
+                      onclick="acaoExcluir('Ana Souza')"
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>Bruno Lima</td>
+                  <td>Desenvolvedor</td>
+                  <td>Ativo</td>
+                  <td style="text-align: right">
+                    <button
+                      class="btn-acao btn-ver"
+                      onclick="acaoVer('Bruno Lima')"
+                    >
+                      Ver
+                    </button>
+                    <button
+                      class="btn-acao btn-editar"
+                      onclick="acaoEditar('Bruno Lima')"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      class="btn-acao btn-excluir"
+                      onclick="acaoExcluir('Bruno Lima')"
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td>Carla Mendes</td>
+                  <td>Designer</td>
+                  <td>Inativo</td>
+                  <td style="text-align: right">
+                    <button
+                      class="btn-acao btn-ver"
+                      onclick="acaoVer('Carla Mendes')"
+                    >
+                      Ver
+                    </button>
+                    <button
+                      class="btn-acao btn-editar"
+                      onclick="acaoEditar('Carla Mendes')"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      class="btn-acao btn-excluir"
+                      onclick="acaoExcluir('Carla Mendes')"
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="retorno" id="retorno-acoes"></p>
+        </div>
+
+        <!-- =============================== -->
+        <!-- ESTADO VAZIO -->
+        <!-- =============================== -->
+        <div class="card">
+          <h2>Estado Vazio</h2>
+
+          <div id="tabela-vazia-container">
+            <table class="tabela-vazia">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="estado-vazio">
+                  <td colspan="4">
+                    <div class="estado-vazio-conteudo">
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 5H20V19H4V5Z"
+                          stroke="#999"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M4 9H20"
+                          stroke="#999"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9 9V19"
+                          stroke="#999"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+
+                      <p>Nenhum dado disponível no momento</p>
+
+                      <button
+                        class="btn-recarregar"
+                        onclick="recarregarTabelaVazia()"
+                      >
+                        Recarregar dados
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="retorno" id="retorno-vazio"></p>
+        </div>
+
+        <!-- =============================== -->
+        <!-- BOTÕES FINAIS -->
+        <!-- =============================== -->
+        <div class="button-group">
+          <button
+            type="button"
+            class="requisitos"
+            onclick="location.href='tabelas-requisitos.html'"
+          >
+            Requisitos
+          </button>
+          <button onclick="location.href='home.html'">Voltar</button>
+          <button onclick="resetarTabelas()">Limpar</button>
+        </div>
       </div>
+    </div>
 
-
-      <!-- =============================== -->
-      <!-- TABELA COM ORDENAÇÃO -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Tabela com Ordenação</h2>
-
-        <div id="tabela-ordenacao-container">
-          <table class="tabela-ordenacao">
- <thead>
-  <tr>
-    <th data-col="id" class="ordenavel" onclick="ordenarTabela('id')">ID ▲▼</th>
-    <th data-col="nome" class="ordenavel" onclick="ordenarTabela('nome')">Nome ▲▼</th>
-    <th data-col="cargo" class="ordenavel" onclick="ordenarTabela('cargo')">Cargo ▲▼</th>
-    <th data-col="status" class="ordenavel" onclick="ordenarTabela('status')">Status ▲▼</th>
-  </tr>
-</thead>
-
-  <tbody>
-    <tr>
-      <td>3</td>
-      <td>Carla Mendes</td>
-      <td>Designer</td>
-      <td>Inativo</td>
-    </tr>
-
-    <tr>
-      <td>1</td>
-      <td>Ana Souza</td>
-      <td>Analista</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td>2</td>
-      <td>Bruno Lima</td>
-      <td>Desenvolvedor</td>
-      <td>Ativo</td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-
-        <p class="retorno" id="retorno-ordenacao"></p>
-      </div>
-
-
-      <!-- =============================== -->
-      <!-- TABELA COM BUSCA -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Tabela com Busca</h2>
-
-        <input 
-  type="text" 
-  id="input-busca" 
-  placeholder="Digite para filtrar..."
-  class="input-busca"
-  onkeyup="filtrarTabela()"
-/>
-
-        <div id="tabela-busca-container">
-          <table class="tabela-busca">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Cargo</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Ana Souza</td>
-      <td>Analista</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td>2</td>
-      <td>Bruno Lima</td>
-      <td>Desenvolvedor</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td>3</td>
-      <td>Carla Mendes</td>
-      <td>Designer</td>
-      <td>Inativo</td>
-    </tr>
-
-    <tr>
-      <td>4</td>
-      <td>Daniel Rocha</td>
-      <td>Gerente</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td>5</td>
-      <td>Eduarda Silva</td>
-      <td>Estagiária</td>
-      <td>Inativo</td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-
-        <p class="retorno" id="retorno-busca"></p>
-      </div>
-
-
-      <!-- =============================== -->
-      <!-- TABELA COM PAGINAÇÃO -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Tabela com Paginação</h2>
-
-        <div id="tabela-paginada-container">
-          <table class="tabela-paginada">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Cargo</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr><td>1</td><td>Ana Souza</td><td>Analista</td><td>Ativo</td></tr>
-    <tr><td>2</td><td>Bruno Lima</td><td>Desenvolvedor</td><td>Ativo</td></tr>
-    <tr><td>3</td><td>Carla Mendes</td><td>Designer</td><td>Inativo</td></tr>
-
-    <tr><td>4</td><td>Daniel Rocha</td><td>Gerente</td><td>Ativo</td></tr>
-    <tr><td>5</td><td>Eduarda Silva</td><td>Estagiária</td><td>Inativo</td></tr>
-    <tr><td>6</td><td>Felipe Torres</td><td>Analista</td><td>Ativo</td></tr>
-
-    <tr><td>7</td><td>Gabriela Nunes</td><td>UX Designer</td><td>Ativo</td></tr>
-    <tr><td>8</td><td>Henrique Dias</td><td>QA</td><td>Ativo</td></tr>
-    <tr><td>9</td><td>Isabela Costa</td><td>PO</td><td>Inativo</td></tr>
-  </tbody>
-</table>
-        </div>
-
-        <div class="paginacao-tabelas">
-          <button onclick="paginaAnterior()">Anterior</button>
-          <span id="pagina-atual">1</span>
-          <button onclick="proximaPagina()">Próxima</button>
-        </div>
-
-        <p class="retorno" id="retorno-paginacao"></p>
-      </div>
-
-
-      <!-- =============================== -->
-      <!-- TABELA COM SELEÇÃO DE LINHAS -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Tabela com Seleção de Linhas</h2>
-
-        <div id="tabela-selecao-container">
-          <table class="tabela-selecao">
-  <thead>
-    <tr>
-      <th>Selecionar</th>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Cargo</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td><input type="checkbox" class="linha-selecao" onclick="atualizarSelecao()"></td>
-      <td>1</td>
-      <td>Ana Souza</td>
-      <td>Analista</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td><input type="checkbox" class="linha-selecao" onclick="atualizarSelecao()"></td>
-      <td>2</td>
-      <td>Bruno Lima</td>
-      <td>Desenvolvedor</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td><input type="checkbox" class="linha-selecao" onclick="atualizarSelecao()"></td>
-      <td>3</td>
-      <td>Carla Mendes</td>
-      <td>Designer</td>
-      <td>Inativo</td>
-    </tr>
-
-    <tr>
-      <td><input type="checkbox" class="linha-selecao" onclick="atualizarSelecao()"></td>
-      <td>4</td>
-      <td>Daniel Rocha</td>
-      <td>Gerente</td>
-      <td>Ativo</td>
-    </tr>
-
-    <tr>
-      <td><input type="checkbox" class="linha-selecao" onclick="atualizarSelecao()"></td>
-      <td>5</td>
-      <td>Eduarda Silva</td>
-      <td>Estagiária</td>
-      <td>Inativo</td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-
-        <p class="retorno" id="retorno-selecao"></p>
-      </div>
-
-
-      <!-- =============================== -->
-      <!-- TABELA COM AÇÕES -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Tabela com Ações</h2>
-
-        <div id="tabela-acoes-container">
-<table class="tabela-acoes">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Cargo</th>
-      <th>Status</th>
-      <th style="text-align: center;">Ações</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Ana Souza</td>
-      <td>Analista</td>
-      <td>Ativo</td>
-      <td style="text-align: right;">
-        <button class="btn-acao btn-ver" onclick="acaoVer('Ana Souza')">Ver</button>
-        <button class="btn-acao btn-editar" onclick="acaoEditar('Ana Souza')">Editar</button>
-        <button class="btn-acao btn-excluir" onclick="acaoExcluir('Ana Souza')">Excluir</button>
-      </td>
-    </tr>
-
-    <tr>
-      <td>2</td>
-      <td>Bruno Lima</td>
-      <td>Desenvolvedor</td>
-      <td>Ativo</td>
-      <td style="text-align: right;">
-        <button class="btn-acao btn-ver" onclick="acaoVer('Bruno Lima')">Ver</button>
-        <button class="btn-acao btn-editar" onclick="acaoEditar('Bruno Lima')">Editar</button>
-        <button class="btn-acao btn-excluir" onclick="acaoExcluir('Bruno Lima')">Excluir</button>
-      </td>
-    </tr>
-
-    <tr>
-      <td>3</td>
-      <td>Carla Mendes</td>
-      <td>Designer</td>
-      <td>Inativo</td>
-      <td style="text-align: right;">
-        <button class="btn-acao btn-ver" onclick="acaoVer('Carla Mendes')">Ver</button>
-        <button class="btn-acao btn-editar" onclick="acaoEditar('Carla Mendes')">Editar</button>
-        <button class="btn-acao btn-excluir" onclick="acaoExcluir('Carla Mendes')">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-
-        <p class="retorno" id="retorno-acoes"></p>
-      </div>
-
-
-      <!-- =============================== -->
-      <!-- ESTADO VAZIO -->
-      <!-- =============================== -->
-      <div class="card">
-        <h2>Estado Vazio</h2>
-
-        <div id="tabela-vazia-container">
-          <table class="tabela-vazia">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Cargo</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr class="estado-vazio">
-      <td colspan="4">
-  <div class="estado-vazio-conteudo">
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-      <path d="M4 5H20V19H4V5Z" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M4 9H20" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M9 9V19" stroke="#999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-
-    <p>Nenhum dado disponível no momento</p>
-
-    <button class="btn-recarregar" onclick="recarregarTabelaVazia()">
-      Recarregar dados
-    </button>
-  </div>
-</td>
-    </tr>
-  </tbody>
-</table>
-        </div>
-
-        <p class="retorno" id="retorno-vazio"></p>
-      </div>
-
-<!-- =============================== -->
-<!-- BOTÕES FINAIS -->
-<!-- =============================== -->
-<div class="button-group">
-  <button
-    type="button"
-    class="requisitos"
-    onclick="location.href='tabelas-requisitos.html'"
-  >
-    Requisitos
-  </button>
-
-  <button onclick="resetarTabelas()">Resetar</button>
-  <button onclick="location.href='home.html'">Voltar</button>
-</div>
-
-</div>
-</div>
-
-<script src="tabelas.js"></script>
-</body>
+    <script src="tabelas.js"></script>
+  </body>
 </html>

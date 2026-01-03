@@ -1,55 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Arrastar e Soltar</title>
-  <link rel="stylesheet" href="style_global.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <div class="login-content">
-    <h1>Arrastando Imagens</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Arrastar e Soltar</title>
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-content">
+      <h1>Arrastando Imagens</h1>
 
-    <!-- Container principal -->
-    <div class="form-container">
-      <!-- Layout base -->
-      <div id="game-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-        
-                <!-- Coluna das palavras -->
-        <div id="coluna-palavras" class="field-container">
-          <label>Arrastar</label><br>
-          <div class="tag-palavra" draggable="true" data-tipo="ponte">Ponte</div>
-          <div class="tag-palavra" draggable="true" data-tipo="morro">Morro</div>
-          <div class="tag-palavra" draggable="true" data-tipo="barco">Barco</div>
-          <div class="tag-palavra" draggable="true" data-tipo="casa">Casa</div>
-          <div class="tag-palavra" draggable="true" data-tipo="campo">Campo</div>
-          <div class="tag-palavra" draggable="true" data-tipo="predio">Prédio</div>
-          <div class="tag-palavra" draggable="true" data-tipo="carro">Carro</div>
-        </div>
-        
-        <!-- Coluna das imagens -->
-        <div id="coluna-imagens" class="field-container">
-          <label>Soltar</label>
-          <div class="item-slot" data-tipo="casa"><img src="img/casa.jpg" alt="Casa"></div>
-          <div class="item-slot" data-tipo="campo"><img src="img/campo.jpg" alt="Campo"></div>
-          <div class="item-slot" data-tipo="morro"><img src="img/morro.jpg" alt="Morro"></div>
-          <div class="item-slot" data-tipo="predio"><img src="img/predio.jpg" alt="Prédio"></div>
-          <div class="item-slot" data-tipo="ponte"><img src="img/ponte.jpg" alt="Ponte"></div>
-          <div class="item-slot" data-tipo="carro"><img src="img/carro.jpg" alt="Carro"></div>
-          <div class="item-slot" data-tipo="barco"><img src="img/barco.jpg" alt="Barco"></div>
-        </div>
-      </div>
+      <!-- Container principal -->
+      <div class="form-container">
+        <!-- Layout base -->
+        <div
+          id="game-container"
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px"
+        >
+          <!-- Coluna das palavras -->
+          <div id="coluna-palavras" class="field-container">
+            <label>Arrastar</label><br />
+            <div class="tag-palavra" draggable="true" data-tipo="ponte">
+              Ponte
+            </div>
+            <div class="tag-palavra" draggable="true" data-tipo="morro">
+              Morro
+            </div>
+            <div class="tag-palavra" draggable="true" data-tipo="barco">
+              Barco
+            </div>
+            <div class="tag-palavra" draggable="true" data-tipo="casa">
+              Casa
+            </div>
+            <div class="tag-palavra" draggable="true" data-tipo="campo">
+              Campo
+            </div>
+            <div class="tag-palavra" draggable="true" data-tipo="predio">
+              Prédio
+            </div>
+            <div class="tag-palavra" draggable="true" data-tipo="carro">
+              Carro
+            </div>
+          </div>
 
-      <!-- Botões dentro do container -->
-      <div class="button-group" style="margin-top: 20px;">
-        <button type="button" class="requisitos" onclick="location.href='arrastar-soltar-requisitos.html'">Requisitos</button>
-        <button type="button" onclick="location.href='home.html'">Voltar</button>
-        <button type="button" id="reiniciar">Reiniciar</button>
+          <!-- Coluna das imagens -->
+          <div id="coluna-imagens" class="field-container">
+            <label>Soltar</label>
+            <div class="item-slot" data-tipo="casa">
+              <img src="img/arrastar_soltar/casa.jpg" alt="Casa" />
+            </div>
+            <div class="item-slot" data-tipo="campo">
+              <img src="img/arrastar_soltar/campo.jpg" alt="Campo" />
+            </div>
+            <div class="item-slot" data-tipo="morro">
+              <img src="img/arrastar_soltar/morro.jpg" alt="Morro" />
+            </div>
+            <div class="item-slot" data-tipo="predio">
+              <img src="img/arrastar_soltar/predio.jpg" alt="Prédio" />
+            </div>
+            <div class="item-slot" data-tipo="ponte">
+              <img src="img/arrastar_soltar/ponte.jpg" alt="Ponte" />
+            </div>
+            <div class="item-slot" data-tipo="carro">
+              <img src="img/arrastar_soltar/carro.jpg" alt="Carro" />
+            </div>
+            <div class="item-slot" data-tipo="barco">
+              <img src="img/arrastar_soltar/barco.jpg" alt="Barco" />
+            </div>
+          </div>
+        </div>
+
+        <!-- HUD de status -->
+        <div
+          id="hud"
+          class="field-container"
+          style="
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 12px;
+          "
+        >
+          <div><strong>Movimentos:</strong> <span id="movimentos">0</span></div>
+          <div><strong>Acertos:</strong> <span id="acertos">0</span></div>
+          <div><strong>Erros:</strong> <span id="erros">0</span></div>
+        </div>
+
+        <!-- Mensagem final -->
+        <div
+          id="mensagem-final"
+          class="field-container"
+          style="margin-top: 8px"
+        ></div>
+
+        <!-- Botões dentro do container -->
+        <div class="button-group" style="margin-top: 20px">
+          <button
+            type="button"
+            class="requisitos"
+            onclick="location.href='arrastar-soltar-requisitos.html'"
+          >
+            Requisitos
+          </button>
+          <button type="button" onclick="location.href='home.html'">
+            Voltar
+          </button>
+          <button type="button" id="reiniciar">Reiniciar</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="arrastar-soltar.js"></script>
-</body>
+    <!-- Modal de mensagem rápida -->
+    <div id="modal-mensagem"></div>
+
+    <script src="arrastar-soltar.js"></script>
+  </body>
 </html>
