@@ -1,6 +1,19 @@
 let pecas = [];
 let dragged = null;
 
+const modalMensagemEl = document.getElementById("modal-mensagem");
+const embaralharBtn = document.getElementById("embaralhar");
+
+function mostrarModalMensagem(texto, cor = "#333") {
+  modalMensagemEl.textContent = texto;
+  modalMensagemEl.style.color = cor;
+  modalMensagemEl.style.display = "block";
+
+  setTimeout(() => {
+    modalMensagemEl.style.display = "none";
+  }, 3000); // 3 segundos
+}
+
 function iniciarJogo(qtd) {
   const tabuleiro = document.getElementById("tabuleiro");
   const referencia = document.getElementById("referencia");
@@ -61,9 +74,14 @@ function iniciarJogo(qtd) {
 
   // Atualiza botão ativo
   const botoesNivel = document.querySelectorAll("#botoes-niveis button");
-  botoesNivel.forEach(btn => btn.classList.remove("active"));
-  const botaoAtual = Array.from(botoesNivel).find(btn => btn.textContent.includes(qtd));
+  botoesNivel.forEach((btn) => btn.classList.remove("active"));
+  const botaoAtual = Array.from(botoesNivel).find((btn) =>
+    btn.textContent.includes(qtd)
+  );
   if (botaoAtual) botaoAtual.classList.add("active");
+
+  // Desabilita botão embaralhar ao iniciar novo jogo
+  embaralharBtn.disabled = true;
 }
 
 function aplicarEventos(peca) {
@@ -107,18 +125,34 @@ function drop(e) {
 
 function verificarVitoria() {
   const tabuleiro = document.getElementById("tabuleiro");
-  const mensagem = document.getElementById("mensagem");
   const filhos = Array.from(tabuleiro.children);
 
   const correto = filhos.every((p, idx) => parseInt(p.dataset.index) === idx);
 
   if (correto) {
-    mensagem.textContent = "🎉 Parabéns, você montou o quebra-cabeça!";
-    mensagem.style.display = "block";
+    mostrarModalMensagem(
+      "🎉 Parabéns, você montou o quebra-cabeça!",
+      "#3b82f6"
+    );
+    embaralharBtn.disabled = false; // habilita botão
   }
 }
 
+// Função para embaralhar novamente
+embaralharBtn.addEventListener("click", () => {
+  pecas.sort(() => Math.random() - 0.5);
+  const tabuleiro = document.getElementById("tabuleiro");
+  tabuleiro.innerHTML = "";
+  pecas.forEach((p, idx) => {
+    p.dataset.current = idx;
+    tabuleiro.appendChild(p);
+  });
+
+  embaralharBtn.disabled = true; // desabilita até próxima vitória
+  mostrarModalMensagem("Tabuleiro embaralhado!", "#ffa200ff");
+});
+
 // ✅ Inicia automaticamente com 4 peças
-window.onload = function() {
+window.onload = function () {
   iniciarJogo(4);
 };

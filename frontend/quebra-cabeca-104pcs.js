@@ -36,6 +36,9 @@ function iniciarJogo104() {
   document.getElementById(
     "referencia"
   ).innerHTML = `<img src="img/quebra-cabeca/nivel128/robo104pcs.png" alt="Imagem de referência">`;
+
+  // desabilita botão embaralhar ao iniciar
+  embaralharBtn.disabled = true;
 }
 
 // peça sendo arrastada
@@ -79,9 +82,39 @@ function verificarConclusao() {
   }
 
   // se chegou aqui → terminou!
-  document.getElementById("mensagem").innerHTML =
-    "<h2 style='color: green;'>✅ Quebra-cabeça concluído com sucesso!</h2>";
+  mostrarModalMensagem("🎉 Parabéns, você montou o quebra-cabeça!", "#3b82f6");
+  embaralharBtn.disabled = false; // habilita botão
 }
+
+// Modal rápida
+const modalMensagemEl = document.getElementById("modal-mensagem");
+const embaralharBtn = document.getElementById("embaralhar");
+
+function mostrarModalMensagem(texto, cor = "#333") {
+  modalMensagemEl.textContent = texto;
+  modalMensagemEl.style.color = cor;
+  modalMensagemEl.style.display = "block";
+
+  setTimeout(() => {
+    modalMensagemEl.style.display = "none";
+  }, 3000); // 3 segundos
+}
+
+// Função para embaralhar novamente
+embaralharBtn.addEventListener("click", () => {
+  const tabuleiro = document.getElementById("tabuleiro104pcs");
+  const pecas = Array.from(tabuleiro.children);
+
+  // embaralha novamente
+  pecas.sort(() => Math.random() - 0.5);
+  tabuleiro.innerHTML = "";
+  pecas.forEach((p, idx) => {
+    tabuleiro.appendChild(p);
+  });
+
+  embaralharBtn.disabled = true; // desabilita até próxima vitória
+  mostrarModalMensagem("Tabuleiro embaralhado!", "#f59e0b");
+});
 
 // inicia automaticamente
 window.onload = iniciarJogo104;

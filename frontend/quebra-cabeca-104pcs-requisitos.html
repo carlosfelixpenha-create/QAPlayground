@@ -22,10 +22,13 @@
             <li>As peças devem ser arrastáveis (drag & drop).</li>
             <li>O jogador deve conseguir trocar posições entre peças.</li>
             <li>O tabuleiro deve usar o layout horizontal (13 × 8).</li>
-            <li>Ao montar corretamente, deve exibir mensagem de vitória.</li>
             <li>
-              <em>Mensagem exibida:</em> “✅ Quebra-cabeça concluído com
-              sucesso!”.
+              Ao montar corretamente, deve exibir mensagem de vitória em uma
+              <em>modal rápida</em>.
+            </li>
+            <li>
+              <em>Mensagem exibida:</em> “🎉 Parabéns, você montou o
+              quebra-cabeça!”.
             </li>
           </ul>
         </ul>
@@ -67,6 +70,27 @@
             <strong>Critério de aceite:</strong> Ao clicar, deve carregar
             <code>home.html</code>.
           </li>
+        </ul>
+
+        <h3>Embaralhar</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Disponível apenas após o jogador montar
+            corretamente o quebra-cabeça.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Botão deve permanecer desabilitado até a vitória.</li>
+            <li>Ao clicar, deve embaralhar novamente as peças do tabuleiro.</li>
+            <li>
+              Após embaralhar, o botão volta a ficar desabilitado até a próxima
+              vitória.
+            </li>
+            <li>
+              Ao embaralhar, deve exibir uma <em>modal rápida</em> com a
+              mensagem “Tabuleiro embaralhado!”.
+            </li>
+          </ul>
         </ul>
 
         <div class="button-group">

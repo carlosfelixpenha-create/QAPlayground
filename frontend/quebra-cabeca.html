@@ -40,13 +40,14 @@
             </div>
           </div>
 
-          <!-- Mensagem de vitória -->
+          <!-- Mensagem de vitória (não será mais usada diretamente, mas mantida para consistência) -->
           <div id="mensagem"></div>
 
           <!-- Botões de navegação abaixo do tabuleiro -->
           <div class="button-group" id="botoes-navegacao">
             <button type="button" class="requisitos" onclick="location.href='quebra-cabeca-requisitos.html'">Requisitos</button>
             <button type="button" onclick="location.href='home.html'">Voltar</button>
+            <button type="button" id="embaralhar" disabled>Embaralhar</button>
           </div>
         </div>
 
@@ -54,6 +55,9 @@
 
     </div>
   </div>
+
+  <!-- Modal de mensagem rápida -->
+  <div id="modal-mensagem"></div>
 
   <script src="quebra-cabeca.js"></script>
 </body>

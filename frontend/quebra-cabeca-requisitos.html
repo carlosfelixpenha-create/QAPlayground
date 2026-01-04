@@ -12,6 +12,7 @@
       <h1>Requisitos 'Tela de Quebra-Cabeça'</h1>
       <div class="doc-container">
         <h2>Campos</h2>
+
         <h3>Seleção de Nível</h3>
         <ul>
           <li>
@@ -25,7 +26,7 @@
             </li>
             <li>
               Os botões de seleção devem desaparecer e mostrar apenas o
-              tabuleiro e o botão de voltar.
+              tabuleiro e os botões de navegação.
             </li>
             <li>As peças devem ser embaralhadas automaticamente.</li>
           </ul>
@@ -41,7 +42,10 @@
           <ul>
             <li>As peças devem ser arrastáveis (drag & drop).</li>
             <li>O jogador deve conseguir trocar posições entre peças.</li>
-            <li>Ao montar corretamente, deve exibir mensagem de vitória.</li>
+            <li>
+              Ao montar corretamente, deve exibir mensagem de vitória em uma
+              <em>modal rápida</em>.
+            </li>
             <li>
               <em>Mensagem exibida:</em> “🎉 Parabéns, você montou o
               quebra-cabeça!”.
@@ -50,6 +54,7 @@
         </ul>
 
         <h2>Botões</h2>
+
         <h3>Requisitos</h3>
         <ul>
           <li>
@@ -71,13 +76,21 @@
           </li>
         </ul>
 
-        <h3>Voltar ao menu de níveis</h3>
+        <h3>Embaralhar</h3>
         <ul>
-          <li><strong>Requisito:</strong> Disponível apenas durante o jogo.</li>
           <li>
-            <strong>Critério de aceite:</strong> Ao clicar, deve limpar o
-            tabuleiro e reexibir os botões de níveis.
+            <strong>Requisito:</strong> Disponível apenas após o jogador montar
+            corretamente o quebra-cabeça.
           </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Botão deve permanecer desabilitado até a vitória.</li>
+            <li>Ao clicar, deve embaralhar novamente as peças do tabuleiro.</li>
+            <li>
+              Após embaralhar, o botão volta a ficar desabilitado até a próxima
+              vitória.
+            </li>
+          </ul>
         </ul>
 
         <div class="button-group">
