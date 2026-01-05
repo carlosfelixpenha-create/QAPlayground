@@ -5,51 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QAPlayground</title>
   <link rel="stylesheet" href="style_global.css" />
-
-  <style>
-    /* Contêiner fixo do contador */
-    #contador-container {
-      position: fixed;
-      bottom: 20px;
-      right: 50px;
-      background: rgba(0, 0, 0, 0.7);
-      color: #ffae82;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-      z-index: 9999;
-    }
-  </style>
 </head>
 
 <body>
+  <!-- Botão de Contatos no canto superior direito -->
+  <div class="top-right">
+    <button id="btnContatos" onclick="abrirModalContatos()">📞 Contatos</button>
+  </div>
+
   <div class="container">
     <aside class="sidebar">
       <h2>Menu de Atividades</h2>
       <ul>
-        <li><button onclick="location.href='instrucoes.html'">Instruções</button></li>
-        <li><button onclick="location.href='cadastro.html'">Cadastro</button></li>
-        <li><button onclick="location.href='login.html'">Login</button></li>
-        <li><button onclick="location.href='formulario-1.html'">Formulário 1</button></li>
-        <li><button onclick="location.href='formulario-2.html'">Formulário 2</button></li>
-        <li><button onclick="location.href='formulario-3.html'">Formulário 3</button></li>
-        <li><button onclick="location.href='botoes.html'">Botões</button></li>
-        <li><button onclick="location.href='modais.html'">Modais</button></li>
-        <li><button onclick="location.href='tabelas.html'">Tabelas</button></li>
-        <li><button onclick="location.href='arrastar-soltar.html'">Arrastando Imagens</button></li>
-        <li><button onclick="location.href='quebra-cabeca.html'">Quebra Cabeças</button></li>
-        <li><button onclick="location.href='quebra-cabeca-104pcs.html'">Quebra Cabeça 104pcs</button></li>
-        <li><button onclick="location.href='acessibilidade.html'">Acessibilidades</button></li>
-        <li><button>Em Desenvolvimento</button></li>
-        <li><button onclick="location.href='referencias.html'">Referências</button></li>
+        <li><button onclick="location.href='instrucoes.html'">📋 Instruções</button></li>
+        <li><button onclick="location.href='cadastro.html'">📝 Cadastro</button></li>
+        <li><button onclick="location.href='login.html'">🔑 Login</button></li>
+        <li><button onclick="location.href='formulario-1.html'">📄 Formulário 1</button></li>
+        <li><button onclick="location.href='formulario-2.html'">🧾 Formulário 2</button></li>
+        <li><button onclick="location.href='formulario-3.html'">🗒️ Formulário 3</button></li>
+        <li><button onclick="location.href='botoes.html'">🔘 Botões</button></li>
+        <li><button onclick="location.href='modais.html'">🪟 Modais</button></li>
+        <li><button onclick="location.href='tabelas.html'">📊 Tabelas</button></li>
+        <li><button onclick="location.href='arrastar-soltar.html'">🖼️ Arrastando Imagens</button></li>
+        <li><button onclick="location.href='quebra-cabeca.html'">🧩 Quebra Cabeças</button></li>
+        <li><button onclick="location.href='quebra-cabeca-104pcs.html'">🧩🧩 Quebra Cabeça 104pcs</button></li>
+        <li><button onclick="location.href='acessibilidade.html'">♿ Acessibilidades</button></li>
+        <li><button onclick="location.href='referencias.html'">📚 Referências</button></li>
+        <li><button onclick="abrirModalAvaliacao()">⭐ Avaliar Plataforma</button></li>
       </ul>
 
-          <!-- Logo abaixo dos botões -->
-<div class="logo-home">
-  <img src="img/logos/logo_home.png" alt="Logo QAPlayground" />
-</div>
+      <!-- Logo abaixo dos botões -->
+      <div class="logo-home">
+        <img src="img/logos/logo_home.png" alt="Logo QAPlayground" />
+      </div>
     </aside>
 
     <main class="content">
@@ -73,38 +61,78 @@
       <p><h4>2. Para voltar à tela inicial, clique no botão <strong>Voltar</strong> disponível em cada página.</h4></p>
       <p><h4>3. Todas as telas possuem regras de negócio e critérios de aceite definidos.</h4></p>
       <p><h4>4. Para visualizar esses detalhes, utilize o botão <strong>Requisitos</strong> em cada atividade.</h4></p>
-      <p><h4>5. Novas funcionalidades estão em desenvolvimento e serão adicionadas em breve.</h4></p>
+      <p><h4>5. Meus contatos estão no botão superior do lado direito da pagina.</h4></p>
+      <p><h4>6. Novas funcionalidades estão em desenvolvimento e serão adicionadas em breve.</h4></p>
       <p><h4>
        Atualmente o QAPlayground conta com 
-      <span class="contador-linhas">7207 linhas</span> 
+      <span class="contador-linhas">7646 linhas</span> 
        de código e documentação, mostrando o tamanho e a dedicação por trás deste ambiente colaborativo.
       </h4></p><br>
       <h3 class="texto-destaque">
         *Este projeto é feito para você aprender, praticar e compartilhar conhecimento.
         Explore, colabore e divirta-se testando!
       </h3>
-      
     </main>
   </div>
 
   <!-- Contêiner fixo do contador -->
   <div id="contador-container">Visitantes: carregando...</div>
 
-  <script>
-    // Domínio oficial do GitHub Pages
-    const dominioOficial = "carlosfelixpenha-create.github.io";
+  <!-- Contêiner fixo da média -->
+  <div id="media-container">⭐ Média: carregando...</div>
 
-    if (window.location.hostname === dominioOficial) {
-      fetch('https://api.countapi.xyz/hit/qaplayground/visitas')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('contador-container').innerText = `Visitantes: ${data.value}`;
-        });
-    } else {
-      // Durante desenvolvimento local, não conta
-      document.getElementById('contador-container').innerText = "Visitantes: 0";
-    }
-  </script>
+  <!-- Modal de Avaliação -->
+  <div id="modal-avaliacao" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModalAvaliacao()">&times;</span>
+      <h2>Avalie a nossa plataforma ⭐</h2>
+      <div id="estrelas">
+        <span onclick="avaliar(1)">☆</span>
+        <span onclick="avaliar(2)">☆</span>
+        <span onclick="avaliar(3)">☆</span>
+        <span onclick="avaliar(4)">☆</span>
+        <span onclick="avaliar(5)">☆</span>
+      </div>
+      <p id="resultado"></p>
 
+      <!-- Novo campo de feedback extra -->
+      <div id="feedback-extra" style="display:none; margin-top:10px;">
+        <label for="comentario-extra">
+          <strong>Sua sugestão:</strong>
+        </label>
+        <textarea id="comentario-extra" maxlength="128" 
+          placeholder="O que podemos melhorar? 
+(máx. 128 caracteres)"
+          style="width:100%; height:60px; margin-top:5px;"></textarea>
+        <br>
+        <button onclick="enviarSugestao()" style="margin-top:8px;">Enviar Sugestão</button>
+      </div>
+
+      <!-- Média de avaliações -->
+      <p id="media-avaliacao"></p>
+    </div>
+  </div>
+
+  <!-- Modal de Contatos -->
+  <div id="modal-contatos" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModalContatos()">&times;</span>
+      <h2>Meus Contatos</h2>
+
+      <p>📱 Celular: (41) 99583-0881</p>
+      <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/carlos-f%C3%A9lix-9427676b" target="_blank">linkedin.com/in/carlos-félix</a></p>
+      <p>🌐 Portfólio: <a href="https://carlosfelixpenha-create.github.io/Portfolio/" target="_blank">carlosfelixpenha-create.github.io/Portfolio</a></p>
+      <p>📂 GitHub: <a href="https://github.com/carlosfelixpenha-create" target="_blank">github.com/carlosfelixpenha-create</a></p><br>
+
+      <!-- Imagem de destaque -->
+      <img src="img/logos/novo-emprego.jpg" alt="À Procura de Emprego" />
+
+      <!-- Botão OK com estilo já existente -->
+      <button id="modalContatosOk" class="btn-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- JS externo -->
+  <script src="home.js"></script>
 </body>
 </html>
