@@ -1,0 +1,25 @@
+# Dependências
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Build / distribuição
+dist/
+build/
+
+# Test coverage (gerado pelo Jest)
+coverage/
+
+# Ambiente local
+.env
+
+# Cache do Jest
+.jest/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
