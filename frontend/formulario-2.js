@@ -87,3 +87,8 @@ function mostrarModal(mensagem) {
     modal.style.display = "none";
   };
 }
+// Exporta funções para os testes
+module.exports = {
+  executarFormulario2,
+  mostrarModal,
+};
