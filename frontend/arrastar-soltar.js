@@ -126,26 +126,46 @@ itens.forEach((item) => {
   });
 });
 
-// Botão de reiniciar jogo
-document.getElementById("reiniciar").addEventListener("click", () => {
-  movimentos = 0;
-  acertos = 0;
-  erros = 0;
+// Inicializa HUD (só se os elementos já existem)
+if (movimentosEl && acertosEl && errosEl) {
   updateHUD();
-  mensagemFinalEl.innerHTML = "";
-  modalMensagemEl.style.display = "none"; // limpa modal
+}
 
-  itens.forEach((slot) => {
-    slot.classList.remove("correto", "errado");
-    const tipo = slot.dataset.tipo;
-    slot.innerHTML = `<img src="img/arrastar_soltar/${tipo}.jpg" alt="${tipo}">`;
+// Botão de reiniciar jogo (protegido)
+const reiniciarBtn = document.getElementById("reiniciar");
+if (reiniciarBtn) {
+  reiniciarBtn.addEventListener("click", () => {
+    movimentos = 0;
+    acertos = 0;
+    erros = 0;
+    updateHUD();
+    mensagemFinalEl.innerHTML = "";
+    modalMensagemEl.style.display = "none"; // limpa modal
+
+    itens.forEach((slot) => {
+      slot.classList.remove("correto", "errado");
+      const tipo = slot.dataset.tipo;
+      slot.innerHTML = `<img src="img/arrastar_soltar/${tipo}.jpg" alt="${tipo}">`;
+    });
+
+    palavras.forEach((p) => {
+      p.setAttribute("draggable", "true");
+      p.style.opacity = "1";
+    });
   });
+}
 
-  palavras.forEach((p) => {
-    p.setAttribute("draggable", "true");
-    p.style.opacity = "1";
-  });
-});
-
-// Inicializa HUD
-updateHUD();
+// Exporta funções para os testes
+module.exports = {
+  updateHUD,
+  mostrarModalMensagem,
+  finalizarSeConcluido,
+  _state: {
+    getMovimentos: () => movimentos,
+    setMovimentos: (v) => (movimentos = v),
+    getAcertos: () => acertos,
+    setAcertos: (v) => (acertos = v),
+    getErros: () => erros,
+    setErros: (v) => (erros = v),
+  },
+};
