@@ -2,7 +2,7 @@
  * Testes unitários para home.js
  * Usando Jest + JSDOM para simular o DOM
  */
-
+// Testes automação unitarios
 // Mock global de fetch ANTES de importar home.js
 global.fetch = jest.fn(() =>
   Promise.resolve({
