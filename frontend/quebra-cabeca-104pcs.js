@@ -116,5 +116,17 @@ embaralharBtn.addEventListener("click", () => {
   mostrarModalMensagem("Tabuleiro embaralhado!", "#f59e0b");
 });
 
-// inicia automaticamente
+// Exporta para os testes unitários
 window.onload = iniciarJogo104;
+module.exports = {
+  iniciarJogo104,
+  dragStart,
+  dragOver,
+  drop,
+  verificarConclusao,
+  mostrarModalMensagem,
+  _state: {
+    getPecaArrastada: () => pecaArrastada,
+    setPecaArrastada: (val) => (pecaArrastada = val),
+  },
+};

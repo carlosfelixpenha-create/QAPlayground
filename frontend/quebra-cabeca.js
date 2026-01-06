@@ -156,3 +156,22 @@ embaralharBtn.addEventListener("click", () => {
 window.onload = function () {
   iniciarJogo(4);
 };
+
+// exporta para testes unitários
+module.exports = {
+  mostrarModalMensagem,
+  iniciarJogo,
+  aplicarEventos,
+  dragStart,
+  dragEnd,
+  dragOver,
+  drop,
+  verificarVitoria,
+
+  _state: {
+    getPecas: () => pecas,
+    setPecas: (arr) => (pecas = arr),
+    getDragged: () => dragged,
+    setDragged: (val) => (dragged = val),
+  },
+};
