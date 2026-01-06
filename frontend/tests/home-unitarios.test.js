@@ -1,6 +1,6 @@
 /**
  * Testes unitários para home.js
- * Testes de integração para home.js
+ * Testes de integração home.js
  * Usando Jest + JSDOM para simular o DOM
  */
 // Mock global de fetch ANTES de importar home.js
