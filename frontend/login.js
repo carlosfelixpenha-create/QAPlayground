@@ -5,22 +5,6 @@ function mostrarModal(mensagem) {
   document.getElementById("modalMensagem").style.display = "flex";
 }
 
-// Eventos de fechar modal
-document.getElementById("modalFechar").onclick = function () {
-  document.getElementById("modalMensagem").style.display = "none";
-};
-
-document.getElementById("modalOk").onclick = function () {
-  document.getElementById("modalMensagem").style.display = "none";
-};
-
-window.onclick = function (event) {
-  const modal = document.getElementById("modalMensagem");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-};
-
 // Função principal de login
 function executarLogin(event) {
   event.preventDefault();
@@ -69,8 +53,25 @@ function executarLogin(event) {
 // Disponibiliza no escopo global para o HTML encontrar
 window.executarLogin = executarLogin;
 
-// --- Toggle de visibilidade da senha ---
-(function () {
+// --- Inicialização dos listeners ---
+function inicializarLogin() {
+  // Eventos de fechar modal
+  document.getElementById("modalFechar").onclick = function () {
+    document.getElementById("modalMensagem").style.display = "none";
+  };
+
+  document.getElementById("modalOk").onclick = function () {
+    document.getElementById("modalMensagem").style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    const modal = document.getElementById("modalMensagem");
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  // Toggle de visibilidade da senha
   const btn = document.getElementById("toggleSenha");
   const input = document.getElementById("senha");
 
@@ -78,13 +79,22 @@ window.executarLogin = executarLogin;
     btn.addEventListener("click", () => {
       const isPassword = input.type === "password";
       input.type = isPassword ? "text" : "password";
-      btn.textContent = isPassword ? "🙈" : "👁️";
+      btn.textContent = isPassword ? "👁️" : "🙈";
       btn.setAttribute(
         "aria-label",
-        isPassword ? "Ocultar senha" : "Mostrar senha"
+        isPassword ? "Mostrar senha" : "Ocultar senha"
       );
       // devolve o foco ao campo para permitir edição imediata
       input.focus();
     });
   }
-})();
+}
+
+// Exporta funções para os testes unitários
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    executarLogin,
+    mostrarModal,
+    inicializarLogin,
+  };
+}
