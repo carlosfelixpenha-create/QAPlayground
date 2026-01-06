@@ -4,7 +4,7 @@
   "description": "Criar uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados. O ambiente servirá como um \"playground\" para profissionais e estudantes de QA explorarem cenários reais de validação de software.",
   "main": "index.js",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "jest"
   },
   "repository": {
