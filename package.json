@@ -4,6 +4,7 @@
   "description": "Criar uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados. O ambiente servirá como um \"playground\" para profissionais e estudantes de QA explorarem cenários reais de validação de software.",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
     "test": "jest"
   },
   "repository": {
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/carlosfelixpenha-create/QAPlayground#readme",
   "devDependencies": {
+    "husky": "^9.1.7",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "node-fetch": "^3.3.2"
