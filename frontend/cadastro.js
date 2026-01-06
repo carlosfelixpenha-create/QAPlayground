@@ -163,3 +163,18 @@ window.onload = function () {
 window.executarCadastro = executarCadastro;
 window.verUsuarioSalvo = verUsuarioSalvo;
 window.limparCadastro = limparCadastro;
+
+// Para uso dos testes unitários e de integração
+module.exports = {
+  validarNome,
+  validarEmail,
+  validarSenha,
+  validarConfirmarSenha,
+  salvarUsuarioLocal,
+  desabilitarCamposCadastro,
+  habilitarCamposCadastro,
+  executarCadastro,
+  verUsuarioSalvo,
+  limparCadastro,
+  mostrarModal,
+};
