@@ -379,3 +379,14 @@ function resetarPagina() {
   document.getElementById("btn-icone-raio").innerHTML = "⚡";
   document.getElementById("btn-icone-maozinha").innerHTML = "🤚";
 }
+// Exporta funções para os testes
+module.exports = {
+  mostrarModal,
+  acaoPrimaria,
+  acaoSecundaria,
+  acaoTerciaria,
+  abrirModal,
+  carregar,
+  acaoIcone,
+  resetarPagina,
+};
