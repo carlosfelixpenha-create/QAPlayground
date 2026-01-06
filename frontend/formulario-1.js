@@ -195,3 +195,11 @@ function mascaraCep(input) {
     input.value = valor;
   }
 }
+// Exporta funções para os testes
+module.exports = {
+  executarEndereco,
+  verEnderecoSalvo,
+  limparEndereco,
+  mostrarModal,
+  mascaraCep,
+};
