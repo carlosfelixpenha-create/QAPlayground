@@ -35,17 +35,45 @@ function mostrarModal(mensagem) {
   };
 }
 
-// Validação imediata ao selecionar arquivo
+// Validação imediata ao selecionar arquivo (erro = vermelho, sucesso = verde)
 function validarArquivo(input, tipoEsperado, mensagemErro) {
   input.addEventListener("change", () => {
     const arquivo = input.files[0];
     if (arquivo && arquivo.type !== tipoEsperado) {
       mostrarModal(mensagemErro);
-      input.classList.add("erro"); // marca campo com erro
+      input.classList.add("erro");
+      input.classList.remove("sucesso");
+    } else if (arquivo && arquivo.type === tipoEsperado) {
+      mostrarModal("Arquivo selecionado corretamente!");
+      input.classList.add("sucesso");
+      input.classList.remove("erro");
     } else {
-      input.classList.remove("erro"); // remove erro se corrigido
+      input.classList.remove("erro");
+      input.classList.remove("sucesso");
     }
   });
+}
+
+// Nova função para validar localização imediatamente
+function validarLocalizacao() {
+  const paisSelect = document.getElementById("pais");
+  const estadoSelect = document.getElementById("estado");
+  const cidadeSelect = document.getElementById("cidade");
+
+  [paisSelect, estadoSelect, cidadeSelect].forEach((select) => {
+    if (!select.value) {
+      select.classList.add("erro");
+      select.classList.remove("sucesso");
+    } else {
+      select.classList.add("sucesso");
+      select.classList.remove("erro");
+    }
+  });
+
+  // Se todos preenchidos corretamente → modal de sucesso
+  if (paisSelect.value && estadoSelect.value && cidadeSelect.value) {
+    mostrarModal("Localização selecionada corretamente!");
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -69,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
     }
+
+    validarLocalizacao();
   });
 
   // Quando muda Estado -> popular Cidades
@@ -85,6 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
         cidadeSelect.appendChild(opt);
       });
     }
+
+    validarLocalizacao();
+  });
+
+  // Quando muda Cidade -> validar localização
+  cidadeSelect.addEventListener("change", () => {
+    validarLocalizacao();
   });
 
   // Configura validação imediata para cada campo
@@ -135,40 +172,67 @@ function executarFormulario3(event) {
 
   let erros = [];
 
+  // Validação dos uploads
   campos.forEach(({ id, tipo }) => {
     const input = document.getElementById(id);
     const arquivo = input.files[0];
     if (!arquivo || arquivo.type !== tipo) {
       input.classList.add("erro");
+      input.classList.remove("sucesso");
       erros.push(id);
     } else {
+      input.classList.add("sucesso");
       input.classList.remove("erro");
     }
   });
 
+  // Validação da localização (cada campo individual)
   const paisSelect = document.getElementById("pais");
   const estadoSelect = document.getElementById("estado");
   const cidadeSelect = document.getElementById("cidade");
 
-  if (!paisSelect.value || !estadoSelect.value || !cidadeSelect.value) {
-    erros.push("localizacao");
+  [paisSelect, estadoSelect, cidadeSelect].forEach((select) => {
+    if (!select.value) {
+      select.classList.add("erro");
+      select.classList.remove("sucesso");
+      erros.push(select.id);
+    } else {
+      select.classList.add("sucesso");
+      select.classList.remove("erro");
+    }
+  });
+
+  // Se todos preenchidos corretamente → modal de sucesso da localização
+  if (paisSelect.value && estadoSelect.value && cidadeSelect.value) {
+    mostrarModal("Localização selecionada corretamente!");
   }
 
+  // Se houver erros → modal de aviso
   if (erros.length > 0) {
     return mostrarModal(
       "Existem campos inválidos. Revalide os campos destacados em vermelho."
     );
   }
 
-  // Se passou em todas as verificações → sucesso
+  // Se passou em todas as verificações → sucesso geral
   mostrarModal("Formulário enviado com sucesso!");
 
   // Limpar os campos após sucesso
   document.querySelectorAll("input[type='file']").forEach((input) => {
     input.value = "";
     input.classList.remove("erro");
+    input.classList.remove("sucesso");
   });
   paisSelect.value = "";
   estadoSelect.innerHTML = '<option value="">Selecione...</option>';
   cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+  paisSelect.classList.remove("erro", "sucesso");
+  estadoSelect.classList.remove("erro", "sucesso");
+  cidadeSelect.classList.remove("erro", "sucesso");
 }
+
+// Exporta funções para uso nos testes unitários
+module.exports = {
+  executarFormulario3,
+  mostrarModal,
+};

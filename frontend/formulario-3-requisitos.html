@@ -26,7 +26,15 @@
               Somente arquivos com extensão <code>.pdf</code> são aceitos.
             </li>
             <li>
-              <em>Mensagem exibida:</em> “Somente arquivos PDF são permitidos.”
+              <em>Mensagem exibida (erro):</em> “Campo para arquivo PDF, dúvidas
+              entrar em requisitos!”.
+            </li>
+            <li>
+              <em>Mensagem exibida (sucesso):</em> “Arquivo selecionado
+              corretamente!”.
+            </li>
+            <li>
+              Feedback visual: borda vermelha para erro, verde para sucesso.
             </li>
           </ul>
         </ul>
@@ -44,7 +52,15 @@
               Somente arquivos com extensão <code>.docx</code> são aceitos.
             </li>
             <li>
-              <em>Mensagem exibida:</em> “Somente arquivos DOCX são permitidos.”
+              <em>Mensagem exibida (erro):</em> “Campo para arquivo DOCX,
+              dúvidas entrar em requisitos!”.
+            </li>
+            <li>
+              <em>Mensagem exibida (sucesso):</em> “Arquivo selecionado
+              corretamente!”.
+            </li>
+            <li>
+              Feedback visual: borda vermelha para erro, verde para sucesso.
             </li>
           </ul>
         </ul>
@@ -62,7 +78,15 @@
               Somente arquivos com extensão <code>.jpg</code> são aceitos.
             </li>
             <li>
-              <em>Mensagem exibida:</em> “Somente arquivos JPG são permitidos.”
+              <em>Mensagem exibida (erro):</em> “Campo para arquivo JPG, dúvidas
+              entrar em requisitos!”.
+            </li>
+            <li>
+              <em>Mensagem exibida (sucesso):</em> “Arquivo selecionado
+              corretamente!”.
+            </li>
+            <li>
+              Feedback visual: borda vermelha para erro, verde para sucesso.
             </li>
           </ul>
         </ul>
@@ -80,7 +104,15 @@
               Somente arquivos com extensão <code>.xlsx</code> são aceitos.
             </li>
             <li>
-              <em>Mensagem exibida:</em> “Somente arquivos XLSX são permitidos.”
+              <em>Mensagem exibida (erro):</em> “Campo para arquivo XLSX,
+              dúvidas entrar em requisitos!”.
+            </li>
+            <li>
+              <em>Mensagem exibida (sucesso):</em> “Arquivo selecionado
+              corretamente!”.
+            </li>
+            <li>
+              Feedback visual: borda vermelha para erro, verde para sucesso.
             </li>
           </ul>
         </ul>
@@ -98,7 +130,15 @@
               Somente arquivos com extensão <code>.txt</code> são aceitos.
             </li>
             <li>
-              <em>Mensagem exibida:</em> “Somente arquivos TXT são permitidos.”
+              <em>Mensagem exibida (erro):</em> “Campo para arquivo TXT, dúvidas
+              entrar em requisitos!”.
+            </li>
+            <li>
+              <em>Mensagem exibida (sucesso):</em> “Arquivo selecionado
+              corretamente!”.
+            </li>
+            <li>
+              Feedback visual: borda vermelha para erro, verde para sucesso.
             </li>
           </ul>
         </ul>
@@ -118,8 +158,16 @@
               → Cidade).
             </li>
             <li>
-              <em>Mensagem exibida:</em> “Preencha corretamente os campos de
-              País, Estado e Cidade.”
+              <em>Mensagem exibida (erro):</em> “Preencha corretamente os campos
+              de País, Estado e Cidade.”
+            </li>
+            <li>
+              Feedback visual: cada campo individual recebe borda vermelha se
+              vazio, verde se preenchido.
+            </li>
+            <li>
+              Modal de sucesso exibida imediatamente quando os três campos forem
+              preenchidos corretamente.
             </li>
           </ul>
         </ul>
@@ -131,6 +179,10 @@
             abrir modal e marcar campo em vermelho.
           </li>
           <li>
+            Validação imediata ao selecionar País/Estado/Cidade: cada campo
+            recebe feedback individual.
+          </li>
+          <li>
             Validação no envio: se houver campos inválidos, abrir modal genérica
             “Existem campos inválidos. Revalide os campos destacados em
             vermelho.”
@@ -138,8 +190,10 @@
           <li>
             Campos inválidos permanecem destacados em vermelho até correção.
           </li>
+          <li>Campos válidos ficam destacados em verde.</li>
           <li>
-            Após envio bem-sucedido, todos os campos são limpos e resetados.
+            Após envio bem-sucedido, todos os campos são limpos e resetados,
+            incluindo a remoção das classes de erro/sucesso.
           </li>
         </ul>
 

@@ -998,6 +998,26 @@ table tbody tr:hover {
   border-color: #4a90e2;
   box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
+/* Campos de Upload */
+input.sucesso {
+  border: 3px solid green;
+}
+input.erro {
+  border: 3px solid red;
+}
+/* Campos de seleção (select) */
+select.erro {
+  border: 3px solid red;
+}
+
+select.sucesso {
+  border: 3px solid green;
+}
+
+input,
+select {
+  transition: border 0.3s ease;
+}
 
 /* =============================== */
 /* PAGINAÇÃO EXCLUSIVA DAS TABELAS */
