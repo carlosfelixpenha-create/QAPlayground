@@ -41,3 +41,4 @@ Criar uma aplicação web simples e 100% em português, voltada para testes manu
 3. Publicar versão inicial
 4. Compartilhar com a comunidade de QA
 5. Evoluir com base em feedbacks
+6. Testando com CI/CD
