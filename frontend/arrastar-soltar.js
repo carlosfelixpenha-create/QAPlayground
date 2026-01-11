@@ -7,7 +7,10 @@ const movimentosEl = document.getElementById("movimentos");
 const acertosEl = document.getElementById("acertos");
 const errosEl = document.getElementById("erros");
 const mensagemFinalEl = document.getElementById("mensagem-final");
-const modalMensagemEl = document.getElementById("modal-mensagem"); // modal centralizado
+
+// Referências das novas modais
+const modalMensagem = document.getElementById("modalMensagem");
+const modalMensagemErro = document.getElementById("modalMensagemErro");
 
 // Estado do jogo
 let movimentos = 0;
@@ -21,17 +24,39 @@ function updateHUD() {
   errosEl.textContent = erros;
 }
 
-// Função para mostrar modal informativo
-function mostrarModalMensagem(texto, cor = "#333") {
-  modalMensagemEl.textContent = texto;
-  modalMensagemEl.style.color = cor;
-  modalMensagemEl.style.display = "block";
+// Função para mostrar modal compacta (mensagens rápidas)
+function mostrarModal(titulo, texto, cor = "#333") {
+  document.getElementById("modalTitulo").textContent = titulo;
+  document.getElementById("modalTexto").textContent = texto;
+  document.getElementById("modalTexto").style.color = cor;
+  modalMensagem.style.display = "block";
 
+  // Fecha automaticamente após 2s
   setTimeout(() => {
-    modalMensagemEl.style.display = "none";
+    modalMensagem.style.display = "none";
   }, 2000);
 }
 
+// Função para mostrar modal fluida (erros detalhados)
+function mostrarModalErro(texto) {
+  document.getElementById("modalTextoErro").textContent = texto;
+  modalMensagemErro.style.display = "block";
+
+  // Fecha automaticamente após 3s
+  setTimeout(() => {
+    modalMensagemErro.style.display = "none";
+  }, 3000);
+}
+
+// Listeners para fechar manualmente a modal de erro
+document.getElementById("modalFecharErro").addEventListener("click", () => {
+  modalMensagemErro.style.display = "none";
+});
+document.getElementById("modalOkErro").addEventListener("click", () => {
+  modalMensagemErro.style.display = "none";
+});
+
+// Finalização do jogo
 function finalizarSeConcluido() {
   if (acertos === TOTAL_PARES) {
     let titulo = "";
@@ -55,8 +80,8 @@ function finalizarSeConcluido() {
     // Desabilitar novos arrastos após finalizar
     palavras.forEach((p) => p.setAttribute("draggable", "false"));
 
-    // Modal final de conclusão (independente de acertos/erros)
-    mostrarModalMensagem("Opaaaa! jogo concluído!", "#3b82f6");
+    // Modal final de conclusão
+    mostrarModal("Jogo concluído!", "Opaaaa! jogo concluído!", "#3b82f6");
   }
 }
 
@@ -107,7 +132,7 @@ itens.forEach((item) => {
 
       // Modal motivacional de acerto (a partir do 3º)
       if (acertos >= 3) {
-        mostrarModalMensagem("Boa, acertou mais um!", "#22c55e");
+        mostrarModal("Acerto!", "Boa, acertou mais um!", "#22c55e");
       }
     } else {
       // Errou
@@ -117,7 +142,7 @@ itens.forEach((item) => {
 
       // Modal motivacional de erro (a partir do 3º)
       if (erros >= 3) {
-        mostrarModalMensagem("Ops, atenção redobrada!", "#ef4444");
+        mostrarModalErro("Ops, atenção redobrada!");
       }
     }
 
@@ -126,12 +151,12 @@ itens.forEach((item) => {
   });
 });
 
-// Inicializa HUD (só se os elementos já existem)
+// Inicializa HUD
 if (movimentosEl && acertosEl && errosEl) {
   updateHUD();
 }
 
-// Botão de reiniciar jogo (protegido)
+// Botão de reiniciar jogo
 const reiniciarBtn = document.getElementById("reiniciar");
 if (reiniciarBtn) {
   reiniciarBtn.addEventListener("click", () => {
@@ -140,7 +165,8 @@ if (reiniciarBtn) {
     erros = 0;
     updateHUD();
     mensagemFinalEl.innerHTML = "";
-    modalMensagemEl.style.display = "none"; // limpa modal
+    modalMensagem.style.display = "none";
+    modalMensagemErro.style.display = "none";
 
     itens.forEach((slot) => {
       slot.classList.remove("correto", "errado");
@@ -155,10 +181,11 @@ if (reiniciarBtn) {
   });
 }
 
-// Exporta funções para os testes
+// Exporta funções para testes
 module.exports = {
   updateHUD,
-  mostrarModalMensagem,
+  mostrarModal,
+  mostrarModalErro,
   finalizarSeConcluido,
   _state: {
     getMovimentos: () => movimentos,

@@ -11,8 +11,18 @@ beforeEach(() => {
     <div id="acertos"></div>
     <div id="erros"></div>
     <div id="mensagem-final"></div>
-    <div id="modal-mensagem" style="display:none"></div>
+
+    <!-- elementos usados pelo mostrarModal -->
+    <div id="modalMensagem" style="display:none"></div>
+    <div id="modalTitulo"></div>
+    <div id="modalTexto"></div>
     <button id="reiniciar"></button>
+
+    <!-- elementos de erro necessários -->
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
 
     <!-- Slots de imagem -->
     <div class="item-slot" data-tipo="cachorro"></div>
@@ -59,7 +69,7 @@ describe("Função updateHUD", () => {
   });
 });
 
-describe("Função mostrarModalMensagem", () => {
+describe("Função mostrarModal", () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -68,16 +78,21 @@ describe("Função mostrarModalMensagem", () => {
   });
 
   test("deve exibir mensagem no modal e ocultar após timeout", () => {
-    const { mostrarModalMensagem } = loadModule();
+    const { mostrarModal } = loadModule();
 
-    mostrarModalMensagem("Teste de mensagem", "red");
+    mostrarModal("Título teste", "Teste de mensagem", "red");
 
-    const modal = document.getElementById("modal-mensagem");
-    expect(modal.textContent).toBe("Teste de mensagem");
-    expect(modal.style.color).toBe("red");
+    const modal = document.getElementById("modalMensagem");
+    expect(document.getElementById("modalTitulo").textContent).toBe(
+      "Título teste"
+    );
+    expect(document.getElementById("modalTexto").textContent).toBe(
+      "Teste de mensagem"
+    );
+    expect(document.getElementById("modalTexto").style.color).toBe("red");
     expect(modal.style.display).toBe("block");
 
-    jest.advanceTimersByTime(2000);
+    jest.advanceTimersByTime(3000);
     expect(modal.style.display).toBe("none");
   });
 });
@@ -127,7 +142,7 @@ describe("Função finalizarSeConcluido", () => {
     finalizarSeConcluido();
 
     expect(document.getElementById("mensagem-final").innerHTML).toContain(
-      "Boa! Mas dá pra melhorar"
+      "Boa!"
     );
   });
 

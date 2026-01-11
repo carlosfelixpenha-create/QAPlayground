@@ -11,6 +11,12 @@ document.body.innerHTML = `
   <div id="modalTexto"></div>
   <button id="modalFechar"></button>
   <button id="modalOk"></button>
+
+  <div id="modalMensagemErro" style="display:none"></div>
+  <div id="modalTextoErro"></div>
+  <button id="modalFecharErro"></button>
+  <button id="modalOkErro"></button>
+
   <form class="form-container">
     <input id="nome" />
     <input id="email" />
@@ -27,7 +33,6 @@ const {
   executarCadastro,
   verUsuarioSalvo,
   limparCadastro,
-  mostrarModal,
 } = require("../cadastro");
 
 // Reset do DOM e mocks antes de cada teste
@@ -37,6 +42,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form class="form-container">
       <input id="nome" />
       <input id="email" />
@@ -98,8 +109,8 @@ describe("Fluxo de integração - cadastro", () => {
     const event = { preventDefault: jest.fn() };
     executarCadastro(event);
 
-    const modalTexto = document.getElementById("modalTexto").innerHTML;
-    expect(modalTexto).toContain("Preencher corretamente o campo E-mail");
+    const modalTextoErro = document.getElementById("modalTextoErro").innerHTML;
+    expect(modalTextoErro).toContain("Preencher corretamente o campo E-mail");
     expect(localStorage.getItem("qaplayground_usuario")).toBeNull();
   });
 
@@ -112,8 +123,8 @@ describe("Fluxo de integração - cadastro", () => {
     const event = { preventDefault: jest.fn() };
     executarCadastro(event);
 
-    const modalTexto = document.getElementById("modalTexto").innerHTML;
-    expect(modalTexto).toContain("As senhas não conferem");
+    const modalTextoErro = document.getElementById("modalTextoErro").innerHTML;
+    expect(modalTextoErro).toContain("As senhas não conferem");
     expect(localStorage.getItem("qaplayground_usuario")).toBeNull();
   });
 });

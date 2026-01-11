@@ -23,6 +23,12 @@ beforeEach(() => {
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
 
+    <!-- elementos de erro adicionados -->
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <div id="retorno-primario" class="retorno"></div>
     <button id="btn-primario-salvar"></button>
     <button id="btn-primario-concluir"></button>
@@ -81,7 +87,7 @@ describe("Fluxo de integração - Botões Primários", () => {
   test("usuário clica em Salvar incorretamente", () => {
     acaoPrimaria("Salvar");
     expect(document.getElementById("retorno-primario").innerText).toContain(
-      "Erro"
+      "Erro:"
     );
     expect(document.getElementById("btn-primario-salvar").innerText).toContain(
       "❌"
@@ -103,7 +109,7 @@ describe("Fluxo de integração - Botões Secundários", () => {
   test("usuário clica em Voltar incorretamente", () => {
     acaoSecundaria("Voltar");
     expect(document.getElementById("retorno-secundario").innerText).toContain(
-      "Erro"
+      "Erro:"
     );
     expect(
       document.getElementById("btn-secundario-voltar").innerText
@@ -125,7 +131,7 @@ describe("Fluxo de integração - Botões Terciários", () => {
   test("usuário clica em Imprimir incorretamente", () => {
     acaoTerciaria("Imprimir");
     expect(document.getElementById("retorno-terciario").innerText).toContain(
-      "Erro"
+      "Erro:"
     );
     expect(
       document.getElementById("btn-terciario-imprimir").innerText
@@ -147,7 +153,7 @@ describe("Fluxo de integração - Botões Danger", () => {
   test("usuário clica em Remover incorretamente", () => {
     abrirModal("Remover");
     expect(document.getElementById("retorno-danger").innerText).toContain(
-      "Erro"
+      "Erro:"
     );
     expect(document.getElementById("btn-danger-remover").innerText).toContain(
       "❌"
@@ -178,7 +184,7 @@ describe("Fluxo de integração - Botões Loading", () => {
     carregar("Enviar");
     jest.advanceTimersByTime(4000);
     expect(document.getElementById("retorno-loading").innerText).toContain(
-      "Erro"
+      "Erro:"
     );
     expect(document.getElementById("btn-loading-enviar").innerHTML).toContain(
       "❌"
@@ -200,7 +206,7 @@ describe("Fluxo de integração - Botões de Ícone", () => {
   test("usuário clica em Olho Aberto incorretamente", () => {
     acaoIcone("Olho Aberto");
     expect(document.getElementById("retorno-icone").innerText).toContain(
-      "Erro"
+      "Erro:"
     );
     expect(
       document.getElementById("btn-icone-olho-aberto").innerHTML

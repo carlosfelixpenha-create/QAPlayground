@@ -11,6 +11,12 @@ document.body.innerHTML = `
   <div id="modalTexto"></div>
   <button id="modalFechar"></button>
   <button id="modalOk"></button>
+
+  <div id="modalMensagemErro" style="display:none"></div>
+  <div id="modalTextoErro"></div>
+  <button id="modalFecharErro"></button>
+  <button id="modalOkErro"></button>
+
   <form class="form-container"></form>
   <input id="nome" />
   <input id="email" />
@@ -34,6 +40,7 @@ const {
   verUsuarioSalvo,
   limparCadastro,
   mostrarModal,
+  mostrarModalErro,
 } = require("../cadastro");
 
 // Reset do DOM e mocks antes de cada teste
@@ -43,6 +50,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form class="form-container"></form>
     <input id="nome" />
     <input id="email" />

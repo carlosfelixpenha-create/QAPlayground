@@ -13,6 +13,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form>
       <input type="radio" name="sexo" value="M" id="sexoM" />
       <input type="radio" name="sexo" value="F" id="sexoF" />
@@ -29,14 +35,16 @@ describe("Fluxo de integração - envio do formulário 2", () => {
   test("usuário tenta enviar sem selecionar sexo", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain("Sexo");
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "Sexo"
+    );
   });
 
   test("usuário tenta enviar sem marcar interesses", () => {
     document.getElementById("sexoM").checked = true;
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Interesses"
     );
   });
@@ -46,7 +54,7 @@ describe("Fluxo de integração - envio do formulário 2", () => {
     document.getElementById("interesse1").checked = true;
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Data de Nascimento"
     );
   });
@@ -60,7 +68,7 @@ describe("Fluxo de integração - envio do formulário 2", () => {
 
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "futura"
     );
   });
@@ -76,7 +84,7 @@ describe("Fluxo de integração - envio do formulário 2", () => {
 
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "16 anos"
     );
   });

@@ -4,6 +4,29 @@
  * Testes unitários para formulario-2.js
  */
 
+// Cria o DOM ANTES de importar formulario-2.js
+document.body.innerHTML = `
+  <div id="modalMensagem" style="display:none"></div>
+  <div id="modalTexto"></div>
+  <button id="modalFechar"></button>
+  <button id="modalOk"></button>
+
+  <div id="modalMensagemErro" style="display:none"></div>
+  <div id="modalTextoErro"></div>
+  <button id="modalFecharErro"></button>
+  <button id="modalOkErro"></button>
+
+  <form>
+    <input type="radio" name="sexo" value="M" id="sexoM" />
+    <input type="radio" name="sexo" value="F" id="sexoF" />
+    <input type="checkbox" id="interesse1" value="Esporte" />
+    <input type="checkbox" id="interesse2" value="Música" />
+    <input id="dataNascimento" />
+    <input id="telefone" />
+    <input id="cpf" />
+  </form>
+`;
+
 const { executarFormulario2, mostrarModal } = require("../formulario-2");
 
 beforeEach(() => {
@@ -12,6 +35,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form>
       <input type="radio" name="sexo" value="M" id="sexoM" />
       <input type="radio" name="sexo" value="F" id="sexoF" />
@@ -28,14 +57,16 @@ describe("Função executarFormulario2", () => {
   test("deve mostrar erro se sexo não selecionado", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain("Sexo");
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "Sexo"
+    );
   });
 
   test("deve mostrar erro se nenhum interesse marcado", () => {
     document.getElementById("sexoM").checked = true;
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Interesses"
     );
   });
@@ -45,7 +76,7 @@ describe("Função executarFormulario2", () => {
     document.getElementById("interesse1").checked = true;
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Data de Nascimento"
     );
   });
@@ -56,7 +87,7 @@ describe("Função executarFormulario2", () => {
     document.getElementById("dataNascimento").value = "2000-01-01";
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Telefone"
     );
   });
@@ -68,7 +99,9 @@ describe("Função executarFormulario2", () => {
     document.getElementById("telefone").value = "999999999";
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain("CPF");
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "CPF"
+    );
   });
 
   test("deve mostrar erro se data de nascimento futura", () => {
@@ -80,7 +113,7 @@ describe("Função executarFormulario2", () => {
 
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "futura"
     );
   });
@@ -96,7 +129,7 @@ describe("Função executarFormulario2", () => {
 
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "16 anos"
     );
   });
@@ -127,9 +160,7 @@ describe("Função mostrarModal", () => {
     expect(document.getElementById("modalTexto").textContent).toBe(
       "Teste de mensagem"
     );
-    expect(document.getElementById("modalMensagem").style.display).toBe(
-      "block"
-    );
+    expect(document.getElementById("modalMensagem").style.display).toBe("flex"); // ajustado
   });
 
   test("deve fechar modal ao clicar em OK", () => {

@@ -45,18 +45,34 @@ function mostrarModal(mensagem) {
   document.getElementById("modalMensagem").style.display = "flex";
 }
 
+function mostrarModalErro(mensagem) {
+  const modalTextoErro = document.getElementById("modalTextoErro");
+  modalTextoErro.innerHTML = mensagem.replace(/\n/g, "<br>");
+  document.getElementById("modalMensagemErro").style.display = "flex";
+}
+
 document.getElementById("modalFechar").onclick = function () {
   document.getElementById("modalMensagem").style.display = "none";
 };
-
 document.getElementById("modalOk").onclick = function () {
   document.getElementById("modalMensagem").style.display = "none";
 };
 
+document.getElementById("modalFecharErro").onclick = function () {
+  document.getElementById("modalMensagemErro").style.display = "none";
+};
+document.getElementById("modalOkErro").onclick = function () {
+  document.getElementById("modalMensagemErro").style.display = "none";
+};
+
 window.onclick = function (event) {
   const modal = document.getElementById("modalMensagem");
+  const modalErro = document.getElementById("modalMensagemErro");
   if (event.target === modal) {
     modal.style.display = "none";
+  }
+  if (event.target === modalErro) {
+    modalErro.style.display = "none";
   }
 };
 
@@ -70,25 +86,25 @@ function executarCadastro(event) {
   const confirmarSenha = document.getElementById("confirmarSenha").value;
 
   if (!validarNome(nome)) {
-    mostrarModal(
+    mostrarModalErro(
       "Preencher corretamente o campo Nome,\ndúvida entrar em Requisitos!"
     );
     return;
   }
   if (!validarEmail(email)) {
-    mostrarModal(
+    mostrarModalErro(
       "Preencher corretamente o campo E-mail,\ndúvida entrar em Requisitos!"
     );
     return;
   }
   if (!validarSenha(senha)) {
-    mostrarModal(
+    mostrarModalErro(
       "Preencher corretamente o campo Senha,\ndúvida entrar em Requisitos!"
     );
     return;
   }
   if (!validarConfirmarSenha(senha, confirmarSenha)) {
-    mostrarModal("As senhas não conferem,\ndúvida entrar em Requisitos!");
+    mostrarModalErro("As senhas não conferem,\ndúvida entrar em Requisitos!");
     return;
   }
 
@@ -114,7 +130,7 @@ function verUsuarioSalvo() {
     const mensagem = `Usuário salvo:\nNome: ${dados.nome}\nEmail: ${dados.email}`;
     mostrarModal(mensagem);
   } else {
-    mostrarModal("Nenhum usuário cadastrado encontrado.");
+    mostrarModalErro("Nenhum usuário cadastrado encontrado.");
   }
 }
 
@@ -177,4 +193,5 @@ module.exports = {
   verUsuarioSalvo,
   limparCadastro,
   mostrarModal,
+  mostrarModalErro,
 };

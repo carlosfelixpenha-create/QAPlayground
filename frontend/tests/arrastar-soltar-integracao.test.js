@@ -10,8 +10,18 @@ beforeEach(() => {
     <div id="acertos"></div>
     <div id="erros"></div>
     <div id="mensagem-final"></div>
-    <div id="modal-mensagem" style="display:none"></div>
+
+    <!-- elementos usados pelo mostrarModal -->
+    <div id="modalMensagem" style="display:none"></div>
+    <div id="modalTitulo"></div>
+    <div id="modalTexto"></div>
     <button id="reiniciar"></button>
+
+    <!-- elementos de erro necessários -->
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
 
     <!-- Slots de imagem -->
     <div class="item-slot" data-tipo="cachorro"></div>
@@ -41,9 +51,6 @@ describe("Fluxo de integração arrastar-soltar", () => {
   test("arrastar e soltar correto deve incrementar acertos e atualizar HUD", () => {
     const { _state } = loadModule();
 
-    const palavra = document.querySelector(
-      ".tag-palavra[data-tipo='cachorro']"
-    );
     const slot = document.querySelector(".item-slot[data-tipo='cachorro']");
 
     // Simula evento de drop correto

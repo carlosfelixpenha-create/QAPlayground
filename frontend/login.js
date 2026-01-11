@@ -1,11 +1,19 @@
-// Função para exibir modal
+// --- Modal ---
 function mostrarModal(mensagem) {
   const modalTexto = document.getElementById("modalTexto");
   modalTexto.innerHTML = mensagem.replace(/\n/g, "<br>");
-  document.getElementById("modalMensagem").style.display = "flex";
+  const modal = document.getElementById("modalMensagem");
+  modal.style.display = "flex";
 }
 
-// Função principal de login
+function mostrarModalErro(mensagem) {
+  const modalTextoErro = document.getElementById("modalTextoErro");
+  modalTextoErro.innerHTML = mensagem.replace(/\n/g, "<br>");
+  const modalErro = document.getElementById("modalMensagemErro");
+  modalErro.style.display = "flex";
+}
+
+// --- Função principal de login ---
 function executarLogin(event) {
   event.preventDefault();
 
@@ -15,17 +23,17 @@ function executarLogin(event) {
 
   // Valida campos obrigatórios primeiro
   if (!usuario) {
-    mostrarModal("Preencher corretamente o campo Usuário!");
+    mostrarModalErro("Preencher corretamente o campo Usuário!");
     return;
   }
   if (!senha) {
-    mostrarModal("Preencher corretamente o campo Senha!");
+    mostrarModalErro("Preencher corretamente o campo Senha!");
     return;
   }
 
   // Valida captcha
   if (!captcha) {
-    mostrarModal("Marque o captcha para continuar!");
+    mostrarModalErro("Marque o captcha para continuar!");
     return;
   }
 
@@ -34,7 +42,7 @@ function executarLogin(event) {
 
   // Valida se existe cadastro
   if (!usuarioSalvo) {
-    mostrarModal(
+    mostrarModalErro(
       "Nenhum cadastro encontrado. Realize o cadastro antes de fazer login."
     );
     return;
@@ -44,9 +52,12 @@ function executarLogin(event) {
   if (usuario === usuarioSalvo.email && senha === usuarioSalvo.senha) {
     mostrarModal("Login realizado com sucesso!");
     // limpa os campos após sucesso
-    document.querySelector(".form-container").reset();
+    const form = document.querySelector(".form-container");
+    if (form && typeof form.reset === "function") {
+      form.reset();
+    }
   } else {
-    mostrarModal("Usuário ou senha inválidos. Tente novamente.");
+    mostrarModalErro("Usuário ou senha inválidos. Tente novamente.");
   }
 }
 
@@ -55,21 +66,46 @@ window.executarLogin = executarLogin;
 
 // --- Inicialização dos listeners ---
 function inicializarLogin() {
-  // Eventos de fechar modal
-  document.getElementById("modalFechar").onclick = function () {
-    document.getElementById("modalMensagem").style.display = "none";
-  };
+  const modal = document.getElementById("modalMensagem");
+  const modalErro = document.getElementById("modalMensagemErro");
+  const btnFechar = document.getElementById("modalFechar");
+  const btnOk = document.getElementById("modalOk");
+  const btnFecharErro = document.getElementById("modalFecharErro");
+  const btnOkErro = document.getElementById("modalOkErro");
 
-  document.getElementById("modalOk").onclick = function () {
-    document.getElementById("modalMensagem").style.display = "none";
-  };
+  // Fechar pelo X
+  if (btnFechar) {
+    btnFechar.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
+  if (btnFecharErro) {
+    btnFecharErro.addEventListener("click", () => {
+      modalErro.style.display = "none";
+    });
+  }
 
-  window.onclick = function (event) {
-    const modal = document.getElementById("modalMensagem");
+  // Fechar pelo OK
+  if (btnOk) {
+    btnOk.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
+  if (btnOkErro) {
+    btnOkErro.addEventListener("click", () => {
+      modalErro.style.display = "none";
+    });
+  }
+
+  // Fechar ao clicar fora (overlay)
+  window.addEventListener("click", (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
     }
-  };
+    if (event.target === modalErro) {
+      modalErro.style.display = "none";
+    }
+  });
 
   // Toggle de visibilidade da senha
   const btn = document.getElementById("toggleSenha");
@@ -84,17 +120,20 @@ function inicializarLogin() {
         "aria-label",
         isPassword ? "Mostrar senha" : "Ocultar senha"
       );
-      // devolve o foco ao campo para permitir edição imediata
       input.focus();
     });
   }
 }
+
+// Chama a inicialização quando o DOM estiver pronto
+document.addEventListener("DOMContentLoaded", inicializarLogin);
 
 // Exporta funções para os testes unitários
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     executarLogin,
     mostrarModal,
+    mostrarModalErro,
     inicializarLogin,
   };
 }

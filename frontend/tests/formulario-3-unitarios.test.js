@@ -12,6 +12,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form>
       <input type="file" id="arquivoPdf" />
       <input type="file" id="arquivoDocx" />
@@ -38,7 +44,7 @@ describe("Função executarFormulario3", () => {
   test("deve mostrar erro se arquivos não forem selecionados", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario3(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Existem campos inválidos"
     );
     expect(
@@ -49,7 +55,7 @@ describe("Função executarFormulario3", () => {
   test("deve mostrar erro se País/Estado/Cidade não forem selecionados", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario3(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Existem campos inválidos"
     );
     expect(document.getElementById("pais").classList.contains("erro")).toBe(
@@ -103,7 +109,6 @@ describe("Função executarFormulario3", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario3(event);
 
-    // Verifica mensagem de sucesso (não depende das classes, pois são resetadas)
     expect(document.getElementById("modalTexto").textContent).toContain(
       "Formulário enviado com sucesso"
     );
@@ -116,9 +121,7 @@ describe("Função mostrarModal", () => {
     expect(document.getElementById("modalTexto").textContent).toBe(
       "Teste de mensagem"
     );
-    expect(document.getElementById("modalMensagem").style.display).toBe(
-      "block"
-    );
+    expect(document.getElementById("modalMensagem").style.display).toBe("flex"); // ajustado
   });
 
   test("deve fechar modal ao clicar em OK", () => {

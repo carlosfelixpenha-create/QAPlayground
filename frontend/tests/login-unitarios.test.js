@@ -13,6 +13,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form class="form-container">
       <input id="usuario" />
       <input id="senha" type="password" />
@@ -79,7 +85,7 @@ describe("Função executarLogin", () => {
     const event = { preventDefault: jest.fn() };
     executarLogin(event);
 
-    expect(document.getElementById("modalTexto").innerHTML).toContain(
+    expect(document.getElementById("modalTextoErro").innerHTML).toContain(
       "Usuário"
     );
   });
@@ -92,7 +98,9 @@ describe("Função executarLogin", () => {
     const event = { preventDefault: jest.fn() };
     executarLogin(event);
 
-    expect(document.getElementById("modalTexto").innerHTML).toContain("Senha");
+    expect(document.getElementById("modalTextoErro").innerHTML).toContain(
+      "Senha"
+    );
   });
 
   test("deve mostrar erro se captcha não marcado", () => {
@@ -103,7 +111,7 @@ describe("Função executarLogin", () => {
     const event = { preventDefault: jest.fn() };
     executarLogin(event);
 
-    expect(document.getElementById("modalTexto").innerHTML).toContain(
+    expect(document.getElementById("modalTextoErro").innerHTML).toContain(
       "captcha"
     );
   });
@@ -116,7 +124,7 @@ describe("Função executarLogin", () => {
     const event = { preventDefault: jest.fn() };
     executarLogin(event);
 
-    expect(document.getElementById("modalTexto").innerHTML).toContain(
+    expect(document.getElementById("modalTextoErro").innerHTML).toContain(
       "Nenhum cadastro encontrado"
     );
   });
@@ -138,7 +146,7 @@ describe("Função executarLogin", () => {
     const event = { preventDefault: jest.fn() };
     executarLogin(event);
 
-    expect(document.getElementById("modalTexto").innerHTML).toContain(
+    expect(document.getElementById("modalTextoErro").innerHTML).toContain(
       "inválidos"
     );
   });

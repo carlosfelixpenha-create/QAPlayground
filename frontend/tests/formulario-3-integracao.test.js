@@ -4,7 +4,7 @@
  * Testes de integração para formulario-3.js
  */
 
-const { executarFormulario3, mostrarModal } = require("../formulario-3");
+const { executarFormulario3 } = require("../formulario-3");
 
 beforeEach(() => {
   document.body.innerHTML = `
@@ -12,6 +12,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form>
       <input type="file" id="arquivoPdf" />
       <input type="file" id="arquivoDocx" />
@@ -39,7 +45,7 @@ describe("Integração completa do Formulário 3", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario3(event);
 
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Existem campos inválidos"
     );
     expect(
@@ -53,7 +59,7 @@ describe("Integração completa do Formulário 3", () => {
     const event = { preventDefault: jest.fn() };
     executarFormulario3(event);
 
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Existem campos inválidos"
     );
     expect(document.getElementById("pais").classList.contains("sucesso")).toBe(

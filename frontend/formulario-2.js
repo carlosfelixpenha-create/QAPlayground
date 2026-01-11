@@ -13,27 +13,27 @@ function executarFormulario2(event) {
 
   // Verificação de obrigatórios
   if (!sexo) {
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Sexo, dúvida entrar em requisitos!"
     );
   }
   if (interesses.length === 0) {
-    return mostrarModal(
+    return mostrarModalErro(
       "Selecione ao menos uma opção em Interesses, dúvida entrar em requisitos!"
     );
   }
   if (!dataNascimento) {
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Data de Nascimento, dúvida entrar em requisitos!"
     );
   }
   if (!telefone) {
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Telefone, dúvida entrar em requisitos!"
     );
   }
   if (!cpf) {
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo CPF, dúvida entrar em requisitos!"
     );
   }
@@ -43,7 +43,7 @@ function executarFormulario2(event) {
   const nascimento = new Date(dataNascimento);
 
   if (nascimento > hoje) {
-    return mostrarModal("Data de Nascimento não pode ser futura!");
+    return mostrarModalErro("Data de Nascimento não pode ser futura!");
   }
 
   const idade = hoje.getFullYear() - nascimento.getFullYear();
@@ -56,7 +56,7 @@ function executarFormulario2(event) {
   }
 
   if (idadeFinal < 16) {
-    return mostrarModal("Idade mínima permitida é de 16 anos!");
+    return mostrarModalErro("Idade mínima permitida é de 16 anos!");
   }
 
   // Se passou em todas as verificações
@@ -72,14 +72,13 @@ function executarFormulario2(event) {
   });
 }
 
-// Função genérica para mostrar modal
+// Função genérica para mostrar modal de sucesso/rápida
 function mostrarModal(mensagem) {
   const modal = document.getElementById("modalMensagem");
   const modalTexto = document.getElementById("modalTexto");
   modalTexto.textContent = mensagem;
-  modal.style.display = "block";
+  modal.style.display = "flex";
 
-  // Botão OK fecha modal
   document.getElementById("modalOk").onclick = () => {
     modal.style.display = "none";
   };
@@ -87,8 +86,25 @@ function mostrarModal(mensagem) {
     modal.style.display = "none";
   };
 }
+
+// Função genérica para mostrar modal de erro/detalhada
+function mostrarModalErro(mensagem) {
+  const modal = document.getElementById("modalMensagemErro");
+  const modalTexto = document.getElementById("modalTextoErro");
+  modalTexto.textContent = mensagem;
+  modal.style.display = "flex";
+
+  document.getElementById("modalOkErro").onclick = () => {
+    modal.style.display = "none";
+  };
+  document.getElementById("modalFecharErro").onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 // Exporta funções para os testes
 module.exports = {
   executarFormulario2,
   mostrarModal,
+  mostrarModalErro,
 };

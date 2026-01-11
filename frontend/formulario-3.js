@@ -15,12 +15,12 @@ const dadosLocalizacao = {
   },
 };
 
-// Função genérica para mostrar modal
+// Função genérica para mostrar modal de sucesso/rápida
 function mostrarModal(mensagem) {
   const modal = document.getElementById("modalMensagem");
   const modalTexto = document.getElementById("modalTexto");
   modalTexto.textContent = mensagem;
-  modal.style.display = "block";
+  modal.style.display = "flex";
 
   document.getElementById("modalOk").onclick = () => {
     modal.style.display = "none";
@@ -35,12 +35,35 @@ function mostrarModal(mensagem) {
   };
 }
 
+// Função genérica para mostrar modal de erro/detalhada
+function mostrarModalErro(mensagem) {
+  const modal = document.getElementById("modalMensagemErro");
+  const modalTexto = document.getElementById("modalTextoErro");
+  modalTexto.textContent = mensagem;
+  modal.style.display = "flex";
+
+  document.getElementById("modalOkErro").onclick = () => {
+    modal.style.display = "none";
+  };
+  document.getElementById("modalFecharErro").onclick = () => {
+    modal.style.display = "none";
+  };
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+    if (event.target === modalErro) {
+      modalErro.style.display = "none";
+    }
+  };
+}
+
 // Validação imediata ao selecionar arquivo (erro = vermelho, sucesso = verde)
 function validarArquivo(input, tipoEsperado, mensagemErro) {
   input.addEventListener("change", () => {
     const arquivo = input.files[0];
     if (arquivo && arquivo.type !== tipoEsperado) {
-      mostrarModal(mensagemErro);
+      mostrarModalErro(mensagemErro);
       input.classList.add("erro");
       input.classList.remove("sucesso");
     } else if (arquivo && arquivo.type === tipoEsperado) {
@@ -209,7 +232,7 @@ function executarFormulario3(event) {
 
   // Se houver erros → modal de aviso
   if (erros.length > 0) {
-    return mostrarModal(
+    return mostrarModalErro(
       "Existem campos inválidos. Revalide os campos destacados em vermelho."
     );
   }

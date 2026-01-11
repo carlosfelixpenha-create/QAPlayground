@@ -10,6 +10,12 @@ document.body.innerHTML = `
   <div id="modalTexto"></div>
   <button id="modalFechar"></button>
   <button id="modalOk"></button>
+
+  <div id="modalMensagemErro" style="display:none"></div>
+  <div id="modalTextoErro"></div>
+  <button id="modalFecharErro"></button>
+  <button id="modalOkErro"></button>
+
   <form class="form-container">
     <input id="logradouro" />
     <input id="numero" />
@@ -37,6 +43,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form class="form-container">
       <input id="logradouro" />
       <input id="numero" />
@@ -68,7 +80,7 @@ describe("Fluxo de integração - cadastro de endereço", () => {
     document.getElementById("logradouro").value = "";
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Logradouro"
     );
   });
@@ -83,7 +95,7 @@ describe("Fluxo de integração - cadastro de endereço", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "UF inválida"
     );
   });
@@ -98,7 +110,9 @@ describe("Fluxo de integração - cadastro de endereço", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain("CEP");
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "CEP"
+    );
   });
 
   test("usuário salva endereço válido", () => {
@@ -128,7 +142,7 @@ describe("Fluxo de integração - cadastro de endereço", () => {
 describe("Fluxo de integração - ver e limpar endereço", () => {
   test("usuário clica em Ver Endereço sem nada salvo", () => {
     verEnderecoSalvo();
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Nenhum endereço salvo"
     );
   });

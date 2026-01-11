@@ -101,13 +101,25 @@
       </form>
     </div>
 
-    <!-- Modal genérica -->
+    <!-- Modal compacta (sucesso, mensagens rápidas) -->
     <div id="modalMensagem" class="modal" style="display: none">
-      <div class="modal-content">
+      <div class="modal-content small">
         <span id="modalFechar" class="close">&times;</span>
         <p id="modalTexto"></p>
         <div class="modal-actions">
           <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal fluida (erros detalhados) -->
+    <div id="modalMensagemErro" class="modal" style="display: none">
+      <div class="modal-content large">
+        <span id="modalFecharErro" class="close">&times;</span>
+        <h2>Erro no Cadastro de Endereço</h2>
+        <p id="modalTextoErro"></p>
+        <div class="modal-actions">
+          <button id="modalOkErro" type="button" class="btn-ok">OK</button>
         </div>
       </div>
     </div>

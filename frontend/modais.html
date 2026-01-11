@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style_global.css" />
     <link rel="stylesheet" href="login.css" />
 
+    <!-- Estilos exclusivos para catálogo de modais -->
+    <link rel="stylesheet" href="catalogo-modais.css" />
+
     <script defer src="modais.js"></script>
   </head>
   <body>
@@ -147,11 +150,13 @@
               <p>Operação realizada com sucesso!</p>
 
               <!-- Campo de feedback opcional -->
-              <textarea
-                id="feedback-sucesso"
-                placeholder="Deixe seu comentário (opcional)"
-                rows="3"
-              ></textarea>
+              <div class="campo-feedback">
+                <textarea
+                  id="feedback-sucesso"
+                  placeholder="Deixe seu comentário (opcional)"
+                  rows="3"
+                ></textarea>
+              </div>
 
               <button class="btn-primary" onclick="retornoSucesso()">
                 Fechar

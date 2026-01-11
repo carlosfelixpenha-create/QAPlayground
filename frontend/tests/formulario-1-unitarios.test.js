@@ -4,6 +4,32 @@
  * Testes unitários para formulario-1.js
  */
 
+// Cria o DOM ANTES de importar formulario-1.js
+document.body.innerHTML = `
+  <div id="modalMensagem" style="display:none"></div>
+  <div id="modalTexto"></div>
+  <button id="modalFechar"></button>
+  <button id="modalOk"></button>
+
+  <div id="modalMensagemErro" style="display:none"></div>
+  <div id="modalTextoErro"></div>
+  <button id="modalFecharErro"></button>
+  <button id="modalOkErro"></button>
+
+  <form class="form-container">
+    <input id="logradouro" />
+    <input id="numero" />
+    <input id="complemento" />
+    <input id="bairro" />
+    <input id="cidade" />
+    <input id="estado" />
+    <input id="cep" />
+    <button id="btnSalvar"></button>
+  </form>
+  <button id="btnVerEndereco" style="display:none"></button>
+  <button id="btnLimparEndereco" style="display:none"></button>
+`;
+
 const {
   executarEndereco,
   verEnderecoSalvo,
@@ -17,6 +43,12 @@ beforeEach(() => {
     <div id="modalTexto"></div>
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
+
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <form class="form-container">
       <input id="logradouro" />
       <input id="numero" />
@@ -48,7 +80,7 @@ describe("Função executarEndereco", () => {
     document.getElementById("logradouro").value = "";
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Logradouro"
     );
   });
@@ -63,7 +95,7 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Logradouro"
     );
   });
@@ -78,7 +110,7 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Número"
     );
   });
@@ -93,7 +125,7 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Bairro"
     );
   });
@@ -108,7 +140,7 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Cidade"
     );
   });
@@ -123,7 +155,7 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Estado"
     );
   });
@@ -138,7 +170,7 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "UF inválida"
     );
   });
@@ -153,7 +185,9 @@ describe("Função executarEndereco", () => {
 
     const event = { preventDefault: jest.fn() };
     executarEndereco(event);
-    expect(document.getElementById("modalTexto").textContent).toContain("CEP");
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "CEP"
+    );
   });
 
   test("deve salvar endereço válido no localStorage", () => {
@@ -186,7 +220,7 @@ describe("Função executarEndereco", () => {
 describe("Função verEnderecoSalvo", () => {
   test("deve mostrar mensagem se não houver endereço salvo", () => {
     verEnderecoSalvo();
-    expect(document.getElementById("modalTexto").textContent).toContain(
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
       "Nenhum endereço salvo"
     );
   });

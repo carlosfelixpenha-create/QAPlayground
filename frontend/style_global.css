@@ -624,10 +624,6 @@ input {
   max-height: 200px; /* limita a altura */
 }
 
-.demo-card:hover {
-  transform: translateY(-3px); /* destaque ao passar o mouse */
-}
-
 .demo-header h2 {
   margin: 0;
   font-size: 20px;
@@ -758,14 +754,29 @@ input {
   color: gold; /* estrelas selecionadas ficam amarelas */
 }
 
+/* Base comum para todas as modais */
 .modal-content {
-  position: relative; /* referência para o botão de fechar */
-  background: #fff;
-  padding: 25px;
+  position: relative;
+  background-color: #fff;
+  padding: 20px 25px;
   border-radius: 8px;
-  width: 300px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Versão compacta (login, cadastro, alerta simples) */
+.modal-content.small {
+  width: 300px;
+  margin: auto;
+}
+
+/* Versão fluida (catálogo, confirmação, sucesso, erro) */
+.modal-content.large {
+  width: 80%;
+  max-width: 420px;
+  margin: 8% auto;
+  border-radius: 10px;
+  animation: slideDown 0.3s ease;
 }
 
 /* Botões dentro das modais - versão compacta */
@@ -1168,16 +1179,14 @@ select {
   animation: fadeIn 0.3s ease;
 }
 
-.modal-content {
-  background-color: #fff;
-  margin: 8% auto;
-  padding: 20px 25px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  animation: slideDown 0.3s ease;
+body.modal-open {
+  overflow: hidden; /* trava scroll */
+  padding-right: 0; /* evita compensação da barra */
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Cabeçalho */

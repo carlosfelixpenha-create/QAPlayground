@@ -57,7 +57,7 @@ function executarEndereco(event) {
   const vazio = obrigatorios.find((c) => !c.valor);
   if (vazio) {
     document.getElementById(vazio.id).focus();
-    return mostrarModal(
+    return mostrarModalErro(
       `Preencher corretamente o campo ${vazio.nome}, dúvida entrar em requisitos!`
     );
   }
@@ -65,25 +65,25 @@ function executarEndereco(event) {
   // Validações específicas conforme requisitos
   if (/^\d+$/.test(logradouro)) {
     document.getElementById("logradouro").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Logradouro, dúvida entrar em requisitos!"
     );
   }
   if (/\D/.test(numero)) {
     document.getElementById("numero").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Número, dúvida entrar em requisitos!"
     );
   }
   if (bairro.length < 3) {
     document.getElementById("bairro").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Bairro, dúvida entrar em requisitos!"
     );
   }
   if (cidade.length < 3) {
     document.getElementById("cidade").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Cidade, dúvida entrar em requisitos!"
     );
   }
@@ -91,14 +91,14 @@ function executarEndereco(event) {
   // Validação do Estado (UF)
   if (estado.length !== 2) {
     document.getElementById("estado").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo Estado, dúvida entrar em requisitos!"
     );
   }
   const estadoUpper = estado.toUpperCase();
   if (!ufsValidas.includes(estadoUpper)) {
     document.getElementById("estado").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "UF inválida! Preencher corretamente o campo Estado, dúvida entrar em requisitos!"
     );
   }
@@ -108,7 +108,7 @@ function executarEndereco(event) {
   // Validação do CEP
   if (!/^\d{8}$/.test(cepLimpo)) {
     document.getElementById("cep").focus();
-    return mostrarModal(
+    return mostrarModalErro(
       "Preencher corretamente o campo CEP, dúvida entrar em requisitos!"
     );
   }
@@ -148,7 +148,7 @@ function verEnderecoSalvo() {
       `Endereço salvo:\n${e.logradouro}, ${e.numero} - ${e.bairro}, ${e.cidade}/${e.estado}\nCEP: ${e.cep}`
     );
   } else {
-    mostrarModal("Nenhum endereço salvo.");
+    mostrarModalErro("Nenhum endereço salvo.");
   }
 }
 
@@ -170,18 +170,32 @@ function limparEndereco() {
   mostrarModal("Cadastro de endereço limpo com sucesso!");
 }
 
-// Função genérica para mostrar modal
+// Função genérica para mostrar modal de sucesso/rápida
 function mostrarModal(mensagem) {
   const modal = document.getElementById("modalMensagem");
   const modalTexto = document.getElementById("modalTexto");
   modalTexto.textContent = mensagem;
-  modal.style.display = "block";
+  modal.style.display = "flex";
 
-  // Botão OK fecha modal
   document.getElementById("modalOk").onclick = () => {
     modal.style.display = "none";
   };
   document.getElementById("modalFechar").onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
+// Função genérica para mostrar modal de erro/detalhada
+function mostrarModalErro(mensagem) {
+  const modal = document.getElementById("modalMensagemErro");
+  const modalTexto = document.getElementById("modalTextoErro");
+  modalTexto.textContent = mensagem;
+  modal.style.display = "flex";
+
+  document.getElementById("modalOkErro").onclick = () => {
+    modal.style.display = "none";
+  };
+  document.getElementById("modalFecharErro").onclick = () => {
     modal.style.display = "none";
   };
 }
@@ -195,11 +209,13 @@ function mascaraCep(input) {
     input.value = valor;
   }
 }
+
 // Exporta funções para os testes
 module.exports = {
   executarEndereco,
   verEnderecoSalvo,
   limparEndereco,
   mostrarModal,
+  mostrarModalErro,
   mascaraCep,
 };

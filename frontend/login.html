@@ -65,13 +65,25 @@
       </form>
     </div>
 
-    <!-- Modal de mensagens -->
+    <!-- Modal de mensagens rápidas (sucesso, info) -->
     <div id="modalMensagem" class="modal" style="display: none">
-      <div class="modal-content">
+      <div class="modal-content small">
         <span id="modalFechar" class="close">&times;</span>
         <p id="modalTexto"></p>
         <div class="modal-actions">
           <button id="modalOk" type="button" class="btn-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de erros (mensagens longas/detalhadas) -->
+    <div id="modalMensagemErro" class="modal" style="display: none">
+      <div class="modal-content large">
+        <span id="modalFecharErro" class="close">&times;</span>
+        <h2>Erro no Login</h2>
+        <p id="modalTextoErro"></p>
+        <div class="modal-actions">
+          <button id="modalOkErro" type="button" class="btn-ok">OK</button>
         </div>
       </div>
     </div>

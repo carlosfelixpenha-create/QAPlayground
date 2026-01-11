@@ -1,23 +1,18 @@
 // ===============================
-// MODAL GENÉRICA (com título colorido)
+// MODAL COMPACTA (sucesso, info)
 // ===============================
 function mostrarModal(mensagem, tipo = "info") {
   const modal = document.getElementById("modalMensagem");
   const modalTexto = document.getElementById("modalTexto");
   const modalTitulo = document.getElementById("modalTitulo");
 
-  // define corpo da mensagem
   modalTexto.textContent = mensagem;
 
-  // se houver elemento de título, aplica a cor e o texto
   if (modalTitulo) {
-    modalTitulo.style.fontWeight = "bold"; // negrito
-    modalTitulo.style.fontSize = "1.2em"; // maior
+    modalTitulo.style.fontWeight = "bold";
+    modalTitulo.style.fontSize = "1.2em";
 
-    if (tipo === "erro") {
-      modalTitulo.textContent = "Erro";
-      modalTitulo.style.color = "red";
-    } else if (tipo === "sucesso") {
+    if (tipo === "sucesso") {
       modalTitulo.textContent = "Sucesso";
       modalTitulo.style.color = "green";
     } else {
@@ -26,7 +21,7 @@ function mostrarModal(mensagem, tipo = "info") {
     }
   }
 
-  modal.style.display = "block";
+  modal.style.display = "flex";
 
   document.getElementById("modalOk").onclick = () =>
     (modal.style.display = "none");
@@ -38,8 +33,26 @@ function mostrarModal(mensagem, tipo = "info") {
 }
 
 // ===============================
-// BOTÃO PRIMÁRIO (5 BOTÕES)
-// Sugerido: Confirmar
+// MODAL FLUIDA (erros detalhados)
+// ===============================
+function mostrarModalErro(mensagem) {
+  const modal = document.getElementById("modalMensagemErro");
+  const modalTexto = document.getElementById("modalTextoErro");
+
+  modalTexto.textContent = mensagem;
+  modal.style.display = "flex";
+
+  document.getElementById("modalOkErro").onclick = () =>
+    (modal.style.display = "none");
+  document.getElementById("modalFecharErro").onclick = () =>
+    (modal.style.display = "none");
+  window.onclick = (event) => {
+    if (event.target === modal) modal.style.display = "none";
+  };
+}
+
+// ===============================
+// BOTÃO PRIMÁRIO (Confirmar)
 // ===============================
 function acaoPrimaria(acao) {
   const retorno = document.getElementById("retorno-primario");
@@ -75,13 +88,12 @@ function acaoPrimaria(acao) {
     btnClicado.disabled = true;
     retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Confirmar.`;
     retorno.classList.add("erro");
-    mostrarModal(`Botão incorreto. O correto é Confirmar.`, "erro");
+    mostrarModalErro(`Botão incorreto. O correto é Confirmar.`);
   }
 }
 
 // ===============================
-// BOTÃO SECUNDÁRIO (5 BOTÕES)
-// Sugerido: Cancelar
+// BOTÃO SECUNDÁRIO (Cancelar)
 // ===============================
 function acaoSecundaria(acao) {
   const retorno = document.getElementById("retorno-secundario");
@@ -117,13 +129,12 @@ function acaoSecundaria(acao) {
     btnClicado.disabled = true;
     retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Cancelar.`;
     retorno.classList.add("erro");
-    mostrarModal(`Botão incorreto. O correto é Cancelar.`, "erro");
+    mostrarModalErro(`Botão incorreto. O correto é Cancelar.`);
   }
 }
 
 // ===============================
-// BOTÃO TERCIÁRIO (5 BOTÕES)
-// Sugerido: Exportar
+// BOTÃO TERCIÁRIO (Exportar)
 // ===============================
 function acaoTerciaria(acao) {
   const retorno = document.getElementById("retorno-terciario");
@@ -159,13 +170,12 @@ function acaoTerciaria(acao) {
     btnClicado.disabled = true;
     retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Exportar.`;
     retorno.classList.add("erro");
-    mostrarModal(`Botão incorreto. O correto é Exportar.`, "erro");
+    mostrarModalErro(`Botão incorreto. O correto é Exportar.`);
   }
 }
 
 // ===============================
-// BOTÃO DE PERIGO (5 BOTÕES)
-// Sugerido: Excluir
+// BOTÃO DE PERIGO (Excluir)
 // ===============================
 function abrirModal(acao) {
   const retorno = document.getElementById("retorno-danger");
@@ -201,12 +211,11 @@ function abrirModal(acao) {
     btnClicado.disabled = true;
     retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Excluir.`;
     retorno.classList.add("erro");
-    mostrarModal(`Botão incorreto. O correto é Excluir.`, "erro");
+    mostrarModalErro(`Botão incorreto. O correto é Excluir.`);
   }
 }
 // ===============================
-// BOTÃO COM LOADING (5 BOTÕES)
-// Sugerido: Processar
+// BOTÃO COM LOADING (Processar)
 // ===============================
 function carregar(acao) {
   const retorno = document.getElementById("retorno-loading");
@@ -221,7 +230,6 @@ function carregar(acao) {
     "btn-loading-salvar": "Salvar",
   };
 
-  // Mapeamento para texto de loading
   const loadingLabels = {
     enviar: "Enviando",
     processar: "Processando",
@@ -230,7 +238,6 @@ function carregar(acao) {
     salvar: "Salvando",
   };
 
-  // Resetar todos os botões
   document.querySelectorAll("[id^='btn-loading']").forEach((btn) => {
     btn.disabled = false;
     btn.innerText = labels[btn.id];
@@ -240,7 +247,6 @@ function carregar(acao) {
     `btn-loading-${acao.toLowerCase()}`
   );
 
-  // animação da ampulheta
   let frames = ["⏳", "⌛"];
   let i = 0;
   const animacao = setInterval(() => {
@@ -249,7 +255,6 @@ function carregar(acao) {
     i++;
   }, 400);
 
-  // tempo total de espera (3 segundos)
   setTimeout(() => {
     clearInterval(animacao);
 
@@ -266,14 +271,13 @@ function carregar(acao) {
       btnClicado.disabled = true;
       retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Processar.`;
       retorno.classList.add("erro");
-      mostrarModal(`Botão incorreto. O correto é Processar.`, "erro");
+      mostrarModalErro(`Botão incorreto. O correto é Processar.`);
     }
   }, 4000);
 }
 
 // ===============================
-// BOTÃO DE ÍCONE (5 BOTÕES)
-// Sugerido: Lápis
+// BOTÃO DE ÍCONE (Lápis)
 // ===============================
 function acaoIcone(acao) {
   const retorno = document.getElementById("retorno-icone");
@@ -288,18 +292,16 @@ function acaoIcone(acao) {
     "btn-icone-maozinha": "🤚",
   };
 
-  // Resetar todos os botões da seção
   document.querySelectorAll("[id^='btn-icone']").forEach((btn) => {
     btn.disabled = false;
     btn.innerHTML = labels[btn.id];
   });
 
-  // Normalizar o texto recebido para bater com o id
   const normalizado = acao
     .toLowerCase()
-    .replace(/\s+/g, "-") // troca espaços por hífen
-    .replace("ã", "a") // trata acento de "Mãozinha"
-    .replace("á", "a"); // trata acento de "Lápis"
+    .replace(/\s+/g, "-")
+    .replace("ã", "a")
+    .replace("á", "a");
 
   const btnClicado = document.getElementById(`btn-icone-${normalizado}`);
 
@@ -316,7 +318,7 @@ function acaoIcone(acao) {
     btnClicado.disabled = true;
     retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Lápis.`;
     retorno.classList.add("erro");
-    mostrarModal(`Botão incorreto. O correto é Lápis.`, "erro");
+    mostrarModalErro(`Botão incorreto. O correto é Lápis.`);
   }
 }
 
@@ -324,64 +326,59 @@ function acaoIcone(acao) {
 // RESETAR PÁGINA COMPLETA
 // ===============================
 function resetarPagina() {
-  // limpa mensagens e estados
   document.querySelectorAll(".retorno").forEach((r) => {
     r.innerText = "";
     r.classList.remove("sucesso", "erro");
   });
 
-  // reabilita quaisquer botões desabilitados
   document
     .querySelectorAll("button:disabled")
     .forEach((btn) => (btn.disabled = false));
 
-  // Reset textos dos botões por seção
-
-  // Primário
+  // Reset textos dos botões
   document.getElementById("btn-primario-salvar").innerText = "Salvar";
   document.getElementById("btn-primario-concluir").innerText = "Concluir";
   document.getElementById("btn-primario-confirmar").innerText = "Confirmar";
   document.getElementById("btn-primario-login").innerText = "Login";
   document.getElementById("btn-primario-criar").innerText = "Criar";
 
-  // Secundário
   document.getElementById("btn-secundario-voltar").innerText = "Voltar";
   document.getElementById("btn-secundario-cancelar").innerText = "Cancelar";
   document.getElementById("btn-secundario-limpar").innerText = "Limpar";
   document.getElementById("btn-secundario-seguir").innerText = "Seguir";
   document.getElementById("btn-secundario-excluir").innerText = "Excluir";
 
-  // Terciário
   document.getElementById("btn-terciario-imprimir").innerText = "Imprimir";
   document.getElementById("btn-terciario-exportar").innerText = "Exportar";
   document.getElementById("btn-terciario-ver").innerText = "Ver";
   document.getElementById("btn-terciario-filtros").innerText = "Filtros";
   document.getElementById("btn-terciario-sair").innerText = "Sair";
 
-  // Danger
   document.getElementById("btn-danger-excluir").innerText = "Excluir";
   document.getElementById("btn-danger-remover").innerText = "Remover";
   document.getElementById("btn-danger-apagar").innerText = "Apagar";
   document.getElementById("btn-danger-desativar").innerText = "Desativar";
   document.getElementById("btn-danger-formatar").innerText = "Formatar";
 
-  // Loading
   document.getElementById("btn-loading-enviar").innerHTML = "Enviar";
   document.getElementById("btn-loading-processar").innerHTML = "Processar";
   document.getElementById("btn-loading-baixar").innerHTML = "Baixar";
   document.getElementById("btn-loading-progresso").innerHTML = "Progresso";
   document.getElementById("btn-loading-salvar").innerHTML = "Salvar";
 
-  // Ícone
   document.getElementById("btn-icone-lapis").innerHTML = "✏️";
   document.getElementById("btn-icone-olho-aberto").innerHTML = "👁️";
   document.getElementById("btn-icone-olho-fechado").innerHTML = "🙈";
   document.getElementById("btn-icone-raio").innerHTML = "⚡";
   document.getElementById("btn-icone-maozinha").innerHTML = "🤚";
 }
-// Exporta funções para os testes
+
+// ===============================
+// EXPORTA FUNÇÕES PARA TESTES
+// ===============================
 module.exports = {
   mostrarModal,
+  mostrarModalErro,
   acaoPrimaria,
   acaoSecundaria,
   acaoTerciaria,

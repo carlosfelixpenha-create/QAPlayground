@@ -6,7 +6,20 @@
 function abrirModal(tipo) {
   const modal = document.getElementById("modal-" + tipo);
   if (modal) {
-    modal.style.display = "block";
+    // Força o flex para centralizar
+    modal.style.display = "flex";
+
+    // Ajuste necessário: aplica classe correta conforme padrão CSS
+    const content = modal.querySelector(".modal-content");
+    if (content) {
+      if (tipo === "alerta") {
+        content.classList.add("small");
+        content.classList.remove("large");
+      } else {
+        content.classList.add("large");
+        content.classList.remove("small");
+      }
+    }
   }
 }
 
@@ -100,6 +113,22 @@ function desabilitarBotao(tipo) {
   if (btn) {
     btn.disabled = true;
     btn.classList.add("btn-disabled");
+    verificarTodosDesabilitados(); // <<< nova regra
+  }
+}
+
+function verificarTodosDesabilitados() {
+  const botoes = document.querySelectorAll(".demo-actions button");
+  const btnLimpar = document.querySelector("button.resetar");
+
+  if (btnLimpar) {
+    const todosDesabilitados = Array.from(botoes).every((btn) => btn.disabled);
+    btnLimpar.disabled = !todosDesabilitados;
+    if (todosDesabilitados) {
+      btnLimpar.classList.remove("btn-disabled");
+    } else {
+      btnLimpar.classList.add("btn-disabled");
+    }
   }
 }
 
@@ -147,6 +176,13 @@ function resetarPagina() {
     btn.classList.remove("btn-disabled");
   });
 
+  // Desabilita novamente o botão limpar
+  const btnLimpar = document.querySelector("button.resetar");
+  if (btnLimpar) {
+    btnLimpar.disabled = true;
+    btnLimpar.classList.add("btn-disabled");
+  }
+
   // Feedback visual na página
   const resetInfo = document.createElement("p");
   resetInfo.className = "retorno";
@@ -160,6 +196,13 @@ function resetarPagina() {
 // Lógicas específicas de validação
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
+  // Botão limpar começa desabilitado
+  const btnLimpar = document.querySelector("button.resetar");
+  if (btnLimpar) {
+    btnLimpar.disabled = true;
+    btnLimpar.classList.add("btn-disabled");
+  }
+
   // Checkbox do alerta
   const checkboxAlerta = document.getElementById("checkbox-alerta");
   const btnAlertaOk = document.getElementById("btn-alerta-ok");
@@ -188,3 +231,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ===============================
+// Exporta funções para testes unitários
+// ===============================
+module.exports = {
+  abrirModal,
+  fecharModal,
+  retornoAlerta,
+  confirmarAcao,
+  cancelarAcao,
+  retornoSucesso,
+  retornoErro,
+  desabilitarBotao,
+  verificarTodosDesabilitados,
+  resetarCamposModal,
+  resetarPagina,
+};

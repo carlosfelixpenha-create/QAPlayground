@@ -23,6 +23,11 @@ beforeEach(() => {
     <button id="modalFechar"></button>
     <button id="modalOk"></button>
 
+    <div id="modalMensagemErro" style="display:none"></div>
+    <div id="modalTextoErro"></div>
+    <button id="modalFecharErro"></button>
+    <button id="modalOkErro"></button>
+
     <div id="retorno-primario" class="retorno"></div>
     <button id="btn-primario-salvar"></button>
     <button id="btn-primario-concluir"></button>
@@ -68,22 +73,20 @@ beforeEach(() => {
 });
 
 describe("Função mostrarModal", () => {
-  test("deve exibir mensagem e título de erro", () => {
+  test("deve exibir mensagem de erro", () => {
     mostrarModal("Mensagem de erro", "erro");
     expect(document.getElementById("modalTexto").textContent).toBe(
       "Mensagem de erro"
     );
-    expect(document.getElementById("modalTitulo").textContent).toBe("Erro");
-    expect(document.getElementById("modalTitulo").style.color).toBe("red");
-    expect(document.getElementById("modalMensagem").style.display).toBe(
-      "block"
-    );
+    expect(document.getElementById("modalMensagem").style.display).toBe("flex");
   });
 
-  test("deve exibir mensagem e título de sucesso", () => {
+  test("deve exibir mensagem de sucesso", () => {
     mostrarModal("Mensagem de sucesso", "sucesso");
-    expect(document.getElementById("modalTitulo").textContent).toBe("Sucesso");
-    expect(document.getElementById("modalTitulo").style.color).toBe("green");
+    expect(document.getElementById("modalTexto").textContent).toBe(
+      "Mensagem de sucesso"
+    );
+    expect(document.getElementById("modalMensagem").style.display).toBe("flex");
   });
 
   test("deve fechar modal ao clicar em OK", () => {
