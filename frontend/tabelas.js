@@ -3,20 +3,84 @@
 // Estrutura base para todas as funcionalidades
 // =======================================
 
-// Mensagem padrão de retorno
-function atualizarRetorno(id, mensagem) {
-  const campo = document.getElementById(id);
-  if (campo) campo.textContent = mensagem;
+// =======================================
+// MODAIS
+// =======================================
+
+// Modal de sucesso / mensagens rápidas
+function mostrarModal(mensagem, titulo = "Mensagem") {
+  const modal = document.getElementById("modalMensagem");
+  const texto = document.getElementById("modalTexto");
+  const tituloEl = document.getElementById("modalTitulo");
+  const acoes = document.getElementById("modalAcoes");
+
+  if (tituloEl) tituloEl.textContent = titulo;
+  texto.innerHTML = mensagem;
+
+  modal.style.display = "flex";
+
+  if (acoes) {
+    acoes.innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
+  }
+
+  // X fecha modal
+  document.getElementById("modalFechar").onclick = () =>
+    fecharModal("mensagem");
 }
 
+// Modal de erro / mensagens detalhadas
+function mostrarModalErro(mensagem, titulo = "Erro nas Ações de Tabelas") {
+  const modal = document.getElementById("modalMensagemErro");
+  const texto = document.getElementById("modalTextoErro");
+  const tituloEl = document.getElementById("modalTituloErro");
+  const acoesErro = document.getElementById("modalAcoesErro");
 
+  if (tituloEl) tituloEl.textContent = titulo;
+  texto.innerHTML = mensagem;
+
+  modal.style.display = "flex";
+
+  if (acoesErro) {
+    acoesErro.innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+  }
+
+  // X fecha modal
+  document.getElementById("modalFecharErro").onclick = () =>
+    fecharModal("mensagemErro");
+}
+
+// Função genérica para fechar modais
+function fecharModal(tipo) {
+  let modalId = "";
+  if (tipo === "mensagem") modalId = "modalMensagem";
+  else if (tipo === "mensagemErro") modalId = "modalMensagemErro";
+
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = "none";
+    const inputs = modal.querySelectorAll("input, textarea");
+    inputs.forEach((el) => (el.value = ""));
+    const acoes = modal.querySelector(".modal-actions");
+    if (acoes) acoes.innerHTML = "";
+  }
+}
+
+// Fecha modal ao clicar fora
+window.onclick = function (event) {
+  const modais = document.getElementsByClassName("modal");
+  for (let i = 0; i < modais.length; i++) {
+    if (event.target == modais[i]) {
+      modais[i].style.display = "none";
+      const acoes = modais[i].querySelector(".modal-actions");
+      if (acoes) acoes.innerHTML = "";
+    }
+  }
+};
 
 // =======================================
 // 1) TABELA SIMPLES
 // =======================================
 // (não possui lógica)
-
-
 
 // =======================================
 // 2) TABELA COM ORDENAÇÃO
@@ -24,7 +88,7 @@ function atualizarRetorno(id, mensagem) {
 
 let ordemAtual = {
   coluna: null,
-  direcao: 1
+  direcao: 1,
 };
 
 function ordenarTabela(coluna) {
@@ -42,7 +106,7 @@ function ordenarTabela(coluna) {
     id: 0,
     nome: 1,
     cargo: 2,
-    status: 3
+    status: 3,
   }[coluna];
 
   linhas.sort((a, b) => {
@@ -56,42 +120,51 @@ function ordenarTabela(coluna) {
     return valorA.localeCompare(valorB) * ordemAtual.direcao;
   });
 
-  linhas.forEach(linha => tabela.appendChild(linha));
+  linhas.forEach((linha) => tabela.appendChild(linha));
 
-  atualizarRetorno(
-    "retorno-ordenacao",
-    `Tabela ordenada por ${coluna} (${ordemAtual.direcao === 1 ? "crescente" : "decrescente"})`
-  );
+  mostrarModal(`Tabela ordenada por ${coluna}`, "Ordenação");
 }
 
-
-
 // =======================================
-// 3) TABELA COM BUSCA
+// 3) TABELA COM BUSCA (com delay)
 // =======================================
+
+let buscaTimeout = null; // guarda o timer
 
 function filtrarTabela() {
-  const termo = document.getElementById("input-busca").value.toLowerCase();
-  const linhas = document.querySelectorAll("#tabela-busca-container tbody tr");
+  // limpa qualquer timer anterior
+  if (buscaTimeout) {
+    clearTimeout(buscaTimeout);
+    buscaTimeout = null;
+  }
 
-  let encontrou = false;
+  // agenda a execução após 3 segundos sem digitar
+  buscaTimeout = setTimeout(() => {
+    const termo = document.getElementById("input-busca").value.toLowerCase();
+    const linhas = document.querySelectorAll(
+      "#tabela-busca-container tbody tr"
+    );
 
-  linhas.forEach(linha => {
-    const texto = linha.textContent.toLowerCase();
-    const visivel = texto.includes(termo);
+    let encontrou = false;
 
-    linha.style.display = visivel ? "" : "none";
+    linhas.forEach((linha) => {
+      const texto = linha.textContent.toLowerCase();
+      const visivel = texto.includes(termo);
 
-    if (visivel) encontrou = true;
-  });
+      linha.style.display = visivel ? "" : "none";
 
-  atualizarRetorno(
-    "retorno-busca",
-    encontrou ? "Resultados filtrados" : "Nenhum resultado encontrado"
-  );
+      if (visivel) encontrou = true;
+    });
+
+    if (encontrou) {
+      mostrarModal("Resultados filtrados", "Busca");
+    } else {
+      mostrarModalErro("Nenhum resultado encontrado", "Busca");
+    }
+
+    buscaTimeout = null; // limpa depois de executar
+  }, 3000); // 3 segundos
 }
-
-
 
 // =======================================
 // 4) TABELA COM PAGINAÇÃO
@@ -118,7 +191,7 @@ function paginaAnterior() {
   if (paginaAtual > 1) {
     paginaAtual--;
     renderizarPaginacao();
-    atualizarRetorno("retorno-paginacao", "Página anterior carregada");
+    mostrarModal("Página anterior carregada", "Paginação");
   }
 }
 
@@ -130,82 +203,169 @@ function proximaPagina() {
   if (paginaAtual < totalPaginas) {
     paginaAtual++;
     renderizarPaginacao();
-    atualizarRetorno("retorno-paginacao", "Próxima página carregada");
+    mostrarModal("Próxima página carregada", "Paginação");
   }
 }
 
-
-
 // =======================================
-// 5) TABELA COM SELEÇÃO DE LINHAS
+// 5) TABELA COM SELEÇÃO DE LINHAS (com delay)
 // =======================================
+
+let selecaoTimeout = null; // guarda o timer
 
 function atualizarSelecao() {
+  // limpa qualquer timer anterior
+  if (selecaoTimeout) {
+    clearTimeout(selecaoTimeout);
+    selecaoTimeout = null;
+  }
+
+  // pega quantos estão selecionados
   const checkboxes = document.querySelectorAll(".linha-selecao");
-  const selecionados = Array.from(checkboxes).filter(c => c.checked).length;
+  const selecionados = Array.from(checkboxes).filter((c) => c.checked).length;
 
-  atualizarRetorno("retorno-selecao", `${selecionados} itens selecionados`);
-}
-
-
-
-// =======================================
-// 6) TABELA COM AÇÕES
-// =======================================
-
-function acaoEditar(nome) {
-  const novoNome = prompt(`Editar nome de ${nome}:`, nome);
-
-  if (novoNome && novoNome.trim() !== "") {
-    const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
-
-    linhas.forEach(linha => {
-      if (linha.textContent.includes(nome)) {
-        linha.children[1].textContent = novoNome;
-      }
-    });
-
-    atualizarRetorno("retorno-acoes", `${nome} agora é ${novoNome}`);
+  // só agenda modal se houver pelo menos 1 selecionado
+  if (selecionados > 0) {
+    selecaoTimeout = setTimeout(() => {
+      mostrarModal(`${selecionados} itens selecionados`, "Seleção");
+      selecaoTimeout = null; // limpa depois de executar
+    }, 3000); // 3 segundos
   }
 }
 
-function acaoExcluir(nome) {
-  if (confirm(`Tem certeza que deseja excluir ${nome}?`)) {
-    const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
+// =======================================
+// 6) TABELA COM AÇÕES (USANDO ID)
+// =======================================
 
-    linhas.forEach(linha => {
-      if (linha.textContent.includes(nome)) {
-        linha.remove();
-      }
-    });
-
-    atualizarRetorno("retorno-acoes", `${nome} foi excluído`);
-  }
-}
-
-function acaoVer(nome) {
+// Ver detalhes pelo ID
+function acaoVer(id) {
   const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
-
-  linhas.forEach(linha => {
-    if (linha.textContent.includes(nome)) {
-
-      const id = linha.children[0].textContent;
-      const pessoa = linha.children[1].textContent;
+  linhas.forEach((linha) => {
+    if (linha.children[0].textContent === String(id)) {
+      const nome = linha.children[1].textContent;
       const cargo = linha.children[2].textContent;
       const status = linha.children[3].textContent;
 
-      const detalhes =
-        `ID: ${id}\n` +
-        `Nome: ${pessoa}\n` +
-        `Cargo: ${cargo}\n` +
-        `Status: ${status}`;
+      const detalhes = `
+        <strong>ID:</strong> ${id}<br>
+        <strong>Nome:</strong> ${nome}<br>
+        <strong>Cargo:</strong> ${cargo}<br>
+        <strong>Status:</strong> ${status}
+      `;
 
-      atualizarRetorno("retorno-acoes", detalhes);
+      mostrarModal(detalhes, "Detalhes do Usuário");
+      document.getElementById(
+        "modalAcoes"
+      ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
+      document.getElementById("modalFechar").onclick = () =>
+        fecharModal("mensagem");
     }
   });
 }
 
+// Editar nome pelo ID
+function acaoEditar(id) {
+  const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
+  linhas.forEach((linha) => {
+    if (linha.children[0].textContent === String(id)) {
+      const nome = linha.children[1].textContent;
 
+      const conteudo = `
+        <p>Editando usuário <strong>${nome}</strong></p>
+        <input type="text" id="novoNome" value="${nome}" />
+      `;
+
+      mostrarModal(conteudo, "Editar Usuário");
+      document.getElementById("modalAcoes").innerHTML = `
+        <button class="btn-primary" onclick="confirmarEdicao(${id})">Salvar</button>
+        <button class="btn-secondary" onclick="fecharModal('mensagem')">Cancelar</button>
+      `;
+      document.getElementById("modalFechar").onclick = () =>
+        fecharModal("mensagem");
+    }
+  });
+}
+
+function confirmarEdicao(id) {
+  const novoNome = document.getElementById("novoNome").value;
+  const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
+  linhas.forEach((linha) => {
+    if (linha.children[0].textContent === String(id)) {
+      linha.children[1].textContent = novoNome;
+    }
+  });
+  fecharModal("mensagem");
+  mostrarModal(`Nome atualizado para <strong>${novoNome}</strong>`, "Sucesso");
+  document.getElementById(
+    "modalAcoes"
+  ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
+  document.getElementById("modalFechar").onclick = () =>
+    fecharModal("mensagem");
+}
+
+// Excluir pelo ID
+function acaoExcluir(id) {
+  const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
+  let nomeEncontrado = null;
+
+  linhas.forEach((linha) => {
+    if (linha.children[0].textContent === String(id)) {
+      nomeEncontrado = linha.children[1].textContent;
+    }
+  });
+
+  if (nomeEncontrado) {
+    const conteudo = `<p>Confirma exclusão de <strong>${nomeEncontrado}</strong>?</p>`;
+    mostrarModalErro(conteudo, "Excluir Usuário");
+
+    document.getElementById("modalAcoesErro").innerHTML = `
+      <button class="btn-danger" onclick="confirmarExclusao(${id})">Sim</button>
+      <button class="btn-secondary" onclick="fecharModal('mensagemErro')">Não</button>
+    `;
+    document.getElementById("modalFecharErro").onclick = () =>
+      fecharModal("mensagemErro");
+  } else {
+    mostrarModalErro(`Usuário não encontrado`, "Erro");
+    document.getElementById(
+      "modalAcoesErro"
+    ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+  }
+}
+
+function confirmarExclusao(id) {
+  const linhas = document.querySelectorAll(".tabela-acoes tbody tr");
+  let removido = false;
+  let nomeRemovido = "";
+
+  linhas.forEach((linha) => {
+    if (linha.children[0].textContent === String(id)) {
+      nomeRemovido = linha.children[1].textContent;
+      linha.remove();
+      removido = true;
+    }
+  });
+
+  fecharModal("mensagemErro");
+
+  if (removido) {
+    mostrarModalErro(
+      `<strong>${nomeRemovido}</strong> foi excluído`,
+      "Exclusão"
+    );
+    document.getElementById(
+      "modalAcoesErro"
+    ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+    document.getElementById("modalFecharErro").onclick = () =>
+      fecharModal("mensagemErro");
+  } else {
+    mostrarModalErro(`Usuário não encontrado`, "Erro");
+    document.getElementById(
+      "modalAcoesErro"
+    ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+    document.getElementById("modalFecharErro").onclick = () =>
+      fecharModal("mensagemErro");
+  }
+}
 
 // =======================================
 // 7) ESTADO VAZIO — RECARREGAR DADOS
@@ -235,10 +395,8 @@ function recarregarTabelaVazia() {
     </tr>
   `;
 
-  atualizarRetorno("retorno-vazio", "Dados carregados com sucesso");
+  mostrarModal("Dados carregados com sucesso", "Recarregar");
 }
-
-
 
 // =======================================
 // 8) RESET GLOBAL
@@ -248,36 +406,30 @@ let tabelaAcoesOriginal = "";
 let tabelaVaziaOriginal = "";
 
 function resetarTabelas() {
-  // Limpa retornos
-  document.querySelectorAll(".retorno").forEach(r => r.textContent = "");
+  document.querySelectorAll(".retorno").forEach((r) => (r.textContent = ""));
 
-  // Reseta busca
   const busca = document.getElementById("input-busca");
   if (busca) busca.value = "";
 
-  // Reseta paginação
   paginaAtual = 1;
   renderizarPaginacao();
 
-  // Desmarca checkboxes
-  document.querySelectorAll(".linha-selecao").forEach(c => c.checked = false);
+  document
+    .querySelectorAll(".linha-selecao")
+    .forEach((c) => (c.checked = false));
 
-  // Restaura tabela de ações
   const tabelaAcoes = document.querySelector("#tabela-acoes-container");
   if (tabelaAcoes && tabelaAcoesOriginal) {
     tabelaAcoes.innerHTML = tabelaAcoesOriginal;
   }
 
-  // Restaura tabela vazia
   const tabelaVazia = document.querySelector("#tabela-vazia-container");
   if (tabelaVazia && tabelaVaziaOriginal) {
     tabelaVazia.innerHTML = tabelaVaziaOriginal;
   }
 
-  atualizarRetorno("retorno-simples", "Tabelas resetadas");
+  mostrarModal("Tabelas resetadas", "Reset");
 }
-
-
 
 // =======================================
 // 9) Inicialização
@@ -286,31 +438,60 @@ function resetarTabelas() {
 window.onload = () => {
   renderizarPaginacao();
 
-  // Salva HTML original da tabela de ações
   const tabelaAcoes = document.querySelector("#tabela-acoes-container");
   if (tabelaAcoes) {
     tabelaAcoesOriginal = tabelaAcoes.innerHTML;
   }
 
-  // Salva HTML original da tabela vazia
   const tabelaVazia = document.querySelector("#tabela-vazia-container");
   if (tabelaVazia) {
     tabelaVaziaOriginal = tabelaVazia.innerHTML;
   }
-  // Seleção de linha na tabela simples
-const linhasSimples = document.querySelectorAll(".tabela-simples tbody tr");
 
-linhasSimples.forEach((linha, index) => {
-  linha.addEventListener("click", () => {
+  const linhasSimples = document.querySelectorAll(".tabela-simples tbody tr");
 
-    // Remove seleção anterior
-    linhasSimples.forEach(l => l.classList.remove("linha-selecionada"));
-
-    // Marca a linha clicada
-    linha.classList.add("linha-selecionada");
-
-    // Atualiza mensagem
-    atualizarRetorno("retorno-simples", `Linha ${index + 1} selecionada`);
+  linhasSimples.forEach((linha, index) => {
+    linha.addEventListener("click", () => {
+      linhasSimples.forEach((l) => l.classList.remove("linha-selecionada"));
+      linha.classList.add("linha-selecionada");
+      mostrarModal(`Linha ${index + 1} selecionada`, "Seleção");
+    });
   });
-});
+};
+// =======================================
+// EXPORTS PARA TESTES UNITÁRIOS
+// =======================================
+
+module.exports = {
+  // Modais
+  mostrarModal,
+  mostrarModalErro,
+  fecharModal,
+
+  // Tabela com Ordenação
+  ordenarTabela,
+
+  // Tabela com Busca
+  filtrarTabela,
+
+  // Tabela com Paginação
+  renderizarPaginacao,
+  paginaAnterior,
+  proximaPagina,
+
+  // Tabela com Seleção de Linhas
+  atualizarSelecao,
+
+  // Tabela com Ações
+  acaoVer,
+  acaoEditar,
+  confirmarEdicao,
+  acaoExcluir,
+  confirmarExclusao,
+
+  // Estado Vazio
+  recarregarTabelaVazia,
+
+  // Reset Global
+  resetarTabelas,
 };

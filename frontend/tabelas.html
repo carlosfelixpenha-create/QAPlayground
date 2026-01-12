@@ -14,6 +14,29 @@
     <div class="login-content">
       <h1>Catálogo de Tabelas</h1>
 
+      <!-- =============================== -->
+      <!-- MODAIS INTEGRADAS -->
+
+      <!-- Modal de Mensagem -->
+      <div id="modalMensagem" class="modal" style="display: none">
+        <div class="modal-content small">
+          <span id="modalFechar" class="close">&times;</span>
+          <h2 id="modalTitulo">Mensagem</h2>
+          <div id="modalTexto"></div>
+          <div id="modalAcoes" class="modal-actions"></div>
+        </div>
+      </div>
+
+      <!-- Modal de Erro/Confirmação -->
+      <div id="modalMensagemErro" class="modal" style="display: none">
+        <div class="modal-content large">
+          <span id="modalFecharErro" class="close">&times;</span>
+          <h2 id="modalTituloErro">Atenção</h2>
+          <div id="modalTextoErro"></div>
+          <div id="modalAcoesErro" class="modal-actions"></div>
+        </div>
+      </div>
+
       <div class="doc-container">
         <!-- =============================== -->
         <!-- TABELA SIMPLES -->
@@ -403,21 +426,15 @@
                   <td>Analista</td>
                   <td>Ativo</td>
                   <td style="text-align: right">
-                    <button
-                      class="btn-acao btn-ver"
-                      onclick="acaoVer('Ana Souza')"
-                    >
+                    <button class="btn-acao btn-ver" onclick="acaoVer(1)">
                       Ver
                     </button>
-                    <button
-                      class="btn-acao btn-editar"
-                      onclick="acaoEditar('Ana Souza')"
-                    >
+                    <button class="btn-acao btn-editar" onclick="acaoEditar(1)">
                       Editar
                     </button>
                     <button
                       class="btn-acao btn-excluir"
-                      onclick="acaoExcluir('Ana Souza')"
+                      onclick="acaoExcluir(1)"
                     >
                       Excluir
                     </button>
@@ -430,21 +447,15 @@
                   <td>Desenvolvedor</td>
                   <td>Ativo</td>
                   <td style="text-align: right">
-                    <button
-                      class="btn-acao btn-ver"
-                      onclick="acaoVer('Bruno Lima')"
-                    >
+                    <button class="btn-acao btn-ver" onclick="acaoVer(2)">
                       Ver
                     </button>
-                    <button
-                      class="btn-acao btn-editar"
-                      onclick="acaoEditar('Bruno Lima')"
-                    >
+                    <button class="btn-acao btn-editar" onclick="acaoEditar(2)">
                       Editar
                     </button>
                     <button
                       class="btn-acao btn-excluir"
-                      onclick="acaoExcluir('Bruno Lima')"
+                      onclick="acaoExcluir(2)"
                     >
                       Excluir
                     </button>
@@ -457,21 +468,15 @@
                   <td>Designer</td>
                   <td>Inativo</td>
                   <td style="text-align: right">
-                    <button
-                      class="btn-acao btn-ver"
-                      onclick="acaoVer('Carla Mendes')"
-                    >
+                    <button class="btn-acao btn-ver" onclick="acaoVer(3)">
                       Ver
                     </button>
-                    <button
-                      class="btn-acao btn-editar"
-                      onclick="acaoEditar('Carla Mendes')"
-                    >
+                    <button class="btn-acao btn-editar" onclick="acaoEditar(3)">
                       Editar
                     </button>
                     <button
                       class="btn-acao btn-excluir"
-                      onclick="acaoExcluir('Carla Mendes')"
+                      onclick="acaoExcluir(3)"
                     >
                       Excluir
                     </button>
