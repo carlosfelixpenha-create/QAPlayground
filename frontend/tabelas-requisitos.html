@@ -1,139 +1,223 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QAPlayground - Requisitos Tabelas</title>
-  <link rel="stylesheet" href="style_global.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <div class="login-content">
-    <h1>Requisitos 'Tela de Tabelas'</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground - Requisitos Tabelas</title>
+    <link rel="stylesheet" href="style_global.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-content">
+      <h1>Requisitos 'Tela de Tabelas'</h1>
 
-    <div class="doc-container">
+      <div class="doc-container">
+        <!-- TABELA SIMPLES -->
+        <h2>Tabela Simples</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Exibir dados estáticos com interação
+            básica.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>
+                A tabela deve exibir corretamente todas as linhas e colunas.
+              </li>
+              <li>Ao passar o mouse sobre uma linha, ela deve mudar de cor.</li>
+              <li>Ao clicar em uma linha, ela deve ficar selecionada.</li>
+              <li>Deve exibir a mensagem: <em>“Linha X selecionada”</em>.</li>
+              <li>Apenas uma linha pode ficar selecionada por vez.</li>
+              <li>
+                O cursor deve mudar para “pointer” ao passar sobre as linhas.
+              </li>
+            </ul>
+          </li>
+        </ul>
 
-      <!-- TABELA SIMPLES -->
-      <h2>Tabela Simples</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Exibir dados estáticos com interação básica.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>A tabela deve exibir corretamente todas as linhas e colunas.</li>
-            <li>Ao passar o mouse sobre uma linha, ela deve mudar de cor.</li>
-            <li>Ao clicar em uma linha, ela deve ficar selecionada.</li>
-            <li>Deve exibir a mensagem: <em>“Linha X selecionada”</em>.</li>
-            <li>Apenas uma linha pode ficar selecionada por vez.</li>
-            <li>O cursor deve mudar para “pointer” ao passar sobre as linhas.</li>
-          </ul>
-        </li>
-      </ul>
+        <!-- TABELA COM ORDENAÇÃO -->
+        <h2>Tabela com Ordenação</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Permitir ordenar colunas em ordem
+            crescente e decrescente.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>As colunas devem exibir setas de ordenação (▲▼).</li>
+              <li>
+                Ao clicar no cabeçalho, a coluna deve alternar entre crescente e
+                decrescente.
+              </li>
+              <li>
+                O cursor deve mudar para “pointer” ao passar sobre o cabeçalho.
+              </li>
+              <li>
+                O cabeçalho deve ter leve destaque visual ao passar o mouse.
+              </li>
+              <li>A ordenação deve refletir imediatamente na tabela.</li>
+              <li>
+                O espaçamento entre o texto e as setas deve estar adequado.
+              </li>
+            </ul>
+          </li>
+        </ul>
 
-      <!-- TABELA COM ORDENAÇÃO -->
-      <h2>Tabela com Ordenação</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Permitir ordenar colunas em ordem crescente e decrescente.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>As colunas devem exibir setas de ordenação (▲▼).</li>
-            <li>Ao clicar no cabeçalho, a coluna deve alternar entre crescente e decrescente.</li>
-            <li>O cursor deve mudar para “pointer” ao passar sobre o cabeçalho.</li>
-            <li>O cabeçalho deve ter leve destaque visual ao passar o mouse.</li>
-            <li>A ordenação deve refletir imediatamente na tabela.</li>
-            <li>O espaçamento entre o texto e as setas deve estar adequado.</li>
-          </ul>
-        </li>
-      </ul>
+        <!-- TABELA COM BUSCA -->
+        <h2>Tabela com Busca</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Permitir filtrar os dados digitando no
+            campo de busca.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>Deve existir um campo de busca acima da tabela.</li>
+              <li>
+                A busca deve filtrar dinamicamente conforme o usuário digita.
+              </li>
+              <li>O filtro deve considerar todas as colunas da tabela.</li>
+              <li>
+                Ao limpar o campo, a tabela deve voltar ao estado original.
+              </li>
+              <li>
+                Deve exibir a mensagem: <em>“X resultados encontrados”</em>.
+              </li>
+              <li>Não deve haver travamentos ou atrasos perceptíveis.</li>
+            </ul>
+          </li>
+        </ul>
 
-      <!-- TABELA COM BUSCA -->
-      <h2>Tabela com Busca</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Permitir filtrar os dados digitando no campo de busca.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>Deve existir um campo de busca acima da tabela.</li>
-            <li>A busca deve filtrar dinamicamente conforme o usuário digita.</li>
-            <li>O filtro deve considerar todas as colunas da tabela.</li>
-            <li>Ao limpar o campo, a tabela deve voltar ao estado original.</li>
-            <li>Deve exibir a mensagem: <em>“X resultados encontrados”</em>.</li>
-            <li>Não deve haver travamentos ou atrasos perceptíveis.</li>
-          </ul>
-        </li>
-      </ul>
+        <!-- TABELA COM PAGINAÇÃO -->
+        <h2>Tabela com Paginação</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Permitir navegar entre páginas de
+            conteúdo.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>A tabela deve exibir apenas os itens da página atual.</li>
+              <li>
+                Os botões de navegação devem permitir avançar e retornar
+                páginas.
+              </li>
+              <li>A página atual deve ser destacada visualmente.</li>
+              <li>
+                Ao avançar, deve exibir: <em>“Página avançada com sucesso”</em>.
+              </li>
+              <li>
+                Ao retornar, deve exibir:
+                <em>“Página retornada com sucesso”</em>.
+              </li>
+              <li>
+                O número da página deve estar centralizado entre os botões.
+              </li>
+            </ul>
+          </li>
+        </ul>
 
-      <!-- TABELA COM PAGINAÇÃO -->
-      <h2>Tabela com Paginação</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Permitir navegar entre páginas de conteúdo.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>A tabela deve exibir apenas os itens da página atual.</li>
-            <li>Os botões de navegação devem permitir avançar e retornar páginas.</li>
-            <li>A página atual deve ser destacada visualmente.</li>
-            <li>Ao avançar, deve exibir: <em>“Página avançada com sucesso”</em>.</li>
-            <li>Ao retornar, deve exibir: <em>“Página retornada com sucesso”</em>.</li>
-            <li>O número da página deve estar centralizado entre os botões.</li>
-          </ul>
-        </li>
-      </ul>
+        <!-- TABELA COM SELEÇÃO DE LINHAS -->
+        <h2>Tabela com Seleção de Linhas</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Permitir selecionar linhas usando
+            checkboxes.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>Cada linha deve possuir um checkbox na primeira coluna.</li>
+              <li>
+                O checkbox deve estar alinhado vertical e horizontalmente.
+              </li>
+              <li>Ao marcar uma linha, ela deve ganhar destaque visual.</li>
+              <li>Deve exibir a mensagem: <em>“X linhas selecionadas”</em>.</li>
+              <li>
+                O checkbox do cabeçalho deve selecionar/deselecionar todas as
+                linhas.
+              </li>
+              <li>O estado visual deve refletir corretamente a seleção.</li>
+            </ul>
+          </li>
+        </ul>
 
-      <!-- TABELA COM SELEÇÃO DE LINHAS -->
-      <h2>Tabela com Seleção de Linhas</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Permitir selecionar linhas usando checkboxes.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>Cada linha deve possuir um checkbox na primeira coluna.</li>
-            <li>O checkbox deve estar alinhado vertical e horizontalmente.</li>
-            <li>Ao marcar uma linha, ela deve ganhar destaque visual.</li>
-            <li>Deve exibir a mensagem: <em>“X linhas selecionadas”</em>.</li>
-            <li>O checkbox do cabeçalho deve selecionar/deselecionar todas as linhas.</li>
-            <li>O estado visual deve refletir corretamente a seleção.</li>
-          </ul>
-        </li>
-      </ul>
+        <!-- TABELA COM AÇÕES -->
+        <h2>Tabela com Ações</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Permitir executar ações específicas por
+            linha.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>
+                Cada linha deve possuir botões de ação (Editar, Excluir, etc.).
+              </li>
+              <li>Os botões devem estar centralizados na coluna de ações.</li>
+              <li>
+                Ao clicar em um botão, deve exibir a mensagem correspondente.
+              </li>
+              <li>As ações não devem interferir nas outras tabelas.</li>
+              <li>Os botões devem possuir tooltip (title) quando aplicável.</li>
+            </ul>
+          </li>
+        </ul>
 
-      <!-- TABELA COM AÇÕES -->
-      <h2>Tabela com Ações</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Permitir executar ações específicas por linha.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>Cada linha deve possuir botões de ação (Editar, Excluir, etc.).</li>
-            <li>Os botões devem estar centralizados na coluna de ações.</li>
-            <li>Ao clicar em um botão, deve exibir a mensagem correspondente.</li>
-            <li>As ações não devem interferir nas outras tabelas.</li>
-            <li>Os botões devem possuir tooltip (title) quando aplicável.</li>
-          </ul>
-        </li>
-      </ul>
-
-      <!-- ESTADO VAZIO -->
-      <h2>Estado Vazio</h2>
-      <ul>
-        <li><strong>Requisito:</strong> Exibir mensagem adequada quando não houver dados.</li>
-        <li>
-          <strong>Critérios de aceite:</strong>
-          <ul>
-            <li>A tabela deve exibir uma linha única com a mensagem: <em>“Nenhum registro encontrado”</em>.</li>
-            <li>A mensagem deve estar centralizada horizontalmente.</li>
-            <li>Não deve exibir cabeçalhos de ações ou checkboxes quando não houver dados.</li>
-            <li>Não deve quebrar o layout da página.</li>
-          </ul>
-        </li>
-      </ul>
-
-      <div class="button-group">
-        <button type="button" onclick="location.href='tabelas.html'">Voltar</button>
+        <!-- ESTADO VAZIO -->
+        <h2>Estado Vazio</h2>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Exibir mensagem adequada quando não
+            houver dados.
+          </li>
+          <li>
+            <strong>Critérios de aceite:</strong>
+            <ul>
+              <li>
+                A tabela deve exibir uma linha única com a mensagem:
+                <em>“Nenhum registro encontrado”</em>.
+              </li>
+              <li>A mensagem deve estar centralizada horizontalmente.</li>
+              <li>
+                Não deve exibir cabeçalhos de ações ou checkboxes quando não
+                houver dados.
+              </li>
+              <li>Não deve quebrar o layout da página.</li>
+            </ul>
+          </li>
+        </ul>
+        <h2>Acessibilidade</h2>
+        <ul>
+          <li>Avatar VLibras deve estar disponível em todas as páginas.</li>
+          <li>
+            Botão de Leitura em Áudio deve estar disponível no canto superior
+            direito.
+          </li>
+          <li>
+            Todos os botões devem possuir atributos
+            <code>aria-label</code> descritivos.
+          </li>
+          <li>
+            Mensagens de erro e sucesso devem ser anunciadas pelo recurso de
+            áudio.
+          </li>
+          <li>
+            Todos os modais devem ser acessíveis por teclado, leitura em áudio e
+            VLibras.
+          </li>
+        </ul>
+        <div class="button-group">
+          <button type="button" onclick="location.href='tabelas.html'">
+            Voltar
+          </button>
+        </div>
       </div>
-
     </div>
-  </div>
-</body>
+  </body>
 </html>
