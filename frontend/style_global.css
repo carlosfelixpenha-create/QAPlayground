@@ -104,6 +104,12 @@ body {
   margin: 0 auto; /* centraliza a logo */
 }
 
+.logo-acessibilidade {
+  width: 150px;
+  height: auto;
+  margin-top: 10px; /* dá espaço extra se precisar */
+}
+
 /* Ajuste para desktops grandes */
 @media (min-width: 1024px) {
   .logo-home img {
@@ -1442,4 +1448,111 @@ body.modal-open {
 
 #modal-sucesso .modal-content {
   animation: pulse 0.6s ease;
+}
+
+/* ============================
+   Feedback Visual e Textual
+============================ */
+.feedback-container {
+  display: flex;
+  gap: 10px;
+  align-items: center; /* garante alinhamento vertical */
+}
+
+.campo-senha {
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-top: 14px; /* sobe ou desce o campo */
+  /*margin-bottom: 2px;*/
+}
+
+.btn-validar {
+  height: 40px;
+  padding: 0 10px;
+  display: inline-flex; /* alinha conteúdo interno */
+  align-items: center; /* centraliza texto verticalmente */
+  justify-content: center;
+  vertical-align: middle; /* ajuda em casos de baseline diferente */
+  cursor: pointer;
+}
+
+.regras-senha ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.regras-senha li {
+  margin: 4px 0;
+  color: #333;
+}
+
+.regras-senha li.valida {
+  color: green;
+}
+
+.regras-senha li.invalida {
+  color: red;
+}
+
+.regras-senha .check {
+  margin-right: 6px;
+}
+
+/* ============================
+   Contraste de Cores
+============================ */
+.contraste {
+  padding: 10px;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.contraste.bom {
+  background: #000;
+  color: #fff;
+}
+
+.contraste.ruim {
+  background: #555;
+  color: #666;
+}
+
+.contraste.excelente {
+  background: #004080;
+  color: #ffffff;
+}
+
+.contraste.intermediario {
+  background: #999;
+  color: #333;
+}
+
+/* ============================
+   Zoom ao Foco
+============================ */
+.zoom-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* espaço entre texto e logo */
+}
+
+.zoom-texto {
+  transition: font-size 0.2s ease;
+}
+
+.zoom-texto:hover {
+  font-size: 140%;
+}
+
+.logo-acessibilidade {
+  width: 150px;
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.logo-acessibilidade:hover {
+  transform: scale(1.4);
 }

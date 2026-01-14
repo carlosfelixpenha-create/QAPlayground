@@ -18,19 +18,16 @@
         <h3>Navegação por Teclado</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Permitir que todos os elementos sejam
-            acessados via teclado.
+            <strong>Requisito:</strong> Todos os elementos devem ser acessíveis
+            via teclado.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
+            <li>Campos e botões acessíveis com <em>TAB</em>.</li>
             <li>
-              Todos os campos e botões devem ser acessíveis com <em>TAB</em>.
+              Botões e links acionáveis com <em>ENTER</em> ou <em>ESPAÇO</em>.
             </li>
-            <li>
-              Botões e links devem ser acionáveis com <em>ENTER</em> ou
-              <em>ESPAÇO</em>.
-            </li>
-            <li>O foco deve ser visível ao navegar.</li>
+            <li>Foco visível ao navegar.</li>
           </ul>
         </ul>
 
@@ -43,11 +40,9 @@
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>
-              Textos devem ter contraste mínimo de 4.5:1 em relação ao fundo.
-            </li>
-            <li>Exemplos de contraste bom e ruim devem ser exibidos.</li>
-            <li>Feedback visual não pode depender apenas da cor.</li>
+            <li>Contraste mínimo de 4.5:1 entre texto e fundo.</li>
+            <li>Exemplos de bom e mau contraste exibidos.</li>
+            <li>Feedback não depende apenas da cor.</li>
           </ul>
         </ul>
 
@@ -55,19 +50,16 @@
         <h3>Labels e ARIA</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Inputs devem ser corretamente
-            identificados.
+            <strong>Requisito:</strong> Inputs corretamente identificados.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
+            <li>Todos os campos com <code>&lt;label&gt;</code> associado.</li>
             <li>
-              Todos os campos devem ter <code>&lt;label&gt;</code> associado.
-            </li>
-            <li>
-              Campos sem label devem usar <code>aria-label</code> ou
+              Campos sem label usam <code>aria-label</code> ou
               <code>aria-labelledby</code>.
             </li>
-            <li>Leitores de tela devem anunciar corretamente cada campo.</li>
+            <li>Leitores de tela anunciam corretamente cada campo.</li>
           </ul>
         </ul>
 
@@ -81,10 +73,25 @@
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
             <li>
-              Mensagens de erro devem ser exibidas em texto, não apenas em cor.
+              Mensagens de erro exibidas em texto e anunciadas via
+              <code>aria-live</code>.
             </li>
-            <li>Mensagens de sucesso devem ser claras e objetivas.</li>
-            <li>Feedback deve ser anunciado por leitores de tela.</li>
+            <li>Mensagens de sucesso claras e objetivas.</li>
+            <li>Regras de senha atualizadas dinamicamente (✔, ✖, ☑).</li>
+          </ul>
+        </ul>
+
+        <!-- SENHA: VISIBILIDADE -->
+        <h3>Campo de Senha</h3>
+        <ul>
+          <li>
+            <strong>Requisito:</strong> Permitir alternar visibilidade da senha.
+          </li>
+          <li><strong>Critérios de aceite:</strong></li>
+          <ul>
+            <li>Botão de visibilidade com ícone 👁️ ↔ 🙈.</li>
+            <li>Ícone centralizado e estático dentro do campo.</li>
+            <li>Botão possui <code>aria-label</code> descritivo.</li>
           </ul>
         </ul>
 
@@ -96,11 +103,8 @@
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>Botões e links devem ter área mínima de 44x44px.</li>
-            <li>
-              Elementos devem ter espaçamento suficiente para evitar cliques
-              acidentais.
-            </li>
+            <li>Botões e links com área mínima de 44x44px.</li>
+            <li>Espaçamento suficiente para evitar cliques acidentais.</li>
           </ul>
         </ul>
 
@@ -114,29 +118,11 @@
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
             <li>
-              Usar títulos <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>,
-              <code>&lt;h3&gt;</code> em ordem correta.
+              Uso correto de <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>,
+              <code>&lt;h3&gt;</code>.
             </li>
-            <li>Leitores de tela devem conseguir navegar pela hierarquia.</li>
-            <li>Conteúdo deve ser compreensível sem estilos visuais.</li>
-          </ul>
-        </ul>
-
-        <!-- TESTE PARA CEGOS -->
-        <h3>Teste para Cegos (Descrição em Áudio)</h3>
-        <ul>
-          <li>
-            <strong>Requisito:</strong> Permitir que elementos sejam descritos
-            em áudio.
-          </li>
-          <li><strong>Critérios de aceite:</strong></li>
-          <ul>
-            <li>
-              Ao passar o cursor sobre imagens ou linhas, deve ser reproduzida
-              uma descrição em áudio.
-            </li>
-            <li>As descrições devem ser claras e objetivas.</li>
-            <li>O áudio deve iniciar imediatamente ao foco ou interação.</li>
+            <li>Leitores de tela conseguem navegar pela hierarquia.</li>
+            <li>Conteúdo compreensível sem estilos visuais.</li>
           </ul>
         </ul>
 
@@ -144,48 +130,19 @@
         <h3>Teste para Baixa Visão (Zoom ao Foco)</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Facilitar leitura e visualização para
-            usuários com baixa visão.
+            <strong>Requisito:</strong> Facilitar leitura para usuários com
+            baixa visão.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
-            <li>
-              Ao passar o cursor sobre palavras ou imagens, o elemento deve
-              aumentar em pelo menos 20%.
-            </li>
-            <li>
-              O aumento deve ser perceptível e retornar ao tamanho normal ao
-              sair do foco.
-            </li>
-            <li>O zoom não deve distorcer ou quebrar o layout da página.</li>
+            <li>Elementos aumentam em pelo menos 20% ao foco.</li>
+            <li>Zoom perceptível e reversível ao sair do foco.</li>
+            <li>Zoom não distorce layout.</li>
+            <li>Exceção aplicada ao botão de visibilidade da senha.</li>
           </ul>
         </ul>
 
         <!-- AVATAR EM LIBRAS -->
-        <h3>Avatar em Libras</h3>
-        <ul>
-          <li>
-            <strong>Requisito:</strong> Integrar um avatar que traduza textos
-            para Libras.
-          </li>
-          <li><strong>Critérios de aceite:</strong></li>
-          <ul>
-            <li>
-              A integração deve ser realizada via plugin frontend (ex.: VLibras
-              ou Hand Talk), sem necessidade de servidor.
-            </li>
-            <li>
-              Ao passar o cursor sobre palavras, linhas ou blocos de texto, o
-              avatar deve traduzir para Libras.
-            </li>
-            <li>O avatar deve aparecer em uma área fixa da tela.</li>
-            <li>
-              O recurso deve poder ser ativado ou desativado pelo usuário.
-            </li>
-            <li>A tradução deve ser clara e imediata.</li>
-            <li>O recurso deve funcionar em desktop e mobile.</li>
-          </ul>
-        </ul>
         <h2>Acessibilidade</h2>
         <ul>
           <li>Avatar VLibras deve estar disponível em todas as páginas.</li>
@@ -206,6 +163,7 @@
             VLibras.
           </li>
         </ul>
+
         <div class="button-group">
           <button type="button" onclick="location.href='acessibilidade.html'">
             Voltar

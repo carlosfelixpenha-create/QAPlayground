@@ -87,6 +87,21 @@
   z-index: 1; /* acima visualmente, sem cobrir área útil */
 }
 
+.password-container input {
+  width: 100%;
+  padding-right: 35px; /* espaço para o ícone não sobrepor o texto */
+  box-sizing: border-box;
+}
+
+.demo-actions .toggle-btn:hover {
+  transform: none; /* impede o zoom no botão 👁️/🙈 */
+}
+
+.catalogo-botoes .password-container .toggle-btn {
+  top: 50%; /* ou ajuste até alinhar certinho */
+  transform: translateY(-50%);
+}
+
 /* Captcha integrado */
 .form-row {
   display: flex;

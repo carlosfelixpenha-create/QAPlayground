@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="style_global.css" />
     <link rel="stylesheet" href="login.css" />
 
+    <!-- Carregue primeiro o arquivo que contém validarSenha (separado, caso exista) -->
+    <!-- <script src="validacoes.js"></script> -->
+
+    <!-- Depois o JS desta página -->
     <script defer src="acessibilidade.js"></script>
     <script src="acessibilidade-global.js"></script>
   </head>
@@ -31,11 +35,16 @@
             <button class="btn-primary">Botão Acessível</button>
             <button class="btn-secondary">Outro Botão</button>
             <a href="#">Link Acessível</a>
+            <input
+              type="text"
+              placeholder="Campo acessível via teclado"
+              aria-label="Campo de texto acessível"
+            />
           </div>
         </div>
 
         <!-- ============================
-             CONTRASTE DE CORES
+            CONTRASTE DE CORES
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -43,12 +52,10 @@
             <p>Exemplo de bom e mau contraste.</p>
           </div>
           <div class="demo-actions">
-            <div style="background: #000; color: #fff; padding: 10px">
-              Bom contraste
-            </div>
-            <div style="background: #555; color: #666; padding: 10px">
-              Contraste ruim
-            </div>
+            <div class="contraste bom">Contraste bom</div>
+            <div class="contraste ruim">Contraste ruim</div>
+            <div class="contraste excelente">Contraste excelente</div>
+            <div class="contraste intermediario">Contraste intermediário</div>
           </div>
         </div>
 
@@ -66,25 +73,66 @@
               <input id="nome" type="text" aria-label="Campo de nome" />
               <label for="email">Email:</label>
               <input id="email" type="email" aria-label="Campo de email" />
+              <label for="telefone">Telefone:</label>
+              <input id="telefone" type="tel" aria-label="Campo de telefone" />
+              <label for="senha-form">Senha:</label>
+              <input
+                id="senha-form"
+                type="password"
+                aria-label="Campo de senha"
+              />
             </form>
           </div>
         </div>
 
         <!-- ============================
-             FEEDBACK VISUAL E TEXTUAL
+            FEEDBACK VISUAL E TEXTUAL
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
             <h2>Feedback Visual e Textual</h2>
             <p>Mensagens claras de erro e sucesso.</p>
           </div>
-          <div class="demo-actions">
-            <input id="senha" type="password" placeholder="Digite a senha" />
-            <button onclick="validarSenha()">Validar</button>
+          <div class="demo-actions feedback-container">
+            <div class="password-container">
+              <input
+                id="senha"
+                type="password"
+                placeholder="Digite sua senha"
+                class="campo-senha"
+              />
+              <button
+                type="button"
+                id="toggleSenhaAcessibilidade"
+                class="toggle-btn"
+                aria-label="Mostrar/ocultar senha"
+              >
+                👁️
+              </button>
+            </div>
+            <button onclick="validarSenhaAcessibilidade()" class="btn-validar">
+              Validar
+            </button>
+          </div>
+          <div class="regras-senha">
+            <ul>
+              <li id="regra-maiuscula">
+                <span class="check">☐</span> Pelo menos uma letra maiúscula
+              </li>
+              <li id="regra-numero">
+                <span class="check">☐</span> Pelo menos um número
+              </li>
+              <li id="regra-simbolo">
+                <span class="check">☐</span> Pelo menos um símbolo
+              </li>
+              <li id="regra-tamanho">
+                <span class="check">☐</span> Entre 6 e 12 caracteres
+              </li>
+            </ul>
           </div>
           <div class="demo-retorno">
             <strong>Retorno:</strong>
-            <span class="retorno" id="retorno-senha"></span>
+            <span class="retorno" id="retorno-senha" aria-live="polite"></span>
           </div>
         </div>
 
@@ -94,56 +142,15 @@
         <div class="demo-card">
           <div class="demo-header">
             <h2>Zoom ao Foco</h2>
-            <p>Elementos aumentam 20% ao passar o cursor.</p>
+            <p>Elementos aumentam 40% ao passar o cursor.</p>
           </div>
-          <div class="demo-actions">
-            <p
-              onmouseover="this.style.fontSize='120%'"
-              onmouseout="this.style.fontSize='100%'"
-            >
-              Texto acessível para baixa visão
-            </p>
+          <div class="demo-actions zoom-container">
+            <p class="zoom-texto">Texto acessível para baixa visão</p>
             <img
-              src="logo.png"
+              src="img/logos/logo_home.png"
               alt="Logo QAPlayground"
-              onmouseover="this.style.transform='scale(1.2)'"
-              onmouseout="this.style.transform='scale(1)'"
+              class="logo-acessibilidade"
             />
-          </div>
-        </div>
-
-        <!-- ============================
-             DESCRIÇÃO EM ÁUDIO (CEGOS)
-        ============================= -->
-        <div class="demo-card">
-          <div class="demo-header">
-            <h2>Descrição em Áudio</h2>
-            <p>Texto falado ao passar o cursor.</p>
-          </div>
-          <div class="demo-actions">
-            <p onmouseover="falar('Este é um texto de exemplo')">
-              Passe o mouse aqui
-            </p>
-          </div>
-        </div>
-
-        <!-- ============================
-             AVATAR EM LIBRAS
-        ============================= -->
-        <div class="demo-card">
-          <div class="demo-header">
-            <h2>Avatar em Libras</h2>
-            <p>Integração com VLibras para tradução em Libras.</p>
-          </div>
-          <div class="demo-actions">
-            <p>Veja abaixo o avatar em Libras:</p>
-            <!-- Plugin VLibras dentro do card -->
-            <div vw class="enabled">
-              <div vw-access-button class="active"></div>
-              <div vw-plugin-wrapper>
-                <div class="vw-plugin-top-wrapper"></div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -167,28 +174,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Script de áudio -->
-    <script>
-      function falar(texto) {
-        const utterance = new SpeechSynthesisUtterance(texto);
-        speechSynthesis.speak(utterance);
-      }
-      function validarSenha() {
-        const senha = document.getElementById("senha").value;
-        const retorno = document.getElementById("retorno-senha");
-        if (senha === "1234") {
-          retorno.textContent = "Senha válida!";
-          retorno.style.color = "green";
-        } else {
-          retorno.textContent = "Senha inválida!";
-          retorno.style.color = "red";
-        }
-      }
-      function resetarPagina() {
-        location.reload();
-      }
-    </script>
 
     <!-- Script do VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
