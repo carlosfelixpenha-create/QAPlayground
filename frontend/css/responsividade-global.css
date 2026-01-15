@@ -1,0 +1,213 @@
+/* =========================================================
+   Responsividade Global - QAPlayground
+   ========================================================= */
+
+/* ===== Estrutura Global ===== */
+html,
+body {
+  overflow-x: hidden; /* evita scroll horizontal */
+  overflow-y: auto; /* scroll vertical padrão */
+  height: 100%; /* ocupa toda a altura */
+}
+
+/* ===== Home ===== */
+body.home {
+  overflow: hidden; /* remove scroll vertical só na home */
+}
+
+body.home .container {
+  height: 100vh; /* altura total da tela */
+  display: flex; /* mantém sidebar e conteúdo lado a lado */
+}
+
+body.home .sidebar {
+  overflow-y: auto; /* só a sidebar rola se precisar */
+  max-height: 100vh;
+  width: clamp(180px, 25vw, 250px); /* largura adaptável */
+}
+
+body.home .content {
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+/* ===== Requisitos ===== */
+body.requisitos .doc-container {
+  max-width: 1000px; /* mais largo em desktop */
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* ===== Componentes (Botões, Contadores, Média) ===== */
+
+/* Responsividade aplicada ao botão de contatos e leitura em áudio */
+#btnContatos,
+.leitura-audio {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  padding: clamp(2px, 1.5vw, 6px) clamp(10px, 2vw, 18px);
+  border-radius: clamp(4px, 1vw, 8px);
+}
+
+/* Contadores */
+#contador-container,
+#media-container {
+  width: clamp(100px, 30vw, 150px);
+  text-align: center;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffae82;
+  padding: clamp(2px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
+  border-radius: clamp(2px, 1vw, 6px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+/* Média fixa e responsiva */
+#media-container {
+  position: fixed;
+  bottom: clamp(10px, 3vw, 20px);
+  left: clamp(10px, 15vw, 270px);
+}
+
+/* Contador fixo e responsivo */
+#contador-container {
+  position: fixed;
+  bottom: clamp(10px, 3vw, 20px);
+  right: clamp(10px, 3vw, 20px);
+  min-width: clamp(120px, 25vw, 180px);
+  animation: none;
+  transition: none;
+}
+
+/* ===== Logo ===== */
+.logo-home img {
+  max-width: clamp(140px, 20vw, 180px);
+}
+
+/* ===== Breakpoints ===== */
+
+/* Desktops grandes */
+@media (min-width: 1200px) {
+  nav ul {
+    justify-content: center;
+  }
+}
+
+/* Tablets grandes e notebooks */
+@media (max-width: 992px) {
+  nav ul {
+    justify-content: center;
+  }
+  body.requisitos .doc-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+}
+
+/* Tablets em portrait */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav ul li {
+    margin: 0.3rem 0;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    order: 1;
+  }
+}
+
+/* Celulares */
+@media (max-width: 576px) {
+  h1,
+  h2,
+  h3 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  button,
+  input {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  body.requisitos .doc-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+}
+
+/* ===== Animações ===== */
+@keyframes destaque {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}

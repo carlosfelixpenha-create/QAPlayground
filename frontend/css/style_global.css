@@ -19,27 +19,6 @@ body {
   min-height: 100vh; /* mais seguro para responsividade */
 }
 
-/* Contador responsivo */
-#contador-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  color: #ffae82;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  z-index: 9999;
-  /* garante que o tamanho não varie quando o texto muda */
-  min-width: 180px;
-  text-align: center;
-  /* sem movimento */
-  animation: none;
-  transition: none;
-}
-
 /* Wrapper que agrupa tabuleiro e referência */
 .jogo-wrapper {
   display: flex;
@@ -92,13 +71,13 @@ body {
 }
 
 .logo-home {
-  margin-top: 30px;
+  margin-top: 5px;
   text-align: center;
-  opacity: 0.5; /* valor entre 0 e 1 */
+  opacity: 0.6; /* valor entre 0 e 1 */
 }
 
 .logo-home img {
-  max-width: 200%; /* ocupa até o limite do container */
+  max-width: 100%; /* ocupa até o limite do container */
   height: auto;
   display: block;
   margin: 0 auto; /* centraliza a logo */
@@ -108,13 +87,6 @@ body {
   width: 150px;
   height: auto;
   margin-top: 10px; /* dá espaço extra se precisar */
-}
-
-/* Ajuste para desktops grandes */
-@media (min-width: 1024px) {
-  .logo-home img {
-    max-width: 200px; /* aumenta a logo em telas maiores */
-  }
 }
 
 .contador-linhas {
@@ -129,20 +101,6 @@ body {
   margin-top: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   animation: destaque 1s ease-in-out;
-}
-
-@keyframes destaque {
-  0% {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 
 /* Texto final em azul */
@@ -189,41 +147,6 @@ body {
 
   height: 100vh; /* ocupa exatamente a altura da tela */
   box-sizing: border-box; /* padding conta dentro da altura/largura */
-}
-
-/* Ajustes para tablets */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 200px;
-  }
-  #contador-container {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-}
-
-/* Ajustes para celulares */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    max-width: 100%;
-    order: 1;
-  }
-
-  .logo-home img {
-    max-width: 160px; /* reduz um pouco para caber melhor */
-  }
-
-  #contador-container {
-    right: 10px;
-    bottom: 10px;
-    font-size: 12px;
-    padding: 6px 10px;
-  }
 }
 
 .content::before {
@@ -734,21 +657,6 @@ input {
   align-items: center;
 }
 
-/* Média responsiva */
-#media-container {
-  position: fixed;
-  bottom: 20px;
-  left: 270px; /* lado esquerdo */
-  background: rgba(0, 0, 0, 0.7);
-  color: #ffae82;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  z-index: 9999;
-}
-
 #estrelas span {
   font-size: 2.5rem; /* aumenta o tamanho */
   cursor: pointer; /* mãozinha ao passar o mouse */
@@ -934,6 +842,18 @@ button:disabled:hover {
   margin: 0 auto; /* centraliza horizontalmente */
   padding: 30px; /* opcional: dá respiro interno */
   box-sizing: border-box; /* garante que padding não estoure a largura */
+}
+
+/* Container mais largo apenas nas páginas de requisitos */
+body.requisitos .doc-container {
+  max-width: 1000px; /* aumenta a largura máxima */
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  line-height: 1.6;
 }
 
 /* Faz todas as tabelas ocuparem toda a largura disponível */
@@ -1325,14 +1245,12 @@ body.modal-open {
   transform: scale(1.1); /* aumenta 10% o tamanho total */
 }
 
+/* Estilo base do botão de contatos */
 #btnContatos {
-  font-size: 0.9rem;
   font-weight: bold;
   color: #2563eb;
   background: #f0f9ff;
   border: 2px solid #2563eb;
-  border-radius: 8px;
-  padding: 8px 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   cursor: pointer;
 
@@ -1381,69 +1299,9 @@ body.modal-open {
   width: 90%; /* ocupa até 90% da tela em dispositivos menores */
 }
 
-/* Animações */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-25px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ===============================
-   ANIMAÇÕES ESPECÍFICAS DE MODAIS
-   =============================== */
-
-/* Shake contextual para modal de erro */
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-  20% {
-    transform: translateX(-5px);
-  }
-  40% {
-    transform: translateX(5px);
-  }
-  60% {
-    transform: translateX(-5px);
-  }
-  80% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 /* Classe aplicada dinamicamente via JS */
 .shake-effect {
   animation: shake 0.4s ease;
-}
-
-/* Pulse para modal de sucesso */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 
 #modal-sucesso .modal-content {
