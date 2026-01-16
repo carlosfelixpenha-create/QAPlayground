@@ -1,6 +1,7 @@
 # 🧪 Projeto: QAPlayground
 
 ![CI](https://github.com/carlosfelixpenha-create/QAPlayground/actions/workflows/ci.yml/badge.svg)
+[![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://carlosfelixpenha-create.github.io/QAPlayground/)
 ![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen)
 
 ## 🎯 Objetivo
