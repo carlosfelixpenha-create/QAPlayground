@@ -1,8 +1,12 @@
 # 🧪 Projeto: QAPlayground
 
+![CI](https://github.com/carlosfelixpenha-create/QAPlayground/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen)
+
 ## 🎯 Objetivo
 
-Criar uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados. O ambiente servirá como um "playground" para profissionais e estudantes de QA explorarem cenários reais de validação de software.
+Criar uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados.  
+O ambiente serve como um "playground" para profissionais e estudantes de QA explorarem cenários reais de validação de software.
 
 ## 👥 Público-alvo
 
@@ -20,11 +24,12 @@ Criar uma aplicação web simples e 100% em português, voltada para testes manu
 - Simulação de falhas e comportamentos inesperados
 - Página responsiva para testes em diferentes tamanhos de tela
 
-## 🛠️ Tecnologias sugeridas
+## 🛠️ Tecnologias utilizadas
 
 - HTML, CSS, JavaScript
 - Framework opcional: React ou Vue
 - Hospedagem: GitHub Pages, Vercel ou Netlify
+- **CI/CD:** GitHub Actions integrado com Husky para rodar testes e validar cobertura mínima
 
 ## 📋 Cenários de teste sugeridos
 
@@ -33,6 +38,7 @@ Criar uma aplicação web simples e 100% em português, voltada para testes manu
 - Teste de responsividade em celulares e desktops
 - Navegação com teclado (acessibilidade)
 - Comportamento de elementos dinâmicos
+- Validação de cobertura mínima nos testes automatizados
 
 ## 🚀 Próximos passos
 
@@ -41,4 +47,15 @@ Criar uma aplicação web simples e 100% em português, voltada para testes manu
 3. Publicar versão inicial
 4. Compartilhar com a comunidade de QA
 5. Evoluir com base em feedbacks
-6. Testando com CI/CD
+6. Testar continuamente com pipeline CI/CD
+7. Aumentar gradualmente o threshold de cobertura (meta: 80%+)
+
+---
+
+## 📊 Status atual
+
+- ✅ Testes unitários e de integração configurados
+- ✅ Husky rodando hooks em `pre-commit` e `pre-push`
+- ✅ Pipeline CI/CD ativo no GitHub Actions
+- ✅ Cobertura mínima de 60% garantida
+- 📈 Cobertura atual: ~86% linhas, ~68% branches
