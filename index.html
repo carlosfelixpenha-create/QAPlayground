@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QAPlayground</title>
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="frontend/css/style_global.css" />
+    <link rel="stylesheet" href="frontend/css/responsividade-global.css" />
+  </head>
+
+  <body class="home">
+    <!-- Botão de Contatos no canto superior direito -->
+    <div class="top-right">
+      <button id="btnContatos" onclick="abrirModalContatos()">
+        📞 Contatos
+      </button>
+    </div>
+
+    <div class="container">
+      <aside class="sidebar">
+        <h2>Menu de Atividades</h2>
+        <ul>
+          <li>
+            <button onclick="location.href='frontend/pages/cadastro.html'">
+              📝 Cadastro
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/login.html'">
+              🔑 Login
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/formulario-1.html'">
+              📄 Formulário 1
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/formulario-2.html'">
+              🧾 Formulário 2
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/formulario-3.html'">
+              🗒️ Formulário 3
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/botoes.html'">
+              🔘 Botões
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/modais.html'">
+              🪟 Modais
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/tabelas.html'">
+              📊 Tabelas
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="location.href='frontend/pages/arrastar-soltar.html'"
+            >
+              🖼️ Arrastando Imagens
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/quebra-cabeca.html'">
+              🧩 Quebra Cabeças
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="location.href='frontend/pages/quebra-cabeca-104pcs.html'"
+            >
+              🧩🧩 Quebra Cabeça 104pcs
+            </button>
+          </li>
+          <li>
+            <button
+              onclick="location.href='frontend/pages/acessibilidade.html'"
+            >
+              ♿ Acessibilidades
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/instrucoes.html'">
+              📋 Instruções/Testes
+            </button>
+          </li>
+          <li>
+            <button onclick="location.href='frontend/pages/referencias.html'">
+              📚 Referências
+            </button>
+          </li>
+          <li>
+            <button onclick="abrirModalAvaliacao()">
+              ⭐ Avaliar Plataforma
+            </button>
+          </li>
+        </ul>
+
+        <!-- Logo abaixo dos botões -->
+        <div class="logo-home">
+          <img src="frontend/img/logos/logo_home.png" alt="Logo QAPlayground" />
+        </div>
+      </aside>
+
+      <main class="content">
+        <h1>Bem-vindo ao QAPlayground</h1>
+        <br />
+
+        <h3>
+          O QAPlayground é um ambiente aberto e colaborativo para estudo e
+          prática de tecnologia. Nosso foco é apoiar QAs, desenvolvedores e
+          instrutores com exemplos reais de testes, regras de negócio e
+          critérios de aceite.<br />100% em português e sem fins lucrativos.
+        </h3>
+
+        <h4>
+          Este espaço é aberto para todos que desejam aprender e compartilhar
+          conhecimento em tecnologia.
+        </h4>
+
+        <h4>
+          Use cada tela como um cenário de teste real: explore, valide e
+          pratique como faria em projetos de verdade.
+        </h4>
+
+        <h4>
+          1. <strong>Leitura em Áudio</strong> ativa o recurso de leitura em
+          áudio para ouvir os conteúdos das páginas.
+        </h4>
+        <h4>
+          2. <strong>VLibras</strong> ativa o avatar para acompanhar os
+          conteúdos em libras das páginas.
+        </h4>
+        <h4>
+          3. Use o menu lateral para escolher uma atividade e iniciar seus
+          testes.
+        </h4>
+        <h4>
+          4. Para voltar à tela inicial, clique no botão
+          <strong>Voltar</strong> disponível em cada página.
+        </h4>
+        <h4>
+          5. Todas as telas possuem regras de negócio e critérios de aceite
+          definidos.
+        </h4>
+        <h4>
+          6. Para visualizar esses detalhes, utilize o botão
+          <strong>Requisitos</strong> em cada atividade.
+        </h4>
+        <h4>7. Meus contatos estão no botão superior direito da página.</h4>
+        <h4>
+          8. Novas funcionalidades estão em desenvolvimento e serão adicionadas
+          em breve.
+        </h4>
+
+        <h4>
+          Atualmente o QAPlayground conta com
+          <span class="contador-linhas">12909 linhas</span>
+          de código, documentação, testes unitários e de integração, mostrando o
+          tamanho e a dedicação por trás deste ambiente colaborativo.
+        </h4>
+        <br />
+
+        <h3 class="texto-destaque">
+          *Este projeto é feito para você aprender, praticar e compartilhar
+          conhecimento. Explore, colabore e divirta-se testando!
+        </h3>
+      </main>
+    </div>
+
+    <!-- Contêiner fixo do contador -->
+    <div id="contador-container">Visitantes: carregando...</div>
+
+    <!-- Contêiner fixo da média -->
+    <div id="media-container">⭐ Média: carregando...</div>
+
+    <!-- Modal de Avaliação -->
+    <div id="modal-avaliacao" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModalAvaliacao()">&times;</span>
+        <h2>Avalie a nossa plataforma ⭐</h2>
+        <div id="estrelas">
+          <span onclick="avaliar(1)">☆</span>
+          <span onclick="avaliar(2)">☆</span>
+          <span onclick="avaliar(3)">☆</span>
+          <span onclick="avaliar(4)">☆</span>
+          <span onclick="avaliar(5)">☆</span>
+        </div>
+        <p id="resultado"></p>
+
+        <!-- Novo campo de feedback extra -->
+        <div id="feedback-extra" style="display: none; margin-top: 10px">
+          <label for="comentario-extra">
+            <strong>Sua sugestão:</strong>
+          </label>
+          <textarea
+            id="comentario-extra"
+            maxlength="128"
+            placeholder="O que podemos melhorar? (máx. 128 caracteres)"
+            style="width: 100%; height: 60px; margin-top: 5px"
+          ></textarea>
+          <br />
+          <button onclick="enviarSugestao()" style="margin-top: 8px">
+            Enviar Sugestão
+          </button>
+        </div>
+
+        <!-- Média de avaliações -->
+        <p id="media-avaliacao"></p>
+      </div>
+    </div>
+
+    <!-- Modal de Contatos -->
+    <div id="modal-contatos" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModalContatos()">&times;</span>
+        <h2>Meus Contatos</h2>
+
+        <p>📱 Celular: (41) 99583-0881</p>
+        <p>
+          💼 LinkedIn:
+          <a
+            href="https://www.linkedin.com/in/carlos-f%C3%A9lix-9427676b"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            linkedin.com/in/carlos-félix
+          </a>
+        </p>
+        <p>
+          🌐 Portfólio:
+          <a
+            href="https://carlosfelixpenha-create.github.io/Portfolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            carlosfelixpenha-create.github.io/Portfolio
+          </a>
+        </p>
+        <p>
+          📂 GitHub:
+          <a
+            href="https://github.com/carlosfelixpenha-create"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/carlosfelixpenha-create
+          </a>
+        </p>
+        <br />
+
+        <!-- Imagem de destaque -->
+        <img
+          src="frontend/img/logos/novo-emprego.jpg"
+          alt="À Procura de Emprego"
+        />
+
+        <!-- Botão OK com estilo já existente -->
+        <button id="modalContatosOk" class="btn-ok">OK</button>
+      </div>
+    </div>
+
+    <!-- JS externo -->
+    <script src="frontend/js/home.js"></script>
+    <script src="frontend/js/acessibilidade-global.js"></script>
+  </body>
+</html>
