@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:coverage:strict": "jest --coverage"
   },
   "repository": {
     "type": "git",
