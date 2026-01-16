@@ -19,10 +19,10 @@
   width: 96%;
   height: 110%;
   transform: translate(-50%, -50%);
-  background-image: url("https://copilot.microsoft.com/th/id/BCO.7a05a6b9-e434-4902-b730-ecebf1b1e239.png");
+  background-image: url("../img/logos/marca_dagua.png");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.8; /* mais suave para não atrapalhar leitura */
+  opacity: 0.1; /* mais suave para não atrapalhar leitura */
   pointer-events: none;
   z-index: -1; /* sempre atrás do conteúdo */
 }

@@ -157,10 +157,10 @@ body {
   width: 60%;
   height: 90%;
   transform: translate(-50%, -50%);
-  background-image: url("../img/logos/logo1.png");
+  background-image: url("../img/logos/marca_dagua.png");
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.7;
+  opacity: 0.1;
   pointer-events: none;
   z-index: -1;
 }
@@ -353,10 +353,10 @@ input {
   bottom: 20px;
   width: 150px;
   height: 100px;
-  background-image: url("../img/logos/logo1.png");
+  background-image: url("../img/logos/marca_dagua.png");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 1;
+  opacity: 0.1;
   pointer-events: none;
   z-index: 99;
 }
