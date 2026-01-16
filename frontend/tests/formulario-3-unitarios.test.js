@@ -4,7 +4,7 @@
  * Testes unitários para formulario-3.js
  */
 
-const { executarFormulario3, mostrarModal } = require("../formulario-3");
+const { executarFormulario3, mostrarModal } = require("../js/formulario-3.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

@@ -25,7 +25,7 @@ describe("Integração do acessibilidade-global.js em uma página", () => {
   });
 
   test("deve renderizar botão de áudio e avatar VLibras junto ao conteúdo da página", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botaoAudio = document.getElementById("btn-audio");
@@ -41,7 +41,7 @@ describe("Integração do acessibilidade-global.js em uma página", () => {
   });
 
   test("deve permitir navegação por teclado até o botão de áudio", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botaoAudio = document.getElementById("btn-audio");
@@ -51,7 +51,7 @@ describe("Integração do acessibilidade-global.js em uma página", () => {
   });
 
   test("deve alternar texto do botão de áudio ao clicar sem afetar outros elementos", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botaoAudio = document.getElementById("btn-audio");
@@ -67,7 +67,7 @@ describe("Integração do acessibilidade-global.js em uma página", () => {
   });
 
   test("deve simular leitura em áudio ao passar mouse sobre texto com áudio ativo", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botaoAudio = document.getElementById("btn-audio");
@@ -88,7 +88,7 @@ describe("Integração do acessibilidade-global.js em uma página", () => {
 
   // --- Novo cenário: validação do aria-label ---
   test("deve atualizar aria-label ao alternar áudio", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botaoAudio = document.getElementById("btn-audio");
@@ -109,7 +109,7 @@ describe("Integração do acessibilidade-global.js em uma página", () => {
         <h1>Página sem top-right</h1>
       </main>
     `; // sem top-right
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const topRight = document.querySelector(".top-right");

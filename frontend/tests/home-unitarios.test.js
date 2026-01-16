@@ -18,7 +18,7 @@ const {
   atualizarMedia,
   abrirModalContatos,
   fecharModalContatos,
-} = require("../home");
+} = require("../js/home.js");
 
 // Simula o DOM com JSDOM
 beforeEach(() => {

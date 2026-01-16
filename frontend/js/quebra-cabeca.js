@@ -49,7 +49,7 @@ function iniciarJogo(qtd) {
   tabuleiro.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
   // Caminho da pasta correspondente
-  const pasta = `img/quebra-cabeca/nivel${qtd}`;
+  const pasta = `../img/quebra-cabeca/nivel${qtd}`;
 
   // adiciona imagem de referência
   referencia.innerHTML = `<img src="${pasta}/robo${qtd}pcs.png">`;

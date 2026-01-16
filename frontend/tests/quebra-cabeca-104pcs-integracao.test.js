@@ -16,7 +16,7 @@ beforeEach(() => {
 function loadModule() {
   let mod;
   jest.isolateModules(() => {
-    mod = require("../quebra-cabeca-104pcs");
+    mod = require("../js/quebra-cabeca-104pcs.js");
   });
   return mod;
 }

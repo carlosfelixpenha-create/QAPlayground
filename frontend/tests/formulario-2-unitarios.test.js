@@ -27,7 +27,7 @@ document.body.innerHTML = `
   </form>
 `;
 
-const { executarFormulario2, mostrarModal } = require("../formulario-2");
+const { executarFormulario2, mostrarModal } = require("../js/formulario-2.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

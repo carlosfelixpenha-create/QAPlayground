@@ -41,7 +41,7 @@ const {
   limparCadastro,
   mostrarModal,
   mostrarModalErro,
-} = require("../cadastro");
+} = require("../js/cadastro.js");
 
 // Reset do DOM e mocks antes de cada teste
 beforeEach(() => {

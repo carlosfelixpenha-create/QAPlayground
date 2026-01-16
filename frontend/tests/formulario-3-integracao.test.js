@@ -4,7 +4,7 @@
  * Testes de integração para formulario-3.js
  */
 
-const { executarFormulario3 } = require("../formulario-3");
+const { executarFormulario3 } = require("../js/formulario-3.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

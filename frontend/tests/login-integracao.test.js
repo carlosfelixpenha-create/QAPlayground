@@ -26,7 +26,7 @@ document.body.innerHTML = `
   <button id="toggleSenha"></button>
 `;
 
-const { executarLogin, inicializarLogin } = require("../login");
+const { executarLogin, inicializarLogin } = require("../js/login.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

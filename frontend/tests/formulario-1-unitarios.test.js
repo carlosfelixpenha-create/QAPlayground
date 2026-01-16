@@ -35,7 +35,7 @@ const {
   verEnderecoSalvo,
   limparEndereco,
   mascaraCep,
-} = require("../formulario-1");
+} = require("../js/formulario-1.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

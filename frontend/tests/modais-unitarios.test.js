@@ -50,7 +50,7 @@ beforeEach(() => {
 function loadModule() {
   let mod;
   jest.isolateModules(() => {
-    mod = require("../modais.js");
+    mod = require("../js/modais.js");
   });
   return mod;
 }

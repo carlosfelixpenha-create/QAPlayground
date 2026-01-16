@@ -27,7 +27,7 @@ beforeEach(() => {
 
   // limpa cache e reimporta o módulo para registrar listeners com o DOM já montado
   jest.resetModules();
-  const acessibilidade = require("../acessibilidade");
+  const acessibilidade = require("../js/acessibilidade.js");
   validarSenhaLocal = acessibilidade.validarSenhaLocal;
   atualizarRegrasSenha = acessibilidade.atualizarRegrasSenha;
   validarSenhaAcessibilidade = acessibilidade.validarSenhaAcessibilidade;

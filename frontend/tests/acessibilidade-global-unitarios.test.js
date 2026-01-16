@@ -26,7 +26,7 @@ describe("acessibilidade-global.js", () => {
 
   // --- VLibras ---
   test("deve injetar container do VLibras no DOM", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const container = document.querySelector("div[vw]");
@@ -35,7 +35,7 @@ describe("acessibilidade-global.js", () => {
   });
 
   test("deve injetar script externo do VLibras", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const script = [...document.getElementsByTagName("script")].find((s) =>
@@ -49,7 +49,7 @@ describe("acessibilidade-global.js", () => {
   test("deve inicializar o widget VLibras se disponível", () => {
     window.VLibras = { Widget: jest.fn() };
 
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const script = [...document.getElementsByTagName("script")].find((s) =>
@@ -66,7 +66,7 @@ describe("acessibilidade-global.js", () => {
 
   // --- Áudio ---
   test("deve criar o botão de áudio no DOM", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botao = document.getElementById("btn-audio");
@@ -75,7 +75,7 @@ describe("acessibilidade-global.js", () => {
   });
 
   test("deve alternar texto do botão de áudio ao clicar", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botao = document.getElementById("btn-audio");
@@ -89,7 +89,7 @@ describe("acessibilidade-global.js", () => {
   });
 
   test("deve atualizar aria-label ao alternar áudio", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botao = document.getElementById("btn-audio");
@@ -104,7 +104,7 @@ describe("acessibilidade-global.js", () => {
   });
 
   test("deve simular leitura em áudio ao passar mouse sobre texto com áudio ativo", () => {
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const botao = document.getElementById("btn-audio");
@@ -127,7 +127,7 @@ describe("acessibilidade-global.js", () => {
   // --- Novo cenário: criação automática do .top-right ---
   test("deve criar container .top-right se não existir", () => {
     document.body.innerHTML = `<main><h1>Cadastro</h1></main>`; // sem top-right
-    require("../acessibilidade-global.js");
+    require("../js/acessibilidade-global.js");
     document.dispatchEvent(new Event("DOMContentLoaded"));
 
     const topRight = document.querySelector(".top-right");

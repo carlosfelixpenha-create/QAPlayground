@@ -42,7 +42,7 @@ beforeEach(() => {
 function loadModule() {
   let mod;
   jest.isolateModules(() => {
-    mod = require("../arrastar-soltar");
+    mod = require("../js/arrastar-soltar.js");
   });
   return mod;
 }

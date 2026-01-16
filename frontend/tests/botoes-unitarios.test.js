@@ -13,7 +13,7 @@ const {
   carregar,
   acaoIcone,
   resetarPagina,
-} = require("../botoes");
+} = require("../js/botoes.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

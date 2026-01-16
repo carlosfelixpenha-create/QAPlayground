@@ -5,7 +5,7 @@
  * Validam o fluxo completo de envio do formulário
  */
 
-const { executarFormulario2 } = require("../formulario-2");
+const { executarFormulario2 } = require("../js/formulario-2.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

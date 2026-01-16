@@ -101,7 +101,7 @@ beforeEach(() => {
 function loadModule() {
   let mod;
   jest.isolateModules(() => {
-    mod = require("../tabelas.js");
+    mod = require("../js/tabelas.js");
   });
   return mod;
 }

@@ -16,7 +16,7 @@ const {
   fecharModalAvaliacao,
   abrirModalContatos,
   fecharModalContatos,
-} = require("../home");
+} = require("../js/home.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

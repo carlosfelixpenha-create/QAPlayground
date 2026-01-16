@@ -25,7 +25,7 @@ const {
   validarSenhaAcessibilidade,
   resetarPagina,
   inicializarAcessibilidade,
-} = require("../acessibilidade");
+} = require("../js/acessibilidade.js");
 
 beforeEach(() => {
   document.body.innerHTML = `

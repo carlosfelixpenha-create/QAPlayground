@@ -5,7 +5,11 @@
  * Usando Jest + JSDOM para simular o DOM
  */
 
-const { executarLogin, mostrarModal, inicializarLogin } = require("../login");
+const {
+  executarLogin,
+  mostrarModal,
+  inicializarLogin,
+} = require("../js/login.js");
 
 beforeEach(() => {
   document.body.innerHTML = `
