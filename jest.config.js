@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: "jsdom",
-  collectCoverage: true,
+  collectCoverage: false, // desliga cobertura por padrão
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
   coverageThreshold: {
