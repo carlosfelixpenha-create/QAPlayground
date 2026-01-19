@@ -185,7 +185,8 @@
         </h3>
       </main>
     </div>
-
+  </body>
+</html>
     <!-- Contêiner fixo contador -->
     <div id="contador-container">Visitantes: carregando...</div>
 
@@ -277,6 +278,66 @@
         <button id="modalContatosOk" class="btn-ok">OK</button>
       </div>
     </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js"></script>
+
+    <script>
+      // Configuração do Firebase (substitua pelos dados do seu projeto)
+      const firebaseConfig = {
+        apiKey: "SUA_API_KEY",
+        authDomain: "SEU_PROJETO.firebaseapp.com",
+        databaseURL: "https://SEU_PROJETO.firebaseio.com",
+        projectId: "SEU_PROJETO",
+        storageBucket: "SEU_PROJETO.appspot.com",
+        messagingSenderId: "SENDER_ID",
+        appId: "APP_ID"
+      };
+
+      // Inicializa Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.database();
+
+      // Atualiza contador de visitantes
+      function atualizarVisitantes() {
+        const ref = db.ref("contadores/visitas");
+        ref.transaction((valorAtual) => (valorAtual || 0) + 1);
+        ref.on("value", (snapshot) => {
+          const contador = document.getElementById("contador-container");
+          if (contador) contador.innerText = `Visitantes: ${snapshot.val()}`;
+        });
+      }
+
+      // Atualiza média de avaliações
+      function atualizarMedia() {
+        const somaRef = db.ref("contadores/soma");
+        const totalRef = db.ref("contadores/total");
+
+        Promise.all([somaRef.once("value"), totalRef.once("value")]).then(
+          ([somaSnap, totalSnap]) => {
+            const soma = somaSnap.val() || 0;
+            const total = totalSnap.val() || 0;
+            const media = total > 0 ? (soma / total).toFixed(1) : "-";
+
+            const mediaContainer = document.getElementById("media-container");
+            if (mediaContainer)
+              mediaContainer.innerText = `⭐ Média: ${media}`;
+
+            const mediaAvaliacao = document.getElementById("media-avaliacao");
+            if (mediaAvaliacao)
+              mediaAvaliacao.innerText = `⭐ Média: ${media}`;
+          }
+        );
+      }
+
+      // Executa ao carregar
+      window.addEventListener("DOMContentLoaded", () => {
+        atualizarVisitantes();
+        atualizarMedia();
+      });
+    </script>
 
     <!-- JS externo -->
     <script src="frontend/js/home.js" defer></script>

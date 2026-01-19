@@ -1,14 +1,20 @@
 /**
  * Testes unitários para home.js
- * Testes de integração para home.js
  * Usando Jest + JSDOM para simular o DOM
  */
-// Mock global de fetch ANTES de importar home.js
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ value: 10 }),
-  })
-);
+
+// Mock Firebase ANTES de importar home.js
+global.firebase = {
+  initializeApp: jest.fn(() => ({})),
+  database: jest.fn(() => ({
+    ref: jest.fn(() => ({
+      transaction: jest.fn(),
+      once: jest.fn(() => Promise.resolve({ val: () => 10 })), // retorna 10 para soma/total
+      on: jest.fn((_, cb) => cb({ val: () => 10 })), // retorna 10 para visitas
+    })),
+  })),
+  analytics: jest.fn(),
+};
 
 const {
   abrirModalAvaliacao,
@@ -55,34 +61,34 @@ describe("Funções do modal de avaliação", () => {
   test("abrirModalAvaliacao deve exibir o modal", () => {
     abrirModalAvaliacao();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "flex"
+      "flex",
     );
   });
 
   test("fecharModalAvaliacao deve esconder o modal", () => {
     fecharModalAvaliacao();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none"
+      "none",
     );
   });
 
   test("avaliar com nota 2 deve mostrar mensagem de melhoria", async () => {
     await avaliar(2);
     expect(document.getElementById("resultado").innerHTML).toContain(
-      "Você avaliou nossa plataforma com 2 estrelas"
+      "Você avaliou nossa plataforma com 2 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "block"
+      "block",
     );
   });
 
   test("avaliar com nota 5 deve mostrar mensagem positiva", async () => {
     await avaliar(5);
     expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 5 estrelas"
+      "Você avaliou nossa plataforma com 5 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none"
+      "none",
     );
   });
 });
@@ -91,7 +97,7 @@ describe("Função enviarSugestao", () => {
   test("deve registrar sugestão quando comentário não está vazio", async () => {
     await enviarSugestao();
     expect(global.alert).toHaveBeenCalledWith(
-      "Sugestão registrada com sucesso!"
+      "Sugestão registrada com sucesso!",
     );
   });
 
@@ -99,7 +105,7 @@ describe("Função enviarSugestao", () => {
     document.getElementById("comentario-extra").value = "";
     await enviarSugestao();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none"
+      "none",
     );
   });
 });
@@ -111,10 +117,10 @@ describe("Função atualizarMedia", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(document.getElementById("media-avaliacao").innerText).toContain(
-      "⭐ Média: 1.0"
+      "⭐ Média: 1.0",
     );
     expect(document.getElementById("media-container").innerText).toContain(
-      "⭐ Média: 1.0"
+      "⭐ Média: 1.0",
     );
   });
 });
@@ -123,14 +129,14 @@ describe("Funções do modal de contatos", () => {
   test("abrirModalContatos deve exibir o modal", () => {
     abrirModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
-      "flex"
+      "flex",
     );
   });
 
   test("fecharModalContatos deve esconder o modal", () => {
     fecharModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
-      "none"
+      "none",
     );
   });
 });

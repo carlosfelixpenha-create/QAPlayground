@@ -3,11 +3,18 @@
  * Validam o fluxo completo de avaliação, sugestão e contatos
  */
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    json: () => Promise.resolve({ value: 10 }),
-  })
-);
+// Mock Firebase ANTES de importar home.js
+global.firebase = {
+  initializeApp: jest.fn(() => ({})),
+  database: jest.fn(() => ({
+    ref: jest.fn(() => ({
+      transaction: jest.fn(),
+      once: jest.fn(() => Promise.resolve({ val: () => 10 })), // retorna 10 para soma/total
+      on: jest.fn((_, cb) => cb({ val: () => 10 })), // retorna 10 para visitas
+    })),
+  })),
+  analytics: jest.fn(),
+};
 
 const {
   avaliar,
@@ -44,10 +51,10 @@ describe("Fluxo de integração - avaliação e sugestão", () => {
     await avaliar(2);
 
     expect(document.getElementById("resultado").innerHTML).toContain(
-      "Você avaliou nossa plataforma com 2 estrelas"
+      "Você avaliou nossa plataforma com 2 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "block"
+      "block",
     );
 
     document.getElementById("comentario-extra").value =
@@ -55,10 +62,10 @@ describe("Fluxo de integração - avaliação e sugestão", () => {
     await enviarSugestao();
 
     expect(global.alert).toHaveBeenCalledWith(
-      "Sugestão registrada com sucesso!"
+      "Sugestão registrada com sucesso!",
     );
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none"
+      "none",
     );
   });
 
@@ -72,7 +79,7 @@ describe("Fluxo de integração - avaliação e sugestão", () => {
     // Modal deve fechar sem alert
     expect(global.alert).not.toHaveBeenCalled();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none"
+      "none",
     );
   });
 
@@ -81,16 +88,16 @@ describe("Fluxo de integração - avaliação e sugestão", () => {
     await avaliar(5);
 
     expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 5 estrelas"
+      "Você avaliou nossa plataforma com 5 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none"
+      "none",
     );
 
     // modal deve fechar automaticamente após timeout
     await new Promise((resolve) => setTimeout(resolve, 3100));
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none"
+      "none",
     );
   });
 
@@ -99,15 +106,15 @@ describe("Fluxo de integração - avaliação e sugestão", () => {
     await avaliar(4);
 
     expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 4 estrelas"
+      "Você avaliou nossa plataforma com 4 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none"
+      "none",
     );
 
     await new Promise((resolve) => setTimeout(resolve, 3100));
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none"
+      "none",
     );
   });
 });
@@ -116,12 +123,12 @@ describe("Fluxo de integração - contatos", () => {
   test("usuário abre e fecha modal de contatos pelo botão OK", () => {
     abrirModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
-      "flex"
+      "flex",
     );
 
     fecharModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
-      "none"
+      "none",
     );
   });
 

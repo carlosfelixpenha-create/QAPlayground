@@ -1,31 +1,44 @@
 // Domínio oficial do GitHub Pages
 const dominioOficial = "carlosfelixpenha-create.github.io";
 
-// Contador de visitantes (protegido para testes)
+// Configuração do Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDLUPeMxcMC10VB8ZZWBsVOsaMFO9S-aGk",
+  authDomain: "qaplayground-7a4e0.firebaseapp.com",
+  databaseURL: "https://qaplayground-7a4e0-default-rtdb.firebaseio.com", // ⚠️ importante
+  projectId: "qaplayground-7a4e0",
+  storageBucket: "qaplayground-7a4e0.appspot.com",
+  messagingSenderId: "529328477991",
+  appId: "1:529328477991:web:c0378da7479336b806bb02",
+  measurementId: "G-J6K9DP3PCS",
+};
+
+// Inicializa Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const analytics = firebase.analytics(app);
+
+// ----------------------
+// Contador de visitantes
+// ----------------------
 if (
   typeof window !== "undefined" &&
   window.location?.hostname === dominioOficial
 ) {
-  fetch("https://countapi.xyz/hit/qaplayground/visitas")
-    .then((response) => response.json())
-    .then((data) => {
-      const contador = document.getElementById("contador-container");
-      if (contador) contador.innerText = `Visitantes: ${data.value}`;
-    });
+  const ref = db.ref("contadores/visitas");
+  ref.transaction((valorAtual) => (valorAtual || 0) + 1);
+  ref.on("value", (snapshot) => {
+    const contador = document.getElementById("contador-container");
+    if (contador) contador.innerText = `Visitantes: ${snapshot.val()}`;
+  });
 } else {
   const contador = document.getElementById("contador-container");
   if (contador) contador.innerText = "Visitantes: 0";
 }
 
-// Inicializa os contadores de avaliação se não existirem
-fetch("https://countapi.xyz/create?namespace=qaplayground&key=soma&value=0");
-fetch("https://countapi.xyz/create?namespace=qaplayground&key=total&value=0");
-// Inicializa o contador de sugestões se não existir
-fetch(
-  "https://countapi.xyz/create?namespace=qaplayground&key=sugestoes&value=0",
-);
-
+// ----------------------
 // Funções do modal de avaliação
+// ----------------------
 function abrirModalAvaliacao() {
   const modal = document.getElementById("modal-avaliacao");
   if (modal) modal.style.display = "flex";
@@ -73,15 +86,14 @@ function avaliar(nota) {
     setTimeout(fecharModalAvaliacao, 3000);
   }
 
-  fetch(`https://countapi.xyz/update/qaplayground/soma?amount=${nota}`)
-    .then((response) => response.json())
-    .then(() => {
-      return fetch("https://countapi.xyz/hit/qaplayground/total");
-    })
-    .then((response) => response.json())
-    .then(() => {
-      atualizarMedia();
-    });
+  // Atualiza soma e total no Firebase
+  const somaRef = db.ref("contadores/soma");
+  const totalRef = db.ref("contadores/total");
+
+  somaRef.transaction((valorAtual) => (valorAtual || 0) + nota);
+  totalRef.transaction((valorAtual) => (valorAtual || 0) + 1);
+
+  atualizarMedia();
 
   if (typeof sessionStorage !== "undefined") {
     sessionStorage.setItem("avaliou", "true");
@@ -100,19 +112,11 @@ function enviarSugestao() {
 
   if (notaSelecionada <= 3) {
     if (comentario.trim() !== "") {
-      fetch("https://api.countapi.xyz/update/qaplayground/sugestoes?amount=1", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nota: notaSelecionada, comentario: comentario }),
-      })
-        .then(() => {
-          alert("Sugestão registrada com sucesso!");
-          fecharModalAvaliacao();
-        })
-        .catch(() => {
-          alert("Erro ao registrar sugestão!");
-          fecharModalAvaliacao();
-        });
+      const sugestoesRef = db.ref("contadores/sugestoes");
+      sugestoesRef.transaction((valorAtual) => (valorAtual || 0) + 1);
+
+      alert("Sugestão registrada com sucesso!");
+      fecharModalAvaliacao();
     } else {
       fecharModalAvaliacao();
     }
@@ -122,24 +126,26 @@ function enviarSugestao() {
 }
 
 function atualizarMedia() {
-  Promise.all([
-    fetch("https://countapi.xyz/get/qaplayground/soma").then((r) => r.json()),
-    fetch("https://countapi.xyz/get/qaplayground/total").then((r) => r.json()),
-  ]).then(([somaData, totalData]) => {
-    const soma = somaData.value || 0;
-    const total = totalData.value || 0;
-    const media = total > 0 ? (soma / total).toFixed(1) : "-";
+  const somaRef = db.ref("contadores/soma");
+  const totalRef = db.ref("contadores/total");
 
-    const mediaAvaliacao = document.getElementById("media-avaliacao");
-    if (mediaAvaliacao) {
-      mediaAvaliacao.innerText = `⭐ Média: ${media}`;
-    }
+  Promise.all([somaRef.once("value"), totalRef.once("value")]).then(
+    ([somaSnap, totalSnap]) => {
+      const soma = somaSnap.val() || 0;
+      const total = totalSnap.val() || 0;
+      const media = total > 0 ? (soma / total).toFixed(1) : "-";
 
-    const mediaContainer = document.getElementById("media-container");
-    if (mediaContainer) {
-      mediaContainer.innerText = `⭐ Média: ${media}`;
-    }
-  });
+      const mediaAvaliacao = document.getElementById("media-avaliacao");
+      if (mediaAvaliacao) {
+        mediaAvaliacao.innerText = `⭐ Média: ${media}`;
+      }
+
+      const mediaContainer = document.getElementById("media-container");
+      if (mediaContainer) {
+        mediaContainer.innerText = `⭐ Média: ${media}`;
+      }
+    },
+  );
 }
 
 atualizarMedia();
