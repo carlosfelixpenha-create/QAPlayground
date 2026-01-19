@@ -19,14 +19,14 @@ if (
 
 // Inicializa os contadores de avaliação se não existirem
 fetch(
-  "https://api.countapi.xyz/create?namespace=qaplayground&key=soma&value=0"
+  "https://api.countapi.xyz/create?namespace=qaplayground&key=soma&value=0",
 );
 fetch(
-  "https://api.countapi.xyz/create?namespace=qaplayground&key=total&value=0"
+  "https://api.countapi.xyz/create?namespace=qaplayground&key=total&value=0",
 );
 // Inicializa o contador de sugestões se não existir
 fetch(
-  "https://api.countapi.xyz/create?namespace=qaplayground&key=sugestoes&value=0"
+  "https://api.countapi.xyz/create?namespace=qaplayground&key=sugestoes&value=0",
 );
 
 // Funções do modal de avaliação
@@ -91,7 +91,7 @@ function avaliar(nota) {
     sessionStorage.setItem("avaliou", "true");
   }
   const btnAvaliar = document.querySelector(
-    "button[onclick='abrirModalAvaliacao()']"
+    "button[onclick='abrirModalAvaliacao()']",
   );
   if (btnAvaliar) btnAvaliar.disabled = true;
 }
@@ -99,7 +99,7 @@ function avaliar(nota) {
 function enviarSugestao() {
   const comentario = document.getElementById("comentario-extra")?.value || "";
   const notaSelecionada = document.querySelectorAll(
-    "#estrelas .selecionada"
+    "#estrelas .selecionada",
   ).length;
 
   if (notaSelecionada <= 3) {
@@ -128,10 +128,10 @@ function enviarSugestao() {
 function atualizarMedia() {
   Promise.all([
     fetch("https://api.countapi.xyz/get/qaplayground/soma").then((r) =>
-      r.json()
+      r.json(),
     ),
     fetch("https://api.countapi.xyz/get/qaplayground/total").then((r) =>
-      r.json()
+      r.json(),
     ),
   ]).then(([somaData, totalData]) => {
     const soma = somaData.value || 0;
@@ -159,7 +159,7 @@ if (typeof window !== "undefined") {
       sessionStorage.getItem("avaliou") === "true"
     ) {
       const btnAvaliar = document.querySelector(
-        "button[onclick='abrirModalAvaliacao()']"
+        "button[onclick='abrirModalAvaliacao()']",
       );
       if (btnAvaliar) btnAvaliar.disabled = true;
     }
@@ -208,12 +208,14 @@ if (typeof window !== "undefined") {
 // ----------------------
 // EXPORTS PARA TESTES UNITÁRIOS
 // ----------------------
-module.exports = {
-  abrirModalAvaliacao,
-  fecharModalAvaliacao,
-  avaliar,
-  enviarSugestao,
-  atualizarMedia,
-  abrirModalContatos,
-  fecharModalContatos,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    abrirModalAvaliacao,
+    fecharModalAvaliacao,
+    avaliar,
+    enviarSugestao,
+    atualizarMedia,
+    abrirModalContatos,
+    fecharModalContatos,
+  };
+}

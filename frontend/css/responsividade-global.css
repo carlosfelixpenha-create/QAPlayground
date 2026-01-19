@@ -1,5 +1,5 @@
 /* =========================================================
-   Responsividade Global - QAPlayground
+   Responsividade Global - QAPlayground (versão consolidada)
    ========================================================= */
 
 /* ===== Estrutura Global ===== */
@@ -12,18 +12,20 @@ body {
 
 /* ===== Home ===== */
 body.home {
-  overflow: hidden; /* remove scroll vertical só na home */
+  overflow-y: auto; /* permite rolagem em mobile */
 }
 
 body.home .container {
-  height: 100vh; /* altura total da tela */
-  display: flex; /* mantém sidebar e conteúdo lado a lado */
+  height: 100vh;
+  display: flex;
 }
 
 body.home .sidebar {
-  overflow-y: auto; /* só a sidebar rola se precisar */
+  overflow-y: auto;
   max-height: 100vh;
-  width: clamp(180px, 25vw, 250px); /* largura adaptável */
+  width: clamp(180px, 25vw, 250px);
+  position: relative; /* garante contexto de empilhamento */
+  z-index: 10000; /* sidebar sempre por cima dos contadores */
 }
 
 body.home .content {
@@ -33,7 +35,7 @@ body.home .content {
 
 /* ===== Requisitos ===== */
 body.requisitos .doc-container {
-  max-width: 1000px; /* mais largo em desktop */
+  max-width: 1000px;
   margin: 20px auto;
   background: rgba(255, 255, 255, 0.95);
   padding: 30px;
@@ -43,9 +45,7 @@ body.requisitos .doc-container {
   line-height: 1.6;
 }
 
-/* ===== Componentes (Botões, Contadores, Média) ===== */
-
-/* Responsividade aplicada ao botão de contatos e leitura em áudio */
+/* ===== Componentes ===== */
 #btnContatos,
 .leitura-audio {
   font-size: clamp(0.8rem, 2vw, 1rem);
@@ -53,7 +53,11 @@ body.requisitos .doc-container {
   border-radius: clamp(4px, 1vw, 8px);
 }
 
-/* Contadores */
+/* =========================================================
+   Bloco de Contadores Revisado - QAPlayground
+   ========================================================= */
+
+/* Estilo base para contador e média */
 #contador-container,
 #media-container {
   width: clamp(100px, 30vw, 150px);
@@ -65,29 +69,69 @@ body.requisitos .doc-container {
   padding: clamp(2px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
   border-radius: clamp(2px, 1vw, 6px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  z-index: 9999;
+  z-index: 9000; /* menor que sidebar */
 }
 
-/* Média fixa e responsiva */
+/* Posição padrão em desktop */
 #media-container {
   position: fixed;
   bottom: clamp(10px, 3vw, 20px);
   left: clamp(10px, 15vw, 270px);
 }
 
-/* Contador fixo e responsivo */
 #contador-container {
   position: fixed;
   bottom: clamp(10px, 3vw, 20px);
   right: clamp(10px, 3vw, 20px);
   min-width: clamp(120px, 25vw, 180px);
-  animation: none;
-  transition: none;
+}
+
+/* ===== Ajustes de responsividade ===== */
+
+/* Tablets - reposiciona média para o canto direito */
+@media (max-width: 992px) {
+  #media-container {
+    left: auto;
+    right: 10px;
+    bottom: 60px;
+  }
+}
+
+/* Celulares - centraliza média abaixo */
+@media (max-width: 576px) {
+  #media-container {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    bottom: 80px;
+  }
+
+  #contador-container {
+    font-size: 0.8rem;
+    bottom: 20px;
+  }
 }
 
 /* ===== Logo ===== */
 .logo-home img {
   max-width: clamp(140px, 20vw, 180px);
+}
+
+/* ===== Modais ===== */
+.modal-content {
+  max-width: 90%;
+  margin: auto;
+  padding: clamp(10px, 4vw, 20px);
+  border-radius: 8px;
+}
+
+/* ===== Tipografia fluida ===== */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+h2,
+h3 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 /* ===== Breakpoints ===== */
@@ -126,6 +170,16 @@ body.requisitos .doc-container {
     width: 100%;
     max-width: 100%;
     order: 1;
+    padding: 10px;
+  }
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sidebar li {
+    flex: 1 1 45%;
+    margin: 5px;
   }
 }
 
@@ -149,6 +203,49 @@ body.requisitos .doc-container {
   body.requisitos .doc-container {
     max-width: 100%;
     padding: 15px;
+  }
+  #contador-container,
+  #media-container {
+    font-size: 0.8rem;
+    bottom: 5px;
+  }
+
+  /* ===== Ajustes finais para mobile ===== */
+  body.home .container {
+    flex-direction: column;
+    min-height: 100vh; /* evita corte de conteúdo */
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+    order: 0; /* aparece antes do conteúdo */
+    padding: 8px;
+  }
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sidebar li {
+    flex: 1 1 45%;
+    margin: 4px;
+  }
+
+  .content {
+    width: 100%;
+    order: 1;
+    padding: 10px;
+  }
+
+  #media-container,
+  #contador-container {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin: 10px auto;
+    transform: none;
   }
 }
 
