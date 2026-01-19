@@ -6,7 +6,7 @@ if (
   typeof window !== "undefined" &&
   window.location?.hostname === dominioOficial
 ) {
-  fetch("https://api.countapi.xyz/hit/qaplayground/visitas")
+  fetch("https://countapi.xyz/hit/qaplayground/visitas")
     .then((response) => response.json())
     .then((data) => {
       const contador = document.getElementById("contador-container");
@@ -18,15 +18,11 @@ if (
 }
 
 // Inicializa os contadores de avaliação se não existirem
-fetch(
-  "https://api.countapi.xyz/create?namespace=qaplayground&key=soma&value=0",
-);
-fetch(
-  "https://api.countapi.xyz/create?namespace=qaplayground&key=total&value=0",
-);
+fetch("https://countapi.xyz/create?namespace=qaplayground&key=soma&value=0");
+fetch("https://countapi.xyz/create?namespace=qaplayground&key=total&value=0");
 // Inicializa o contador de sugestões se não existir
 fetch(
-  "https://api.countapi.xyz/create?namespace=qaplayground&key=sugestoes&value=0",
+  "https://countapi.xyz/create?namespace=qaplayground&key=sugestoes&value=0",
 );
 
 // Funções do modal de avaliação
@@ -77,10 +73,10 @@ function avaliar(nota) {
     setTimeout(fecharModalAvaliacao, 3000);
   }
 
-  fetch(`https://api.countapi.xyz/update/qaplayground/soma?amount=${nota}`)
+  fetch(`https://countapi.xyz/update/qaplayground/soma?amount=${nota}`)
     .then((response) => response.json())
     .then(() => {
-      return fetch("https://api.countapi.xyz/hit/qaplayground/total");
+      return fetch("https://countapi.xyz/hit/qaplayground/total");
     })
     .then((response) => response.json())
     .then(() => {
@@ -127,12 +123,8 @@ function enviarSugestao() {
 
 function atualizarMedia() {
   Promise.all([
-    fetch("https://api.countapi.xyz/get/qaplayground/soma").then((r) =>
-      r.json(),
-    ),
-    fetch("https://api.countapi.xyz/get/qaplayground/total").then((r) =>
-      r.json(),
-    ),
+    fetch("https://countapi.xyz/get/qaplayground/soma").then((r) => r.json()),
+    fetch("https://countapi.xyz/get/qaplayground/total").then((r) => r.json()),
   ]).then(([somaData, totalData]) => {
     const soma = somaData.value || 0;
     const total = totalData.value || 0;
