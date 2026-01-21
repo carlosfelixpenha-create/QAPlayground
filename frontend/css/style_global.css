@@ -278,7 +278,10 @@ input {
   margin-bottom: 64px;
   cursor: grab;
   font-weight: 600;
-  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    opacity 0.3s;
 }
 
 .tag-palavra:hover {

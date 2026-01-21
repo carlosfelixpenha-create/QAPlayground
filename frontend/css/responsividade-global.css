@@ -204,10 +204,12 @@ h3 {
     max-width: 100%;
     padding: 15px;
   }
-  #contador-container,
-  #media-container {
-    font-size: 0.8rem;
-    bottom: 5px;
+
+  #contador-container {
+    font-size: 0.8rem; /* diminui o tamanho da fonte */
+    padding: 3px; /* reduz o espaço interno */
+    margin: 0 auto; /* centraliza e tira espaçamento extra */
+    width: fit-content; /* faz o container se ajustar ao conteúdo */
   }
 
   /* ===== Ajustes finais para mobile ===== */

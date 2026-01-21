@@ -187,11 +187,26 @@
     </div>
   </body>
 </html>
-    <!-- Contêiner fixo contador -->
-    <div id="contador-container">Visitantes: carregando...</div>
 
-    <!-- Contêiner fixo média -->
-    <div id="media-container">⭐ Média: carregando...</div>
+<!-- Contêiner fixo contador -->
+<div id="contador-container" style="display:flex; align-items:center; gap:6px;">
+  <span>Visitantes:</span>
+  
+  <a href="https://contador.s12.com.br">
+    <img 
+      src="https://contador.s12.com.br/img-yYbxC6Da9y6Y3z9x-91.gif" 
+      border="0" 
+      alt="counter free" 
+      width="50">
+  </a>
+  <script type="text/javascript" src="https://contador.s12.com.br/ad.js?id=yYbxC6Da9y6Y3z9x"></script>
+  
+  <br>
+  
+  <a href="https://meuip.page/qual-e-o-meu-ip/" target="_blank">
+    <img src="https://img.meuip.page/selo-3a0YZ9697BZCzCC3.gif" alt="" border="0">
+  </a>
+</div>
 
     <!-- Modal de Avaliação -->
     <div id="modal-avaliacao" class="modal">
@@ -279,68 +294,47 @@
       </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js"></script>
+<script>
 
-    <script>
-      // Configuração do Firebase (substitua pelos dados do seu projeto)
-      const firebaseConfig = {
-        apiKey: "SUA_API_KEY",
-        authDomain: "SEU_PROJETO.firebaseapp.com",
-        databaseURL: "https://SEU_PROJETO.firebaseio.com",
-        projectId: "SEU_PROJETO",
-        storageBucket: "SEU_PROJETO.appspot.com",
-        messagingSenderId: "SENDER_ID",
-        appId: "APP_ID"
-      };
+// Atualiza contador de visitantes
+function atualizarVisitantes() {
+  const contador = document.getElementById("contador-container");
+  //if (contador) contador.innerText = "Visitantes: (desativado)";
+}
 
-      // Inicializa Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-      const db = firebase.database();
+// Atualiza média de avaliações
+function atualizarMedia() {
+  const mediaContainer = document.getElementById("media-container");
+  if (mediaContainer) mediaContainer.innerText = "⭐ Média: (desativado)";
 
-      // Atualiza contador de visitantes
-      function atualizarVisitantes() {
-        const ref = db.ref("contadores/visitas");
-        ref.transaction((valorAtual) => (valorAtual || 0) + 1);
-        ref.on("value", (snapshot) => {
-          const contador = document.getElementById("contador-container");
-          if (contador) contador.innerText = `Visitantes: ${snapshot.val()}`;
-        });
-      }
+  //const mediaAvaliacao = document.getElementById("media-avaliacao");
+  //if (mediaAvaliacao) mediaAvaliacao.innerText = "⭐ Média: (desativado)";
+}
 
-      // Atualiza média de avaliações
-      function atualizarMedia() {
-        const somaRef = db.ref("contadores/soma");
-        const totalRef = db.ref("contadores/total");
+  //Promise.all([somaRef.once("value"), totalRef.once("value")]).then(
+   //([somaSnap, totalSnap]) => {
+   // const soma = somaSnap.val() || 0;
+    //const total = totalSnap.val() || 0;
+    //const media = total > 0 ? (soma / total).toFixed(1) : "-";
 
-        Promise.all([somaRef.once("value"), totalRef.once("value")]).then(
-          ([somaSnap, totalSnap]) => {
-            const soma = somaSnap.val() || 0;
-            const total = totalSnap.val() || 0;
-            const media = total > 0 ? (soma / total).toFixed(1) : "-";
+      // 👉 cálculo continua acontecendo, mas não é exibido na tela
+      // const mediaContainer = document.getElementById("media-container");
+      // if (mediaContainer) mediaContainer.innerText = `⭐ Média: ${media}`;
 
-            const mediaContainer = document.getElementById("media-container");
-            if (mediaContainer)
-              mediaContainer.innerText = `⭐ Média: ${media}`;
+      // const mediaAvaliacao = document.getElementById("media-avaliacao");
+      // if (mediaAvaliacao) mediaAvaliacao.innerText = `⭐ Média: ${media}`;
+  // }
+ //);
 
-            const mediaAvaliacao = document.getElementById("media-avaliacao");
-            if (mediaAvaliacao)
-              mediaAvaliacao.innerText = `⭐ Média: ${media}`;
-          }
-        );
-      }
+// Executa ao carregar
+window.addEventListener("DOMContentLoaded", () => {
+  atualizarVisitantes();
+  atualizarMedia();
+});
+</script>
 
-      // Executa ao carregar
-      window.addEventListener("DOMContentLoaded", () => {
-        atualizarVisitantes();
-        atualizarMedia();
-      });
-    </script>
-
-    <!-- JS externo -->
-    <script src="frontend/js/home.js" defer></script>
-    <script src="frontend/js/acessibilidade-global.js" defer></script>
-  </body>
+<!-- JS externo -->
+<script src="frontend/js/home.js" defer></script>
+<script src="frontend/js/acessibilidade-global.js" defer></script>
+</body>
 </html>

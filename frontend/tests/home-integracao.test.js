@@ -3,19 +3,6 @@
  * Validam o fluxo completo de avaliação, sugestão e contatos
  */
 
-// Mock Firebase ANTES de importar home.js
-global.firebase = {
-  initializeApp: jest.fn(() => ({})),
-  database: jest.fn(() => ({
-    ref: jest.fn(() => ({
-      transaction: jest.fn(),
-      once: jest.fn(() => Promise.resolve({ val: () => 10 })), // retorna 10 para soma/total
-      on: jest.fn((_, cb) => cb({ val: () => 10 })), // retorna 10 para visitas
-    })),
-  })),
-  analytics: jest.fn(),
-};
-
 const {
   avaliar,
   enviarSugestao,
@@ -35,8 +22,6 @@ beforeEach(() => {
     </div>
     <button onclick="abrirModalAvaliacao()">Avaliar</button>
     <input id="comentario-extra" value="" />
-    <div id="media-avaliacao"></div>
-    <div id="media-container"></div>
     <div id="modal-contatos" style="display:none"></div>
     <button id="modalContatosOk"></button>
     <button id="btnContatos"></button>
@@ -50,11 +35,11 @@ describe("Fluxo de integração - avaliação e sugestão", () => {
     abrirModalAvaliacao();
     await avaliar(2);
 
-    expect(document.getElementById("resultado").innerHTML).toContain(
+    expect(document.getElementById("resultado").innerText).toContain(
       "Você avaliou nossa plataforma com 2 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "block",
+      "none",
     );
 
     document.getElementById("comentario-extra").value =

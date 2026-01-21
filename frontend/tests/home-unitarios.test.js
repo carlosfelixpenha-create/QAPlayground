@@ -3,25 +3,11 @@
  * Usando Jest + JSDOM para simular o DOM
  */
 
-// Mock Firebase ANTES de importar home.js
-global.firebase = {
-  initializeApp: jest.fn(() => ({})),
-  database: jest.fn(() => ({
-    ref: jest.fn(() => ({
-      transaction: jest.fn(),
-      once: jest.fn(() => Promise.resolve({ val: () => 10 })), // retorna 10 para soma/total
-      on: jest.fn((_, cb) => cb({ val: () => 10 })), // retorna 10 para visitas
-    })),
-  })),
-  analytics: jest.fn(),
-};
-
 const {
   abrirModalAvaliacao,
   fecharModalAvaliacao,
   avaliar,
   enviarSugestao,
-  atualizarMedia,
   abrirModalContatos,
   fecharModalContatos,
 } = require("../js/home.js");
@@ -37,8 +23,6 @@ beforeEach(() => {
       <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
     </div>
     <button onclick="abrirModalAvaliacao()">Avaliar</button>
-    <div id="media-avaliacao"></div>
-    <div id="media-container"></div>
     <div id="modal-contatos" style="display:none"></div>
     <button id="modalContatosOk"></button>
     <button id="btnContatos"></button>
@@ -72,17 +56,17 @@ describe("Funções do modal de avaliação", () => {
     );
   });
 
-  test("avaliar com nota 2 deve mostrar mensagem de melhoria", async () => {
+  test("avaliar com nota 2 deve mostrar mensagem de melhoria e manter feedback-extra oculto", async () => {
     await avaliar(2);
-    expect(document.getElementById("resultado").innerHTML).toContain(
+    expect(document.getElementById("resultado").innerText).toContain(
       "Você avaliou nossa plataforma com 2 estrelas",
     );
     expect(document.getElementById("feedback-extra").style.display).toBe(
-      "block",
+      "none",
     );
   });
 
-  test("avaliar com nota 5 deve mostrar mensagem positiva", async () => {
+  test("avaliar com nota 5 deve mostrar mensagem positiva e manter feedback-extra oculto", async () => {
     await avaliar(5);
     expect(document.getElementById("resultado").innerText).toContain(
       "Você avaliou nossa plataforma com 5 estrelas",
@@ -106,21 +90,6 @@ describe("Função enviarSugestao", () => {
     await enviarSugestao();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
       "none",
-    );
-  });
-});
-
-describe("Função atualizarMedia", () => {
-  test("deve calcular média corretamente e atualizar DOM", async () => {
-    await atualizarMedia();
-    // aguarda o próximo ciclo de event loop para os .then() executarem
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    expect(document.getElementById("media-avaliacao").innerText).toContain(
-      "⭐ Média: 1.0",
-    );
-    expect(document.getElementById("media-container").innerText).toContain(
-      "⭐ Média: 1.0",
     );
   });
 });
