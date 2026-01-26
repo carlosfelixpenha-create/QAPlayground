@@ -99,9 +99,8 @@ function retornoErro() {
   }
 
   fecharModal("erro");
-  document.getElementById(
-    "retorno-erro"
-  ).innerText = `Usuário relatou: "${justificativa}"`;
+  document.getElementById("retorno-erro").innerText =
+    `Usuário relatou: "${justificativa}"`;
   desabilitarBotao("erro");
 }
 
