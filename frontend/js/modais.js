@@ -3,13 +3,17 @@
 // ===============================
 // Funções principais de abrir/fechar
 // ===============================
+let sugestaoEnviada = false;
+
+if (typeof emailjs !== "undefined") {
+  emailjs.init("bxRBe2QaHTRxFT15J");
+}
+
 function abrirModal(tipo) {
   const modal = document.getElementById("modal-" + tipo);
   if (modal) {
-    // Força o flex para centralizar
     modal.style.display = "flex";
 
-    // Ajuste necessário: aplica classe correta conforme padrão CSS
     const content = modal.querySelector(".modal-content");
     if (content) {
       if (tipo === "alerta") {
@@ -20,6 +24,23 @@ function abrirModal(tipo) {
         content.classList.remove("small");
       }
     }
+
+    // ===============================
+    // FORÇA contador sempre visível
+    // ===============================
+    if (tipo === "sugestoes") {
+      const textarea = document.getElementById("texto-sugestao");
+      const contador = document.getElementById("contador-sugestao");
+
+      if (textarea && contador) {
+        contador.textContent = `${textarea.value.length} / 600`;
+        contador.style.display = "block";
+      }
+
+      // 🔒 desabilita o botão Sugestões ao abrir
+      const btn = document.getElementById("btn-sugestoes");
+      if (btn) btn.disabled = true;
+    }
   }
 }
 
@@ -29,7 +50,26 @@ function fecharModal(tipo) {
     modal.style.display = "none";
     resetarCamposModal(modal); // <<< limpa os campos ao fechar
   }
+
+  // 🔹 Reabilita o botão de sugestões se o usuário saiu sem enviar
+  if (tipo === "sugestoes") {
+    const btnSugestoes = document.getElementById("btn-sugestoes");
+
+    // 🔓 só reabilita se NÃO tiver enviado
+    if (btnSugestoes && !sugestaoEnviada) {
+      btnSugestoes.disabled = false;
+    }
+  }
 }
+
+// Fecha modal ao clicar fora do conteúdo
+window.addEventListener("click", function (event) {
+  const modalSugestoes = document.getElementById("modal-sugestoes");
+
+  if (event.target === modalSugestoes) {
+    fecharModal("sugestoes");
+  }
+});
 
 // Fecha modal ao clicar fora
 window.onclick = function (event) {
@@ -41,6 +81,21 @@ window.onclick = function (event) {
     }
   }
 };
+
+function mostrarMensagem(texto) {
+  const modal = document.getElementById("modal-mensagem");
+  const textoModal = document.getElementById("texto-mensagem");
+
+  if (modal && textoModal) {
+    textoModal.innerText = texto;
+    modal.style.display = "block";
+
+    // ⏱ fecha automaticamente após 2 segundos
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 2500);
+  }
+}
 
 // ===============================
 // Retornos dos modais + desabilitar botões
@@ -230,6 +285,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// ===============================
+// ENVIO DE SUGESTÃO (simples)
+// ===============================
+function enviarSugestao() {
+  const texto = document.getElementById("texto-sugestao").value.trim();
+
+  // ⏱️ Delay mínimo entre envios (ex: 5 minutos)
+  const ultimoEnvio = localStorage.getItem("ultimoEnvioSugestao");
+  const agora = Date.now();
+  const delay = 5 * 60 * 1000;
+
+  if (ultimoEnvio && agora - ultimoEnvio < delay) {
+    mostrarMensagem(
+      "Você já enviou uma sugestão recentemente. Aguarde alguns minutos.",
+    );
+    return;
+  }
+
+  if (!texto) {
+    mostrarMensagem("Digite sua sugestão antes de enviar.");
+    return;
+  }
+
+  const params = {
+    message: texto,
+    time: new Date().toLocaleString("pt-BR"),
+  };
+
+  emailjs
+    .send("service_eze6jpu", "template_1hgswqi", params)
+    .then(() => {
+      localStorage.setItem("ultimoEnvioSugestao", Date.now()); // 👈 grava o envio
+
+      mostrarMensagem("Sua sugestão foi enviada com sucesso!");
+      sugestaoEnviada = true;
+      fecharModal("sugestoes");
+    })
+    .catch(() => {
+      mostrarMensagem("Erro ao enviar sugestão. Tente novamente.");
+    });
+}
+
 // ===============================
 // Exporta funções para testes unitários
 // ===============================
@@ -245,4 +343,6 @@ module.exports = {
   verificarTodosDesabilitados,
   resetarCamposModal,
   resetarPagina,
+  enviarSugestao,
+  abrirModal,
 };

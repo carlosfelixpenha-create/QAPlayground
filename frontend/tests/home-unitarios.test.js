@@ -12,21 +12,40 @@ const {
   fecharModalContatos,
 } = require("../js/home.js");
 
+global.emailjs = {
+  init: jest.fn(),
+  send: jest.fn(() => Promise.resolve()),
+};
+
+const { abrirModal } = require("../js/modais.js");
+
 // Simula o DOM com JSDOM
 beforeEach(() => {
   document.body.innerHTML = `
     <div id="contador-container"></div>
+
     <div id="modal-avaliacao" style="display:none"></div>
     <div id="resultado"></div>
     <div id="feedback-extra" style="display:none"></div>
+
     <div id="estrelas">
       <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
     </div>
+
     <button onclick="abrirModalAvaliacao()">Avaliar</button>
+
     <div id="modal-contatos" style="display:none"></div>
     <button id="modalContatosOk"></button>
     <button id="btnContatos"></button>
+
     <input id="comentario-extra" value="Sugestão de teste" />
+
+    <!-- SUGESTÕES -->
+    <button id="btn-sugestoes"></button>
+
+    <div id="modal-sugestoes" style="display:none">
+      <textarea id="texto-sugestao"></textarea>
+    </div>
   `;
 
   // Mock para alert
@@ -77,23 +96,6 @@ describe("Funções do modal de avaliação", () => {
   });
 });
 
-describe("Função enviarSugestao", () => {
-  test("deve registrar sugestão quando comentário não está vazio", async () => {
-    await enviarSugestao();
-    expect(global.alert).toHaveBeenCalledWith(
-      "Sugestão registrada com sucesso!",
-    );
-  });
-
-  test("deve fechar modal quando comentário está vazio", async () => {
-    document.getElementById("comentario-extra").value = "";
-    await enviarSugestao();
-    expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none",
-    );
-  });
-});
-
 describe("Funções do modal de contatos", () => {
   test("abrirModalContatos deve exibir o modal", () => {
     abrirModalContatos();
@@ -106,6 +108,27 @@ describe("Funções do modal de contatos", () => {
     fecharModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
       "none",
+    );
+  });
+});
+
+describe("Modal de Sugestões", () => {
+  test("abrir modal de sugestões deve exibir a modal", () => {
+    abrirModal("sugestoes");
+    expect(document.getElementById("modal-sugestoes").style.display).toBe(
+      "flex",
+    );
+  });
+
+  test("não deve enviar sugestão se textarea estiver vazio", async () => {
+    abrirModal("sugestoes");
+    document.getElementById("texto-sugestao").value = "";
+
+    await enviarSugestao();
+
+    expect(global.alert).toHaveBeenCalled();
+    expect(document.getElementById("modal-sugestoes").style.display).toBe(
+      "flex",
     );
   });
 });

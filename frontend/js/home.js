@@ -148,6 +148,53 @@ window.addEventListener("load", () => {
     }, 500);
   }
 });
+// Inicializa todos os tooltips da página
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(function (el) {
+      new bootstrap.Tooltip(el, {
+        offset: [-12, 23], // posição
+        customClass: "tooltip-balao", // mantém o estilo verde 🎨
+      });
+    });
+});
+// ===============================
+// Controle do botão Sugestões (sessão)
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const btnSugestoes = document.querySelector(
+    "button[onclick=\"abrirModal('sugestoes')\"]",
+  );
+
+  if (!btnSugestoes) return;
+
+  // Se já enviou sugestão nesta sessão, mantém desabilitado
+  if (sessionStorage.getItem("sugestao_enviada") === "true") {
+    btnSugestoes.disabled = true;
+  }
+
+  // Ao abrir a modal, desabilita o botão
+  const abrirModalOriginal = window.abrirModal;
+  window.abrirModal = function (tipo) {
+    if (tipo === "sugestoes") {
+      btnSugestoes.disabled = true;
+    }
+    abrirModalOriginal(tipo);
+  };
+});
+
+// ===============================
+// Contador de caracteres - Sugestões
+// ===============================
+document.addEventListener("input", function (e) {
+  if (e.target && e.target.id === "texto-sugestao") {
+    const contador = document.getElementById("contador-sugestao");
+    if (contador) {
+      contador.textContent = `${e.target.value.length} / 600`;
+    }
+  }
+});
 
 // ----------------------
 // EXPORTS PARA TESTES UNITÁRIOS

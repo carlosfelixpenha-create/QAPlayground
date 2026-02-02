@@ -1,4 +1,49 @@
 /* === Reset e base === */
+/* ===== Bootstrap Tooltip mínimo (sem layout global) ===== */
+.tooltip {
+  z-index: 1080;
+  display: block;
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 0.25rem 0.5rem;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  border-radius: 0.25rem;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  display: block;
+  width: 0.8rem;
+  height: 0.4rem;
+}
+.tooltip-arrow::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1184,6 +1229,25 @@ body.modal-open {
   color: #007bff;
 } /* azul confirmação */
 
+#modal-sugestoes .modal-content {
+  width: 700px; /* ajuste como quiser */
+  max-width: 90%;
+}
+
+#modal-sugestoes textarea {
+  width: 100%;
+  min-height: 180px; /* altura maior */
+  resize: vertical; /* permite redimensionar só pra baixo */
+}
+
+/* Centraliza os botões apenas dentro da modal */
+#modal-sugestoes .button-group {
+  display: flex;
+  justify-content: center; /* centraliza horizontal */
+  gap: 12px; /* espaço entre os botões */
+  margin-top: 20px;
+}
+
 /* Botão de fechar */
 .close {
   position: absolute; /* fixa dentro da modal */
@@ -1416,4 +1480,30 @@ body.modal-open {
 
 .logo-acessibilidade:hover {
   transform: scale(1.4);
+}
+/* Corpo do balão – verde translúcido */
+.tooltip.tooltip-balao .tooltip-inner {
+  background-color: rgba(0, 187, 87, 0.65);
+  color: #003d2b;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  max-width: 220px;
+  backdrop-filter: blur(4px);
+}
+
+/* Seta combinando com o balão */
+.tooltip.tooltip-balao .tooltip-arrow::before {
+  border-color: transparent;
+}
+
+.tooltip.tooltip-balao.bs-tooltip-end .tooltip-arrow::before {
+  border-left-color: rgba(0, 187, 87, 0.65);
+  border-width: 8px;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow {
+  left: -8px;
 }

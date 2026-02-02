@@ -21,94 +21,149 @@
       <aside class="sidebar">
         <h2>Menu de Atividades</h2>
         <ul>
+<li>
+  <button 
+    onclick="location.href = 'frontend/pages/cadastro.html'" 
+    data-bs-toggle="tooltip"
+    data-bs-placement="right"
+    title="Faça um cadastro simples!"
+    class="btn btn-primary">
+    📝 Cadastro
+  </button>
+</li>
+
           <li>
-            <button onclick="location.href = 'frontend/pages/cadastro.html'">
-              📝 Cadastro
-            </button>
-          </li>
-          <li>
-            <button onclick="location.href = 'frontend/pages/login.html'">
+            <button 
+            onclick="location.href = 'frontend/pages/login.html'"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right" 
+            title="Faça seu login!"
+            class="btn btn-primary">
               🔑 Login
             </button>
           </li>
           <li>
             <button
               onclick="location.href = 'frontend/pages/formulario-1.html'"
-            >
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Faça um cadastro de endereço!"
+                class="btn btn-primary">
               📄 Formulário 1
             </button>
           </li>
           <li>
             <button
               onclick="location.href = 'frontend/pages/formulario-2.html'"
-            >
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Campos diversos!"
+                class="btn btn-primary">
               🧾 Formulário 2
             </button>
           </li>
           <li>
             <button
               onclick="location.href = 'frontend/pages/formulario-3.html'"
-            >
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Uploads!"
+                class="btn btn-primary">
               🗒️ Formulário 3
             </button>
           </li>
           <li>
-            <button onclick="location.href = 'frontend/pages/botoes.html'">
+            <button onclick="location.href = 'frontend/pages/botoes.html'"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Catalogo de botões!"
+                class="btn btn-primary">
               🔘 Botões
             </button>
           </li>
           <li>
-            <button onclick="location.href = 'frontend/pages/modais.html'">
+            <button onclick="location.href = 'frontend/pages/modais.html'"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Catalogo de modais!"
+                class="btn btn-primary">
               🪟 Modais
             </button>
           </li>
           <li>
-            <button onclick="location.href = 'frontend/pages/tabelas.html'">
+            <button onclick="location.href = 'frontend/pages/tabelas.html'"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Catalogo de tabelas!"
+                class="btn btn-primary">
               📊 Tabelas
             </button>
           </li>
           <li>
             <button
               onclick="location.href = 'frontend/pages/arrastar-soltar.html'"
-            >
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Arraste e solte!"
+                class="btn btn-primary">
               🖼️ Arrastando Imagens
             </button>
           </li>
           <li>
             <button
               onclick="location.href = 'frontend/pages/quebra-cabeca.html'"
-            >
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Escolha seu quebra-cabeça!"
+                class="btn btn-primary">
               🧩 Quebra Cabeças
             </button>
           </li>
           <li>
             <button
               onclick="
-                location.href = 'frontend/pages/quebra-cabeca-104pcs.html'
-              "
-            >
+                location.href = 'frontend/pages/quebra-cabeca-104pcs.html'"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="divirta-se!"
+                class="btn btn-primary">
               🧩🧩 Quebra Cabeça 104pcs
             </button>
           </li>
           <li>
             <button
               onclick="location.href = 'frontend/pages/acessibilidade.html'"
-            >
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Valide as acessibilidades da pagina!"
+                class="btn btn-primary">
               ♿ Acessibilidades
             </button>
           </li>
           <li>
-            <button onclick="location.href = 'frontend/pages/instrucoes.html'">
+            <button onclick="location.href = 'frontend/pages/instrucoes.html'"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Tipos de testes que podem ser utilizados nas paginas!"
+                class="btn btn-primary">
               📋 Instruções/Testes
             </button>
           </li>
           <li>
-            <button onclick="location.href = 'frontend/pages/referencias.html'">
+            <button onclick="location.href = 'frontend/pages/referencias.html'"
+                data-bs-toggle="tooltip" 
+                data-bs-placement="right" 
+                title="Tecnologias utilizadas no desenvolvimento!"
+                class="btn btn-primary">
               📚 Referências
             </button>
           </li>
           <li>
-            <button onclick="abrirModalAvaliacao()">
+            <button onclick="abrirModalAvaliacao()"
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title="Avalie a nossa plataforma!"
+              class="btn btn-primary">
               ⭐ Avaliar Plataforma
             </button>
           </li>
@@ -118,6 +173,22 @@
         <div class="logo-home">
           <img src="frontend/img/logos/logo_home.png" alt="Logo QAPlayground" />
         </div>
+        
+        <!-- Botão de sugestão -->
+        <ul>
+          <li>
+            <button 
+              id="btn-sugestoes"
+              onclick="abrirModal('sugestoes')"
+              data-bs-toggle="tooltip" 
+              data-bs-placement="right" 
+              title="Deixe a sua sugestão para continuarmos crescendo!"
+              class="btn btn-primary">
+              Sugestões
+            </button>
+          </li>
+        </ul>
+
       </aside>
 
       <main class="content">
@@ -173,7 +244,7 @@
 
         <h4>
           Atualmente o QAPlayground conta com
-          <span class="contador-linhas">13165 linhas</span>
+          <span class="contador-linhas">13439 linhas</span>
           de código, documentação, testes unitários e de integração, mostrando o
           tamanho e a dedicação por trás deste ambiente colaborativo.
         </h4>
@@ -294,6 +365,40 @@
       </div>
     </div>
 
+    <!-- =============================== -->
+    <!-- MODAL DE SUGESTÕES -->
+    <!-- =============================== -->
+<div id="modal-sugestoes" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal('sugestoes')">&times;</span>
+
+    <h3>Sugestões</h3>
+    <p>Deixe sua sugestão para continuarmos melhorando.</p>
+
+    <textarea
+      id="texto-sugestao"
+      rows="5"
+      maxlength="600"
+      placeholder="Digite aqui a sua sugestão!"
+    ></textarea>
+    <small id="contador-sugestao" style="display:block;">0 / 600</small>
+
+    <div class="button-group">
+      <button class="btn-primary" onclick="enviarSugestao()">
+        Enviar
+      </button>
+
+      <button
+        class="btn-secondary"
+        onclick="fecharModal('sugestoes')"
+      >
+        Sair
+      </button>
+    </div>
+    
+  </div>
+</div>
+
 <script>
 
 // Atualiza contador de visitantes
@@ -306,25 +411,7 @@ function atualizarVisitantes() {
 function atualizarMedia() {
   const mediaContainer = document.getElementById("media-container");
   if (mediaContainer) mediaContainer.innerText = "⭐ Média: (desativado)";
-
-  //const mediaAvaliacao = document.getElementById("media-avaliacao");
-  //if (mediaAvaliacao) mediaAvaliacao.innerText = "⭐ Média: (desativado)";
 }
-
-  //Promise.all([somaRef.once("value"), totalRef.once("value")]).then(
-   //([somaSnap, totalSnap]) => {
-   // const soma = somaSnap.val() || 0;
-    //const total = totalSnap.val() || 0;
-    //const media = total > 0 ? (soma / total).toFixed(1) : "-";
-
-      // 👉 cálculo continua acontecendo, mas não é exibido na tela
-      // const mediaContainer = document.getElementById("media-container");
-      // if (mediaContainer) mediaContainer.innerText = `⭐ Média: ${media}`;
-
-      // const mediaAvaliacao = document.getElementById("media-avaliacao");
-      // if (mediaAvaliacao) mediaAvaliacao.innerText = `⭐ Média: ${media}`;
-  // }
- //);
 
 // Executa ao carregar
 window.addEventListener("DOMContentLoaded", () => {
@@ -333,8 +420,15 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<div id="modal-mensagem">
+  <p id="texto-mensagem"></p>
+</div>
+
 <!-- JS externo -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
 <script src="frontend/js/home.js" defer></script>
+<script src="frontend/js/modais.js" defer></script>
 <script src="frontend/js/acessibilidade-global.js" defer></script>
 </body>
 </html>

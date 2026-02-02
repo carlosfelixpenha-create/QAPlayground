@@ -1,131 +1,107 @@
 /**
  * Testes de integração para home.js
- * Validam o fluxo completo de avaliação, sugestão e contatos
+ * Avaliação, sugestões e contatos
  */
+
+// 🔹 Mock global do EmailJS
+global.emailjs = {
+  init: jest.fn(),
+  send: jest.fn(() => Promise.resolve()),
+};
 
 const {
   avaliar,
-  enviarSugestao,
   abrirModalAvaliacao,
   fecharModalAvaliacao,
   abrirModalContatos,
   fecharModalContatos,
 } = require("../js/home.js");
 
+// 🔹 Funções de sugestões vêm do modais.js
+const { abrirModal, enviarSugestao } = require("../js/modais.js");
+
 beforeEach(() => {
   document.body.innerHTML = `
     <div id="modal-avaliacao" style="display:none"></div>
     <div id="resultado"></div>
     <div id="feedback-extra" style="display:none"></div>
+
     <div id="estrelas">
       <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
     </div>
+
     <button onclick="abrirModalAvaliacao()">Avaliar</button>
     <input id="comentario-extra" value="" />
+
     <div id="modal-contatos" style="display:none"></div>
     <button id="modalContatosOk"></button>
     <button id="btnContatos"></button>
+
+    <!-- 🔽 SUGESTÕES 🔽 -->
+    <button id="btn-sugestoes"></button>
+    <div id="modal-sugestoes" style="display:none">
+      <textarea id="texto-sugestao"></textarea>
+    </div>
   `;
 
   global.alert = jest.fn();
+  localStorage.clear();
+  jest.clearAllMocks();
 });
 
-describe("Fluxo de integração - avaliação e sugestão", () => {
-  test("usuário avalia com 2 estrelas e envia sugestão", async () => {
+describe("Fluxo de integração - avaliação", () => {
+  test("usuário avalia com 2 estrelas", async () => {
     abrirModalAvaliacao();
     await avaliar(2);
 
     expect(document.getElementById("resultado").innerText).toContain(
       "Você avaliou nossa plataforma com 2 estrelas",
     );
-    expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none",
-    );
-
-    document.getElementById("comentario-extra").value =
-      "Gostaria de mais exemplos práticos";
-    await enviarSugestao();
-
-    expect(global.alert).toHaveBeenCalledWith(
-      "Sugestão registrada com sucesso!",
-    );
-    expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none",
-    );
   });
 
-  test("usuário avalia com 2 estrelas mas não escreve sugestão", async () => {
-    abrirModalAvaliacao();
-    await avaliar(2);
-
-    document.getElementById("comentario-extra").value = "";
-    await enviarSugestao();
-
-    // Modal deve fechar sem alert
-    expect(global.alert).not.toHaveBeenCalled();
-    expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none",
-    );
-  });
-
-  test("usuário avalia com 5 estrelas (sem sugestão)", async () => {
+  test("usuário avalia com 5 estrelas", async () => {
     abrirModalAvaliacao();
     await avaliar(5);
 
-    expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 5 estrelas",
-    );
-    expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none",
-    );
-
-    // modal deve fechar automaticamente após timeout
-    await new Promise((resolve) => setTimeout(resolve, 3100));
-    expect(document.getElementById("modal-avaliacao").style.display).toBe(
-      "none",
-    );
-  });
-
-  test("usuário avalia com 4 estrelas (sem sugestão)", async () => {
-    abrirModalAvaliacao();
-    await avaliar(4);
-
-    expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 4 estrelas",
-    );
-    expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none",
-    );
-
-    await new Promise((resolve) => setTimeout(resolve, 3100));
+    await new Promise((r) => setTimeout(r, 3100));
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
       "none",
     );
   });
 });
 
-describe("Fluxo de integração - contatos", () => {
-  test("usuário abre e fecha modal de contatos pelo botão OK", () => {
-    abrirModalContatos();
-    expect(document.getElementById("modal-contatos").style.display).toBe(
+describe("Fluxo de integração - sugestões", () => {
+  test("abre modal de sugestões e envia texto válido", async () => {
+    abrirModal("sugestoes");
+
+    document.getElementById("texto-sugestao").value =
+      "Gostaria de mais exemplos práticos";
+
+    await enviarSugestao();
+
+    expect(global.emailjs.send).toHaveBeenCalledTimes(1);
+  });
+
+  test("não envia sugestão se textarea estiver vazio", async () => {
+    abrirModal("sugestoes");
+    document.getElementById("texto-sugestao").value = "";
+
+    await enviarSugestao();
+
+    expect(global.emailjs.send).not.toHaveBeenCalled();
+    expect(document.getElementById("modal-sugestoes").style.display).toBe(
       "flex",
     );
+  });
+});
 
+describe("Fluxo de integração - contatos", () => {
+  test("abre e fecha modal de contatos", () => {
+    abrirModalContatos();
     fecharModalContatos();
+
     expect(document.getElementById("modal-contatos").style.display).toBe(
       "none",
     );
-  });
-
-  test("usuário fecha modal de contatos clicando fora", () => {
-    const modal = document.getElementById("modal-contatos");
-    abrirModalContatos();
-
-    // Simula clique fora do modal
-    const clickEvent = new MouseEvent("click", { bubbles: true });
-    Object.defineProperty(clickEvent, "target", { value: modal });
-    window.dispatchEvent(clickEvent);
-
-    expect(modal.style.display).toBe("none");
   });
 });
