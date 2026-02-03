@@ -87,19 +87,19 @@ function executarCadastro(event) {
 
   if (!validarNome(nome)) {
     mostrarModalErro(
-      "Preencher corretamente o campo Nome,\ndúvida entrar em Requisitos!"
+      "Preencher corretamente o campo Nome,\ndúvida entrar em Requisitos!",
     );
     return;
   }
   if (!validarEmail(email)) {
     mostrarModalErro(
-      "Preencher corretamente o campo E-mail,\ndúvida entrar em Requisitos!"
+      "Preencher corretamente o campo E-mail,\ndúvida entrar em Requisitos!",
     );
     return;
   }
   if (!validarSenha(senha)) {
     mostrarModalErro(
-      "Preencher corretamente o campo Senha,\ndúvida entrar em Requisitos!"
+      "Preencher corretamente o campo Senha,\ndúvida entrar em Requisitos!",
     );
     return;
   }
@@ -181,17 +181,19 @@ window.verUsuarioSalvo = verUsuarioSalvo;
 window.limparCadastro = limparCadastro;
 
 // Para uso dos testes unitários e de integração
-module.exports = {
-  validarNome,
-  validarEmail,
-  validarSenha,
-  validarConfirmarSenha,
-  salvarUsuarioLocal,
-  desabilitarCamposCadastro,
-  habilitarCamposCadastro,
-  executarCadastro,
-  verUsuarioSalvo,
-  limparCadastro,
-  mostrarModal,
-  mostrarModalErro,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    validarNome,
+    validarEmail,
+    validarSenha,
+    validarConfirmarSenha,
+    salvarUsuarioLocal,
+    desabilitarCamposCadastro,
+    habilitarCamposCadastro,
+    executarCadastro,
+    verUsuarioSalvo,
+    limparCadastro,
+    mostrarModal,
+    mostrarModalErro,
+  };
+}

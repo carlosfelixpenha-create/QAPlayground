@@ -58,7 +58,7 @@ function executarEndereco(event) {
   if (vazio) {
     document.getElementById(vazio.id).focus();
     return mostrarModalErro(
-      `Preencher corretamente o campo ${vazio.nome}, dúvida entrar em requisitos!`
+      `Preencher corretamente o campo ${vazio.nome}, dúvida entrar em requisitos!`,
     );
   }
 
@@ -66,25 +66,25 @@ function executarEndereco(event) {
   if (/^\d+$/.test(logradouro)) {
     document.getElementById("logradouro").focus();
     return mostrarModalErro(
-      "Preencher corretamente o campo Logradouro, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Logradouro, dúvida entrar em requisitos!",
     );
   }
   if (/\D/.test(numero)) {
     document.getElementById("numero").focus();
     return mostrarModalErro(
-      "Preencher corretamente o campo Número, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Número, dúvida entrar em requisitos!",
     );
   }
   if (bairro.length < 3) {
     document.getElementById("bairro").focus();
     return mostrarModalErro(
-      "Preencher corretamente o campo Bairro, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Bairro, dúvida entrar em requisitos!",
     );
   }
   if (cidade.length < 3) {
     document.getElementById("cidade").focus();
     return mostrarModalErro(
-      "Preencher corretamente o campo Cidade, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Cidade, dúvida entrar em requisitos!",
     );
   }
 
@@ -92,14 +92,14 @@ function executarEndereco(event) {
   if (estado.length !== 2) {
     document.getElementById("estado").focus();
     return mostrarModalErro(
-      "Preencher corretamente o campo Estado, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Estado, dúvida entrar em requisitos!",
     );
   }
   const estadoUpper = estado.toUpperCase();
   if (!ufsValidas.includes(estadoUpper)) {
     document.getElementById("estado").focus();
     return mostrarModalErro(
-      "UF inválida! Preencher corretamente o campo Estado, dúvida entrar em requisitos!"
+      "UF inválida! Preencher corretamente o campo Estado, dúvida entrar em requisitos!",
     );
   }
   // Atualiza o campo com a versão maiúscula
@@ -109,7 +109,7 @@ function executarEndereco(event) {
   if (!/^\d{8}$/.test(cepLimpo)) {
     document.getElementById("cep").focus();
     return mostrarModalErro(
-      "Preencher corretamente o campo CEP, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo CEP, dúvida entrar em requisitos!",
     );
   }
 
@@ -145,7 +145,7 @@ function verEnderecoSalvo() {
   if (enderecoSalvo) {
     const e = JSON.parse(enderecoSalvo);
     mostrarModal(
-      `Endereço salvo:\n${e.logradouro}, ${e.numero} - ${e.bairro}, ${e.cidade}/${e.estado}\nCEP: ${e.cep}`
+      `Endereço salvo:\n${e.logradouro}, ${e.numero} - ${e.bairro}, ${e.cidade}/${e.estado}\nCEP: ${e.cep}`,
     );
   } else {
     mostrarModalErro("Nenhum endereço salvo.");
@@ -211,11 +211,13 @@ function mascaraCep(input) {
 }
 
 // Exporta funções para os testes
-module.exports = {
-  executarEndereco,
-  verEnderecoSalvo,
-  limparEndereco,
-  mostrarModal,
-  mostrarModalErro,
-  mascaraCep,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    executarEndereco,
+    verEnderecoSalvo,
+    limparEndereco,
+    mostrarModal,
+    mostrarModalErro,
+    mascaraCep,
+  };
+}

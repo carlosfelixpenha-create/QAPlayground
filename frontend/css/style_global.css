@@ -482,7 +482,7 @@ input {
 
 /* Peças */
 .peca {
-  width: 100%;
+  width: 105%;
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -847,7 +847,7 @@ button:disabled:hover {
 
 /* Ajuste visual específico para a página de botões */
 .catalogo-botoes .form-container {
-  max-width: 680px; /* aumenta a largura do container só nesta página */
+  max-width: 800px; /* aumenta a largura do container só nesta página */
 }
 
 .catalogo-botoes .demo-card {

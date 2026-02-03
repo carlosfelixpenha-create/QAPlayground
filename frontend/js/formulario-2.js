@@ -14,27 +14,27 @@ function executarFormulario2(event) {
   // Verificação de obrigatórios
   if (!sexo) {
     return mostrarModalErro(
-      "Preencher corretamente o campo Sexo, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Sexo, dúvida entrar em requisitos!",
     );
   }
   if (interesses.length === 0) {
     return mostrarModalErro(
-      "Selecione ao menos uma opção em Interesses, dúvida entrar em requisitos!"
+      "Selecione ao menos uma opção em Interesses, dúvida entrar em requisitos!",
     );
   }
   if (!dataNascimento) {
     return mostrarModalErro(
-      "Preencher corretamente o campo Data de Nascimento, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Data de Nascimento, dúvida entrar em requisitos!",
     );
   }
   if (!telefone) {
     return mostrarModalErro(
-      "Preencher corretamente o campo Telefone, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo Telefone, dúvida entrar em requisitos!",
     );
   }
   if (!cpf) {
     return mostrarModalErro(
-      "Preencher corretamente o campo CPF, dúvida entrar em requisitos!"
+      "Preencher corretamente o campo CPF, dúvida entrar em requisitos!",
     );
   }
 
@@ -103,8 +103,10 @@ function mostrarModalErro(mensagem) {
 }
 
 // Exporta funções para os testes
-module.exports = {
-  executarFormulario2,
-  mostrarModal,
-  mostrarModalErro,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    executarFormulario2,
+    mostrarModal,
+    mostrarModalErro,
+  };
+}

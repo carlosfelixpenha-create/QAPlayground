@@ -1,36 +1,52 @@
 /* =========================================================
-   Responsividade Global - QAPlayground (versão consolidada)
+   Responsividade Global - QAPlayground
+   Versão refinada e consolidada
    ========================================================= */
 
 /* ===== Estrutura Global ===== */
 html,
 body {
-  overflow-x: hidden; /* evita scroll horizontal */
-  overflow-y: auto; /* scroll vertical padrão */
-  height: 100%; /* ocupa toda a altura */
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
 }
 
 /* ===== Home ===== */
 body.home {
-  overflow-y: auto; /* permite rolagem em mobile */
+  overflow-y: auto;
 }
 
 body.home .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
 }
 
+/* ===== Sidebar ===== */
 body.home .sidebar {
   overflow-y: auto;
   max-height: 100vh;
   width: clamp(180px, 25vw, 250px);
-  position: relative; /* garante contexto de empilhamento */
-  z-index: 10000; /* sidebar sempre por cima dos contadores */
+  position: relative;
+  z-index: 10000;
+  flex-shrink: 0;
 }
 
+body.home .sidebar ul {
+  padding: 0;
+  margin: 0;
+}
+
+body.home .sidebar li {
+  list-style: none;
+  margin-bottom: 6px;
+}
+
+/* ===== Conteúdo ===== */
 body.home .content {
   overflow-y: auto;
   max-height: 100vh;
+  flex: 1;
+  padding: 20px;
 }
 
 /* ===== Requisitos ===== */
@@ -54,10 +70,8 @@ body.requisitos .doc-container {
 }
 
 /* =========================================================
-   Bloco de Contadores Revisado - QAPlayground
+   Contadores
    ========================================================= */
-
-/* Estilo base para contador e média */
 #contador-container,
 #media-container {
   width: clamp(100px, 30vw, 150px);
@@ -69,10 +83,10 @@ body.requisitos .doc-container {
   padding: clamp(2px, 1.5vw, 8px) clamp(6px, 2vw, 12px);
   border-radius: clamp(2px, 1vw, 6px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  z-index: 9000; /* menor que sidebar */
+  z-index: 9000;
 }
 
-/* Posição padrão em desktop */
+/* Desktop */
 #media-container {
   position: fixed;
   bottom: clamp(10px, 3vw, 20px);
@@ -84,32 +98,6 @@ body.requisitos .doc-container {
   bottom: clamp(10px, 3vw, 20px);
   right: clamp(10px, 3vw, 20px);
   min-width: clamp(120px, 25vw, 180px);
-}
-
-/* ===== Ajustes de responsividade ===== */
-
-/* Tablets - reposiciona média para o canto direito */
-@media (max-width: 992px) {
-  #media-container {
-    left: auto;
-    right: 10px;
-    bottom: 60px;
-  }
-}
-
-/* Celulares - centraliza média abaixo */
-@media (max-width: 576px) {
-  #media-container {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    bottom: 80px;
-  }
-
-  #contador-container {
-    font-size: 0.8rem;
-    bottom: 20px;
-  }
 }
 
 /* ===== Logo ===== */
@@ -125,65 +113,64 @@ body.requisitos .doc-container {
   border-radius: 8px;
 }
 
-/* ===== Tipografia fluida ===== */
+/* ===== Tipografia ===== */
 h1 {
   font-size: clamp(1.5rem, 4vw, 2rem);
 }
+
 h2,
 h3 {
   font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
-/* ===== Breakpoints ===== */
+/* =========================================================
+   Breakpoints
+   ========================================================= */
 
-/* Desktops grandes */
-@media (min-width: 1200px) {
-  nav ul {
-    justify-content: center;
-  }
-}
-
-/* Tablets grandes e notebooks */
+/* ===== Notebooks / Tablets grandes ===== */
 @media (max-width: 992px) {
-  nav ul {
-    justify-content: center;
-  }
   body.requisitos .doc-container {
     max-width: 90%;
     padding: 20px;
   }
+
+  #media-container {
+    left: auto;
+    right: 10px;
+    bottom: 60px;
+  }
 }
 
-/* Tablets em portrait */
+/* ===== Tablets ===== */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-  nav ul li {
-    margin: 0.3rem 0;
-  }
-  .container {
+  body.home .container {
     flex-direction: column;
   }
-  .sidebar {
+
+  body.home .sidebar {
     width: 100%;
     max-width: 100%;
-    order: 1;
     padding: 10px;
+    max-height: none;
   }
-  .sidebar ul {
+
+  body.home .sidebar ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .sidebar li {
+
+  body.home .sidebar li {
     flex: 1 1 45%;
     margin: 5px;
   }
+
+  body.home .content {
+    padding: 15px;
+  }
 }
 
-/* Celulares */
+/* ===== Celulares ===== */
 @media (max-width: 576px) {
   h1,
   h2,
@@ -191,52 +178,36 @@ h3 {
     font-size: 1.2rem;
     text-align: center;
   }
+
   button,
-  input {
+  input,
+  textarea {
     width: 100%;
     font-size: 0.9rem;
   }
-  nav ul {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  body.requisitos .doc-container {
-    max-width: 100%;
-    padding: 15px;
-  }
 
-  #contador-container {
-    font-size: 0.8rem; /* diminui o tamanho da fonte */
-    padding: 3px; /* reduz o espaço interno */
-    margin: 0 auto; /* centraliza e tira espaçamento extra */
-    width: fit-content; /* faz o container se ajustar ao conteúdo */
-  }
-
-  /* ===== Ajustes finais para mobile ===== */
   body.home .container {
     flex-direction: column;
-    min-height: 100vh; /* evita corte de conteúdo */
+    min-height: 100vh;
   }
 
-  .sidebar {
+  body.home .sidebar {
     width: 100%;
-    max-width: 100%;
-    order: 0; /* aparece antes do conteúdo */
     padding: 8px;
   }
-  .sidebar ul {
+
+  body.home .sidebar ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
-  .sidebar li {
-    flex: 1 1 45%;
+
+  body.home .sidebar li {
+    flex: 1 1 48%;
     margin: 4px;
   }
 
-  .content {
-    width: 100%;
-    order: 1;
+  body.home .content {
     padding: 10px;
   }
 
@@ -248,10 +219,13 @@ h3 {
     bottom: auto;
     margin: 10px auto;
     transform: none;
+    font-size: 0.8rem;
   }
 }
 
-/* ===== Animações ===== */
+/* =========================================================
+   Animações
+   ========================================================= */
 @keyframes destaque {
   0% {
     transform: scale(0.9);
@@ -309,4 +283,288 @@ h3 {
   50% {
     transform: scale(1.05);
   }
+}
+/* ===== Formulários (Login / Cadastro / similares) ===== */
+
+.login-content {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 4vw, 30px);
+}
+
+.form-container {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Inputs mais confortáveis em mobile */
+.form-container input {
+  font-size: 1rem;
+  padding: 10px;
+}
+
+/* ===== Botões ===== */
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Grupo QA separado visualmente */
+.button-group.qa-buttons {
+  margin-top: 12px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .form-container {
+    max-width: 100%;
+  }
+
+  .button-group button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   Ajustes específicos – Página Requisitos (Cadastro)
+   ========================================================= */
+
+/* Listas mais legíveis (principalmente mobile) */
+body.requisitos ul {
+  padding-left: 20px;
+}
+
+body.requisitos li {
+  margin-bottom: 6px;
+}
+
+/* Botão "Voltar" com respiro visual */
+body.requisitos .button-group {
+  margin-top: 20px;
+}
+
+/* Ajuste de título em telas pequenas */
+@media (max-width: 576px) {
+  body.requisitos h1 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+}
+/* ===== Login (senha + captcha) ===== */
+
+.password-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.password-container input {
+  flex: 1;
+}
+
+.toggle-btn {
+  padding: 8px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Captcha */
+.captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.captcha-logo {
+  max-height: 32px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .password-container {
+    flex-direction: row;
+  }
+
+  .toggle-btn {
+    padding: 6px 8px;
+  }
+
+  .captcha-row {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .captcha-logo {
+    margin-top: 6px;
+  }
+}
+
+/* ===============================
+   CATÁLOGO DE BOTÕES - RESPONSIVO
+   =============================== */
+
+.catalogo-botoes {
+  overflow-x: hidden;
+}
+
+/* Área dos botões */
+.catalogo-botoes .demo-actions {
+  display: flex;
+  flex-wrap: nowrap; /* 🔑 NÃO permite quebra no desktop */
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Botões NÃO esticam e NÃO forçam quebra */
+.catalogo-botoes .demo-actions button {
+  min-width: 120px;
+  flex: 0 0 auto;
+}
+
+/* ===============================
+   TELAS MÉDIAS (notebooks / tablets landscape)
+   =============================== */
+@media (max-width: 1024px) {
+  .catalogo-botoes .demo-actions {
+    flex-wrap: wrap; /* aqui PODE quebrar */
+    justify-content: center;
+  }
+}
+
+/* ===============================
+   MOBILE
+   =============================== */
+@media (max-width: 768px) {
+  .catalogo-botoes .demo-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .catalogo-botoes .demo-actions button {
+    width: 100%;
+  }
+
+  .catalogo-botoes .demo-card {
+    padding: 16px;
+  }
+}
+
+/* ===============================
+   MOBILE MUITO PEQUENO
+   =============================== */
+@media (max-width: 480px) {
+  .catalogo-botoes h1 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .catalogo-botoes h2 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .catalogo-botoes p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+/* ===============================
+   REQUISITOS – RESPONSIVIDADE
+   =============================== */
+
+body.requisitos .doc-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Melhora leitura em telas grandes */
+body.requisitos h1,
+body.requisitos h2,
+body.requisitos h3 {
+  line-height: 1.3;
+}
+
+body.requisitos ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+body.requisitos li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Botão fixo e organizado */
+body.requisitos .button-group {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===============================
+   TABLET
+   =============================== */
+@media (max-width: 1024px) {
+  body.requisitos .doc-container {
+    padding: 20px;
+  }
+}
+
+/* ===============================
+   MOBILE
+   =============================== */
+@media (max-width: 768px) {
+  body.requisitos .doc-container {
+    padding: 16px;
+  }
+
+  body.requisitos h1 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  body.requisitos h2 {
+    font-size: 1.2rem;
+    margin-top: 24px;
+  }
+
+  body.requisitos h3 {
+    font-size: 1.05rem;
+    margin-top: 16px;
+  }
+
+  body.requisitos ul {
+    padding-left: 16px;
+  }
+
+  body.requisitos .button-group button {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* ===============================
+   MOBILE MUITO PEQUENO
+   =============================== */
+@media (max-width: 480px) {
+  body.requisitos p,
+  body.requisitos li {
+    font-size: 0.9rem;
+  }
+}
+
+body.login .login-content,
+body.formulario .login-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
 }

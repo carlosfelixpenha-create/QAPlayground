@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
           opt.value = estadoKey;
           opt.textContent = estadoObj.label;
           estadoSelect.appendChild(opt);
-        }
+        },
       );
     }
 
@@ -151,27 +151,27 @@ document.addEventListener("DOMContentLoaded", () => {
   validarArquivo(
     document.getElementById("arquivoPdf"),
     "application/pdf",
-    "Campo para arquivo PDF, dúvidas entrar em requisitos!"
+    "Campo para arquivo PDF, dúvidas entrar em requisitos!",
   );
   validarArquivo(
     document.getElementById("arquivoDocx"),
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "Campo para arquivo DOCX, dúvidas entrar em requisitos!"
+    "Campo para arquivo DOCX, dúvidas entrar em requisitos!",
   );
   validarArquivo(
     document.getElementById("arquivoJpg"),
     "image/jpeg",
-    "Campo para arquivo JPG, dúvidas entrar em requisitos!"
+    "Campo para arquivo JPG, dúvidas entrar em requisitos!",
   );
   validarArquivo(
     document.getElementById("arquivoXlsx"),
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "Campo para arquivo XLSX, dúvidas entrar em requisitos!"
+    "Campo para arquivo XLSX, dúvidas entrar em requisitos!",
   );
   validarArquivo(
     document.getElementById("arquivoTxt"),
     "text/plain",
-    "Campo para arquivo TXT, dúvidas entrar em requisitos!"
+    "Campo para arquivo TXT, dúvidas entrar em requisitos!",
   );
 });
 
@@ -233,7 +233,7 @@ function executarFormulario3(event) {
   // Se houver erros → modal de aviso
   if (erros.length > 0) {
     return mostrarModalErro(
-      "Existem campos inválidos. Revalide os campos destacados em vermelho."
+      "Existem campos inválidos. Revalide os campos destacados em vermelho.",
     );
   }
 
@@ -255,7 +255,9 @@ function executarFormulario3(event) {
 }
 
 // Exporta funções para uso nos testes unitários
-module.exports = {
-  executarFormulario3,
-  mostrarModal,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    executarFormulario3,
+    mostrarModal,
+  };
+}

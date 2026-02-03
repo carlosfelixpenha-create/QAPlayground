@@ -142,7 +142,7 @@ function filtrarTabela() {
   buscaTimeout = setTimeout(() => {
     const termo = document.getElementById("input-busca").value.toLowerCase();
     const linhas = document.querySelectorAll(
-      "#tabela-busca-container tbody tr"
+      "#tabela-busca-container tbody tr",
     );
 
     let encontrou = false;
@@ -254,9 +254,8 @@ function acaoVer(id) {
       `;
 
       mostrarModal(detalhes, "Detalhes do Usuário");
-      document.getElementById(
-        "modalAcoes"
-      ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
+      document.getElementById("modalAcoes").innerHTML =
+        `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
       document.getElementById("modalFechar").onclick = () =>
         fecharModal("mensagem");
     }
@@ -296,9 +295,8 @@ function confirmarEdicao(id) {
   });
   fecharModal("mensagem");
   mostrarModal(`Nome atualizado para <strong>${novoNome}</strong>`, "Sucesso");
-  document.getElementById(
-    "modalAcoes"
-  ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
+  document.getElementById("modalAcoes").innerHTML =
+    `<button class="btn-ok" onclick="fecharModal('mensagem')">OK</button>`;
   document.getElementById("modalFechar").onclick = () =>
     fecharModal("mensagem");
 }
@@ -326,9 +324,8 @@ function acaoExcluir(id) {
       fecharModal("mensagemErro");
   } else {
     mostrarModalErro(`Usuário não encontrado`, "Erro");
-    document.getElementById(
-      "modalAcoesErro"
-    ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+    document.getElementById("modalAcoesErro").innerHTML =
+      `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
   }
 }
 
@@ -350,18 +347,16 @@ function confirmarExclusao(id) {
   if (removido) {
     mostrarModalErro(
       `<strong>${nomeRemovido}</strong> foi excluído`,
-      "Exclusão"
+      "Exclusão",
     );
-    document.getElementById(
-      "modalAcoesErro"
-    ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+    document.getElementById("modalAcoesErro").innerHTML =
+      `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
     document.getElementById("modalFecharErro").onclick = () =>
       fecharModal("mensagemErro");
   } else {
     mostrarModalErro(`Usuário não encontrado`, "Erro");
-    document.getElementById(
-      "modalAcoesErro"
-    ).innerHTML = `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
+    document.getElementById("modalAcoesErro").innerHTML =
+      `<button class="btn-ok" onclick="fecharModal('mensagemErro')">OK</button>`;
     document.getElementById("modalFecharErro").onclick = () =>
       fecharModal("mensagemErro");
   }
@@ -462,36 +457,23 @@ window.onload = () => {
 // EXPORTS PARA TESTES UNITÁRIOS
 // =======================================
 
-module.exports = {
-  // Modais
-  mostrarModal,
-  mostrarModalErro,
-  fecharModal,
-
-  // Tabela com Ordenação
-  ordenarTabela,
-
-  // Tabela com Busca
-  filtrarTabela,
-
-  // Tabela com Paginação
-  renderizarPaginacao,
-  paginaAnterior,
-  proximaPagina,
-
-  // Tabela com Seleção de Linhas
-  atualizarSelecao,
-
-  // Tabela com Ações
-  acaoVer,
-  acaoEditar,
-  confirmarEdicao,
-  acaoExcluir,
-  confirmarExclusao,
-
-  // Estado Vazio
-  recarregarTabelaVazia,
-
-  // Reset Global
-  resetarTabelas,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    mostrarModal,
+    mostrarModalErro,
+    fecharModal,
+    ordenarTabela,
+    filtrarTabela,
+    renderizarPaginacao,
+    paginaAnterior,
+    proximaPagina,
+    atualizarSelecao,
+    acaoVer,
+    acaoEditar,
+    confirmarEdicao,
+    acaoExcluir,
+    confirmarExclusao,
+    recarregarTabelaVazia,
+    resetarTabelas,
+  };
+}

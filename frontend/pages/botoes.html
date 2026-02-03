@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,7 @@
 
       <div class="form-container">
         <!-- ============================
-             BOTÃO PRIMÁRIO (5 BOTÕES)
+             BOTÃO PRIMÁRIO
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -77,7 +77,7 @@
         </div>
 
         <!-- ============================
-             BOTÃO SECUNDÁRIO (5 BOTÕES)
+             BOTÃO SECUNDÁRIO
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -133,7 +133,7 @@
         </div>
 
         <!-- ============================
-             BOTÃO TERCIÁRIO (5 BOTÕES)
+             BOTÃO TERCIÁRIO
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -189,7 +189,7 @@
         </div>
 
         <!-- ============================
-             BOTÃO DE PERIGO (5 BOTÕES)
+             BOTÃO DE PERIGO
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -245,7 +245,7 @@
         </div>
 
         <!-- ============================
-             BOTÃO COM LOADING (5 BOTÕES)
+             BOTÃO COM LOADING
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -301,7 +301,7 @@
         </div>
 
         <!-- ============================
-             BOTÃO DE ÍCONE (5 BOTÕES)
+             BOTÃO DE ÍCONE
         ============================= -->
         <div class="demo-card">
           <div class="demo-header">
@@ -362,17 +362,17 @@
         </div>
 
         <!-- ============================
-             NAVEGAÇÃO + LIMPAR
+             NAVEGAÇÃO
         ============================= -->
         <div class="button-group">
           <button
             type="button"
             class="requisitos"
-            onclick="location.href='botoes-requisitos.html'"
+            onclick="location.href = 'botoes-requisitos.html'"
           >
             Requisitos
           </button>
-          <button type="button" onclick="location.href='../../index.html'">
+          <button type="button" onclick="location.href = '../../index.html'">
             Voltar
           </button>
           <button type="button" class="resetar" onclick="resetarPagina()">
@@ -382,21 +382,19 @@
       </div>
     </div>
 
-    <!-- Modal genérica de mensagens (sucesso/erro) -->
+    <!-- Modal genérica -->
     <div id="modalMensagem" class="modal" style="display: none">
       <div class="modal-content">
         <span id="modalFechar" class="close">&times;</span>
         <p id="modalTitulo"></p>
-        <!-- título colorido -->
         <p id="modalTexto"></p>
-        <!-- corpo da mensagem -->
         <div class="modal-actions">
           <button id="modalOk" type="button" class="btn-ok">OK</button>
         </div>
       </div>
     </div>
 
-    <!-- Nova modal fluida (erros detalhados) -->
+    <!-- Modal de erro -->
     <div id="modalMensagemErro" class="modal" style="display: none">
       <div class="modal-content large">
         <span id="modalFecharErro" class="close">&times;</span>
@@ -407,9 +405,5 @@
         </div>
       </div>
     </div>
-
-    <!-- Marca d'água -->
-    <div class="marca-dagua esquerda"></div>
-    <div class="marca-dagua direita"></div>
   </body>
 </html>

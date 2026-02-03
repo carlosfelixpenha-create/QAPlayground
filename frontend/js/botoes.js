@@ -72,12 +72,12 @@ function acaoPrimaria(acao) {
   });
 
   const btnClicado = document.getElementById(
-    `btn-primario-${acao.toLowerCase()}`
+    `btn-primario-${acao.toLowerCase()}`,
   );
 
   if (acao === "Confirmar") {
     btnClicado.innerText = "Confirmar ✅";
-    retorno.innerText = `Ação ${acao} executada com sucesso!`;
+    retorno.innerText = `Sucesso: Ação ${acao} executada com sucesso!`;
     retorno.classList.add("sucesso");
     mostrarModal(`${acao} concluído!`, "sucesso");
     document
@@ -86,7 +86,7 @@ function acaoPrimaria(acao) {
   } else {
     btnClicado.innerText = `${acao} ❌`;
     btnClicado.disabled = true;
-    retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Confirmar.`;
+    retorno.innerText = `Erro: Clicar no botão "${acao}" não é permitido. Use o botão Confirmar.`;
     retorno.classList.add("erro");
     mostrarModalErro(`Botão incorreto. O correto é Confirmar.`);
   }
@@ -113,12 +113,12 @@ function acaoSecundaria(acao) {
   });
 
   const btnClicado = document.getElementById(
-    `btn-secundario-${acao.toLowerCase()}`
+    `btn-secundario-${acao.toLowerCase()}`,
   );
 
   if (acao === "Cancelar") {
     btnClicado.innerText = "Cancelar ✅";
-    retorno.innerText = `Ação ${acao} realizada com sucesso!`;
+    retorno.innerText = `Sucesso: Ação ${acao} realizada com sucesso!`;
     retorno.classList.add("sucesso");
     mostrarModal(`${acao} concluído!`, "sucesso");
     document
@@ -127,7 +127,7 @@ function acaoSecundaria(acao) {
   } else {
     btnClicado.innerText = `${acao} ❌`;
     btnClicado.disabled = true;
-    retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Cancelar.`;
+    retorno.innerText = `Erro: Clicar no botão "${acao}" não é permitido. Use o botão Cancelar.`;
     retorno.classList.add("erro");
     mostrarModalErro(`Botão incorreto. O correto é Cancelar.`);
   }
@@ -154,12 +154,12 @@ function acaoTerciaria(acao) {
   });
 
   const btnClicado = document.getElementById(
-    `btn-terciario-${acao.toLowerCase()}`
+    `btn-terciario-${acao.toLowerCase()}`,
   );
 
   if (acao === "Exportar") {
     btnClicado.innerText = "Exportar ✅";
-    retorno.innerText = `Ação ${acao} executada com sucesso!`;
+    retorno.innerText = `Sucesso: Ação ${acao} executada com sucesso!`;
     retorno.classList.add("sucesso");
     mostrarModal(`${acao} concluído!`, "sucesso");
     document
@@ -168,7 +168,7 @@ function acaoTerciaria(acao) {
   } else {
     btnClicado.innerText = `${acao} ❌`;
     btnClicado.disabled = true;
-    retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Exportar.`;
+    retorno.innerText = `Erro: Clicar no botão "${acao}" não é permitido. Use o botão Exportar.`;
     retorno.classList.add("erro");
     mostrarModalErro(`Botão incorreto. O correto é Exportar.`);
   }
@@ -195,7 +195,7 @@ function abrirModal(acao) {
   });
 
   const btnClicado = document.getElementById(
-    `btn-danger-${acao.toLowerCase()}`
+    `btn-danger-${acao.toLowerCase()}`,
   );
 
   if (acao === "Excluir") {
@@ -209,7 +209,7 @@ function abrirModal(acao) {
   } else {
     btnClicado.innerText = `${acao} ❌`;
     btnClicado.disabled = true;
-    retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Excluir.`;
+    retorno.innerText = `Erro: Clicar no botão "${acao}" não é permitido. Use o botão Excluir.`;
     retorno.classList.add("erro");
     mostrarModalErro(`Botão incorreto. O correto é Excluir.`);
   }
@@ -244,7 +244,7 @@ function carregar(acao) {
   });
 
   const btnClicado = document.getElementById(
-    `btn-loading-${acao.toLowerCase()}`
+    `btn-loading-${acao.toLowerCase()}`,
   );
 
   let frames = ["⏳", "⌛"];
@@ -260,7 +260,7 @@ function carregar(acao) {
 
     if (acao.toLowerCase() === "processar") {
       btnClicado.innerHTML = "Processar ✅";
-      retorno.innerText = `Ação ${acao} concluída com sucesso!`;
+      retorno.innerText = `Sucesso: Ação ${acao} concluída com sucesso!`;
       retorno.classList.add("sucesso");
       mostrarModal(`${acao} concluído!`, "sucesso");
       document
@@ -269,7 +269,7 @@ function carregar(acao) {
     } else {
       btnClicado.innerHTML = `${labels[btnClicado.id]} ❌`;
       btnClicado.disabled = true;
-      retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Processar.`;
+      retorno.innerText = `Erro: Clicar no botão "${acao}" não é permitido. Use o botão Processar.`;
       retorno.classList.add("erro");
       mostrarModalErro(`Botão incorreto. O correto é Processar.`);
     }
@@ -307,7 +307,7 @@ function acaoIcone(acao) {
 
   if (normalizado === "lapis") {
     btnClicado.innerHTML = "✏️ ✅";
-    retorno.innerText = `Ação Lápis executada com sucesso!`;
+    retorno.innerText = `Sucesso: Ação Lápis executada com sucesso!`;
     retorno.classList.add("sucesso");
     mostrarModal(`Lápis concluído!`, "sucesso");
     document
@@ -316,7 +316,7 @@ function acaoIcone(acao) {
   } else {
     btnClicado.innerHTML = `${labels[btnClicado.id]} ❌`;
     btnClicado.disabled = true;
-    retorno.innerText = `Erro: clique em "${acao}" não é permitido. Use Lápis.`;
+    retorno.innerText = `Erro: Clicar no botão "${acao}" não é permitido. Use o botão Lápis.`;
     retorno.classList.add("erro");
     mostrarModalErro(`Botão incorreto. O correto é Lápis.`);
   }
@@ -376,14 +376,16 @@ function resetarPagina() {
 // ===============================
 // EXPORTA FUNÇÕES PARA TESTES
 // ===============================
-module.exports = {
-  mostrarModal,
-  mostrarModalErro,
-  acaoPrimaria,
-  acaoSecundaria,
-  acaoTerciaria,
-  abrirModal,
-  carregar,
-  acaoIcone,
-  resetarPagina,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    mostrarModal,
+    mostrarModalErro,
+    acaoPrimaria,
+    acaoSecundaria,
+    acaoTerciaria,
+    abrirModal,
+    carregar,
+    acaoIcone,
+    resetarPagina,
+  };
+}

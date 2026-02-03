@@ -331,18 +331,20 @@ function enviarSugestao() {
 // ===============================
 // Exporta funções para testes unitários
 // ===============================
-module.exports = {
-  abrirModal,
-  fecharModal,
-  retornoAlerta,
-  confirmarAcao,
-  cancelarAcao,
-  retornoSucesso,
-  retornoErro,
-  desabilitarBotao,
-  verificarTodosDesabilitados,
-  resetarCamposModal,
-  resetarPagina,
-  enviarSugestao,
-  abrirModal,
-};
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    abrirModal,
+    fecharModal,
+    retornoAlerta,
+    confirmarAcao,
+    cancelarAcao,
+    retornoSucesso,
+    retornoErro,
+    desabilitarBotao,
+    verificarTodosDesabilitados,
+    resetarCamposModal,
+    resetarPagina,
+    enviarSugestao,
+    abrirModal,
+  };
+}
