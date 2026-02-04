@@ -1,80 +1,85 @@
 # 🧪 Projeto: QAPlayground
 
+[![QAPlayground](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://carlosfelixpenha-create.github.io/QAPlayground/)
 ![CI](https://github.com/carlosfelixpenha-create/QAPlayground/actions/workflows/ci.yml/badge.svg)
-[![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://carlosfelixpenha-create.github.io/QAPlayground/)
 ![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen)
 
-🎯 Objetivo
+🌐 Ambiente 100% em português para testes manuais e automatizados, aprendizado e prática real de QA.
+
+---
+
+## 🎯 Objetivo
 
 O QAPlayground é uma aplicação web voltada para testes, validação e exploração de cenários reais de software, permitindo que QAs, desenvolvedores e estudantes pratiquem regras de negócio, interações e critérios de aceite em um ambiente seguro e colaborativo.
 
-👥 Público-alvo
-Perfil O que pode explorar
-QAs manuais e automatizados Testes de formulário, modais, botões, mensagens de erro e sucesso
-Desenvolvedores Comportamentos dinâmicos, validação de interações e scripts JS
-Estudantes de QA Aprender critérios de aceite, cobertura de testes e boas práticas
-Equipes de acessibilidade Testar navegação com teclado, leitores de tela e VLibras
-🧱 Funcionalidades principais
+---
 
-📝 Formulários: login, cadastro e envio de dados
+## 👥 Público-alvo
 
-🔘 Botões e interações: checkboxes, sliders e modais
+| Perfil                      | O que pode explorar                                               |
+| --------------------------- | ----------------------------------------------------------------- |
+| QAs manuais e automatizados | Testes de formulário, modais, botões, mensagens de erro e sucesso |
+| Desenvolvedores             | Comportamentos dinâmicos, validação de interações e scripts JS    |
+| Estudantes de QA            | Aprender critérios de aceite, cobertura de testes e boas práticas |
+| Equipes de acessibilidade   | Testar navegação com teclado, leitores de tela e VLibras          |
 
-⚡ Mensagens dinâmicas: erros, sucessos e feedbacks visuais
+---
 
-🎯 Elementos interativos: simulação de falhas e comportamentos inesperados
+## 🧱 Funcionalidades principais
 
-📱 Responsividade: testes em desktop e mobile
+- 📝 **Formulários:** login, cadastro e envio de dados
+- 🔘 **Botões e interações:** checkboxes, sliders e modais
+- ⚡ **Mensagens dinâmicas:** erros, sucessos e feedbacks visuais
+- 🎯 **Elementos interativos:** simulação de falhas e comportamentos inesperados
+- 📱 **Responsividade:** testes em desktop e mobile
+- ♿ **Acessibilidade:** navegação via teclado, VLibras e leitura de áudio
 
-♿ Acessibilidade: navegação via teclado, VLibras e leitura de áudio
+---
 
-🛠️ Tecnologias
+## 🛠️ Tecnologias
 
-Frontend: HTML, CSS, JavaScript
+- **Frontend:** HTML, CSS, JavaScript
+- **Frameworks opcionais:** React ou Vue
+- **Hospedagem:** GitHub Pages
+- **CI/CD:** GitHub Actions + Husky para testes, validação e cobertura
 
-Frameworks opcionais: React ou Vue
+---
 
-Hospedagem: GitHub Pages
+## 📋 Cenários de teste sugeridos
 
-CI/CD: GitHub Actions + Husky para testes, validação e cobertura
+- 🔑 Login com credenciais válidas e inválidas
+- ❗ Validação de campos obrigatórios
+- 📱 Teste de responsividade em celulares e desktops
+- ⌨ Navegação com teclado (acessibilidade)
+- 🎛 Comportamento de elementos dinâmicos e interativos
+- 📊 Validação de cobertura mínima nos testes automatizados
 
-📋 Cenários de teste sugeridos
+---
 
-🔑 Login com credenciais válidas e inválidas
+## 🚀 Próximos passos
 
-❗ Validação de campos obrigatórios
+1. Criar novas páginas/desafios com automação e validação manual.
+2. Publicar versões iniciais com funcionalidades básicas.
+3. Compartilhar com a comunidade de QA.
+4. Evoluir a plataforma com base em feedbacks.
+5. Manter o pipeline CI/CD e coverage funcional para toda atualização em produção.
+6. Meta de cobertura: 80%+ linhas e branches.
 
-📱 Teste de responsividade em celulares e desktops
+---
 
-⌨ Navegação com teclado (acessibilidade)
+## 📊 Status atual
 
-🎛 Comportamento de elementos dinâmicos e interativos
+| Tipo                                | Status             |
+| ----------------------------------- | ------------------ |
+| Testes unitários e integração       | ✅ Configurados    |
+| Husky (hooks pre-commit e pre-push) | ✅ Ativo           |
+| Pipeline CI/CD                      | ✅ GitHub Actions  |
+| Cobertura mínima garantida          | ✅ 60%             |
+| Cobertura atual                     | 📈 **~86% linhas** |
 
-📊 Validação de cobertura mínima nos testes automatizados
+---
 
-🚀 Próximos passos
+## 🌟 Acesso rápido
 
-Criar novas páginas/desafios com automação e validação manual
-
-Publicar versões iniciais com funcionalidades básicas
-
-Compartilhar com a comunidade de QA
-
-Evoluir a plataforma com base em feedbacks
-
-Incrementar o pipeline CI/CD e coverage
-
-Meta de cobertura: 80%+ linhas e branches
-
-📊 Status atual
-Tipo Status
-Testes unitários e integração ✅ Configurados
-Husky (hooks pre-commit e pre-push) ✅ Ativo
-Pipeline CI/CD ✅ GitHub Actions
-Cobertura mínima garantida ✅ 60%
-Cobertura atual 📈 \*\*~86% linhas
-🌟 Acesso rápido
-
-QAPlayground no GitHub Pages
-
-Código-fonte no GitHub
+- [QAPlayground no GitHub Pages](https://carlosfelixpenha-create.github.io/QAPlayground/)
+- [Código-fonte no GitHub](https://github.com/carlosfelixpenha-create/QAPlayground)
