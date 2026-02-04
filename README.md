@@ -4,59 +4,77 @@
 [![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://carlosfelixpenha-create.github.io/QAPlayground/)
 ![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen)
 
-## 🎯 Objetivo
+🎯 Objetivo
 
-Criação de uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados.  
-O ambiente serve como um "playground" para profissionais, estudantes de QA e desenvolvedores curiosos explorarem cenários reais de validação de software.
+O QAPlayground é uma aplicação web voltada para testes, validação e exploração de cenários reais de software, permitindo que QAs, desenvolvedores e estudantes pratiquem regras de negócio, interações e critérios de aceite em um ambiente seguro e colaborativo.
 
-## 👥 Público-alvo
+👥 Público-alvo
+Perfil O que pode explorar
+QAs manuais e automatizados Testes de formulário, modais, botões, mensagens de erro e sucesso
+Desenvolvedores Comportamentos dinâmicos, validação de interações e scripts JS
+Estudantes de QA Aprender critérios de aceite, cobertura de testes e boas práticas
+Equipes de acessibilidade Testar navegação com teclado, leitores de tela e VLibras
+🧱 Funcionalidades principais
 
-- QAs (manuais e automatizados)
-- Desenvolvedores
-- Estudantes de testes de software
-- Equipes de acessibilidade e usabilidade
+📝 Formulários: login, cadastro e envio de dados
 
-## 🧱 Funcionalidades previstas
+🔘 Botões e interações: checkboxes, sliders e modais
 
-- Formulário de login e cadastro
-- Botões, checkboxes, sliders e modais
-- Mensagens de erro e sucesso
-- Elementos dinâmicos e interativos
-- Simulação de falhas e comportamentos inesperados
-- Página responsiva para testes em diferentes tamanhos de tela
+⚡ Mensagens dinâmicas: erros, sucessos e feedbacks visuais
 
-## 🛠️ Tecnologias utilizadas
+🎯 Elementos interativos: simulação de falhas e comportamentos inesperados
 
-- HTML, CSS, JavaScript
-- Framework opcional: React ou Vue
-- Hospedagem: GitHub Pages
-- **CI/CD:** GitHub Actions integrado com Husky para rodar testes e validar cobertura
+📱 Responsividade: testes em desktop e mobile
 
-## 📋 Cenários de teste sugeridos
+♿ Acessibilidade: navegação via teclado, VLibras e leitura de áudio
 
-- Login com credenciais válidas e inválidas
-- Validação de campos obrigatórios
-- Teste de responsividade em celulares e desktops
-- Navegação com teclado (acessibilidade)
-- Comportamento de elementos dinâmicos
-- Validação de cobertura mínima nos testes automatizados
+🛠️ Tecnologias
 
-## 🚀 Próximos passos
+Frontend: HTML, CSS, JavaScript
 
-1. Criar nova pagina com novo desafio, trabalho manual/visual e automação
-2. Montar estrutura básica da página
-3. Publicar versão inicial com flag desabilitado
-4. Compartilhar com a comunidade de QA
-5. Evoluir com base em feedbacks
-6. Testar continuamente com pipeline CI/CD
-7. Aumentar gradualmente o threshold de cobertura (meta: 80%+)
+Frameworks opcionais: React ou Vue
 
----
+Hospedagem: GitHub Pages
 
-## 📊 Status atual
+CI/CD: GitHub Actions + Husky para testes, validação e cobertura
 
-- ✅ Testes unitários e de integração configurados
-- ✅ Husky rodando hooks em `pre-commit` e `pre-push`
-- ✅ Pipeline CI/CD ativo no GitHub Actions
-- ✅ Cobertura mínima de 60% garantida
-- 📈 Cobertura atual: ~86% linhas, ~68% branches
+📋 Cenários de teste sugeridos
+
+🔑 Login com credenciais válidas e inválidas
+
+❗ Validação de campos obrigatórios
+
+📱 Teste de responsividade em celulares e desktops
+
+⌨ Navegação com teclado (acessibilidade)
+
+🎛 Comportamento de elementos dinâmicos e interativos
+
+📊 Validação de cobertura mínima nos testes automatizados
+
+🚀 Próximos passos
+
+Criar novas páginas/desafios com automação e validação manual
+
+Publicar versões iniciais com funcionalidades básicas
+
+Compartilhar com a comunidade de QA
+
+Evoluir a plataforma com base em feedbacks
+
+Incrementar o pipeline CI/CD e coverage
+
+Meta de cobertura: 80%+ linhas e branches
+
+📊 Status atual
+Tipo Status
+Testes unitários e integração ✅ Configurados
+Husky (hooks pre-commit e pre-push) ✅ Ativo
+Pipeline CI/CD ✅ GitHub Actions
+Cobertura mínima garantida ✅ 60%
+Cobertura atual 📈 \*\*~86% linhas
+🌟 Acesso rápido
+
+QAPlayground no GitHub Pages
+
+Código-fonte no GitHub
