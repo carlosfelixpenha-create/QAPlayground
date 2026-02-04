@@ -6,8 +6,8 @@
 
 ## 🎯 Objetivo
 
-Criar uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados.  
-O ambiente serve como um "playground" para profissionais e estudantes de QA explorarem cenários reais de validação de software.
+Criação de uma aplicação web simples e 100% em português, voltada para testes manuais e automatizados.  
+O ambiente serve como um "playground" para profissionais, estudantes de QA e desenvolvedores curiosos explorarem cenários reais de validação de software.
 
 ## 👥 Público-alvo
 
@@ -29,8 +29,8 @@ O ambiente serve como um "playground" para profissionais e estudantes de QA expl
 
 - HTML, CSS, JavaScript
 - Framework opcional: React ou Vue
-- Hospedagem: GitHub Pages, Vercel ou Netlify
-- **CI/CD:** GitHub Actions integrado com Husky para rodar testes e validar cobertura mínima
+- Hospedagem: GitHub Pages
+- **CI/CD:** GitHub Actions integrado com Husky para rodar testes e validar cobertura
 
 ## 📋 Cenários de teste sugeridos
 
@@ -43,9 +43,9 @@ O ambiente serve como um "playground" para profissionais e estudantes de QA expl
 
 ## 🚀 Próximos passos
 
-1. Criar repositório no GitHub com nome `qa-playground`
+1. Criar nova pagina com novo desafio, trabalho manual/visual e automação
 2. Montar estrutura básica da página
-3. Publicar versão inicial
+3. Publicar versão inicial com flag desabilitado
 4. Compartilhar com a comunidade de QA
 5. Evoluir com base em feedbacks
 6. Testar continuamente com pipeline CI/CD

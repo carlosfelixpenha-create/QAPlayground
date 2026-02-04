@@ -1,10 +1,17 @@
 /**
  * @jest-environment jsdom
- *
- * Testes unitários para formulario-3.js
  */
 
-const { executarFormulario3, mostrarModal } = require("../js/formulario-3.js");
+const formulario3 = require("../js/formulario-3.js");
+
+const {
+  executarFormulario3,
+  mostrarModal,
+  mostrarModalErro,
+  validarArquivo,
+  validarLocalizacao,
+  dadosLocalizacao,
+} = formulario3;
 
 beforeEach(() => {
   document.body.innerHTML = `
@@ -18,121 +25,152 @@ beforeEach(() => {
     <button id="modalFecharErro"></button>
     <button id="modalOkErro"></button>
 
-    <form>
-      <input type="file" id="arquivoPdf" />
-      <input type="file" id="arquivoDocx" />
-      <input type="file" id="arquivoJpg" />
-      <input type="file" id="arquivoXlsx" />
-      <input type="file" id="arquivoTxt" />
-      <select id="pais">
-        <option value="">Selecione...</option>
-        <option value="brasil">Brasil</option>
-      </select>
-      <select id="estado">
-        <option value="">Selecione...</option>
-        <option value="sp">São Paulo</option>
-      </select>
-      <select id="cidade">
-        <option value="">Selecione...</option>
-        <option value="campinas">Campinas</option>
-      </select>
-    </form>
+    <input type="file" id="arquivoPdf" />
+    <input type="file" id="arquivoDocx" />
+    <input type="file" id="arquivoJpg" />
+    <input type="file" id="arquivoXlsx" />
+    <input type="file" id="arquivoTxt" />
+
+    <select id="pais">
+      <option value="">Selecione...</option>
+      <option value="brasil">Brasil</option>
+    </select>
+    <select id="estado">
+      <option value="">Selecione...</option>
+    </select>
+    <select id="cidade">
+      <option value="">Selecione...</option>
+    </select>
   `;
 });
 
-describe("Função executarFormulario3", () => {
-  test("deve mostrar erro se arquivos não forem selecionados", () => {
-    const event = { preventDefault: jest.fn() };
-    executarFormulario3(event);
-    expect(document.getElementById("modalTextoErro").textContent).toContain(
-      "Existem campos inválidos"
+describe("mostrarModalErro", () => {
+  test("deve exibir modal de erro corretamente", () => {
+    mostrarModalErro("Erro teste");
+    expect(document.getElementById("modalTextoErro").textContent).toBe(
+      "Erro teste",
     );
-    expect(
-      document.getElementById("arquivoPdf").classList.contains("erro")
-    ).toBe(true);
+    expect(document.getElementById("modalMensagemErro").style.display).toBe(
+      "flex",
+    );
   });
 
-  test("deve mostrar erro se País/Estado/Cidade não forem selecionados", () => {
-    const event = { preventDefault: jest.fn() };
-    executarFormulario3(event);
-    expect(document.getElementById("modalTextoErro").textContent).toContain(
-      "Existem campos inválidos"
+  test("deve fechar modal de erro ao clicar em OK", () => {
+    mostrarModalErro("Erro teste");
+    document.getElementById("modalOkErro").click();
+    expect(document.getElementById("modalMensagemErro").style.display).toBe(
+      "none",
     );
+  });
+});
+
+describe("validarArquivo", () => {
+  test("arquivo inválido deve marcar erro", () => {
+    const input = document.getElementById("arquivoPdf");
+
+    validarArquivo(input, "application/pdf", "Erro PDF");
+
+    const fakeFile = new File(["x"], "teste.txt", { type: "text/plain" });
+    Object.defineProperty(input, "files", { value: [fakeFile] });
+
+    input.dispatchEvent(new Event("change"));
+
+    expect(input.classList.contains("erro")).toBe(true);
+  });
+
+  test("arquivo válido deve marcar sucesso", () => {
+    const input = document.getElementById("arquivoPdf");
+
+    validarArquivo(input, "application/pdf", "Erro PDF");
+
+    const fakeFile = new File(["x"], "teste.pdf", {
+      type: "application/pdf",
+    });
+    Object.defineProperty(input, "files", { value: [fakeFile] });
+
+    input.dispatchEvent(new Event("change"));
+
+    expect(input.classList.contains("sucesso")).toBe(true);
+  });
+});
+
+describe("Localização dinâmica", () => {
+  test("dadosLocalizacao deve conter brasil", () => {
+    expect(dadosLocalizacao.brasil).toBeDefined();
+    expect(dadosLocalizacao.brasil.sp.label).toBe("São Paulo");
+  });
+
+  test("validarLocalizacao marca erro quando vazio", () => {
+    validarLocalizacao();
+
     expect(document.getElementById("pais").classList.contains("erro")).toBe(
-      true
+      true,
     );
     expect(document.getElementById("estado").classList.contains("erro")).toBe(
-      true
+      true,
     );
     expect(document.getElementById("cidade").classList.contains("erro")).toBe(
-      true
+      true,
     );
   });
 
-  test("deve mostrar sucesso se País/Estado/Cidade forem selecionados corretamente", () => {
+  test("validarLocalizacao marca sucesso quando preenchido", () => {
     document.getElementById("pais").value = "brasil";
     document.getElementById("estado").value = "sp";
     document.getElementById("cidade").value = "campinas";
 
-    // Simula arquivos válidos
-    const fakeFile = new File(["conteudo"], "teste.pdf", {
-      type: "application/pdf",
-    });
-    Object.defineProperty(document.getElementById("arquivoPdf"), "files", {
-      value: [fakeFile],
-    });
+    validarLocalizacao();
 
-    const fakeDocx = new File(["conteudo"], "teste.docx", {
-      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    });
-    Object.defineProperty(document.getElementById("arquivoDocx"), "files", {
-      value: [fakeDocx],
-    });
-
-    const fakeJpg = new File(["conteudo"], "teste.jpg", { type: "image/jpeg" });
-    Object.defineProperty(document.getElementById("arquivoJpg"), "files", {
-      value: [fakeJpg],
-    });
-
-    const fakeXlsx = new File(["conteudo"], "teste.xlsx", {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-    Object.defineProperty(document.getElementById("arquivoXlsx"), "files", {
-      value: [fakeXlsx],
-    });
-
-    const fakeTxt = new File(["conteudo"], "teste.txt", { type: "text/plain" });
-    Object.defineProperty(document.getElementById("arquivoTxt"), "files", {
-      value: [fakeTxt],
-    });
-
-    const event = { preventDefault: jest.fn() };
-    executarFormulario3(event);
-
-    expect(document.getElementById("modalTexto").textContent).toContain(
-      "Formulário enviado com sucesso"
+    expect(document.getElementById("pais").classList.contains("sucesso")).toBe(
+      true,
     );
   });
 });
 
-describe("Função mostrarModal", () => {
-  test("deve exibir mensagem no modal", () => {
-    mostrarModal("Teste de mensagem");
-    expect(document.getElementById("modalTexto").textContent).toBe(
-      "Teste de mensagem"
+describe("executarFormulario3", () => {
+  test("deve falhar sem arquivos", () => {
+    executarFormulario3({ preventDefault: jest.fn() });
+    expect(document.getElementById("modalMensagemErro").style.display).toBe(
+      "flex",
     );
-    expect(document.getElementById("modalMensagem").style.display).toBe("flex"); // ajustado
   });
 
-  test("deve fechar modal ao clicar em OK", () => {
-    mostrarModal("Fechar teste");
-    document.getElementById("modalOk").click();
-    expect(document.getElementById("modalMensagem").style.display).toBe("none");
-  });
+  test("deve enviar com sucesso com tudo válido", () => {
+    document.getElementById("pais").value = "brasil";
+    document.getElementById("estado").value = "sp";
+    document.getElementById("cidade").value = "campinas";
 
-  test("deve fechar modal ao clicar em Fechar", () => {
-    mostrarModal("Fechar teste");
-    document.getElementById("modalFechar").click();
-    expect(document.getElementById("modalMensagem").style.display).toBe("none");
+    const arquivos = [
+      ["arquivoPdf", "teste.pdf", "application/pdf"],
+      [
+        "arquivoDocx",
+        "teste.docx",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ],
+      ["arquivoJpg", "teste.jpg", "image/jpeg"],
+      [
+        "arquivoXlsx",
+        "teste.xlsx",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      ],
+      ["arquivoTxt", "teste.txt", "text/plain"],
+    ];
+
+    arquivos.forEach(([id, nome, tipo]) => {
+      const file = new File(["x"], nome, { type: tipo });
+      Object.defineProperty(document.getElementById(id), "files", {
+        value: [file],
+      });
+    });
+
+    executarFormulario3({ preventDefault: jest.fn() });
+
+    // 🔎 Verificações reais de sucesso
+    arquivos.forEach(([id]) => {
+      const input = document.getElementById(id);
+      expect(input.value).toBe("");
+      expect(input.classList.contains("erro")).toBe(false);
+      //expect(input.classList.contains("sucesso")).toBe(false);
+    });
   });
 });

@@ -1,7 +1,9 @@
 /**
  * Testes unitários para home.js
- * Usando Jest + JSDOM para simular o DOM
+ * Usando Jest + JSDOM
  */
+
+jest.useFakeTimers();
 
 const {
   abrirModalAvaliacao,
@@ -12,24 +14,20 @@ const {
   fecharModalContatos,
 } = require("../js/home.js");
 
-global.emailjs = {
-  init: jest.fn(),
-  send: jest.fn(() => Promise.resolve()),
-};
-
 const { abrirModal } = require("../js/modais.js");
 
-// Simula o DOM com JSDOM
 beforeEach(() => {
   document.body.innerHTML = `
-    <div id="contador-container"></div>
-
     <div id="modal-avaliacao" style="display:none"></div>
     <div id="resultado"></div>
     <div id="feedback-extra" style="display:none"></div>
 
     <div id="estrelas">
-      <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
+      <span>☆</span>
     </div>
 
     <button onclick="abrirModalAvaliacao()">Avaliar</button>
@@ -40,71 +38,96 @@ beforeEach(() => {
 
     <input id="comentario-extra" value="Sugestão de teste" />
 
-    <!-- SUGESTÕES -->
+    <!-- Modal de sugestões -->
     <button id="btn-sugestoes"></button>
-
     <div id="modal-sugestoes" style="display:none">
       <textarea id="texto-sugestao"></textarea>
+      <span id="contador-sugestao">0 / 600</span>
     </div>
   `;
 
-  // Mock para alert
   global.alert = jest.fn();
 
-  // Mock para sessionStorage
   const store = {};
   global.sessionStorage = {
     getItem: (key) => store[key],
     setItem: (key, value) => (store[key] = value),
-    clear: () => Object.keys(store).forEach((key) => delete store[key]),
+    clear: () => Object.keys(store).forEach((k) => delete store[k]),
   };
 });
 
-describe("Funções do modal de avaliação", () => {
-  test("abrirModalAvaliacao deve exibir o modal", () => {
+describe("Modal de Avaliação", () => {
+  test("abrirModalAvaliacao exibe o modal", () => {
     abrirModalAvaliacao();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
       "flex",
     );
   });
 
-  test("fecharModalAvaliacao deve esconder o modal", () => {
+  test("fecharModalAvaliacao esconde o modal", () => {
     fecharModalAvaliacao();
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
       "none",
     );
   });
 
-  test("avaliar com nota 2 deve mostrar mensagem de melhoria e manter feedback-extra oculto", async () => {
-    await avaliar(2);
+  test("avaliar com nota 2 atualiza estrelas, mensagem e fecha modal após timeout", () => {
+    abrirModalAvaliacao();
+    avaliar(2);
+
     expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 2 estrelas",
+      "2 estrelas",
     );
-    expect(document.getElementById("feedback-extra").style.display).toBe(
+
+    expect(document.querySelectorAll("#estrelas .selecionada").length).toBe(2);
+
+    expect(document.getElementById("modal-avaliacao").style.display).toBe(
+      "flex",
+    );
+
+    jest.advanceTimersByTime(3000);
+
+    expect(document.getElementById("modal-avaliacao").style.display).toBe(
       "none",
     );
   });
 
-  test("avaliar com nota 5 deve mostrar mensagem positiva e manter feedback-extra oculto", async () => {
-    await avaliar(5);
-    expect(document.getElementById("resultado").innerText).toContain(
-      "Você avaliou nossa plataforma com 5 estrelas",
+  test("avaliar com nota 5 salva sessão e desabilita botão de avaliar", () => {
+    avaliar(5);
+
+    expect(sessionStorage.getItem("avaliou")).toBe("true");
+
+    const btnAvaliar = document.querySelector(
+      "button[onclick='abrirModalAvaliacao()']",
     );
-    expect(document.getElementById("feedback-extra").style.display).toBe(
-      "none",
-    );
+    expect(btnAvaliar.disabled).toBe(true);
   });
 });
 
-describe("Funções do modal de contatos", () => {
-  test("abrirModalContatos deve exibir o modal", () => {
+describe("Envio de sugestão", () => {
+  test("nota baixa com comentário dispara alert", () => {
+    avaliar(2);
+    enviarSugestao();
+    expect(global.alert).toHaveBeenCalled();
+  });
+
+  test("nota baixa sem comentário não dispara alert", () => {
+    avaliar(2);
+    document.getElementById("comentario-extra").value = "";
+    enviarSugestao();
+    expect(global.alert).not.toHaveBeenCalled();
+  });
+});
+
+describe("Modal de Contatos", () => {
+  test("abrirModalContatos exibe modal", () => {
     abrirModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
       "flex",
     );
   });
 
-  test("fecharModalContatos deve esconder o modal", () => {
+  test("fecharModalContatos esconde modal", () => {
     fecharModalContatos();
     expect(document.getElementById("modal-contatos").style.display).toBe(
       "none",
@@ -113,22 +136,22 @@ describe("Funções do modal de contatos", () => {
 });
 
 describe("Modal de Sugestões", () => {
-  test("abrir modal de sugestões deve exibir a modal", () => {
+  test("abrir modal de sugestões exibe a modal", () => {
     abrirModal("sugestoes");
     expect(document.getElementById("modal-sugestoes").style.display).toBe(
       "flex",
     );
   });
 
-  test("não deve enviar sugestão se textarea estiver vazio", async () => {
-    abrirModal("sugestoes");
-    document.getElementById("texto-sugestao").value = "";
+  test("contador de caracteres atualiza ao digitar", () => {
+    const textarea = document.getElementById("texto-sugestao");
+    textarea.value = "Teste";
 
-    await enviarSugestao();
+    // 🔑 evento nasce no textarea
+    textarea.dispatchEvent(new Event("input", { bubbles: true }));
 
-    expect(global.alert).toHaveBeenCalled();
-    expect(document.getElementById("modal-sugestoes").style.display).toBe(
-      "flex",
+    expect(document.getElementById("contador-sugestao").textContent).toBe(
+      "5 / 600",
     );
   });
 });

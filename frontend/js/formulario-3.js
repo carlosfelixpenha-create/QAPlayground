@@ -19,15 +19,18 @@ const dadosLocalizacao = {
 function mostrarModal(mensagem) {
   const modal = document.getElementById("modalMensagem");
   const modalTexto = document.getElementById("modalTexto");
+
   modalTexto.textContent = mensagem;
   modal.style.display = "flex";
 
   document.getElementById("modalOk").onclick = () => {
     modal.style.display = "none";
   };
+
   document.getElementById("modalFechar").onclick = () => {
     modal.style.display = "none";
   };
+
   window.onclick = (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
@@ -39,29 +42,30 @@ function mostrarModal(mensagem) {
 function mostrarModalErro(mensagem) {
   const modal = document.getElementById("modalMensagemErro");
   const modalTexto = document.getElementById("modalTextoErro");
+
   modalTexto.textContent = mensagem;
   modal.style.display = "flex";
 
   document.getElementById("modalOkErro").onclick = () => {
     modal.style.display = "none";
   };
+
   document.getElementById("modalFecharErro").onclick = () => {
     modal.style.display = "none";
   };
+
   window.onclick = (event) => {
     if (event.target === modal) {
       modal.style.display = "none";
     }
-    if (event.target === modalErro) {
-      modalErro.style.display = "none";
-    }
   };
 }
 
-// Validação imediata ao selecionar arquivo (erro = vermelho, sucesso = verde)
+// Validação imediata ao selecionar arquivo
 function validarArquivo(input, tipoEsperado, mensagemErro) {
   input.addEventListener("change", () => {
     const arquivo = input.files[0];
+
     if (arquivo && arquivo.type !== tipoEsperado) {
       mostrarModalErro(mensagemErro);
       input.classList.add("erro");
@@ -77,7 +81,7 @@ function validarArquivo(input, tipoEsperado, mensagemErro) {
   });
 }
 
-// Nova função para validar localização imediatamente
+// Validação imediata da localização
 function validarLocalizacao() {
   const paisSelect = document.getElementById("pais");
   const estadoSelect = document.getElementById("estado");
@@ -93,18 +97,18 @@ function validarLocalizacao() {
     }
   });
 
-  // Se todos preenchidos corretamente → modal de sucesso
   if (paisSelect.value && estadoSelect.value && cidadeSelect.value) {
     mostrarModal("Localização selecionada corretamente!");
   }
 }
 
+// DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
   const paisSelect = document.getElementById("pais");
   const estadoSelect = document.getElementById("estado");
   const cidadeSelect = document.getElementById("cidade");
 
-  // Quando muda País -> popular Estados
+  // País → Estados
   paisSelect.addEventListener("change", () => {
     const pais = paisSelect.value;
     estadoSelect.innerHTML = '<option value="">Selecione...</option>';
@@ -124,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     validarLocalizacao();
   });
 
-  // Quando muda Estado -> popular Cidades
+  // Estado → Cidades
   estadoSelect.addEventListener("change", () => {
     const pais = paisSelect.value;
     const estado = estadoSelect.value;
@@ -142,32 +146,34 @@ document.addEventListener("DOMContentLoaded", () => {
     validarLocalizacao();
   });
 
-  // Quando muda Cidade -> validar localização
-  cidadeSelect.addEventListener("change", () => {
-    validarLocalizacao();
-  });
+  // Cidade → validação final
+  cidadeSelect.addEventListener("change", validarLocalizacao);
 
-  // Configura validação imediata para cada campo
+  // Validação dos arquivos
   validarArquivo(
     document.getElementById("arquivoPdf"),
     "application/pdf",
     "Campo para arquivo PDF, dúvidas entrar em requisitos!",
   );
+
   validarArquivo(
     document.getElementById("arquivoDocx"),
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "Campo para arquivo DOCX, dúvidas entrar em requisitos!",
   );
+
   validarArquivo(
     document.getElementById("arquivoJpg"),
     "image/jpeg",
     "Campo para arquivo JPG, dúvidas entrar em requisitos!",
   );
+
   validarArquivo(
     document.getElementById("arquivoXlsx"),
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     "Campo para arquivo XLSX, dúvidas entrar em requisitos!",
   );
+
   validarArquivo(
     document.getElementById("arquivoTxt"),
     "text/plain",
@@ -175,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
-// Validação e envio
+// Submit do formulário
 function executarFormulario3(event) {
   event.preventDefault();
 
@@ -195,10 +201,10 @@ function executarFormulario3(event) {
 
   let erros = [];
 
-  // Validação dos uploads
   campos.forEach(({ id, tipo }) => {
     const input = document.getElementById(id);
     const arquivo = input.files[0];
+
     if (!arquivo || arquivo.type !== tipo) {
       input.classList.add("erro");
       input.classList.remove("sucesso");
@@ -209,7 +215,6 @@ function executarFormulario3(event) {
     }
   });
 
-  // Validação da localização (cada campo individual)
   const paisSelect = document.getElementById("pais");
   const estadoSelect = document.getElementById("estado");
   const cidadeSelect = document.getElementById("cidade");
@@ -225,39 +230,36 @@ function executarFormulario3(event) {
     }
   });
 
-  // Se todos preenchidos corretamente → modal de sucesso da localização
-  if (paisSelect.value && estadoSelect.value && cidadeSelect.value) {
-    mostrarModal("Localização selecionada corretamente!");
-  }
-
-  // Se houver erros → modal de aviso
   if (erros.length > 0) {
     return mostrarModalErro(
       "Existem campos inválidos. Revalide os campos destacados em vermelho.",
     );
   }
 
-  // Se passou em todas as verificações → sucesso geral
   mostrarModal("Formulário enviado com sucesso!");
 
-  // Limpar os campos após sucesso
   document.querySelectorAll("input[type='file']").forEach((input) => {
     input.value = "";
-    input.classList.remove("erro");
-    input.classList.remove("sucesso");
+    input.classList.remove("erro", "sucesso");
   });
+
   paisSelect.value = "";
   estadoSelect.innerHTML = '<option value="">Selecione...</option>';
   cidadeSelect.innerHTML = '<option value="">Selecione...</option>';
+
   paisSelect.classList.remove("erro", "sucesso");
   estadoSelect.classList.remove("erro", "sucesso");
   cidadeSelect.classList.remove("erro", "sucesso");
 }
 
-// Exporta funções para uso nos testes unitários
+// Exports APENAS para testes (não afeta browser)
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     executarFormulario3,
     mostrarModal,
+    mostrarModalErro,
+    validarArquivo,
+    validarLocalizacao,
+    dadosLocalizacao,
   };
 }
