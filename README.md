@@ -1,7 +1,7 @@
 # 🧪 Projeto: QAPlayground
 
 [![QAPlayground](https://img.shields.io/badge/deploy-GitHub%20Pages-blue)](https://carlosfelixpenha-create.github.io/QAPlayground/)
-![CI](https://github.com/carlosfelixpenha-create/QAPlayground/actions/workflows/ci.yml/badge.svg)
+![CI/CD](https://github.com/carlosfelixpenha-create/QAPlayground/actions/workflows/ci.yml/badge.svg)
 ![Coverage](https://img.shields.io/badge/coverage-86%25-brightgreen)
 
 🌐 Ambiente 100% em português para testes manuais e automatizados, aprendizado e prática real de QA.
