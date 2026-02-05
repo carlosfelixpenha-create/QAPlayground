@@ -310,7 +310,14 @@ input {
   transition: border-color 0.3s;
 }
 
+#game-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
 .tag-palavra {
+  cursor: grab;
   border: 2px solid #ff9800; /* borda laranja */
   border-radius: 8px;
   width: 170px;
@@ -327,6 +334,7 @@ input {
     background-color 0.3s,
     border-color 0.3s,
     opacity 0.3s;
+  user-select: none;
 }
 
 .tag-palavra:hover {

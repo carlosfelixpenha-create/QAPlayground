@@ -10,8 +10,13 @@ beforeEach(() => {
     <div id="referencia"></div>
     <div id="mensagem"></div>
     <div class="referencia-container"></div>
-    <div id="modal-mensagem" style="display:none"></div>
-    <button id="embaralhar"></button>
+
+    <!-- Modal real -->
+    <div id="modalMensagem" style="display:none"></div>
+
+    <!-- Botão embaralhar inicia desabilitado -->
+    <button id="embaralhar" disabled></button>
+
     <div id="botoes-niveis">
       <button>4</button>
       <button>8</button>
@@ -36,12 +41,14 @@ describe("Fluxo de integração quebra-cabeça", () => {
     iniciarJogo(4);
 
     const tabuleiro = document.getElementById("tabuleiro");
+    const embaralharBtn = document.getElementById("embaralhar");
+
     expect(tabuleiro.children.length).toBe(4);
-    expect(document.getElementById("embaralhar").disabled).toBe(true);
+    expect(embaralharBtn.disabled).toBe(true);
   });
 
-  test("arrastar e soltar deve trocar peças de posição", () => {
-    const { iniciarJogo, _state } = loadModule();
+  test("arrastar e soltar deve trocar peças de posição no DOM", () => {
+    const { iniciarJogo } = loadModule();
 
     iniciarJogo(4);
 
@@ -49,20 +56,17 @@ describe("Fluxo de integração quebra-cabeça", () => {
     const peca1 = tabuleiro.children[0];
     const peca2 = tabuleiro.children[1];
 
-    // Simula dragstart em peca1
+    // Simula dragstart
     peca1.dispatchEvent(new Event("dragstart", { bubbles: true }));
-    _state.setDragged(peca1);
 
-    // Simula drop em peca2
+    // Simula drop
     const dropEvent = new Event("drop", { bubbles: true });
     dropEvent.preventDefault = jest.fn();
     peca2.dispatchEvent(dropEvent);
 
-    // Após troca, as duas primeiras posições não devem ser iguais às originais
-    const novoPeca1 = tabuleiro.children[0];
-    const novoPeca2 = tabuleiro.children[1];
-    expect(novoPeca1.dataset.index).not.toBe(peca1.dataset.index);
-    expect(novoPeca2.dataset.index).not.toBe(peca2.dataset.index);
+    // Valida troca real no DOM (não dataset)
+    expect(tabuleiro.children[0]).not.toBe(peca1);
+    expect(tabuleiro.children[1]).not.toBe(peca2);
   });
 
   test("verificar vitória deve habilitar botão embaralhar e mostrar mensagem", () => {
@@ -71,16 +75,19 @@ describe("Fluxo de integração quebra-cabeça", () => {
     iniciarJogo(4);
 
     const tabuleiro = document.getElementById("tabuleiro");
+
+    // Força estado de vitória
     Array.from(tabuleiro.children).forEach((p, idx) => {
-      p.dataset.index = idx; // força ordem correta
+      p.dataset.index = idx;
     });
 
     verificarVitoria();
 
-    expect(document.getElementById("embaralhar").disabled).toBe(false);
-    expect(document.getElementById("modal-mensagem").textContent).toContain(
-      "Parabéns"
-    );
+    const modal = document.getElementById("modalMensagem");
+    const embaralharBtn = document.getElementById("embaralhar");
+
+    expect(embaralharBtn.disabled).toBe(false);
+    expect(modal.textContent).toContain("Parabéns");
   });
 
   test("clicar em embaralhar deve reorganizar peças e mostrar mensagem", () => {
@@ -89,13 +96,14 @@ describe("Fluxo de integração quebra-cabeça", () => {
     iniciarJogo(4);
 
     const embaralharBtn = document.getElementById("embaralhar");
-    embaralharBtn.disabled = false; // simula vitória
+    const modal = document.getElementById("modalMensagem");
+
+    // Simula vitória
+    embaralharBtn.disabled = false;
 
     embaralharBtn.click();
 
     expect(embaralharBtn.disabled).toBe(true);
-    expect(document.getElementById("modal-mensagem").textContent).toContain(
-      "Tabuleiro embaralhado!"
-    );
+    expect(modal.textContent).toContain("Tabuleiro embaralhado!");
   });
 });

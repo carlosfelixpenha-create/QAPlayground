@@ -1,60 +1,78 @@
+/* =========================================================
+   Quebra-Cabeça – Lógica principal
+   ========================================================= */
+
 let pecas = [];
 let dragged = null;
+let jogoConcluido = false;
 
-const modalMensagemEl = document.getElementById("modal-mensagem");
+/* ===== Elementos ===== */
+const modalMensagemEl = document.getElementById("modalMensagem");
 const embaralharBtn = document.getElementById("embaralhar");
 
+/* =========================================================
+   Modal simples de mensagem
+   ========================================================= */
 function mostrarModalMensagem(texto, cor = "#333") {
-  modalMensagemEl.textContent = texto;
-  modalMensagemEl.style.color = cor;
+  if (!modalMensagemEl) return;
+
   modalMensagemEl.style.display = "block";
+  modalMensagemEl.style.color = cor;
+  modalMensagemEl.querySelector("p")
+    ? (modalMensagemEl.querySelector("p").textContent = texto)
+    : (modalMensagemEl.textContent = texto);
 
   setTimeout(() => {
     modalMensagemEl.style.display = "none";
-  }, 3000); // 3 segundos
+  }, 3000);
 }
 
+/* =========================================================
+   Inicia jogo
+   ========================================================= */
 function iniciarJogo(qtd) {
   const tabuleiro = document.getElementById("tabuleiro");
   const referencia = document.getElementById("referencia");
   const mensagem = document.getElementById("mensagem");
   const refContainer = document.querySelector(".referencia-container");
 
-  // Mostrar tabuleiro e referência
-  tabuleiro.style.display = "grid";
-  refContainer.style.display = "block";
-
-  // Reset
+  // Reset geral
   tabuleiro.innerHTML = "";
   referencia.innerHTML = "";
   mensagem.textContent = "";
   mensagem.style.display = "none";
+
   pecas = [];
+  jogoConcluido = false;
+  embaralharBtn.disabled = true;
+
+  // Mostrar áreas
+  tabuleiro.style.display = "grid";
+  refContainer.style.display = "block";
 
   // Remove classes específicas
   tabuleiro.classList.remove("tabuleiro-32pcs");
   refContainer.classList.remove("referencia32pcs");
 
-  // Define grid automaticamente
+  // Define colunas
   let cols;
-  if (qtd === 4) cols = 2;
-  else if (qtd === 8) cols = 2;
+  if (qtd === 4 || qtd === 8) cols = 2;
   else if (qtd === 16) cols = 4;
   else if (qtd === 32) {
-    cols = 4; // 4 colunas × 8 linhas
+    cols = 4;
     tabuleiro.classList.add("tabuleiro-32pcs");
     refContainer.classList.add("referencia32pcs");
   }
 
   tabuleiro.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
-  // Caminho da pasta correspondente
+  // Pasta de imagens
   const pasta = `../img/quebra-cabeca/nivel${qtd}`;
 
-  // adiciona imagem de referência
-  referencia.innerHTML = `<img src="${pasta}/robo${qtd}pcs.png">`;
+  // Imagem de referência
+  referencia.innerHTML = `<img src="${pasta}/robo${qtd}pcs.png" alt="Referência">`;
 
-  // cria peças
+  // Criação das peças
   for (let i = 0; i < qtd; i++) {
     const peca = document.createElement("div");
     peca.className = "peca";
@@ -64,26 +82,23 @@ function iniciarJogo(qtd) {
     pecas.push(peca);
   }
 
-  // embaralha
+  // Embaralha
   pecas.sort(() => Math.random() - 0.5);
 
-  pecas.forEach((p, idx) => {
-    p.dataset.current = idx;
-    tabuleiro.appendChild(p);
-  });
+  pecas.forEach((p) => tabuleiro.appendChild(p));
 
   // Atualiza botão ativo
   const botoesNivel = document.querySelectorAll("#botoes-niveis button");
   botoesNivel.forEach((btn) => btn.classList.remove("active"));
   const botaoAtual = Array.from(botoesNivel).find((btn) =>
-    btn.textContent.includes(qtd)
+    btn.textContent.includes(qtd),
   );
   if (botaoAtual) botaoAtual.classList.add("active");
-
-  // Desabilita botão embaralhar ao iniciar novo jogo
-  embaralharBtn.disabled = true;
 }
 
+/* =========================================================
+   Eventos Drag & Drop
+   ========================================================= */
 function aplicarEventos(peca) {
   peca.draggable = true;
   peca.addEventListener("dragstart", dragStart);
@@ -99,7 +114,6 @@ function dragStart() {
 
 function dragEnd() {
   this.classList.remove("dragging");
-  verificarVitoria();
 }
 
 function dragOver(e) {
@@ -109,7 +123,7 @@ function dragOver(e) {
 function drop(e) {
   e.preventDefault();
 
-  if (dragged !== this) {
+  if (dragged && dragged !== this) {
     const tabuleiro = document.getElementById("tabuleiro");
 
     const draggedClone = dragged.cloneNode(true);
@@ -120,58 +134,73 @@ function drop(e) {
 
     aplicarEventos(draggedClone);
     aplicarEventos(targetClone);
+
+    // 🔑 Verifica vitória APÓS troca real
+    verificarVitoria();
   }
 }
 
+/* =========================================================
+   Verificação de vitória
+   ========================================================= */
 function verificarVitoria() {
+  if (jogoConcluido) return;
+
   const tabuleiro = document.getElementById("tabuleiro");
   const filhos = Array.from(tabuleiro.children);
 
-  const correto = filhos.every((p, idx) => parseInt(p.dataset.index) === idx);
+  const correto = filhos.every(
+    (p, idx) => parseInt(p.dataset.index, 10) === idx,
+  );
 
   if (correto) {
+    jogoConcluido = true;
+
     mostrarModalMensagem(
       "🎉 Parabéns, você montou o quebra-cabeça!",
-      "#3b82f6"
+      "#3b82f6",
     );
-    embaralharBtn.disabled = false; // habilita botão
+
+    embaralharBtn.disabled = false;
   }
 }
 
-// Função para embaralhar novamente
+/* =========================================================
+   Embaralhar novamente
+   ========================================================= */
 embaralharBtn.addEventListener("click", () => {
-  pecas.sort(() => Math.random() - 0.5);
   const tabuleiro = document.getElementById("tabuleiro");
-  tabuleiro.innerHTML = "";
-  pecas.forEach((p, idx) => {
-    p.dataset.current = idx;
-    tabuleiro.appendChild(p);
-  });
 
-  embaralharBtn.disabled = true; // desabilita até próxima vitória
-  mostrarModalMensagem("Tabuleiro embaralhado!", "#ffa200ff");
+  pecas.sort(() => Math.random() - 0.5);
+  tabuleiro.innerHTML = "";
+
+  pecas.forEach((p) => tabuleiro.appendChild(p));
+
+  jogoConcluido = false;
+  embaralharBtn.disabled = true;
+
+  mostrarModalMensagem("🔀 Tabuleiro embaralhado!", "#ffa200");
 });
 
-// ✅ Inicia automaticamente com 4 peças
-window.onload = function () {
+/* =========================================================
+   Inicialização automática
+   ========================================================= */
+window.onload = () => {
   iniciarJogo(4);
 };
 
-// exporta para testes unitários
-module.exports = {
-  mostrarModalMensagem,
-  iniciarJogo,
-  aplicarEventos,
-  dragStart,
-  dragEnd,
-  dragOver,
-  drop,
-  verificarVitoria,
-
-  _state: {
-    getPecas: () => pecas,
-    setPecas: (arr) => (pecas = arr),
-    getDragged: () => dragged,
-    setDragged: (val) => (dragged = val),
-  },
-};
+/* =========================================================
+   Export para testes (se aplicável)
+   ========================================================= */
+if (typeof module !== "undefined") {
+  module.exports = {
+    mostrarModalMensagem,
+    iniciarJogo,
+    aplicarEventos,
+    dragStart,
+    dragEnd,
+    dragOver,
+    drop,
+    verificarVitoria,
+  };
+}

@@ -10,8 +10,13 @@ beforeEach(() => {
     <div id="referencia"></div>
     <div id="mensagem"></div>
     <div class="referencia-container"></div>
-    <div id="modal-mensagem" style="display:none"></div>
-    <button id="embaralhar"></button>
+
+    <!-- Modal real usado no sistema -->
+    <div id="modalMensagem" style="display:none"></div>
+
+    <!-- Botão embaralhar inicia desabilitado -->
+    <button id="embaralhar" disabled></button>
+
     <div id="botoes-niveis">
       <button>4</button>
       <button>8</button>
@@ -33,6 +38,7 @@ describe("Função mostrarModalMensagem", () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
+
   afterEach(() => {
     jest.useRealTimers();
   });
@@ -42,7 +48,8 @@ describe("Função mostrarModalMensagem", () => {
 
     mostrarModalMensagem("Teste de mensagem", "red");
 
-    const modal = document.getElementById("modal-mensagem");
+    const modal = document.getElementById("modalMensagem");
+
     expect(modal.textContent).toBe("Teste de mensagem");
     expect(modal.style.color).toBe("red");
     expect(modal.style.display).toBe("block");
@@ -59,6 +66,7 @@ describe("Função iniciarJogo", () => {
     iniciarJogo(4);
 
     const tabuleiro = document.getElementById("tabuleiro");
+
     expect(tabuleiro.style.display).toBe("grid");
     expect(tabuleiro.style.gridTemplateColumns).toBe("repeat(2, 1fr)");
     expect(tabuleiro.children.length).toBe(4);
@@ -73,47 +81,54 @@ describe("Função iniciarJogo", () => {
     iniciarJogo(32);
 
     const tabuleiro = document.getElementById("tabuleiro");
-    expect(tabuleiro.classList.contains("tabuleiro-32pcs")).toBe(true);
-
     const refContainer = document.querySelector(".referencia-container");
-    expect(refContainer.classList.contains("referencia32pcs")).toBe(true);
 
+    expect(tabuleiro.classList.contains("tabuleiro-32pcs")).toBe(true);
+    expect(refContainer.classList.contains("referencia32pcs")).toBe(true);
     expect(tabuleiro.children.length).toBe(32);
   });
 });
 
 describe("Função verificarVitoria", () => {
-  test("deve mostrar mensagem de vitória quando peças estão na ordem correta", () => {
+  test("deve mostrar mensagem de vitória e habilitar botão embaralhar quando peças estão corretas", () => {
     const { iniciarJogo, verificarVitoria } = loadModule();
 
     iniciarJogo(4);
 
     const tabuleiro = document.getElementById("tabuleiro");
+
+    // força estado de vitória
     Array.from(tabuleiro.children).forEach((p, idx) => {
       p.dataset.index = idx;
     });
 
     verificarVitoria();
 
-    const modal = document.getElementById("modal-mensagem");
+    const modal = document.getElementById("modalMensagem");
+    const embaralharBtn = document.getElementById("embaralhar");
+
     expect(modal.textContent).toContain("Parabéns");
-    expect(document.getElementById("embaralhar").disabled).toBe(false);
+    expect(embaralharBtn.disabled).toBe(false);
   });
 
-  test("não deve mostrar mensagem se peças estão fora de ordem", () => {
+  test("não deve mostrar mensagem nem habilitar botão se peças estão fora de ordem", () => {
     const { iniciarJogo, verificarVitoria } = loadModule();
 
     iniciarJogo(4);
 
     const tabuleiro = document.getElementById("tabuleiro");
+
+    // força erro
     Array.from(tabuleiro.children).forEach((p, idx) => {
-      p.dataset.index = idx + 1; // força erro
+      p.dataset.index = idx + 1;
     });
 
     verificarVitoria();
 
-    const modal = document.getElementById("modal-mensagem");
+    const modal = document.getElementById("modalMensagem");
+    const embaralharBtn = document.getElementById("embaralhar");
+
     expect(modal.textContent).toBe("");
-    expect(document.getElementById("embaralhar").disabled).toBe(true);
+    expect(embaralharBtn.disabled).toBe(true);
   });
 });

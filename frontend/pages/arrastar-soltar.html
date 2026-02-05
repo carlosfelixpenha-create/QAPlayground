@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="../css/responsividade-global.css" />
   </head>
-  <body>
+  <body class="arrastar-soltar">
     <div class="login-content">
       <h1>Arrastando Imagens</h1>
 
@@ -38,7 +38,7 @@
               Campo
             </div>
             <div class="tag-palavra" draggable="true" data-tipo="predio">
-              Prédio
+              Prédios
             </div>
             <div class="tag-palavra" draggable="true" data-tipo="carro">
               Carro
@@ -101,11 +101,11 @@
           <button
             type="button"
             class="requisitos"
-            onclick="location.href='arrastar-soltar-requisitos.html'"
+            onclick="location.href = 'arrastar-soltar-requisitos.html'"
           >
             Requisitos
           </button>
-          <button type="button" onclick="location.href='../../index.html'">
+          <button type="button" onclick="location.href = '../../index.html'">
             Voltar
           </button>
           <button type="button" id="reiniciar">Reiniciar</button>

@@ -33,9 +33,8 @@ function iniciarJogo104() {
   });
 
   // mostra a referência
-  document.getElementById(
-    "referencia"
-  ).innerHTML = `<img src="../img/quebra-cabeca/nivel128/robo104pcs.png" alt="Imagem de referência">`;
+  document.getElementById("referencia").innerHTML =
+    `<img src="../img/quebra-cabeca/nivel128/robo104pcs.png" alt="Imagem de referência">`;
 
   // desabilita botão embaralhar ao iniciar
   embaralharBtn.disabled = true;
@@ -118,15 +117,17 @@ embaralharBtn.addEventListener("click", () => {
 
 // Exporta para os testes unitários
 window.onload = iniciarJogo104;
-module.exports = {
-  iniciarJogo104,
-  dragStart,
-  dragOver,
-  drop,
-  verificarConclusao,
-  mostrarModalMensagem,
-  _state: {
-    getPecaArrastada: () => pecaArrastada,
-    setPecaArrastada: (val) => (pecaArrastada = val),
-  },
-};
+if (typeof module !== "undefined") {
+  module.exports = {
+    iniciarJogo104,
+    dragStart,
+    dragOver,
+    drop,
+    verificarConclusao,
+    mostrarModalMensagem,
+    _state: {
+      getPecaArrastada: () => pecaArrastada,
+      setPecaArrastada: (val) => (pecaArrastada = val),
+    },
+  };
+}
