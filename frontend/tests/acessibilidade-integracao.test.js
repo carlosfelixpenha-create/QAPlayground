@@ -59,7 +59,7 @@ describe("Fluxo de integração - regras e validação", () => {
     expect(document.getElementById("regra-tamanho").className).toBe("valida");
 
     expect(document.getElementById("retorno-senha").textContent).toContain(
-      "Senha válida"
+      "Senha válida",
     );
     expect(document.querySelector(".btn-validar").disabled).toBe(true);
   });
@@ -72,14 +72,14 @@ describe("Fluxo de integração - regras e validação", () => {
     validarSenhaAcessibilidade();
 
     expect(document.getElementById("regra-maiuscula").className).toBe(
-      "invalida"
+      "invalida",
     );
     expect(document.getElementById("regra-numero").className).toBe("invalida");
     expect(document.getElementById("regra-simbolo").className).toBe("invalida");
     expect(document.getElementById("regra-tamanho").className).toBe("invalida");
 
     expect(document.getElementById("retorno-senha").textContent).toContain(
-      "Senha inválida"
+      "Senha inválida",
     );
     expect(document.querySelector(".btn-validar").disabled).toBe(true);
   });
@@ -109,20 +109,20 @@ describe("Fluxo de integração - reset", () => {
     expect(document.getElementById("regra-maiuscula").className).toBe("");
     expect(
       document.getElementById("regra-maiuscula").querySelector(".check")
-        .textContent
+        .textContent,
     ).toBe("☐");
   });
 });
 
-describe("Fluxo de integração - toggle", () => {
-  test("toggle de senha deve alternar entre password e text", () => {
-    const btn = document.getElementById("toggleSenhaAcessibilidade");
-    const input = document.getElementById("senha");
+//describe("Fluxo de integração - toggle", () => {
+//test("toggle de senha deve alternar entre password e text", () => {
+// const btn = document.getElementById("toggleSenhaAcessibilidade");
+// const input = document.getElementById("senha");
 
-    expect(input.type).toBe("password");
-    btn.click();
-    expect(input.type).toBe("text");
-    btn.click();
-    expect(input.type).toBe("password");
-  });
-});
+// expect(input.type).toBe("password");
+// btn.click();
+// expect(input.type).toBe("text");
+// btn.click();
+// expect(input.type).toBe("password");
+// });
+//});

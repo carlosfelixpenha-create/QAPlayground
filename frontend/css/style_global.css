@@ -912,9 +912,16 @@ body.requisitos .doc-container {
   line-height: 1.6;
 }
 
-/* Faz todas as tabelas ocuparem toda a largura disponível */
-.container-tabelas table {
+.container-tabelas {
   width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container-tabelas table {
+  width: auto; /* 🔑 NÃO 100% */
+  min-width: 720px; /* força scroll */
+  border-collapse: collapse;
 }
 
 /* Deixa as células mais confortáveis */

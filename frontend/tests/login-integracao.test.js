@@ -74,7 +74,7 @@ describe("Fluxo de integração - login", () => {
     executarLogin(event);
 
     expect(document.getElementById("modalTextoErro").innerHTML).toContain(
-      "Usuário"
+      "Usuário",
     );
   });
 
@@ -87,7 +87,7 @@ describe("Fluxo de integração - login", () => {
     executarLogin(event);
 
     expect(document.getElementById("modalTextoErro").innerHTML).toContain(
-      "Senha"
+      "Senha",
     );
   });
 
@@ -100,7 +100,7 @@ describe("Fluxo de integração - login", () => {
     executarLogin(event);
 
     expect(document.getElementById("modalTextoErro").innerHTML).toContain(
-      "captcha"
+      "captcha",
     );
   });
 
@@ -113,7 +113,7 @@ describe("Fluxo de integração - login", () => {
     executarLogin(event);
 
     expect(document.getElementById("modalTextoErro").innerHTML).toContain(
-      "Nenhum cadastro encontrado"
+      "Nenhum cadastro encontrado",
     );
   });
 
@@ -124,7 +124,7 @@ describe("Fluxo de integração - login", () => {
         nome: "Carlos Silva",
         email: "carlos@teste.com",
         senha: "Senha1!",
-      })
+      }),
     );
 
     document.getElementById("usuario").value = "carlos@teste.com";
@@ -135,7 +135,7 @@ describe("Fluxo de integração - login", () => {
     executarLogin(event);
 
     expect(document.getElementById("modalTextoErro").innerHTML).toContain(
-      "inválidos"
+      "inválidos",
     );
   });
 
@@ -146,7 +146,7 @@ describe("Fluxo de integração - login", () => {
         nome: "Carlos Silva",
         email: "carlos@teste.com",
         senha: "Senha1!",
-      })
+      }),
     );
 
     document.getElementById("usuario").value = "carlos@teste.com";
@@ -157,7 +157,7 @@ describe("Fluxo de integração - login", () => {
     executarLogin(event);
 
     expect(document.getElementById("modalTexto").innerHTML).toContain(
-      "sucesso"
+      "sucesso",
     );
     // formulário deve ser resetado
     expect(document.getElementById("usuario").value).toBe("");

@@ -709,3 +709,29 @@ body.arrastar-soltar .item-slot img {
     font-size: 1rem;
   }
 }
+/* =========================================================
+   FIX DEFINITIVO – TABELAS NO MOBILE
+   ========================================================= */
+@media (max-width: 768px) {
+  /* Libera os containers pais */
+  .login-content,
+  .doc-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Cada tabela controla seu próprio scroll */
+  [id$="-container"] {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Tabela não tenta se adaptar */
+  table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+  }
+}

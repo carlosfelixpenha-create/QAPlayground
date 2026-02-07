@@ -93,8 +93,17 @@
   box-sizing: border-box;
 }
 
-.demo-actions .toggle-btn:hover {
-  transform: none; /* impede o zoom no botão 👁️/🙈 */
+/* Acessibilidade – limita área de hover ao ícone do toggle */
+.demo-actions .password-container .toggle-btn {
+  padding: 1; /* remove área extra */
+  line-height: 1; /* cola no tamanho do emoji */
+  border-radius: 0; /* evita “bolha” azul grande */
+}
+
+.demo-actions .password-container .toggle-btn:hover,
+.demo-actions .password-container .toggle-btn:focus,
+.demo-actions .password-container .toggle-btn:focus-visible {
+  padding: 1; /* garante hover do tamanho do ícone */
 }
 
 .catalogo-botoes .password-container .toggle-btn {
@@ -232,4 +241,26 @@
 .option-inline label {
   font-weight: normal;
   margin: 0;
+}
+/* Acessibilidade: neutraliza regras globais de botão */
+.demo-actions .password-container .toggle-btn {
+  min-width: unset;
+  min-height: unset;
+  padding: 0;
+  line-height: 1;
+
+  width: 24px;
+  height: 24px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover do tamanho exato do ícone */
+.demo-actions .password-container .toggle-btn:hover,
+.demo-actions .password-container .toggle-btn:focus-visible {
+  background-color: #007acc; /* azul mais vivo (Tailwind blue-700) */
+  color: #ffffff;
+  border-radius: 4px;
 }
