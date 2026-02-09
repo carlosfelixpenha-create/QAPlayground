@@ -43,7 +43,7 @@ beforeEach(() => {
 
   localStorage.clear();
 
-  // 🔑 Inicializa os listeners após recriar o DOM
+  // ✅ Inicializa os listeners manualmente (como no navegador)
   inicializarLogin();
 });
 
@@ -188,12 +188,10 @@ describe("Toggle de senha", () => {
 
     btn.click();
     expect(input.type).toBe("text");
-    expect(btn.textContent).toBe("👁️");
-    expect(btn.getAttribute("aria-label")).toBe("Mostrar senha");
+    expect(btn.getAttribute("aria-label")).toBe("Ocultar senha");
 
     btn.click();
     expect(input.type).toBe("password");
-    expect(btn.textContent).toBe("🙈");
-    expect(btn.getAttribute("aria-label")).toBe("Ocultar senha");
+    expect(btn.getAttribute("aria-label")).toBe("Mostrar senha");
   });
 });

@@ -43,7 +43,7 @@ function executarLogin(event) {
   // Valida se existe cadastro
   if (!usuarioSalvo) {
     mostrarModalErro(
-      "Nenhum cadastro encontrado. Realize o cadastro antes de fazer login."
+      "Nenhum cadastro encontrado. Realize o cadastro antes de fazer login.",
     );
     return;
   }
@@ -114,12 +114,14 @@ function inicializarLogin() {
   if (btn && input) {
     btn.addEventListener("click", () => {
       const isPassword = input.type === "password";
+
       input.type = isPassword ? "text" : "password";
-      btn.textContent = isPassword ? "👁️" : "🙈";
+      btn.textContent = isPassword ? "🙈" : "👁️";
       btn.setAttribute(
         "aria-label",
-        isPassword ? "Mostrar senha" : "Ocultar senha"
+        isPassword ? "Ocultar senha" : "Mostrar senha",
       );
+
       input.focus();
     });
   }

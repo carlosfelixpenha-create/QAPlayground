@@ -38,13 +38,15 @@ function mostrarModal(titulo, texto, cor = "#333") {
 }
 
 // Mostra modal de erro detalhada
-function mostrarModalErro(texto) {
+function mostrarModalErro(titulo, texto, cor = "#ff0000") {
+  document.getElementById("modalTituloErro").textContent = titulo;
   document.getElementById("modalTextoErro").textContent = texto;
+  document.getElementById("modalTextoErro").style.color = cor;
   modalMensagemErro.style.display = "block";
 
   setTimeout(() => {
     modalMensagemErro.style.display = "none";
-  }, 3000);
+  }, 2000);
 }
 
 // Fechar manual modal erro
@@ -73,7 +75,7 @@ function finalizarSeConcluido() {
   `;
 
   palavras.forEach((p) => p.setAttribute("draggable", "false"));
-  mostrarModal("Jogo concluído!", "Opaaaa! jogo concluído!", "#3b82f6");
+  mostrarModal("Jogo concluído!", "Opaaaa! jogo concluído!", "#005ff8");
 }
 
 // Configura arrastar palavras
@@ -133,7 +135,7 @@ itens.forEach((item) => {
       }
 
       if (acertos >= 3) {
-        mostrarModal("Acerto!", "Boa, acertou mais um!", "#22c55e");
+        mostrarModal("Acertou!", "Boa, continue assim!", "#22c55e");
       }
     } else {
       // ERRO (apenas um por slot)
@@ -156,7 +158,7 @@ itens.forEach((item) => {
       });
 
       if (erros >= 3) {
-        mostrarModalErro("Ops, atenção redobrada!");
+        mostrarModalErro("Errou!", "Tenha um pouco mais de atenção", "#ff0000");
       }
     }
 

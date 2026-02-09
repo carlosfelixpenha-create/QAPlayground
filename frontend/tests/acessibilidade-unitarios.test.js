@@ -10,6 +10,7 @@ let atualizarRegrasSenha;
 let validarSenhaAcessibilidade;
 let resetarPagina;
 let inicializarAcessibilidade;
+let inicializarToggleSenhaAcessibilidade;
 
 beforeEach(() => {
   document.body.innerHTML = `
@@ -34,7 +35,6 @@ beforeEach(() => {
     </ul>
   `;
 
-  // limpa cache e reimporta o módulo
   jest.resetModules();
   const acessibilidade = require("../js/acessibilidade.js");
 
@@ -43,9 +43,12 @@ beforeEach(() => {
   validarSenhaAcessibilidade = acessibilidade.validarSenhaAcessibilidade;
   resetarPagina = acessibilidade.resetarPagina;
   inicializarAcessibilidade = acessibilidade.inicializarAcessibilidade;
+  inicializarToggleSenhaAcessibilidade =
+    acessibilidade.inicializarToggleSenhaAcessibilidade;
 
-  // inicializa listeners
-  document.dispatchEvent(new Event("DOMContentLoaded"));
+  // inicializa listeners explicitamente (controle total no teste)
+  inicializarAcessibilidade();
+  inicializarToggleSenhaAcessibilidade();
 });
 
 describe("Funções de validação de senha", () => {
@@ -126,38 +129,36 @@ describe("Reset da página", () => {
   });
 });
 
-//describe("Toggle de visibilidade da senha", () => {
-//test("alterna de password para text", () => {
-//const campoSenha = document.getElementById("senha");
-//const toggleBtn = document.getElementById("toggleSenhaAcessibilidade");
+describe("Toggle de visibilidade da senha", () => {
+  test("alterna de password para text", () => {
+    const campoSenha = document.getElementById("senha");
+    const toggleBtn = document.getElementById("toggleSenhaAcessibilidade");
 
-// força estado inicial password
-// campoSenha.type = "password";
-// toggleBtn.textContent = "👁️";
-// toggleBtn.setAttribute("aria-label", "Mostrar senha");
+    // força estado inicial password
+    campoSenha.type = "password";
+    toggleBtn.textContent = "👁️";
+    toggleBtn.setAttribute("aria-label", "Mostrar senha");
 
-//  toggleBtn.click(); // mostrar senha
+    toggleBtn.click(); // mostrar senha
 
-// agora deve estar text e botão 🙈
-//  expect(campoSenha.type).toBe("text");
-//  expect(toggleBtn.textContent.trim()).toBe("🙈");
-// expect(toggleBtn.getAttribute("aria-label")).toBe("Ocultar senha");
-// });
+    expect(campoSenha.type).toBe("text");
+    expect(toggleBtn.textContent.trim()).toBe("🙈");
+    expect(toggleBtn.getAttribute("aria-label")).toBe("Ocultar senha");
+  });
 
-// test("alterna de text para password", () => {
-// const campoSenha = document.getElementById("senha");
-//  const toggleBtn = document.getElementById("toggleSenhaAcessibilidade");
+  test("alterna de text para password", () => {
+    const campoSenha = document.getElementById("senha");
+    const toggleBtn = document.getElementById("toggleSenhaAcessibilidade");
 
-// força estado inicial text (senha visível)
-//  campoSenha.type = "text";
-//  toggleBtn.textContent = "🙈";
-//  toggleBtn.setAttribute("aria-label", "Ocultar senha");
+    // força estado inicial text
+    campoSenha.type = "text";
+    toggleBtn.textContent = "🙈";
+    toggleBtn.setAttribute("aria-label", "Ocultar senha");
 
-// toggleBtn.click(); // voltar para password
+    toggleBtn.click(); // voltar para password
 
-// agora deve estar password e botão 👁️
-//  expect(campoSenha.type).toBe("password");
-//  expect(toggleBtn.textContent.trim()).toBe("👁️");
-//  expect(toggleBtn.getAttribute("aria-label")).toBe("Mostrar senha");
-// });
-//});
+    expect(campoSenha.type).toBe("password");
+    expect(toggleBtn.textContent.trim()).toBe("👁️");
+    expect(toggleBtn.getAttribute("aria-label")).toBe("Mostrar senha");
+  });
+});

@@ -2,22 +2,9 @@
  * @jest-environment jsdom
  *
  * Testes de integração para acessibilidade.js
- * Validam o fluxo completo de senha acessível: regras, validação, reset e toggle
+ * Validam o fluxo completo de senha acessível:
+ * regras, validação, reset e toggle
  */
-
-// Cria o DOM ANTES de importar acessibilidade.js
-document.body.innerHTML = `
-  <input id="senha" type="password" />
-  <button id="toggleSenhaAcessibilidade"></button>
-  <button class="btn-validar"></button>
-  <span id="retorno-senha"></span>
-  <ul class="regras-senha">
-    <li id="regra-maiuscula"><span class="check">☐</span></li>
-    <li id="regra-numero"><span class="check">☐</span></li>
-    <li id="regra-simbolo"><span class="check">☐</span></li>
-    <li id="regra-tamanho"><span class="check">☐</span></li>
-  </ul>
-`;
 
 const {
   validarSenhaLocal,
@@ -25,9 +12,11 @@ const {
   validarSenhaAcessibilidade,
   resetarPagina,
   inicializarAcessibilidade,
+  inicializarToggleSenhaAcessibilidade,
 } = require("../js/acessibilidade.js");
 
 beforeEach(() => {
+  // Cria o DOM antes de cada teste
   document.body.innerHTML = `
     <input id="senha" type="password" />
     <button id="toggleSenhaAcessibilidade"></button>
@@ -41,8 +30,9 @@ beforeEach(() => {
     </ul>
   `;
 
-  // Inicializa listeners
+  // Inicializa todos os listeners necessários
   inicializarAcessibilidade();
+  inicializarToggleSenhaAcessibilidade();
 });
 
 describe("Fluxo de integração - regras e validação", () => {
@@ -95,6 +85,7 @@ describe("Fluxo de integração - reset", () => {
     retorno.textContent = "Senha inválida!";
     retorno.style.color = "red";
     btnValidar.disabled = true;
+
     document.getElementById("regra-maiuscula").className = "valida";
     document
       .getElementById("regra-maiuscula")
@@ -114,15 +105,17 @@ describe("Fluxo de integração - reset", () => {
   });
 });
 
-//describe("Fluxo de integração - toggle", () => {
-//test("toggle de senha deve alternar entre password e text", () => {
-// const btn = document.getElementById("toggleSenhaAcessibilidade");
-// const input = document.getElementById("senha");
+describe("Fluxo de integração - toggle", () => {
+  test("toggle de senha deve alternar entre password e text", () => {
+    const btn = document.getElementById("toggleSenhaAcessibilidade");
+    const input = document.getElementById("senha");
 
-// expect(input.type).toBe("password");
-// btn.click();
-// expect(input.type).toBe("text");
-// btn.click();
-// expect(input.type).toBe("password");
-// });
-//});
+    expect(input.type).toBe("password");
+
+    btn.click();
+    expect(input.type).toBe("text");
+
+    btn.click();
+    expect(input.type).toBe("password");
+  });
+});

@@ -161,5 +161,6 @@ if (typeof module !== "undefined" && module.exports) {
     validarSenhaAcessibilidade,
     resetarPagina,
     inicializarAcessibilidade,
+    inicializarToggleSenhaAcessibilidade,
   };
 }
