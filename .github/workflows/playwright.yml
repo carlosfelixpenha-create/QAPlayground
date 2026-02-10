@@ -1,0 +1,37 @@
+name: Playwright Tests
+
+# Dispara em push e pull request na branch main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Pega o código do repositório
+      - uses: actions/checkout@v3
+
+      # 2️⃣ Configura Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # 3️⃣ Instala dependências do projeto
+      - name: Install dependencies
+        working-directory: ./frontend/tests/e2e/playwright
+        run: npm install
+
+      # 4️⃣ Instala os browsers do Playwright
+      - name: Install Playwright Browsers
+        working-directory: ./frontend/tests/e2e/playwright
+        run: npx playwright install
+
+      # 5️⃣ Roda todos os testes do Playwright
+      - name: Run Playwright Tests
+        working-directory: ./frontend/tests/e2e/playwright
+        run: npm run test
