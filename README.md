@@ -10,7 +10,7 @@
 
 ## 🎯 Objetivo
 
-O QAPlayground é uma aplicação web voltada para testes, validação e exploração de cenários reais de software, permitindo que QAs, desenvolvedores e estudantes pratiquem regras de negócio, interações e critérios de aceite em um ambiente seguro e colaborativo.
+O QAPlayground é uma aplicação web voltada para testes manuais e automações, validação e exploração de cenários reais de software, permitindo que QAs, desenvolvedores e estudantes pratiquem regras de negócio, interações e critérios de aceite em um ambiente seguro e colaborativo.
 
 ---
 
