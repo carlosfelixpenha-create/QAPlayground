@@ -23,15 +23,12 @@ jobs:
 
       # 3️⃣ Instala dependências do projeto
       - name: Install dependencies
-        working-directory: ./frontend/tests/e2e/playwright
         run: npm install
 
       # 4️⃣ Instala os browsers do Playwright
       - name: Install Playwright Browsers
-        working-directory: ./frontend/tests/e2e/playwright
         run: npx playwright install
 
       # 5️⃣ Roda todos os testes do Playwright
       - name: Run Playwright Tests
-        working-directory: ./frontend/tests/e2e/playwright
         run: npx playwright test --config=playwright.config.js
