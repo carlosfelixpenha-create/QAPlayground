@@ -27,7 +27,7 @@ jobs:
 
       # 4️⃣ Instala os browsers do Playwright
       - name: Install Playwright Browsers
-        run: npx playwright install
+        run: npx playwright install --with-deps
 
       # 5️⃣ Roda todos os testes do Playwright
       - name: Run Playwright Tests
