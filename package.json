@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky",
-    "test": "jest",
+    "test": "jest --testPathIgnorePatterns=frontend/tests/e2e/playwright",
     "test:local": "jest --testPathIgnorePatterns=frontend/tests/e2e/playwright",
     "test:coverage": "jest --coverage",
     "test:coverage:strict": "jest --coverage --testPathIgnorePatterns=frontend/tests/e2e/playwright",
