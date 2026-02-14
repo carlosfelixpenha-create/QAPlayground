@@ -28,11 +28,16 @@ test("Home - validação da chamada e botões do menu", async ({
     /Sugestões/,
   ];
 
-  for (const nomeBotao of botoesMenu) {
+  for (const [index, nomeBotao] of botoesMenu.entries()) {
     const botao = page.getByRole("button", { name: nomeBotao });
 
-    // Espera o botão estar visível e habilitado, até 10s
-    await expect(botao).toBeVisible({ timeout: 10000 });
+    // Falha proposital apenas no primeiro botão
+    if (index === 0) {
+      await expect(botao).toHaveCount(999); // impossível, vai falhar
+    } else {
+      // Espera o botão estar visível e habilitado, até 10s
+      await expect(botao).toBeVisible({ timeout: 10000 });
+    }
 
     // Se for Firefox, rola até o botão antes de qualquer interação futura
     if (browserName === "firefox") {
