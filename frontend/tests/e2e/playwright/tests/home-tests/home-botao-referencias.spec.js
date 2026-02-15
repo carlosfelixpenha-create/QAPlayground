@@ -28,7 +28,7 @@ test("Home - validar botão Referências e links externos", async ({
 
   await chatGPTPage.waitForLoadState("domcontentloaded");
   console.log("URL ChatGPT aberta:", chatGPTPage.url());
-  await expect(chatGPTPage).toHaveURL(/chatgpt\.com/);
+  await expect(chatGPTPage.url()).toMatch(/chatgpt\.com/);
 
   await chatGPTPage.close();
 
