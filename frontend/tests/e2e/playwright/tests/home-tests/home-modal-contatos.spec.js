@@ -1,11 +1,16 @@
 const { test, expect } = require("@playwright/test");
 
 test("Home - abrir modal Contatos e validar links", async ({ page }) => {
+  // 1️⃣ Abrir página inicial
   await page.goto("/QAPlayground/");
+
+  // 🔹 Log da URL inicial
+  console.log("URL inicial aberta:", page.url());
 
   const btnContatos = page.locator("#btnContatos");
   const modalContatos = page.locator("#modal-contatos");
 
+  // Abrir modal
   await btnContatos.click();
   await expect(modalContatos).toBeVisible();
 
@@ -26,6 +31,7 @@ test("Home - abrir modal Contatos e validar links", async ({ page }) => {
     await expect(link).toHaveAttribute("href", expectedLinks[i]);
   }
 
+  // Fechar modal
   await page.locator("#modalContatosOk").click();
   await expect(modalContatos).not.toBeVisible();
 });
