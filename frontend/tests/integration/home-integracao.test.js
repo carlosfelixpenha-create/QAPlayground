@@ -59,19 +59,37 @@ describe("Fluxo de integração - avaliação", () => {
     );
   });
 
-  test("usuário avalia com 5 estrelas", async () => {
+  test("usuário avalia com 5 estrelas fecha modal após timeout", async () => {
     abrirModalAvaliacao();
     await avaliar(5);
 
+    // espera o timeout que fecha o modal
     await new Promise((r) => setTimeout(r, 3100));
     expect(document.getElementById("modal-avaliacao").style.display).toBe(
       "none",
     );
   });
+
+  test("nota inválida não altera estrelas nem fecha modal", async () => {
+    abrirModalAvaliacao();
+    await avaliar(999); // nota inválida
+
+    const selecionadas = document.querySelectorAll(
+      "#estrelas .selecionada",
+    ).length;
+
+    // mantemos o comportamento atual (5 estrelas marcadas)
+    expect(selecionadas).toBe(5);
+
+    // Modal continua aberto
+    expect(document.getElementById("modal-avaliacao").style.display).toBe(
+      "flex",
+    );
+  });
 });
 
 describe("Fluxo de integração - sugestões", () => {
-  test("abre modal de sugestões e envia texto válido", async () => {
+  test("envia sugestão válida", async () => {
     abrirModal("sugestoes");
 
     document.getElementById("texto-sugestao").value =
@@ -82,7 +100,7 @@ describe("Fluxo de integração - sugestões", () => {
     expect(global.emailjs.send).toHaveBeenCalledTimes(1);
   });
 
-  test("não envia sugestão se textarea estiver vazio", async () => {
+  test("não envia sugestão vazia", async () => {
     abrirModal("sugestoes");
     document.getElementById("texto-sugestao").value = "";
 
@@ -93,10 +111,36 @@ describe("Fluxo de integração - sugestões", () => {
       "flex",
     );
   });
+
+  test("falha no envio do email mantém modal aberto", async () => {
+    abrirModal("sugestoes");
+    document.getElementById("texto-sugestao").value = "Teste";
+
+    // força falha
+    global.emailjs.send = jest.fn(() => Promise.reject());
+
+    await enviarSugestao();
+
+    // comportamento real atual: modal permanece aberto
+    expect(document.getElementById("modal-sugestoes").style.display).toBe(
+      "flex",
+    );
+  });
 });
 
 describe("Fluxo de integração - contatos", () => {
   test("abre e fecha modal de contatos", () => {
+    abrirModalContatos();
+    fecharModalContatos();
+
+    expect(document.getElementById("modal-contatos").style.display).toBe(
+      "none",
+    );
+  });
+
+  test("abre e fecha múltiplas vezes sem afetar estado", () => {
+    abrirModalContatos();
+    fecharModalContatos();
     abrirModalContatos();
     fecharModalContatos();
 
