@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -12,11 +12,17 @@
     <div class="login-content">
       <h1>Login</h1>
       <!-- novalidate desativa a validação automática do navegador -->
-      <form onsubmit="executarLogin(event)" class="form-container" novalidate>
+      <form
+        id="formLogin"
+        onsubmit="executarLogin(event)"
+        class="form-container"
+        novalidate
+      >
         <label for="usuario">Usuário*:</label>
         <input
-          type="text"
+          type="email"
           id="usuario"
+          name="usuario"
           placeholder="Digite seu e-mail"
           required
         />
@@ -26,9 +32,11 @@
           <input
             type="password"
             id="senha"
+            name="senha"
             placeholder="Digite sua senha"
             required
           />
+
           <button
             type="button"
             id="toggleSenha"
@@ -54,14 +62,14 @@
           <button
             type="button"
             class="requisitos"
-            onclick="location.href='login-requisitos.html'"
+            onclick="location.href = 'login-requisitos.html'"
           >
             Requisitos
           </button>
-          <button type="button" onclick="location.href='../../index.html'">
+          <button type="button" onclick="location.href = '../../index.html'">
             Voltar
           </button>
-          <button type="submit">Entrar</button>
+          <button type="submit" id="btnEntrar">Entrar</button>
         </div>
       </form>
     </div>

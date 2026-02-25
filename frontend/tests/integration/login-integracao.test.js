@@ -44,7 +44,7 @@ beforeEach(() => {
       <input id="usuario" />
       <input id="senha" type="password" />
       <input id="captcha" type="checkbox" />
-      <button id="btnLogin"></button>
+      <button type="submit" id="btnEntrar"></button>
     </form>
     <button id="toggleSenha"></button>
   `;
