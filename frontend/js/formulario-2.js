@@ -32,7 +32,21 @@ function executarFormulario2(event) {
       "Preencher corretamente o campo Telefone, dúvida entrar em requisitos!",
     );
   }
+  // Validação: telefone deve conter apenas números
+  const regexTelefone = /^[0-9]+$/;
+  if (!regexTelefone.test(telefone)) {
+    return mostrarModalErro(
+      "Preencher corretamente o campo Telefone, dúvida entrar em requisitos!",
+    );
+  }
   if (!cpf) {
+    return mostrarModalErro(
+      "Preencher corretamente o campo CPF, dúvida entrar em requisitos!",
+    );
+  }
+  // Validação: CPF deve conter apenas números
+  const regexCpf = /^[0-9]+$/;
+  if (!regexCpf.test(cpf)) {
     return mostrarModalErro(
       "Preencher corretamente o campo CPF, dúvida entrar em requisitos!",
     );

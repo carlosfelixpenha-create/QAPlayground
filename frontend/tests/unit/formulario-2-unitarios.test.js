@@ -94,6 +94,20 @@ describe("Função executarFormulario2", () => {
       "Telefone",
     );
   });
+  test("deve mostrar erro se telefone contiver letras", () => {
+    document.getElementById("sexoM").checked = true;
+    document.getElementById("interesse1").checked = true;
+    document.getElementById("dataNascimento").value = "2000-01-01";
+    document.getElementById("telefone").value = "11ABC999";
+    document.getElementById("cpf").value = "12345678900";
+
+    const event = { preventDefault: jest.fn() };
+    executarFormulario2(event);
+
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "Telefone",
+    );
+  });
 
   test("deve mostrar erro se CPF vazio", () => {
     document.getElementById("sexoM").checked = true;
@@ -102,6 +116,21 @@ describe("Função executarFormulario2", () => {
     document.getElementById("telefone").value = "999999999";
     const event = { preventDefault: jest.fn() };
     executarFormulario2(event);
+    expect(document.getElementById("modalTextoErro").textContent).toContain(
+      "CPF",
+    );
+  });
+
+  test("deve mostrar erro se CPF contiver letras", () => {
+    document.getElementById("sexoM").checked = true;
+    document.getElementById("interesse1").checked = true;
+    document.getElementById("dataNascimento").value = "2000-01-01";
+    document.getElementById("telefone").value = "999999999";
+    document.getElementById("cpf").value = "ABC12345678";
+
+    const event = { preventDefault: jest.fn() };
+    executarFormulario2(event);
+
     expect(document.getElementById("modalTextoErro").textContent).toContain(
       "CPF",
     );
