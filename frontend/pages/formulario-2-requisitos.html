@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -76,18 +76,25 @@
         <h3>Telefone*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Deve permitir digitar telefone no
-            formato (99) 99999-9999.
+            <strong>Requisito:</strong> Deve permitir digitar telefone apenas
+            com números.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
             <li>Campo não pode estar vazio.</li>
-            <li>Não deve aceitar letras ou caracteres fora do padrão.</li>
-            <li>Deve validar o formato correto.</li>
+            <li>
+              Não deve aceitar letras, espaços, pontos, traços ou outros
+              caracteres especiais.
+            </li>
+            <li>
+              Deve conter apenas números, seguindo o padrão brasileiro de 10 ou
+              11 dígitos.
+            </li>
             <li>
               <em>Mensagens exibidas:</em>
               - “Preencher corretamente o campo Telefone, dúvida entrar em
-              requisitos!” - “Telefone inválido! Use o formato (99) 99999-9999.”
+              requisitos!” - “Telefone inválido! Use apenas números sem espaços
+              ou caracteres especiais.”
             </li>
           </ul>
         </ul>
@@ -95,18 +102,21 @@
         <h3>CPF*</h3>
         <ul>
           <li>
-            <strong>Requisito:</strong> Deve permitir digitar CPF no formato
-            999.999.999-99.
+            <strong>Requisito:</strong> Deve permitir digitar CPF apenas com
+            números.
           </li>
           <li><strong>Critérios de aceite:</strong></li>
           <ul>
             <li>Campo não pode estar vazio.</li>
+            <li>
+              Deve conter apenas números, sem letras, espaços, pontos ou traços.
+            </li>
             <li>Deve conter 11 dígitos válidos.</li>
-            <li>Deve validar o formato correto.</li>
             <li>
               <em>Mensagens exibidas:</em>
               - “Preencher corretamente o campo CPF, dúvida entrar em
-              requisitos!” - “CPF inválido! Use o formato 999.999.999-99.”
+              requisitos!” - “CPF inválido! Use apenas números sem pontos,
+              traços ou outros caracteres.”
             </li>
           </ul>
         </ul>
@@ -181,7 +191,7 @@
         </ul>
 
         <div class="button-group">
-          <button type="button" onclick="location.href='formulario-2.html'">
+          <button type="button" onclick="location.href = 'formulario-2.html'">
             Voltar
           </button>
         </div>
