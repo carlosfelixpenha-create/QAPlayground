@@ -116,6 +116,7 @@ test.describe("Cadastro - E2E", () => {
     await expect(page.locator("#email")).not.toBeDisabled();
     await expect(page.locator("#btnCadastrar")).not.toBeDisabled();
   });
+
   test("Navegação - Deve acessar página de requisitos e voltar para cadastro", async ({
     page,
   }) => {

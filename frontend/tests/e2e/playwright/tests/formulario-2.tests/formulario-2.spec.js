@@ -303,4 +303,26 @@ test.describe("Formulário 2 - Campos Diversos - E2E", () => {
 
     await page.click("#modalOk");
   });
+
+  test("Navegação - Deve acessar página de requisitos e voltar para formulário 2", async ({
+    page,
+  }) => {
+    // Já estamos no formulario-2 por causa do beforeEach
+
+    const botaoRequisitos = page.locator("button:has-text('Requisitos')");
+    await expect(botaoRequisitos).toBeVisible();
+
+    await botaoRequisitos.click();
+
+    await expect(page).toHaveURL(/formulario-2-requisitos.html/);
+
+    await expect(page.locator("h1")).toHaveText("Requisitos 'Campos Diversos'"); // ajuste se necessário
+
+    const botaoVoltar = page.locator("button:has-text('Voltar')");
+    await expect(botaoVoltar).toBeVisible();
+
+    await botaoVoltar.click();
+
+    await expect(page).toHaveURL(/formulario-2.html/);
+  });
 });

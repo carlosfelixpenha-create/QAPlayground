@@ -122,4 +122,31 @@ test.describe("Login - E2E", () => {
     await expect(input).toHaveAttribute("type", "password");
     await expect(btn).toHaveAttribute("aria-label", "Mostrar senha");
   });
+
+  test("Navegação - Deve acessar página de requisitos e voltar para Login", async ({
+    page,
+  }) => {
+    // Já estamos no login por causa do beforeEach
+
+    // Botão Requisitos existe e está visível
+    const botaoRequisitos = page.locator("button:has-text('Requisitos')");
+    await expect(botaoRequisitos).toBeVisible();
+
+    // Clicar no botão
+    await botaoRequisitos.click();
+
+    // Validar que mudou a URL
+    await expect(page).toHaveURL(/login-requisitos.html/);
+
+    // Validar título da página de requisitos
+    await expect(page.locator("h1")).toHaveText("Requisitos 'Login'");
+
+    // Clicar no botão Voltar
+    const botaoVoltar = page.locator("button:has-text('Voltar')");
+    await expect(botaoVoltar).toBeVisible();
+    await botaoVoltar.click();
+
+    // Validar que voltou para login
+    await expect(page).toHaveURL(/login.html/);
+  });
 });

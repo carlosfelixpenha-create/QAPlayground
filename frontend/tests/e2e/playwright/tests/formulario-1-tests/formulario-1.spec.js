@@ -215,4 +215,28 @@ test.describe("Cadastro de Endereço - E2E", () => {
     await expect(page.locator("#btnVerEndereco")).not.toBeVisible();
     await expect(page.locator("#btnLimparEndereco")).not.toBeVisible();
   });
+
+  test("Navegação - Deve acessar página de requisitos e voltar para formulário 1", async ({
+    page,
+  }) => {
+    // Já estamos no formulario-1 por causa do beforeEach
+
+    const botaoRequisitos = page.locator("button:has-text('Requisitos')");
+    await expect(botaoRequisitos).toBeVisible();
+
+    await botaoRequisitos.click();
+
+    await expect(page).toHaveURL(/formulario-1-requisitos.html/);
+
+    await expect(page.locator("h1")).toHaveText(
+      "Requisitos 'Cadastro de Endereço'",
+    );
+
+    const botaoVoltar = page.locator("button:has-text('Voltar')");
+    await expect(botaoVoltar).toBeVisible();
+
+    await botaoVoltar.click();
+
+    await expect(page).toHaveURL(/formulario-1.html/);
+  });
 });
