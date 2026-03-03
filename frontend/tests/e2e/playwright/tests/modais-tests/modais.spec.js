@@ -3,9 +3,7 @@ const { test, expect } = require("@playwright/test");
 test.describe("Catálogo de Modais - E2E (Fluxo Feliz Inicial)", () => {
   test.beforeEach(async ({ page }) => {
     // Abre a página real dos modais (mesmo padrão do login)
-    await page.goto("/QAPlayground/frontend/pages/modais.html", {
-      waitUntil: "domcontentloaded",
-    });
+    await page.goto("/QAPlayground/frontend/pages/modais.html");
 
     console.log("URL aberta:", page.url());
 
