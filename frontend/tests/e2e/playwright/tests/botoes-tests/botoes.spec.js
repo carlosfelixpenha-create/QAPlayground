@@ -1,6 +1,6 @@
 const { test, expect } = require("@playwright/test");
 
-test.describe("Catálogo de Botões - Botões Primários", () => {
+test.describe("Catálogo de Botões E2E", () => {
   test.beforeEach(async ({ page }) => {
     // Abre a página do catálogo de botões
     await page.goto("/QAPlayground/frontend/pages/botoes.html", {
