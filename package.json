@@ -7,8 +7,8 @@
     "prepare": "husky",
     "test": "jest --testPathIgnorePatterns=frontend/tests/e2e/playwright",
     "test:local": "jest --testPathIgnorePatterns=\"frontend/tests/e2e/playwright|frontend/tests/e2e/seleniumwebdriver\"",
-    "test:coverage": "jest --coverage --testPathIgnorePatterns=\"frontend/tests/e2e/playwright|frontend/tests/e2e/seleniumwebdriver\"",
-  "test:coverage:strict": "jest --coverage --testPathIgnorePatterns=\"frontend/tests/e2e/playwright|frontend/tests/e2e/seleniumwebdriver\"",
+    "test:coverage": "jest --coverage",
+    "test:coverage:strict": "jest --coverage --testPathIgnorePatterns=frontend/tests/e2e/playwright",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "install:browsers": "playwright install"

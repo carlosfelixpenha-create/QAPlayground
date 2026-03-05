@@ -31,4 +31,4 @@ jobs:
 
       # 5️⃣ Roda todos os testes do Playwright
       - name: Run Playwright Tests
-        run: npx playwright test --config=playwright.config.js
+        run: npx playwright test frontend/tests/e2e/playwright --config=playwright.config.js

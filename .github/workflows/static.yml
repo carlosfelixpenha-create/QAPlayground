@@ -33,7 +33,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run E2E tests
-        run: npx playwright test --config=playwright.config.js
+        run: npx playwright test frontend/tests/e2e/playwright --config=playwright.config.js
 
   deploy:
     needs: test
