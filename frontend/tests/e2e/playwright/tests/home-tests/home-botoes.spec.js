@@ -7,7 +7,7 @@ test("Home - validação da chamada e botões do menu", async ({
   // Aumenta timeout do teste completo
   test.setTimeout(60000);
 
-  // 1️⃣ Abrir página inicial
+  // Abrir página inicial
   await page.goto("/QAPlayground/");
 
   // 🔹 Log da URL inicial

@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
 test("Home - validar fluxo completo da modal Sugestões", async ({ page }) => {
-  // 1️⃣ Abrir página inicial
+  // Abrir página inicial
   await page.goto("/QAPlayground/", { waitUntil: "domcontentloaded" });
 
   // 🔹 Log da URL inicial

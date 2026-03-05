@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
 test("Home - abrir modal Contatos e validar links", async ({ page }) => {
-  // 1️⃣ Abrir página inicial
+  // Abrir página inicial
   await page.goto("/QAPlayground/");
 
   // 🔹 Log da URL inicial

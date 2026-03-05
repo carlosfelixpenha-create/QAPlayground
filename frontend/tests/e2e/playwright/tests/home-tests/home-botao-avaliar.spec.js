@@ -3,7 +3,7 @@ const { test, expect } = require("@playwright/test");
 test("Home - validar avaliação com 1 estrela", async ({ page }) => {
   await page.goto("/QAPlayground/", { waitUntil: "domcontentloaded" });
 
-  // 🔹 Log da URL aberta
+  // Log da URL aberta
   console.log("URL inicial aberta:", page.url());
 
   await page.evaluate(() => sessionStorage.clear());
@@ -57,7 +57,7 @@ test("Home - validar avaliação com 3 estrelas", async ({ page }) => {
 test("Home - validar avaliação com 5 estrelas", async ({ page }) => {
   await page.goto("/QAPlayground/", { waitUntil: "domcontentloaded" });
 
-  // 🔹 Log da URL aberta
+  // Log da URL aberta
   console.log("URL inicial aberta:", page.url());
 
   await page.evaluate(() => sessionStorage.clear());
