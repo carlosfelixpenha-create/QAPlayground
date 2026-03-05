@@ -11,7 +11,7 @@ test.describe("Home - Validação de botões do menu", () => {
     page,
     browserName,
   }) => {
-    // Aumenta timeout do teste completo
+    // Aumenta timeout do teste completo testando
     test.setTimeout(60000);
 
     const botoesMenu = [
