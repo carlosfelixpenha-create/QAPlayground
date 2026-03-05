@@ -36,23 +36,23 @@ test.describe("Formulário 3 - Novos Campos - E2E", () => {
     // Caminhos absolutos dos arquivos
     const pdfPath = path.resolve(
       __dirname,
-      "../../../../../fixtures/Testes_QAPlayground.pdf",
+      "../../../fixtures/Testes_QAPlayground.pdf",
     );
     const docxPath = path.resolve(
       __dirname,
-      "../../../../../fixtures/Testes_QAPlayground.docx",
+      "../../../fixtures/Testes_QAPlayground.docx",
     );
     const jpgPath = path.resolve(
       __dirname,
-      "../../../../../fixtures/Testes_QAPlayground.jpg",
+      "../../../fixtures/Testes_QAPlayground.jpg",
     );
     const xlsxPath = path.resolve(
       __dirname,
-      "../../../../../fixtures/Testes_QAPlayground.xlsx",
+      "../../../fixtures/Testes_QAPlayground.xlsx",
     );
     const txtPath = path.resolve(
       __dirname,
-      "../../../../../fixtures/Testes_QAPlayground.txt",
+      "../../../fixtures/Testes_QAPlayground.txt",
     );
 
     // Upload PDF
@@ -126,7 +126,7 @@ test.describe("Formulário 3 - Novos Campos - E2E", () => {
 
     const txtPath = path.resolve(
       __dirname,
-      "../../../../../fixtures/Testes_QAPlayground.txt",
+      "../../../fixtures/Testes_QAPlayground.txt",
     );
 
     // Seta arquivo inválido
