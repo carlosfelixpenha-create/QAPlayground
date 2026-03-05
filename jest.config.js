@@ -7,7 +7,13 @@ module.exports = {
     "frontend/tests/e2e/seleniumwebdriver",
   ],
 
-  collectCoverage: false, // desliga cobertura por padrão
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "frontend/tests/e2e/playwright",
+    "frontend/tests/e2e/seleniumwebdriver",
+  ],
+
+  collectCoverage: false,
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
 
