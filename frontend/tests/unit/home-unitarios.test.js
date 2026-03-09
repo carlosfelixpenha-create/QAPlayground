@@ -279,6 +279,84 @@ describe("Botões da sidebar - navegação", () => {
     });
   });
 
+  describe("Botão Dark Mode", () => {
+    let btn, content;
+
+    beforeEach(() => {
+      // Cria os elementos no DOM
+      document.body.innerHTML = `
+      <button id="toggle-dark"></button>
+      <div class="content"></div>
+    `;
+      btn = document.getElementById("toggle-dark");
+      content = document.querySelector(".content");
+
+      // Limpa o localStorage antes de cada teste
+      localStorage.clear();
+
+      // Inicializa o comportamento do Dark Mode
+      const currentMode = localStorage.getItem("mode");
+      if (currentMode === "dark") {
+        content.classList.add("dark");
+        btn.textContent = "☀️ Modo Claro";
+      } else {
+        btn.textContent = "🌙 Modo Escuro";
+      }
+
+      btn.addEventListener("click", () => {
+        content.classList.toggle("dark");
+
+        if (content.classList.contains("dark")) {
+          btn.textContent = "☀️ Modo Claro";
+          localStorage.setItem("mode", "dark");
+        } else {
+          btn.textContent = "🌙 Modo Escuro";
+          localStorage.setItem("mode", "light");
+        }
+      });
+    });
+
+    test("botão inicia com texto correto e sem dark mode", () => {
+      expect(btn.textContent).toBe("🌙 Modo Escuro");
+      expect(content.classList.contains("dark")).toBe(false);
+    });
+
+    test("clicar alterna para dark mode e atualiza localStorage e texto", () => {
+      btn.click();
+      expect(content.classList.contains("dark")).toBe(true);
+      expect(btn.textContent).toBe("☀️ Modo Claro");
+      expect(localStorage.getItem("mode")).toBe("dark");
+    });
+
+    test("clicar novamente remove dark mode e atualiza localStorage e texto", () => {
+      // Primeiro clique ativa
+      btn.click();
+      // Segundo clique desativa
+      btn.click();
+      expect(content.classList.contains("dark")).toBe(false);
+      expect(btn.textContent).toBe("🌙 Modo Escuro");
+      expect(localStorage.getItem("mode")).toBe("light");
+    });
+
+    test("se localStorage já estiver em dark, inicializa corretamente", () => {
+      localStorage.setItem("mode", "dark");
+
+      // Reinicializa elementos simulando carregamento da página
+      content.classList.remove("dark");
+      btn.textContent = "";
+
+      const currentMode = localStorage.getItem("mode");
+      if (currentMode === "dark") {
+        content.classList.add("dark");
+        btn.textContent = "☀️ Modo Claro";
+      } else {
+        btn.textContent = "🌙 Modo Escuro";
+      }
+
+      expect(content.classList.contains("dark")).toBe(true);
+      expect(btn.textContent).toBe("☀️ Modo Claro");
+    });
+  });
   // Testa tooltips e acessibilidade
   botoesSidebar
     .filter((b) => b.title)

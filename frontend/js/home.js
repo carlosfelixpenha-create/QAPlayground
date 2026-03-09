@@ -194,13 +194,15 @@ document.addEventListener("input", function (e) {
       contador.textContent = `${e.target.value.length} / 600`;
     }
   }
-  // ===== Dark Mode apenas na área de conteúdo =====
+});
+// ===== Dark Mode apenas na área de conteúdo =====
+document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("toggle-dark");
   const content = document.querySelector(".content");
 
   if (btn && content) {
+    // Aplica o modo salvo no localStorage
     const currentMode = localStorage.getItem("mode");
-
     if (currentMode === "dark") {
       content.classList.add("dark");
       btn.textContent = "☀️ Modo Claro";
@@ -208,6 +210,7 @@ document.addEventListener("input", function (e) {
       btn.textContent = "🌙 Modo Escuro";
     }
 
+    // Evento de clique para alternar
     btn.addEventListener("click", () => {
       content.classList.toggle("dark");
 
@@ -221,7 +224,6 @@ document.addEventListener("input", function (e) {
     });
   }
 });
-
 // ----------------------
 // EXPORTS PARA TESTES UNITÁRIOS
 // ----------------------

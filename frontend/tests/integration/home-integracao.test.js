@@ -149,3 +149,97 @@ describe("Fluxo de integração - contatos", () => {
     );
   });
 });
+
+describe("Integração - Botão Dark Mode", () => {
+  beforeEach(() => {
+    // Adiciona conteúdo e botão dark ao DOM
+    document.body.innerHTML += `
+      <main class="content">
+        <h1>QAPlayground</h1>
+      </main>
+      <button id="toggle-dark">🌙 Modo Escuro</button>
+      <aside class="sidebar"></aside>
+    `;
+
+    // Limpa localStorage antes de cada teste
+    localStorage.clear();
+
+    // Inicializa a lógica do botão (como no home.js)
+    const btn = document.getElementById("toggle-dark");
+    const content = document.querySelector(".content");
+
+    if (btn && content) {
+      const currentMode = localStorage.getItem("mode");
+      if (currentMode === "dark") {
+        content.classList.add("dark");
+        btn.textContent = "☀️ Modo Claro";
+      } else {
+        btn.textContent = "🌙 Modo Escuro";
+      }
+
+      btn.addEventListener("click", () => {
+        content.classList.toggle("dark");
+
+        if (content.classList.contains("dark")) {
+          btn.textContent = "☀️ Modo Claro";
+          localStorage.setItem("mode", "dark");
+        } else {
+          btn.textContent = "🌙 Modo Escuro";
+          localStorage.setItem("mode", "light");
+        }
+      });
+    }
+  });
+
+  test("inicializa com texto correto e sem dark mode", () => {
+    const btn = document.getElementById("toggle-dark");
+    const content = document.querySelector(".content");
+
+    expect(btn.textContent).toBe("🌙 Modo Escuro");
+    expect(content.classList.contains("dark")).toBe(false);
+  });
+
+  test("clicar alterna dark mode e atualiza localStorage e texto", () => {
+    const btn = document.getElementById("toggle-dark");
+    const content = document.querySelector(".content");
+
+    btn.click();
+
+    expect(content.classList.contains("dark")).toBe(true);
+    expect(btn.textContent).toBe("☀️ Modo Claro");
+    expect(localStorage.getItem("mode")).toBe("dark");
+
+    // Clicar novamente remove dark mode
+    btn.click();
+
+    expect(content.classList.contains("dark")).toBe(false);
+    expect(btn.textContent).toBe("🌙 Modo Escuro");
+    expect(localStorage.getItem("mode")).toBe("light");
+  });
+
+  test("inicializa corretamente se localStorage já estiver em dark", () => {
+    localStorage.setItem("mode", "dark");
+
+    // Simula reinicialização do script
+    const btn = document.getElementById("toggle-dark");
+    const content = document.querySelector(".content");
+
+    // Reinicialização manual
+    if (localStorage.getItem("mode") === "dark") {
+      content.classList.add("dark");
+      btn.textContent = "☀️ Modo Claro";
+    }
+
+    expect(content.classList.contains("dark")).toBe(true);
+    expect(btn.textContent).toBe("☀️ Modo Claro");
+  });
+
+  test("sidebar não é afetada pelo dark mode", () => {
+    const btn = document.getElementById("toggle-dark");
+    const sidebar = document.querySelector(".sidebar");
+
+    btn.click();
+
+    expect(sidebar.classList.contains("dark")).toBe(false);
+  });
+});

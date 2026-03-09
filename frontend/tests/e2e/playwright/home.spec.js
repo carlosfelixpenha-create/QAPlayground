@@ -185,4 +185,10 @@ test.describe("Home - Validação de botões do menu", () => {
     await expect(modalContatos).not.toBeVisible();
     console.log("Modal Contatos fechado com sucesso");
   });
+
+  test("Deve validar que o botão Dark Mode existe", async ({ page }) => {
+    const toggleButton = page.locator("#toggle-dark");
+
+    await expect(toggleButton).toBeVisible();
+  });
 });

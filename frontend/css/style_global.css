@@ -138,10 +138,10 @@ body {
   font-size: 0.9rem; /* deixa o número maior */
   font-weight: bold; /* em negrito */
   color: #2563eb; /* azul destaque */
-  background: #f0f9ff; /* leve fundo azul claro */
+  background: #cbeaff; /* leve fundo azul claro */
   border: 2px solid #2563eb;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 6px 18px;
   display: inline-block;
   margin-top: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -1557,6 +1557,10 @@ h1 {
 .content.dark {
   background-color: #121212;
   color: #e0e0e0;
+}
+/* Texto destaque ajusta cor no Dark Mode */
+.content.dark .texto-destaque {
+  color: #81d4fa; /* azul claro, visível sobre fundo escuro */
 }
 
 /* ===== Título principal QAPlayground – forçando texto branco ===== */
