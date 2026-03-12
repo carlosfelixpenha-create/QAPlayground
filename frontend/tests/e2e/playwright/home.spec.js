@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Home - Validação de botões do menu", () => {
   test.beforeEach(async ({ page }) => {
     console.log("Abrindo página inicial...");
-    await page.goto("/QAPlayground/");
+    await page.goto("/QAPlayground/index.html");
     console.log("URL inicial aberta:", page.url());
   });
 

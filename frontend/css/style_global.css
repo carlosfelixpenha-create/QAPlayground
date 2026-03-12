@@ -141,7 +141,7 @@ body {
   background: #cbeaff; /* leve fundo azul claro */
   border: 2px solid #2563eb;
   border-radius: 8px;
-  padding: 6px 18px;
+  padding: 3px 18px;
   display: inline-block;
   margin-top: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -1523,12 +1523,12 @@ body.modal-open {
   left: -8px;
 }
 
-/* ===== Título principal QAPlayground ===== */
+/* ===== Título principal QAPlayground – forçando texto branco ===== */
 h1 {
   text-align: center;
   background: linear-gradient(to bottom, #023e8a, #007acc, #4dabf7);
-  color: #fff;
-  padding: 20px;
+  color: #ffffff !important; /* força o branco */
+  padding: 16px 20px 20px 20px;
   margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -1537,7 +1537,7 @@ h1 {
 /* ===== Botão Dark Mode ===== */
 #toggle-dark {
   position: absolute;
-  top: 59px;
+  top: 58px;
   right: 67px;
   background: #e63946;
   color: #fff;
@@ -1561,15 +1561,4 @@ h1 {
 /* Texto destaque ajusta cor no Dark Mode */
 .content.dark .texto-destaque {
   color: #81d4fa; /* azul claro, visível sobre fundo escuro */
-}
-
-/* ===== Título principal QAPlayground – forçando texto branco ===== */
-h1 {
-  text-align: center;
-  background: linear-gradient(to bottom, #023e8a, #007acc, #4dabf7);
-  color: #ffffff !important; /* força o branco */
-  padding: 20px;
-  margin-bottom: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
