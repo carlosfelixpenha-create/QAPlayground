@@ -12,12 +12,7 @@ async function formulario2Completo() {
 
     console.log("Página formulário 2 aberta");
 
-    /*
-    =========================
-    VALIDAÇÃO - PÁGINA CARREGADA
-    =========================
-    */
-
+    //VALIDAÇÃO - PÁGINA CARREGADA
     await driver.wait(until.elementLocated(By.id("masculino")), 5000);
     await driver.wait(until.elementLocated(By.id("feminino")), 5000);
     await driver.wait(until.elementLocated(By.id("dataNascimento")), 5000);
@@ -30,12 +25,7 @@ async function formulario2Completo() {
 
     console.log("Elementos principais carregados");
 
-    /*
-    =========================
-    FLUXO FELIZ
-    =========================
-    */
-
+    //FLUXO FELIZ
     await driver.findElement(By.id("masculino")).click();
     await driver.findElement(By.id("qa")).click();
 
@@ -55,12 +45,7 @@ async function formulario2Completo() {
 
     await driver.findElement(By.id("modalOk")).click();
 
-    /*
-    =========================
-    VALIDA CAMPOS LIMPOS
-    =========================
-    */
-
+    //VALIDA CAMPOS LIMPOS
     let dataValue = await driver
       .findElement(By.id("dataNascimento"))
       .getAttribute("value");
@@ -71,12 +56,7 @@ async function formulario2Completo() {
 
     console.log("Campos após envio:", dataValue, telValue, cpfValue);
 
-    /*
-    =========================
-    ERRO - SEXO NÃO SELECIONADO
-    =========================
-    */
-
+    //ERRO - SEXO NÃO SELECIONADO
     await driver.findElement(By.id("qa")).click();
 
     await driver.findElement(By.id("dataNascimento")).sendKeys("2000-01-01");
@@ -102,13 +82,7 @@ async function formulario2Completo() {
 
     await driver.wait(until.elementLocated(By.id("dataNascimento")), 5000);
 
-    /*
-=========================
-ERRO - INTERESSE VAZIO
-=========================
-*/
-
-    // garante que nenhum interesse esteja marcado
+    //ERRO - INTERESSE VAZIO
     let qaCheckbox = await driver.findElement(By.id("qa"));
     let qaSelecionado = await qaCheckbox.isSelected();
 
@@ -128,21 +102,17 @@ ERRO - INTERESSE VAZIO
 
     await driver.findElement(By.css("button[type='submit']")).click();
 
-    // espera o modal aparecer no DOM
     modalErro = await driver.wait(
       until.elementLocated(By.id("modalMensagemErro")),
       5000,
     );
 
-    // espera o modal ficar visível na tela
     await driver.wait(until.elementIsVisible(modalErro), 5000);
 
-    // agora captura o texto
     textoErro = await modalErro.findElement(By.id("modalTextoErro")).getText();
 
     console.log("Erro interesse vazio:", textoErro);
 
-    // espera o botão OK aparecer e clica
     let btnOkErroInteresse = await driver.wait(
       until.elementLocated(By.id("modalOkErro")),
       5000,
@@ -151,16 +121,9 @@ ERRO - INTERESSE VAZIO
     await driver.wait(until.elementIsVisible(btnOkErroInteresse), 5000);
     await btnOkErroInteresse.click();
 
-    /*
-=========================
-ERRO - DATA NASCIMENTO VAZIA
-=========================
-*/
-
-    // garante interesse selecionado
+    //ERRO - DATA NASCIMENTO VAZIA
     await driver.findElement(By.id("qa")).click();
 
-    // força limpar o campo data corretamente
     let campoData = await driver.findElement(By.id("dataNascimento"));
     await driver.executeScript("arguments[0].value = '';", campoData);
 
@@ -190,12 +153,7 @@ ERRO - DATA NASCIMENTO VAZIA
     await driver.wait(until.elementIsVisible(btnOkErroData), 5000);
     await btnOkErroData.click();
 
-    /*
-=========================
-ERRO TELEFONE VAZIO
-=========================
-*/
-
+    //ERRO TELEFONE VAZIO
     await driver.findElement(By.id("dataNascimento")).sendKeys("2000-01-01");
 
     await driver.findElement(By.id("telefone")).clear();
@@ -224,59 +182,38 @@ ERRO TELEFONE VAZIO
 
     await btnOkErroTelefone.click();
 
-    // esperar o modal desaparecer da tela
     await driver.wait(until.elementIsNotVisible(modalErro), 5000);
 
-    /*
-=========================
-ERRO CPF VAZIO
-=========================
-*/
-
-    // limpar CPF
+    //ERRO CPF VAZIO
     await driver.findElement(By.id("cpf")).clear();
 
-    // garantir telefone válido
     await driver.findElement(By.id("telefone")).clear();
     await driver.findElement(By.id("telefone")).sendKeys("11999999999");
 
-    // submit
     await driver.findElement(By.css("button[type='submit']")).click();
 
-    // esperar modal aparecer no DOM
     modalErro = await driver.wait(
       until.elementLocated(By.id("modalMensagemErro")),
       5000,
     );
 
-    // esperar modal ficar visível (timeout aumentado para 10000ms)
     await driver.wait(until.elementIsVisible(modalErro), 10000);
 
-    // capturar mensagem
     textoErro = await modalErro.findElement(By.id("modalTextoErro")).getText();
     console.log("Erro CPF vazio:", textoErro);
 
-    // localizar botão OK
     let btnOkErroCpf = await driver.wait(
       until.elementLocated(By.id("modalOkErro")),
       5000,
     );
 
-    // esperar botão visível
     await driver.wait(until.elementIsVisible(btnOkErroCpf), 5000);
 
-    // clicar no OK
     await btnOkErroCpf.click();
 
-    // AGUARDAR MODAL SUMIR
     await driver.wait(until.elementIsNotVisible(modalErro), 5000);
 
-    /*
-    =========================
-    TELEFONE COM LETRAS
-    =========================
-    */
-
+    //TELEFONE COM LETRAS
     await driver.findElement(By.id("cpf")).sendKeys("12345678900");
 
     await driver.findElement(By.id("telefone")).clear();
@@ -294,12 +231,7 @@ ERRO CPF VAZIO
 
     await driver.findElement(By.id("modalOkErro")).click();
 
-    /*
-    =========================
-    CPF COM LETRAS
-    =========================
-    */
-
+    //CPF COM LETRAS
     await driver.findElement(By.id("telefone")).clear();
     await driver.findElement(By.id("telefone")).sendKeys("11999999999");
 
@@ -318,12 +250,7 @@ ERRO CPF VAZIO
 
     await driver.findElement(By.id("modalOkErro")).click();
 
-    /*
-    =========================
-    DATA FUTURA
-    =========================
-    */
-
+    //DATA FUTURA
     const future = new Date();
     future.setDate(future.getDate() + 1);
     const futureStr = future.toISOString().split("T")[0];
@@ -346,12 +273,7 @@ ERRO CPF VAZIO
 
     await driver.findElement(By.id("modalOkErro")).click();
 
-    /*
-    =========================
-    CORRIGIR ERRO E ENVIAR
-    =========================
-    */
-
+    //CORRIGIR ERRO E ENVIAR
     await driver.findElement(By.id("cpf")).clear();
     await driver.findElement(By.id("cpf")).sendKeys("abc123");
 
@@ -382,12 +304,7 @@ ERRO CPF VAZIO
 
     await driver.findElement(By.id("modalOk")).click();
 
-    /*
-    =========================
-    NAVEGAÇÃO REQUISITOS
-    =========================
-    */
-
+    //NAVEGAÇÃO REQUISITOS
     await driver
       .findElement(By.xpath("//button[contains(text(),'Requisitos')]"))
       .click();
