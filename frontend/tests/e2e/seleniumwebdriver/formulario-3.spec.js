@@ -9,6 +9,7 @@ const path = require("path");
     .build();
 
   try {
+    await driver.manage().window().maximize();
     await driver.get(
       "https://carlosfelixpenha-create.github.io/QAPlayground/frontend/pages/formulario-3.html",
     );

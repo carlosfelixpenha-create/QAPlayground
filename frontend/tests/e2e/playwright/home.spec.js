@@ -186,9 +186,46 @@ test.describe("Home - Validação de botões do menu", () => {
     console.log("Modal Contatos fechado com sucesso");
   });
 
-  test("Deve validar que o botão Dark Mode existe", async ({ page }) => {
+  test("Deve validar funcionamento completo do botão Dark Mode", async ({
+    page,
+  }) => {
     const toggleButton = page.locator("#toggle-dark");
+    const content = page.locator(".content");
 
+    // Verifica que o botão está visível
     await expect(toggleButton).toBeVisible();
+
+    // Captura estado inicial
+    const initialText = await toggleButton.textContent();
+    const initialClass = await content.getAttribute("class");
+
+    // 1️⃣ Primeiro clique: alterna o modo
+    await toggleButton.click();
+
+    const afterFirstClickClass = await content.getAttribute("class");
+    const afterFirstClickText = await toggleButton.textContent();
+
+    if (initialClass?.includes("dark")) {
+      await expect(content).not.toHaveClass(/dark/);
+      await expect(afterFirstClickText).toContain("🌙");
+    } else {
+      await expect(content).toHaveClass(/dark/);
+      await expect(afterFirstClickText).toContain("☀️");
+    }
+
+    // 2️⃣ Segundo clique: retorna ao estado original
+    await toggleButton.click();
+
+    const afterSecondClickClass = await content.getAttribute("class");
+    const afterSecondClickText = await toggleButton.textContent();
+
+    // Valida retorno ao estado inicial
+    if (initialClass?.includes("dark")) {
+      await expect(content).toHaveClass(/dark/);
+      await expect(afterSecondClickText).toContain("☀️");
+    } else {
+      await expect(content).not.toHaveClass(/dark/);
+      await expect(afterSecondClickText).toContain("🌙");
+    }
   });
 });

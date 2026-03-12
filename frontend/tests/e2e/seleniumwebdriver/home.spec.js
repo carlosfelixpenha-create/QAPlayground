@@ -5,6 +5,7 @@ const { Builder, By, until } = require("selenium-webdriver");
   const driver = await new Builder().forBrowser("chrome").build();
 
   try {
+    await driver.manage().window().maximize();
     console.log("Abrindo página inicial do QAPlayground...");
     await driver.get("https://carlosfelixpenha-create.github.io/QAPlayground/");
     console.log("Página carregada com sucesso");
@@ -138,6 +139,54 @@ const { Builder, By, until } = require("selenium-webdriver");
     await btnContatosOk.click();
     await driver.wait(async () => !(await modalContatos.isDisplayed()), 5000);
     console.log("Modal Contatos fechado com sucesso");
+
+    // =========================
+    // Dark Mode - teste incremental
+    // =========================
+    console.log("Validando botão Dark Mode...");
+    const toggleButton = await driver.findElement(By.id("toggle-dark"));
+    const content = await driver.findElement(By.css(".content"));
+
+    // Verifica que o botão está visível
+    await driver.wait(until.elementIsVisible(toggleButton), 5000);
+
+    // Captura estado inicial
+    const initialText = await toggleButton.getText();
+    const initialClass = await content.getAttribute("class");
+
+    // 1️⃣ Primeiro clique: alterna o modo
+    await toggleButton.click();
+    const afterFirstClickClass = await content.getAttribute("class");
+    const afterFirstClickText = await toggleButton.getText();
+
+    if (initialClass.includes("dark")) {
+      if (!afterFirstClickClass.includes("dark"))
+        console.log("Dark Mode desativado ✅");
+      if (afterFirstClickText.includes("🌙"))
+        console.log("Texto do botão atualizado corretamente ✅");
+    } else {
+      if (afterFirstClickClass.includes("dark"))
+        console.log("Dark Mode ativado ✅");
+      if (afterFirstClickText.includes("☀️"))
+        console.log("Texto do botão atualizado corretamente ✅");
+    }
+
+    // 2️⃣ Segundo clique: retorna ao estado inicial
+    await toggleButton.click();
+    const afterSecondClickClass = await content.getAttribute("class");
+    const afterSecondClickText = await toggleButton.getText();
+
+    if (initialClass.includes("dark")) {
+      if (afterSecondClickClass.includes("dark"))
+        console.log("Dark Mode retornou ao estado original ✅");
+      if (afterSecondClickText.includes("☀️"))
+        console.log("Texto do botão retornou ao estado original ✅");
+    } else {
+      if (!afterSecondClickClass.includes("dark"))
+        console.log("Dark Mode retornou ao estado original ✅");
+      if (afterSecondClickText.includes("🌙"))
+        console.log("Texto do botão retornou ao estado original ✅");
+    }
   } finally {
     await driver.quit();
     console.log("Driver encerrado");
