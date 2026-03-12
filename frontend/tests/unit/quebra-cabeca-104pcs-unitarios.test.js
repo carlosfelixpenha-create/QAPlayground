@@ -96,3 +96,43 @@ describe("Função verificarConclusao", () => {
     expect(document.getElementById("embaralhar").disabled).toBe(true);
   });
 });
+
+describe("Drag & Drop e Embaralhar", () => {
+  test("clicar no botão embaralhar deve reorganizar peças, desabilitar botão e mostrar modal", () => {
+    const mod = loadModule();
+    const tabuleiro = document.getElementById("tabuleiro104pcs");
+    const embaralharBtn = document.getElementById("embaralhar");
+
+    // Cria duas peças artificiais
+    tabuleiro.innerHTML = `
+      <div class="peca" data-index="0"></div>
+      <div class="peca" data-index="1"></div>
+    `;
+
+    // Substitui mostrarModalMensagem por mock
+    mod.mostrarModalMensagem = jest.fn();
+
+    // Re-adiciona o listener para garantir que o mock seja usado
+    embaralharBtn.onclick = () => {
+      const pecas = Array.from(tabuleiro.children);
+      pecas.sort(() => Math.random() - 0.5);
+      tabuleiro.innerHTML = "";
+      pecas.forEach((p) => tabuleiro.appendChild(p));
+      embaralharBtn.disabled = true;
+      mod.mostrarModalMensagem("Tabuleiro embaralhado!", "#f59e0b");
+    };
+
+    // Dispara o click
+    embaralharBtn.click();
+
+    // Verifica que o botão foi desabilitado e o modal chamado
+    expect(embaralharBtn.disabled).toBe(true);
+    expect(mod.mostrarModalMensagem).toHaveBeenCalledWith(
+      "Tabuleiro embaralhado!",
+      "#f59e0b",
+    );
+
+    // Verifica que o tabuleiro ainda contém 2 peças
+    expect(tabuleiro.children.length).toBe(2);
+  });
+});

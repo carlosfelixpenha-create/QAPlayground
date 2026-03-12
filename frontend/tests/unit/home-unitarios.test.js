@@ -100,6 +100,44 @@ describe("Modal de Avaliação", () => {
   });
 });
 
+test("desabilita botão avaliar no load se já avaliou", () => {
+  jest.resetModules();
+
+  document.body.innerHTML = `
+    <button onclick="abrirModalAvaliacao()">Avaliar</button>
+  `;
+
+  const store = {};
+  global.sessionStorage = {
+    getItem: (key) => store[key],
+    setItem: (key, value) => (store[key] = value),
+  };
+
+  sessionStorage.setItem("avaliou", "true");
+
+  require("../../js/home.js");
+
+  window.dispatchEvent(new Event("load"));
+
+  const btn = document.querySelector("button[onclick='abrirModalAvaliacao()']");
+
+  expect(btn.disabled).toBe(true);
+});
+
+test("botão avaliar inicia desabilitado se sessão já tiver avaliação", () => {
+  document.body.innerHTML += `
+    <button onclick="abrirModalAvaliacao()">Avaliar</button>
+  `;
+
+  sessionStorage.setItem("avaliou", "true");
+
+  window.dispatchEvent(new Event("load"));
+
+  const btn = document.querySelector("button[onclick='abrirModalAvaliacao()']");
+
+  expect(btn.disabled).toBe(true);
+});
+
 describe("Envio de sugestão", () => {
   test("nota baixa com comentário dispara alert", () => {
     avaliar(2);
@@ -128,6 +166,24 @@ describe("Modal de Contatos", () => {
     expect(document.getElementById("modal-contatos").style.display).toBe(
       "none",
     );
+  });
+
+  test("botão OK do modal de contatos fecha o modal", () => {
+    jest.resetModules();
+
+    document.body.innerHTML = `
+    <div id="modal-contatos" style="display:flex"></div>
+    <button id="modalContatosOk"></button>
+  `;
+
+    require("../../js/home.js");
+
+    const modal = document.getElementById("modal-contatos");
+    const btnOk = document.getElementById("modalContatosOk");
+
+    btnOk.click();
+
+    expect(modal.style.display).toBe("none");
   });
 });
 
@@ -186,6 +242,64 @@ describe("Botão de Sugestões", () => {
 
     expect(btn.disabled).toBe(true);
   });
+});
+
+test("abrirModal com tipo sugestoes desabilita botão de sugestões", () => {
+  document.body.innerHTML = `
+    <button onclick="abrirModal('sugestoes')"></button>
+  `;
+
+  const btn = document.querySelector("button");
+
+  window.abrirModal = jest.fn();
+
+  require("../../js/home.js");
+
+  document.dispatchEvent(new Event("DOMContentLoaded"));
+
+  window.abrirModal("sugestoes");
+
+  expect(btn.disabled).toBe(true);
+});
+
+test("input em texto-sugestao atualiza contador corretamente", () => {
+  document.body.innerHTML = `
+    <textarea id="texto-sugestao"></textarea>
+    <div id="contador-sugestao"></div>
+  `;
+
+  require("../../js/home.js");
+
+  const textarea = document.getElementById("texto-sugestao");
+  const contador = document.getElementById("contador-sugestao");
+
+  textarea.value = "Teste";
+
+  const event = new Event("input", { bubbles: true });
+  Object.defineProperty(event, "target", { value: textarea });
+
+  document.dispatchEvent(event);
+
+  expect(contador.textContent).toBe("5 / 600");
+});
+
+test("contador de sugestão atualiza quando input ocorre em texto-sugestao", () => {
+  document.body.innerHTML = `
+    <textarea id="texto-sugestao"></textarea>
+    <span id="contador-sugestao"></span>
+  `;
+
+  jest.resetModules();
+  require("../../js/home.js");
+
+  const textarea = document.getElementById("texto-sugestao");
+  const contador = document.getElementById("contador-sugestao");
+
+  textarea.value = "abcdef";
+
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+
+  expect(contador.textContent).toBe("6 / 600");
 });
 
 describe("Botão de Contatos visual", () => {
@@ -357,6 +471,7 @@ describe("Botões da sidebar - navegação", () => {
       expect(btn.textContent).toBe("☀️ Modo Claro");
     });
   });
+
   // Testa tooltips e acessibilidade
   botoesSidebar
     .filter((b) => b.title)

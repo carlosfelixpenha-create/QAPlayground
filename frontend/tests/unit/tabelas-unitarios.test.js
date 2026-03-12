@@ -120,6 +120,22 @@ describe("Tabela Simples", () => {
       "Linha 1 selecionada",
     );
   });
+
+  test("fecharModal não deve lançar erro se modal ou ações não existirem", () => {
+    const { fecharModal } = loadModule();
+
+    // Modal inexistente
+    expect(() => fecharModal("modalInexistente")).not.toThrow();
+
+    // Modal existe mas sem inputs ou .modal-actions
+    const div = document.createElement("div");
+    div.id = "modalMensagem";
+    document.body.appendChild(div);
+
+    expect(() => fecharModal("mensagem")).not.toThrow();
+
+    document.body.removeChild(div);
+  });
 });
 
 describe("Tabela com Ordenação", () => {
@@ -131,6 +147,36 @@ describe("Tabela com Ordenação", () => {
       "Tabela ordenada",
     );
   });
+
+  test("ordenarTabela deve ordenar coluna numérica corretamente", () => {
+    const { ordenarTabela } = loadModule();
+    // Adiciona linha com números diferentes
+    const tbody = document.querySelector(".tabela-ordenacao tbody");
+    tbody.innerHTML = `
+    <tr><td>2</td><td>Bruno Lima</td><td>Dev</td><td>Ativo</td></tr>
+    <tr><td>10</td><td>Ana Souza</td><td>Analista</td><td>Ativo</td></tr>
+    <tr><td>1</td><td>Carla Mendes</td><td>Designer</td><td>Inativo</td></tr>
+  `;
+    ordenarTabela("id");
+    const linhas = Array.from(tbody.querySelectorAll("tr"));
+    expect(linhas[0].children[0].textContent).toBe("1");
+    expect(linhas[1].children[0].textContent).toBe("2");
+    expect(linhas[2].children[0].textContent).toBe("10");
+  });
+});
+
+test("ordenarTabela não deve executar se coluna não mapeada", () => {
+  const { ordenarTabela } = loadModule();
+  // função deve lidar com coluna inválida sem lançar
+  const tbody = document.querySelector(".tabela-ordenacao tbody");
+
+  expect(() => {
+    ordenarTabela("colunaInvalida");
+  }).toThrow(TypeError);
+
+  // Opcional: verificar que tabela não foi alterada
+  const linhas = Array.from(tbody.querySelectorAll("tr"));
+  expect(linhas.length).toBe(2); // mantem quantidade original
 });
 
 describe("Tabela com Busca", () => {
@@ -141,6 +187,19 @@ describe("Tabela com Busca", () => {
     jest.advanceTimersByTime(3000);
     expect(document.getElementById("modalMensagem").style.display).toBe("flex");
   });
+});
+
+test("filtrarTabela deve abrir modal de erro quando nenhum resultado encontrado", () => {
+  const { filtrarTabela } = loadModule();
+  document.getElementById("input-busca").value = "Inexistente";
+  filtrarTabela();
+  jest.advanceTimersByTime(3000);
+  expect(document.getElementById("modalMensagemErro").style.display).toBe(
+    "flex",
+  );
+  expect(document.getElementById("modalTextoErro").innerHTML).toContain(
+    "Nenhum resultado encontrado",
+  );
 });
 
 describe("Tabela com Paginação", () => {
@@ -166,6 +225,17 @@ describe("Tabela com Seleção de Linhas", () => {
     jest.advanceTimersByTime(3000);
     expect(document.getElementById("modalMensagem").style.display).toBe("flex");
   });
+});
+
+test("atualizarSelecao não deve abrir modal se nenhum item estiver selecionado", () => {
+  const { atualizarSelecao } = loadModule();
+  // garante que todos estão desmarcados
+  document
+    .querySelectorAll(".linha-selecao")
+    .forEach((c) => (c.checked = false));
+  atualizarSelecao();
+  jest.advanceTimersByTime(3000);
+  expect(document.getElementById("modalMensagem").style.display).toBe("");
 });
 
 describe("Tabela com Ações", () => {
@@ -209,6 +279,17 @@ describe("Tabela com Ações", () => {
   });
 });
 
+test("acaoExcluir deve abrir modal de erro se usuário não encontrado", () => {
+  const { acaoExcluir } = loadModule();
+  acaoExcluir(999); // ID inexistente
+  expect(document.getElementById("modalMensagemErro").style.display).toBe(
+    "flex",
+  );
+  expect(document.getElementById("modalTextoErro").innerHTML).toContain(
+    "Usuário não encontrado",
+  );
+});
+
 describe("Estado Vazio", () => {
   test("deve recarregar dados e abrir modal", () => {
     const { recarregarTabelaVazia } = loadModule();
@@ -226,5 +307,70 @@ describe("Reset Global", () => {
     expect(document.getElementById("modalTexto").innerHTML).toContain(
       "Tabelas resetadas",
     );
+  });
+
+  describe("Funções de Modal", () => {
+    test("fecharModal não deve lançar erro se modal ou ações não existirem", () => {
+      const { fecharModal } = loadModule();
+
+      // Modal inexistente
+      expect(() => fecharModal("modalInexistente")).not.toThrow();
+
+      // Modal existe mas sem inputs ou .modal-actions
+      const div = document.createElement("div");
+      div.id = "modalMensagem";
+      document.body.appendChild(div);
+
+      expect(() => fecharModal("mensagem")).not.toThrow();
+
+      document.body.removeChild(div);
+    });
+
+    test("mostrarModalErro não deve lançar erro se acoesErro não existir", () => {
+      const { mostrarModalErro } = loadModule();
+
+      // Remove modalAcoesErro do DOM
+      const acoesErro = document.getElementById("modalAcoesErro");
+      if (acoesErro) acoesErro.remove();
+
+      expect(() => mostrarModalErro("Teste de erro")).not.toThrow();
+
+      expect(document.getElementById("modalMensagemErro").style.display).toBe(
+        "flex",
+      );
+    });
+
+    test("mostrarModal não deve lançar erro se acoes não existir", () => {
+      const { mostrarModal } = loadModule();
+
+      // Remove modalAcoes do DOM
+      const acoes = document.getElementById("modalAcoes");
+      if (acoes) acoes.remove();
+
+      expect(() => mostrarModal("Teste normal")).not.toThrow();
+
+      expect(document.getElementById("modalMensagem").style.display).toBe(
+        "flex",
+      );
+    });
+
+    test("window.onclick deve fechar modal ao clicar fora", () => {
+      const { mostrarModal } = loadModule();
+
+      // Exibe modal
+      mostrarModal("Teste clique fora");
+      const modal = document.getElementById("modalMensagem");
+
+      // Preenche modalAcoes com botão para simular estrutura mínima
+      const acoes = document.getElementById("modalAcoes");
+      acoes.innerHTML = "<button>OK</button>";
+
+      // Simula clique fora (evento.target === modal)
+      const event = new MouseEvent("click", { bubbles: true });
+      Object.defineProperty(event, "target", { value: modal });
+      window.onclick(event);
+
+      expect(modal.style.display).toBe("none");
+    });
   });
 });

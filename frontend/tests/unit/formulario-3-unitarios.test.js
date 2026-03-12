@@ -42,6 +42,8 @@ beforeEach(() => {
       <option value="">Selecione...</option>
     </select>
   `;
+
+  document.dispatchEvent(new Event("DOMContentLoaded"));
 });
 
 describe("mostrarModalErro", () => {
@@ -125,6 +127,30 @@ describe("Localização dinâmica", () => {
       true,
     );
   });
+
+  test("deve popular estados ao selecionar país", () => {
+    const pais = document.getElementById("pais");
+    const estado = document.getElementById("estado");
+
+    pais.value = "brasil";
+    pais.dispatchEvent(new Event("change"));
+
+    expect(estado.options.length).toBeGreaterThan(1);
+  });
+
+  test("deve popular cidades ao selecionar estado", () => {
+    const pais = document.getElementById("pais");
+    const estado = document.getElementById("estado");
+    const cidade = document.getElementById("cidade");
+
+    pais.value = "brasil";
+    pais.dispatchEvent(new Event("change"));
+
+    estado.value = "pr";
+    estado.dispatchEvent(new Event("change"));
+
+    expect(cidade.options.length).toBeGreaterThan(1);
+  });
 });
 
 describe("executarFormulario3", () => {
@@ -137,7 +163,13 @@ describe("executarFormulario3", () => {
 
   test("deve enviar com sucesso com tudo válido", () => {
     document.getElementById("pais").value = "brasil";
+
+    document.getElementById("estado").innerHTML +=
+      '<option value="sp">São Paulo</option>';
     document.getElementById("estado").value = "sp";
+
+    document.getElementById("cidade").innerHTML +=
+      '<option value="campinas">Campinas</option>';
     document.getElementById("cidade").value = "campinas";
 
     const arquivos = [
@@ -164,6 +196,23 @@ describe("executarFormulario3", () => {
     });
 
     executarFormulario3({ preventDefault: jest.fn() });
+
+    // valida reset dos selects
+    const pais = document.getElementById("pais");
+    const estado = document.getElementById("estado");
+    const cidade = document.getElementById("cidade");
+
+    expect(pais.value).toBe("");
+    expect(estado.innerHTML).toContain("Selecione...");
+    expect(cidade.innerHTML).toContain("Selecione...");
+
+    expect(pais.classList.contains("erro")).toBe(false);
+    expect(estado.classList.contains("erro")).toBe(false);
+    expect(cidade.classList.contains("erro")).toBe(false);
+
+    expect(pais.classList.contains("sucesso")).toBe(false);
+    expect(estado.classList.contains("sucesso")).toBe(false);
+    expect(cidade.classList.contains("sucesso")).toBe(false);
 
     // 🔎 Verificações reais de sucesso
     arquivos.forEach(([id]) => {

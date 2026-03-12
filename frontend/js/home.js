@@ -159,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 });
+
 // ===============================
 // Controle do botão Sugestões (sessão)
 // ===============================
