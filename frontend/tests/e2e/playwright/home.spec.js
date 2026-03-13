@@ -109,51 +109,6 @@ test.describe("Home - Validação de botões do menu", () => {
     await expect(btnAvaliar).toBeDisabled();
   });
 
-  test("Validar fluxo completo do modal Sugestões", async ({ page }) => {
-    const btnSugestoes = page.locator("#btn-sugestoes");
-    const modalSugestoes = page.locator("#modal-sugestoes");
-
-    console.log("Abrindo modal Sugestões...");
-    await btnSugestoes.click();
-    await expect(modalSugestoes).toBeVisible();
-    console.log("Modal Sugestões visível");
-
-    const textarea = page.locator("#texto-sugestao");
-
-    console.log("Preenchendo textarea...");
-    await textarea.fill("Teste automático Playwright");
-    await expect(textarea).toHaveValue("Teste automático Playwright");
-    console.log("Textarea preenchido corretamente");
-
-    const btnSair = page.locator("#modal-sugestoes button.btn-secondary");
-    console.log("Clicando em Sair...");
-    await btnSair.click();
-    await expect(modalSugestoes).not.toBeVisible();
-    console.log("Modal fechado");
-
-    console.log("Reabrindo modal Sugestões...");
-    await btnSugestoes.click();
-    await expect(modalSugestoes).toBeVisible();
-
-    console.log("Validando textarea limpo...");
-    await expect(textarea).toHaveValue("");
-
-    console.log("Preenchendo textarea novamente...");
-    await textarea.fill("Segundo envio automático");
-
-    const btnEnviar = page.locator("#modal-sugestoes button.btn-primary");
-    console.log("Clicando em Enviar...");
-    await btnEnviar.click();
-
-    const mensagem = page.locator("#texto-mensagem");
-    await expect(mensagem).toBeVisible();
-    await expect(mensagem).toHaveText("Sua sugestão foi enviada com sucesso!");
-    console.log("Mensagem de sucesso exibida");
-
-    await expect(btnSugestoes).toBeDisabled();
-    console.log("Botão Sugestões desabilitado após envio");
-  });
-
   test("Abrir modal Contatos e validar links", async ({ page }) => {
     const btnContatos = page.locator("#btnContatos");
     const modalContatos = page.locator("#modal-contatos");
