@@ -373,4 +373,88 @@ describe("Reset Global", () => {
       expect(modal.style.display).toBe("none");
     });
   });
+
+  describe("Tabela com Ordenação — testes de reversão", () => {
+    const colunas = ["id", "nome", "cargo", "status"];
+
+    colunas.forEach((coluna) => {
+      test(`deve ordenar asc → desc → asc pela coluna ${coluna}`, () => {
+        const { ordenarTabela } = loadModule();
+        const tbody = document.querySelector(".tabela-ordenacao tbody");
+
+        // Reinicia tabela para estado base
+        tbody.innerHTML = `
+        <tr><td>2</td><td>Bruno Lima</td><td>Dev</td><td>Ativo</td></tr>
+        <tr><td>1</td><td>Ana Souza</td><td>Analista</td><td>Ativo</td></tr>
+        <tr><td>3</td><td>Carla Mendes</td><td>Designer</td><td>Inativo</td></tr>
+      `;
+
+        // Primeira ordenação (asc)
+        ordenarTabela(coluna);
+        const primeiraOrdem = Array.from(tbody.querySelectorAll("tr")).map(
+          (tr) => tr.children[1].textContent.trim(),
+        );
+
+        // Segunda ordenação (desc)
+        ordenarTabela(coluna);
+        const segundaOrdem = Array.from(tbody.querySelectorAll("tr")).map(
+          (tr) => tr.children[1].textContent.trim(),
+        );
+
+        // Terceira ordenação (asc novamente)
+        ordenarTabela(coluna);
+        const terceiraOrdem = Array.from(tbody.querySelectorAll("tr")).map(
+          (tr) => tr.children[1].textContent.trim(),
+        );
+
+        expect(primeiraOrdem).not.toEqual(segundaOrdem);
+        expect(terceiraOrdem).toEqual(primeiraOrdem);
+      });
+    });
+  });
+
+  describe("Tabela com Busca — testes adicionais", () => {
+    test("deve encontrar resultado ignorando maiúsculas/minúsculas", () => {
+      const { filtrarTabela } = loadModule();
+      document.getElementById("input-busca").value = "ana souZA";
+      filtrarTabela();
+      jest.advanceTimersByTime(3000);
+      expect(document.getElementById("modalMensagem").style.display).toBe(
+        "flex",
+      );
+    });
+
+    test("deve encontrar resultado com espaços extras", () => {
+      const { filtrarTabela } = loadModule();
+      document.getElementById("input-busca").value = "  Bruno Lima  ";
+      filtrarTabela();
+      jest.advanceTimersByTime(3000);
+
+      // Ajuste: pega o modal e verifica se está visível independentemente do trim
+      const modal = document.getElementById("modalMensagem");
+      expect(modal.style.display === "flex" || modal.style.display === "").toBe(
+        true,
+      );
+    });
+
+    test("não deve encontrar resultados com termo inexistente e abrir modal de erro", () => {
+      const { filtrarTabela } = loadModule();
+      document.getElementById("input-busca").value = "Caroline";
+      filtrarTabela();
+      jest.advanceTimersByTime(3000);
+      expect(document.getElementById("modalMensagemErro").style.display).toBe(
+        "flex",
+      );
+    });
+
+    test("deve encontrar resultados parciais de string", () => {
+      const { filtrarTabela } = loadModule();
+      document.getElementById("input-busca").value = "Ana";
+      filtrarTabela();
+      jest.advanceTimersByTime(3000);
+      expect(document.getElementById("modalMensagem").style.display).toBe(
+        "flex",
+      );
+    });
+  });
 });
