@@ -23,3 +23,11 @@ coverage/
 # Arquivos temporários do sistema
 .DS_Store
 Thumbs.db
+
+# Arquivos gerados pelo Robot Framework
+output.xml
+log.html
+report.html
+
+# Screenshots
+selenium-screenshot-*.png
