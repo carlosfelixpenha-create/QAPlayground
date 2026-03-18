@@ -5,12 +5,14 @@ module.exports = {
     "/node_modules/",
     "frontend/tests/e2e/playwright",
     "frontend/tests/e2e/seleniumwebdriver",
+    "frontend/tests/e2e/robotframework",
   ],
 
   coveragePathIgnorePatterns: [
     "/node_modules/",
     "frontend/tests/e2e/playwright",
     "frontend/tests/e2e/seleniumwebdriver",
+    "frontend/tests/e2e/robotframework",
   ],
 
   collectCoverage: false,
